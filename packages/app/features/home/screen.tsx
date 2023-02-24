@@ -52,12 +52,11 @@ export function HomeScreen() {
             mt="$2"
           />
           <H1 ta="center" mt="$2">
-            create-universal-app
+            create-vosque-app
           </H1>
         </XStack>
         <Paragraph ta="center">
-          This is a demo for create-universal-app. To read more about the
-          philosophy behind it, visit{" "}
+          This is a demo {" "}
           <Anchor
             color="$color12"
             href="https://github.com/chen-rn/create-universal-app"
