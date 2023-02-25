@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: SolitoAppProps) {
     <>
       <Head>
         <title>Vosque - Курс Испанского Языка</title>
-        <meta name="description" content="Tamagui, Solito, Expo & Next.js" />
+        <meta name="description" content="Курс аргентинского диалекта испанского языка для всех, кто хочет жить в Аргентине или по другим причинам интересуется культурой Аргентины и особенностями аргентинского испанского" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider>
