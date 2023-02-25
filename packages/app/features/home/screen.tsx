@@ -1,20 +1,23 @@
 import {
-  Anchor,
   Button,
   H1,
   H3,
+  H5,
   Paragraph,
   Separator,
   XStack,
   YStack,
   Image,
+  useControllableState,
+  useEvent,
+  ZStack
 } from "@my/ui";
-import React, { useEffect } from "react";
+import React, { useEffect,  useState } from "react";
 import { useLink } from "solito/link";
 import { trpc } from "../../utils/trpc";
 import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
 
-export function HomeScreen() {
+export function HomeScreen(props) {
   const { signOut, userId } = useAuth();
   const userLinkProps = useLink({
     href: "/user/nate",
@@ -27,6 +30,18 @@ export function HomeScreen() {
   });
 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
+
+  const [positionI, setPositionI] = useControllableState({
+    strategy: 'most-recent-wins',
+    prop: props.position,
+    defaultProp: 0,
+  })
+  const position = positions[positionI]
+  const onPress = useEvent(() => {
+    setPositionI((x) => {
+      return (x + 1) % positions.length
+    })
+  })
 
   useEffect(() => {
     console.log(data);
@@ -55,37 +70,85 @@ export function HomeScreen() {
         <Paragraph ta="center">
           Курс аргентинского диалекта испанского языка для всех, кто хочет жить в Аргентине или по другим причинам интересуется культурой Аргентины и особенностями аргентинского испанского
         </Paragraph>
-        <XStack space="$2" ai="center">
-        <Paragraph ta="center">
-          This template uses Expo, Next, Solito, tRPC, Tamagui, Clerk, and
-          Prisma. If you're a beginner and is a little overwhelmed, I've also
-          made a{" "}
-          <Anchor
-            color="$color12"
-            href="https://youtu.be/aTEv0-ZBbWk"
-            target="_blank"
-          >
-            video
-          </Anchor>{" "}
-          explanation on how this template works and how to get started!
-        </Paragraph>
-        <Paragraph ta="center">
-          This template uses Expo, Next, Solito, tRPC, Tamagui, Clerk, and
-          Prisma. If you're a beginner and is a little overwhelmed, I've also
-          made a{" "}
-          <Anchor
-            color="$color12"
-            href="https://youtu.be/aTEv0-ZBbWk"
-            target="_blank"
-          >
-            video
-          </Anchor>{" "}
-          explanation on how this template works and how to get started!
-        </Paragraph>
-        </XStack>
-        <Separator />
       </YStack>
+      <ZStack maw={800} w={600} flex={1}>
+        <YStack
+        animation={ props.animation || 'bouncy' }
+        onPress={onPress}
+        y={30}
+        x={30}
+        bw={2}
+        bc="$background"
+        br="$10" 
+        p="$2" 
+        px="$7"
+        py="$6"
+        w={500}
+        shadowColor={"$Color1"}
+        shadowRadius={15}
+        shadowOffset={{ width: 0, height: 4 }}
+        {...position}
+        >
+          <H5 ta="center" mt="$2">
+            Курс аргентинского испанского языка
+          </H5>
+          <Paragraph>
+            Нет смысла учить язык, если потом не можешь на нем разговаривать. Уже с первых уроков нашего курса мы будем учиться строить диалоги - и не сухие, а так, как это делают носители.
+          </Paragraph>
+        </YStack> 
+        <YStack
+        animation={ props.animation || 'bouncy' }
+        onPress={onPress}
+        y={20}
+        x={20}
+        bw={2}
+        bc="$background"
+        br="$10" 
+        p="$2" 
+        pointerEvents="auto"
+        px="$7"
+        py="$6"
+        w={500}
+        shadowColor={"$Color1"}
+        shadowRadius={15}
+        shadowOffset={{ width: 0, height: 4 }}
+        {...position}
+        >
+          <H5 ta="center" mt="$2">
+            Культурный контекст
+          </H5>
+          <Paragraph>
+          Все про Аргентину и не только - постоянные исторические и культурные отсылки помогут Вам лучше понять жителей Аргентины и быстрее влиться в среду.
+          </Paragraph>
+        </YStack>
+        <YStack
+        animation={ props.animation || 'bouncy' }
+        onPress={onPress}
+        y={0}
+        x={0}
+        bw={2}
+        bc="$background"
+        br="$10" 
+        p="$2"
+        pointerEvents="auto"
+        px="$7"
+        py="$6"
+        w={500}
+        shadowColor={"$Color1"}
+        shadowRadius={15}
+        shadowOffset={{ width: 0, height: 4 }}
+        {...position}
+        >
+          <H5 ta="center" mt="$2">
+            Структура языка
+          </H5>
+          <Paragraph>
+          Часто на курсах обещают разговорную речь, но не дают структуры. Этот метод подходит для детей, но голова взрослого человека работает иначе - весь материал будет структурирован в таблицах.
+          </Paragraph>
+        </YStack>
+      </ZStack>
 
+      <Separator />
       <H3 ta="center">Some Demos</H3>
       <YStack p="$2">
         <Paragraph>tRPC Query Demo</Paragraph>
@@ -123,6 +186,22 @@ export function HomeScreen() {
           Sign Out
         </Button>
       </SignedIn>
-    </YStack>
+        
+  </YStack>
   );
 }
+
+export const positions = [
+  {
+    x: 0,
+    y: 0
+  },
+  {
+    x: 0,
+    y: 100
+  },
+  {
+    x: 0,
+    y: 200
+  },
+]
