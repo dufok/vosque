@@ -43,28 +43,31 @@ export function HomeScreen() {
   return (
     <YStack f={1} jc="center" ai="center" p="$4" space>
       <YStack space="$4" maw={600} px="$3">
-        <XStack jc="center" ai="flex-end" fw="wrap" space="$2" mt="$-2">
           <Image
-            src="https://raw.githubusercontent.com/chen-rn/CUA/main/apps/nextjs/public/favicon.ico"
-            accessibilityLabel="create-universal-app logo"
-            width={50}
-            height={50}
-            mt="$2"
+            src="https://link.us1.storjshare.io/raw/jw4pebfkpzdu47ufm2ati3jxxjha/images/Logo.PNG"
+            accessibilityLabel="vosque logo"
+            width={800}
+            height={400}
           />
-          <H1 ta="center" mt="$2">
-            create-vosque-app
-          </H1>
-        </XStack>
+        <H1 ta="center" mt="$2">
+          Курс аргентинского испанского языка
+        </H1>
         <Paragraph ta="center">
-          This is a demo {" "}
+          Курс аргентинского диалекта испанского языка для всех, кто хочет жить в Аргентине или по другим причинам интересуется культурой Аргентины и особенностями аргентинского испанского
+        </Paragraph>
+        <XStack space="$2" ai="center">
+        <Paragraph ta="center">
+          This template uses Expo, Next, Solito, tRPC, Tamagui, Clerk, and
+          Prisma. If you're a beginner and is a little overwhelmed, I've also
+          made a{" "}
           <Anchor
             color="$color12"
-            href="https://github.com/chen-rn/create-universal-app"
+            href="https://youtu.be/aTEv0-ZBbWk"
             target="_blank"
           >
-            https://github.com/chen-rn/create-universal-app
+            video
           </Anchor>{" "}
-          (give it a ⭐️ if you like it!)
+          explanation on how this template works and how to get started!
         </Paragraph>
         <Paragraph ta="center">
           This template uses Expo, Next, Solito, tRPC, Tamagui, Clerk, and
@@ -79,6 +82,7 @@ export function HomeScreen() {
           </Anchor>{" "}
           explanation on how this template works and how to get started!
         </Paragraph>
+        </XStack>
         <Separator />
       </YStack>
 
