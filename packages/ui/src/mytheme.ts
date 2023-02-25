@@ -84,8 +84,46 @@ const light_translucent: BaseTheme = createTheme({
   backgroundHover: 'rgba(250,250,250,0.85)',
   backgroundPress: 'rgba(240,240,240,0.85)',
   backgroundFocus: 'rgba(240,240,240,0.7)',
+})
+const dark_gray: BaseTheme = createTheme({
+
+  ...dark,
+
+  background: tokens.color.gray5Dark,
+  backgroundHover: tokens.color.gray6Dark,
+  backgroundPress: tokens.color.gray7Dark,
+  backgroundFocus: tokens.color.gray8Dark,
 
 })
+const light_gray: BaseTheme = createTheme({
+
+  ...light,
+
+  background: tokens.color.gray5Light,
+  backgroundHover: tokens.color.gray6Light,
+  backgroundPress: tokens.color.gray7Light,
+  backgroundFocus: tokens.color.gray8Light,
+})
+const dark_red: BaseTheme = createTheme({
+
+  ...dark,
+
+  background: tokens.color.red5Dark,
+  backgroundHover: tokens.color.red6Dark,
+  backgroundPress: tokens.color.red7Dark,
+  backgroundFocus: tokens.color.red8Dark,
+
+})
+const light_red: BaseTheme = createTheme({
+
+  ...light,
+
+  background: tokens.color.red5Light,
+  backgroundHover: tokens.color.red6Light,
+  backgroundPress: tokens.color.red7Light,
+  backgroundFocus: tokens.color.red8Light,
+})
+
 // note the steps here
 
 // we recommend doing this because it avoids a category of confusing type errors
@@ -97,6 +135,10 @@ const allThemes = {
   light,
   dark_translucent,
   light_translucent,
+  dark_gray,
+  light_gray,
+  dark_red,
+  light_red
 }
 // 2. then get the name type
 
