@@ -1,18 +1,19 @@
 /* Scale the image to fit the width or height of the container, while preserving its aspect ratio */
-  .background-image {
+ .background-image {
     position: relative;
-    background-image: radial-gradient(circle at center, #374f2d 100%, #687146 0%);
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 1;
-  }
-  
-  .background-image::before {
-    content: '';
-    position: absolute;
     background-image: url('https://link.us1.storjshare.io/raw/jxdqoffudud3ia2eki367shgw5za/vosque/images/background_image.PNG');
     background-repeat: no-repeat;
     background-position: top;
-    background-size: cover;
+    background-size: contain;
+    background-size: 110lvw; /* 110% of the viewport width */
+  }
+  .background-image::after {
+    content: '';
+    position: absolute;
+    background-image: radial-gradient(circle at center, #374f2d 100%, #687146 0%);
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50vw 50vh; /* 50% of the viewport width and height */
     z-index: -1;
   }
