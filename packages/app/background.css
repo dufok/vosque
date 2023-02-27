@@ -1,0 +1,18 @@
+/* Scale the image to fit the width or height of the container, while preserving its aspect ratio */
+  .background-image {
+    position: relative;
+    background-image: radial-gradient(circle at center, #374f2d 100%, #687146 0%);
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+  }
+  
+  .background-image::before {
+    content: '';
+    position: absolute;
+    background-image: url('https://link.us1.storjshare.io/raw/jxdqoffudud3ia2eki367shgw5za/vosque/images/background_image.PNG');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    z-index: -1;
+  }
