@@ -2,14 +2,22 @@ import { createTheme } from 'tamagui'
 import { tokens } from '@tamagui/theme-base'
 
 
+<<<<<<< HEAD
 const light = createTheme({
 
   background: '#557048', // default background light
+=======
+
+const light = createTheme({
+
+  background: '#687146', // default background light
+>>>>>>> dev
   backgroundHover: tokens.color.green3Light,
   backgroundPress: tokens.color.green4Light,
   backgroundFocus: tokens.color.green5Light,
   borderColor: tokens.color.green4Light,
   borderColorHover: tokens.color.green6Light,
+<<<<<<< HEAD
   colorHover: tokens.color.green11Light,
   colorPress: tokens.color.green10Light,
   colorFocus: tokens.color.green6Light,
@@ -20,6 +28,18 @@ const light = createTheme({
   borderColorFocus: '#5ABCB9',
   color1: 'hsl(0, 0%, 99.0%)',
   color2: 'hsl(0, 0%, 97.0%)',
+=======
+  color: '#c6cfa6',
+  colorHover: tokens.color.green11Light,
+  colorPress: tokens.color.green10Light,
+  colorFocus: tokens.color.green6Light,
+  shadowColor: '#9ba47c',
+  shadowColorHover: tokens.color.green10Light,
+  borderColorPress: '#B8D3D1',
+  borderColorFocus: '#5ABCB9',
+  color1: '#1f2c1a',
+  color2: '#1f2c1a', 
+>>>>>>> dev
   color3: 'hsl(0, 0%, 95.1%)',
   color4: 'hsl(0, 0%, 93.0%)',
   color5: 'hsl(0, 0%, 90.9%)',
@@ -46,7 +66,11 @@ const dark: BaseTheme = {
   colorHover: tokens.color.green11Dark,
   colorPress: tokens.color.green10Dark,
   colorFocus: tokens.color.green6Dark,
+<<<<<<< HEAD
   shadowColor: tokens.color.green11Dark,
+=======
+  shadowColor: '#c6cfa6',
+>>>>>>> dev
   shadowColorHover: tokens.color.green10Dark,
   color: '#ddd',
   borderColorPress: '#B8D3D1',
