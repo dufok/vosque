@@ -32,6 +32,9 @@ export function HomeScreen(props: any) {
   const signUpLinkProps = useLink({
     href: "/signup",
   });
+  const lesson1Props = useLink({
+    href: "/lesson1",
+  });
 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
@@ -165,11 +168,10 @@ export function HomeScreen(props: any) {
         </Avatar>
         <YStack>
           <H3 ta="center">Анастасия Лукьянова</H3>
-          <Separator maw={350} />
           <H1 ta="center">Куратор курса</H1>
-          <Paragraph ta="center" w={800}>
+          <H5 ta="center" maw={800}>
             Я - билингв, носитель русского и испанских языков. Родившись в Эквадоре, в 5 лет я переехала в Россию, в 16 поступила в МГУ на филологический факультет, в 19 отправилась на стажировку в Мексику, а в 23, закончив университет с красным дипломом по специальности "Преподаватель и переводчик испанского языка", переехала в Аргентину. Уже 10 лет я преподаю язык и рада делиться своими знаниями и опытом.
-          </Paragraph>
+          </H5>
         </YStack>
       </YStack>
       <YStack>
@@ -278,6 +280,11 @@ export function HomeScreen(props: any) {
           записаться
         </H1>
       </YStack>
+      <XStack space>
+        <Button {...lesson1Props} theme={"gray"}>
+          Lesson 1 (text)
+        </Button>
+      </XStack>
       <XStack space>
         <Button {...userLinkProps} theme={"gray"}>
           User Page(Routing)

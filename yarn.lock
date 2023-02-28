@@ -1475,6 +1475,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.4.5, @babel/runtime@npm:^7.9.2":
+  version: 7.21.0
+  resolution: "@babel/runtime@npm:7.21.0"
+  dependencies:
+    regenerator-runtime: ^0.13.11
+  checksum: 7b33e25bfa9e0e1b9e8828bb61b2d32bdd46b41b07ba7cb43319ad08efc6fda8eb89445193e67d6541814627df0ca59122c0ea795e412b99c5183a0540d338ab
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:7.18.10":
   version: 7.18.10
   resolution: "@babel/template@npm:7.18.10"
@@ -6098,7 +6107,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:2.3.2":
+"classnames@npm:2.3.2, classnames@npm:^2.2.6":
   version: 2.3.2
   resolution: "classnames@npm:2.3.2"
   checksum: 2c62199789618d95545c872787137262e741f9db13328e216b093eea91c85ef2bfb152c1f9e63027204e2559a006a92eb74147d46c800a9f96297ae1d9f96f4e
@@ -8084,6 +8093,7 @@ __metadata:
     react-native-svg: ^13.4.0
     react-native-web: ~0.18.7
     typescript: 4.9.4
+    video-react: ^0.16.0
   languageName: unknown
   linkType: soft
 
@@ -11914,6 +11924,7 @@ __metadata:
     react-native: 0.0.0
     react-native-web: ^0.18.6
     react-native-web-lite: ^1.0.1-beta.144
+    video-react: ^0.16.0
   languageName: unknown
   linkType: soft
 
@@ -13604,6 +13615,15 @@ prisma@latest:
     indent-string: ^4.0.0
     strip-indent: ^3.0.0
   checksum: fa1ef20404a2d399235e83cc80bd55a956642e37dd197b4b612ba7327bf87fa32745aeb4a1634b2bab25467164ab4ed9c15be2c307923dd08b0fe7c52431ae6b
+  languageName: node
+  linkType: hard
+
+"redux@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "redux@npm:4.2.1"
+  dependencies:
+    "@babel/runtime": ^7.9.2
+  checksum: f63b9060c3a1d930ae775252bb6e579b42415aee7a23c4114e21a0b4ba7ec12f0ec76936c00f546893f06e139819f0e2855e0d55ebfce34ca9c026241a6950dd
   languageName: node
   linkType: hard
 
@@ -16027,6 +16047,22 @@ prisma@latest:
   version: 1.1.2
   resolution: "vary@npm:1.1.2"
   checksum: ae0123222c6df65b437669d63dfa8c36cee20a504101b2fcd97b8bf76f91259c17f9f2b4d70a1e3c6bbcee7f51b28392833adb6b2770b23b01abec84e369660b
+  languageName: node
+  linkType: hard
+
+"video-react@npm:^0.16.0":
+  version: 0.16.0
+  resolution: "video-react@npm:0.16.0"
+  dependencies:
+    "@babel/runtime": ^7.4.5
+    classnames: ^2.2.6
+    lodash.throttle: ^4.1.1
+    prop-types: ^15.7.2
+    redux: ^4.0.1
+  peerDependencies:
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: f41d0255443fe16f8a73ee2075b1fae21432ae1d2952f14c01f1bfd42d6730e4e5cd96c870665892b5e82f51692d512867e58945f9fca1791a08ae3cb5bd7678
   languageName: node
   linkType: hard
 

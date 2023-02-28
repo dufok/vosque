@@ -31,7 +31,9 @@
     "react-dom": "18.2.0",
     "react-refresh": "^0.14.0",
     "react-native-svg": "13.4.0",
-    "react-native-web": "0.18.9"
+    "react-native-web": "0.18.9",
+    "redux": "^4.2.1",
+    "video-react": "^0.16.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.18.9",
