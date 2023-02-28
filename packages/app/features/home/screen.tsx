@@ -178,7 +178,7 @@ export function HomeScreen(props: any) {
           Что говорят наши студенты
         </Paragraph>
         <Separator />
-        <XStack>
+        <Stack jc='space-around' ai='baseline' fd='row' fw='wrap' maw={1000} space="$4" >
           <YStack maw={300} space="$2">
             <H3 ta="center">Александр</H3>
             <Paragraph>
@@ -197,7 +197,7 @@ export function HomeScreen(props: any) {
               Я уже несколько лет изучаю испанский язык, но никак не могу выучить грамматику. В этом курсе я научился грамматике и разговорной речи одновременно. Спасибо!
             </Paragraph>
           </YStack>
-        </XStack>
+        </Stack>
       </YStack>
       <YStack mt='$20' >
         <H1 ta="center">Подробнее о курсе</H1> 
