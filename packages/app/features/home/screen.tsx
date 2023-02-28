@@ -66,7 +66,7 @@ export function HomeScreen(props: any) {
   }
 
   return (
-    <YStack ai="center" jc="flex-start" flex={1} space="$10" className="background-image">
+    <YStack ai="center" jc="flex-start" style={{ flex: 1, width: '100%' }} space="$10" className="background-image">
           <Image als="center"
             src="https://link.us1.storjshare.io/raw/jx3mkaq7sfl37heqxnwzlw5mglhq/vosque/images/Logo.png"
             accessibilityLabel="vosque logo"
