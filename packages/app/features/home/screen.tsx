@@ -17,7 +17,7 @@ import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
 import '../../background.css';
 
 
-export function HomeScreen(props: any) {
+export function HomeScreen() {
   const { signOut, userId } = useAuth();
   const userLinkProps = useLink({
     href: "/user/nate",
@@ -34,9 +34,9 @@ export function HomeScreen(props: any) {
 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
-  /*useEffect(() => {
+  useEffect(() => {
     console.log(data);
-  }, [isLoading]);*/
+  }, [isLoading]);
   
   /*if (isLoading) {
     return <Paragraph>Loading...</Paragraph>
@@ -47,7 +47,7 @@ export function HomeScreen(props: any) {
   }
 
   return (
-    <YStack f={1} jc="flex-start" className="background-image" space="$6">
+    <YStack f={1} jc="flex-start" className="background-image" miw={500} space="$6">
       <YStack>
           <Image
             als="center"
@@ -56,16 +56,16 @@ export function HomeScreen(props: any) {
             width={400}
             height={200}
           />
-        <H1 ta="center" tt="uppercase" fos={50} fow="$4" mt='$20' >
+        <H1 ta="center" tt="uppercase" fos={50} fow="$4" mt="$20" mb="$20" >
           Курс аргентинского испанского языка
         </H1>
-        <H3 ta="center" mt='$20'>
+      </YStack>
+      <YStack ai="center" >
+        <Paragraph miw={500} maw={800} ta='center'>
           Курс аргентинского диалекта испанского языка для всех, кто хочет жить в Аргентине или по другим причинам интересуется культурой Аргентины и особенностями аргентинского испанского
-        </H3>
-      </YStack>
-      <YStack mt='$5'>
-          <XStack jc='space-around' ai='baseline' fw='wrap' maw={1600}>
-            <YStack
+        </Paragraph>
+        <XStack m="$5" jc='space-around' ai="flex-start" fw='wrap' maw={1600}>
+          <YStack
               p="$4"
               bw={1}
               boc="$color1"
@@ -75,55 +75,61 @@ export function HomeScreen(props: any) {
               shadowColor={"$shadowColor"}
               shadowRadius={15}
               shadowOffset={{ width: 0, height: 4 }}
+              space="$4"
+              m="$4"
               >
-              <H5 ta="center" mt="$2" color="$color1" maw={350} {...props}>
-                Курс аргентинского испанского языка
-              </H5>
-              <Separator />
-              <Paragraph ta="center" maw={350} >
-                Нет смысла учить язык, если потом не можешь на нем разговаривать. Уже с первых уроков нашего курса мы будем учиться строить диалоги - и не сухие, а так, как это делают носители.
-              </Paragraph>
-            </YStack>
-            <YStack
-              bw={1}
-              boc="$color1"
-              bc="$background"
-              br="$10" 
-              w={400}
-              p="$4"
-              shadowColor={"$shadowColor"}
-              shadowRadius={15}
-              shadowOffset={{ width: 0, height: 4 }}
-              >
-              <H5 ta="center" mt="$2" color="$color1" maw={350} >
-                Культурный контекст
-              </H5>
-              <Separator />
-              <Paragraph ta='center' maw={350} >
-                Все про Аргентину и не только - постоянные исторические и культурные отсылки помогут Вам лучше понять жителей Аргентины и быстрее влиться в среду.
-              </Paragraph>
-            </YStack>
-            <YStack
-              bw={1}
-              boc="$color1"
-              bc="$background"
-              br="$10" 
-              w={400}
-              p="$4"
-              shadowColor={"$shadowColor"}
-              shadowRadius={15}
-              shadowOffset={{ width: 0, height: 4 }}
-              >
-              <H5 ta="center" mt="$2" color="$color1" maw={350} >
-                Структура языка
-              </H5>
-              <Separator />
-              <Paragraph ta='center' maw={350} >
-                Часто на курсах обещают разговорную речь, но не дают структуры. Этот метод подходит для детей, но голова взрослого человека работает иначе - весь материал будет структурирован в таблицах.
-              </Paragraph>
-            </YStack>
-          </XStack>
-      </YStack>
+            <H5 ta="center" mt="$2" color="$color1" maw={350}>
+              Курс аргентинского испанского языка
+            </H5>
+            <Separator />
+            <Paragraph ta="center" maw={350} >
+              Нет смысла учить язык, если потом не можешь на нем разговаривать. Уже с первых уроков нашего курса мы будем учиться строить диалоги - и не сухие, а так, как это делают носители.
+            </Paragraph>
+          </YStack>
+          <YStack
+            bw={1}
+            boc="$color1"
+            bc="$background"
+            br="$10" 
+            w={400}
+            p="$4"
+            shadowColor={"$shadowColor"}
+            shadowRadius={15}
+            shadowOffset={{ width: 0, height: 4 }}
+            space="$4"
+            m="$4"
+            >
+            <H5 ta="center" mt="$2" color="$color1" maw={350} >
+              Культурный контекст
+            </H5>
+            <Separator />
+            <Paragraph ta='center' maw={350} >
+              Все про Аргентину и не только - постоянные исторические и культурные отсылки помогут Вам лучше понять жителей Аргентины и быстрее влиться в среду.
+            </Paragraph>
+          </YStack>
+          <YStack
+            bw={1}
+            boc="$color1"
+            bc="$background"
+            br="$10" 
+            w={400}
+            p="$4"
+            shadowColor={"$shadowColor"}
+            shadowRadius={15}
+            shadowOffset={{ width: 0, height: 4 }}
+            space="$4"
+            m="$4"
+            >
+            <H5 ta="center" mt="$2" color="$color1" maw={350} >
+              Структура языка
+            </H5>
+            <Separator />
+            <Paragraph ta='center' maw={350} >
+              Часто на курсах обещают разговорную речь, но не дают структуры. Этот метод подходит для детей, но голова взрослого человека работает иначе - весь материал будет структурирован в таблицах.
+            </Paragraph>
+          </YStack>  
+        </XStack>
+      </YStack> 
       <YStack f={1} ai="center" mt='$20' pt='$10' pb='$10' space="$6" backgroundColor="$color1">
         <Avatar circular size="$20">
           <Avatar.Image
@@ -133,8 +139,8 @@ export function HomeScreen(props: any) {
           <Avatar.Fallback backgroundColor="$backgroundHover" />
         </Avatar>
         <YStack maw={800}>
-          <H3>Анастасия Лукьянова</H3>
-          <H1>Куратор курса</H1>
+          <H3 ta="center" >Анастасия Лукьянова</H3>
+          <H1 ta="center" >Куратор курса</H1>
           <Paragraph ta="center">
             Я - билингв, носитель русского и испанских языков. Родившись в Эквадоре, в 5 лет я переехала в Россию, в 16 поступила в МГУ на филологический факультет, в 19 отправилась на стажировку в Мексику, а в 23, закончив университет с красным дипломом по специальности "Преподаватель и переводчик испанского языка", переехала в Аргентину. Уже 10 лет я преподаю язык и рада делиться своими знаниями и опытом.
           </Paragraph>
