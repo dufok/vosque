@@ -13,9 +13,10 @@ if subdir and os.path.exists(os.path.join("/tmp/turbod", subdir, "turbod.pid")):
     # Remove the subdir
     os.system(f"rm -rf /tmp/turbod/{subdir}")
 
+
 # Get a list of all yarn processes
 pids_1 = os.popen('ps -ef | grep yarn | grep -v grep | awk \'{print $2}\'').read().strip().split("\n")
 
 for pid_1 in pids_1:
-    #os.system(f"kill -9 {pid_1}")
+    os.system(f"kill -9 {pid_1}")
     print(f"Killing process with PID {pid_1}")
