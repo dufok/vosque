@@ -46,7 +46,7 @@ export function lesson1Screen() {
   return (
     <YStack ai="center" jc="flex-start" flex={1} space="$10" className="background-image">
       <Paragraph ta="center" fow="$16" >
-        lesson1
+        ЧАСТЬ 1. ФОНЕТИКА
       </Paragraph>
       <YStack
         bw={1}
@@ -73,7 +73,7 @@ export function lesson1Screen() {
             <ForwardControl seconds={30} order={3.3} />
           </ControlBar>
         </Player>
-        <H3 ta="center">Видео диалогов между носителями на каждую пройденную тему!</H3>
+        <H3 ta="center"  mt='$10'>Сложные буквы</H3>
         <Paragraph maw={350} ta='center'>
            какой то текст
         </Paragraph>
