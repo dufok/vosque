@@ -1,4 +1,6 @@
 import os
+import signal
+import errno
 
 # Check if /tmp/turbod is not empty and has a subdir containing a file called "turbod.pid"
 subdir = next((d for d in os.listdir("/tmp/turbod") if os.path.isdir(os.path.join("/tmp/turbod", d))), None)
@@ -15,8 +17,29 @@ if subdir and os.path.exists(os.path.join("/tmp/turbod", subdir, "turbod.pid")):
 
 
 # Get a list of all yarn processes
-pids_1 = os.popen('ps -ef | grep yarn | grep -v grep | awk \'{print $2}\'').read().strip().split("\n")
+pids = os.popen('ps -ef | grep yarn | sed \'/grep yarn/d\' | sed \'/yarn-cheak.py/d\' | awk \'{print $2}\'').read().strip().split("\n")
+print(pids)
+if len(pids)==0 or (len(pids)==1 and pids[0]==""):
+    print("No yarn processes found")
+else:
+    print("Found yarn processes")
+    for pid in pids:
+        print(f"Killing process with PID {pid}")
+        os.kill(int(pid), signal.SIGTERM)
+        
+        # Wait for the process to exit gracefully
+        try:
+            os.waitpid(int(pid), 0)
+        except OSError:
+            pass
 
-for pid_1 in pids_1:
-    os.system(f"kill -9 {pid_1}")
-    print(f"Killing process with PID {pid_1}")
+        # If the process is still running, send the SIGKILL signal
+        try:
+            os.kill(int(pid), 0)
+            print(f"Process with PID {pid} did not exit gracefully, sending SIGKILL")
+            os.kill(int(pid), signal.SIGKILL)
+        except OSError as e:
+            if e.errno == errno.ESRCH:
+                print(f"Process with PID {pid} exited gracefully")
+            else:
+                print(f"Process with PID {pid} exited with error: {e}")

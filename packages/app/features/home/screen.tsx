@@ -78,11 +78,11 @@ export function HomeScreen() {
               space="$4"
               m="$4"
               >
-            <H5 ta="center" mt="$2" color="$color1" maw={350}>
+            <H5 ta="center" mt="$2" color="$color1" w={350}>
               Курс аргентинского испанского языка
             </H5>
             <Separator />
-            <Paragraph ta="center" maw={350} >
+            <Paragraph ta="center" w={350} >
               Нет смысла учить язык, если потом не можешь на нем разговаривать. Уже с первых уроков нашего курса мы будем учиться строить диалоги - и не сухие, а так, как это делают носители.
             </Paragraph>
           </YStack>
@@ -99,11 +99,11 @@ export function HomeScreen() {
             space="$4"
             m="$4"
             >
-            <H5 ta="center" mt="$2" color="$color1" maw={350} >
+            <H5 ta="center" mt="$2" color="$color1" w={350} >
               Культурный контекст
             </H5>
             <Separator />
-            <Paragraph ta='center' maw={350} >
+            <Paragraph ta='center' w={350} >
               Все про Аргентину и не только - постоянные исторические и культурные отсылки помогут Вам лучше понять жителей Аргентины и быстрее влиться в среду.
             </Paragraph>
           </YStack>
@@ -120,11 +120,11 @@ export function HomeScreen() {
             space="$4"
             m="$4"
             >
-            <H5 ta="center" mt="$2" color="$color1" maw={350} >
+            <H5 ta="center" mt="$2" color="$color1" w={350} >
               Структура языка
             </H5>
             <Separator />
-            <Paragraph ta='center' maw={350} >
+            <Paragraph ta='center' w={350} >
               Часто на курсах обещают разговорную речь, но не дают структуры. Этот метод подходит для детей, но голова взрослого человека работает иначе - весь материал будет структурирован в таблицах.
             </Paragraph>
           </YStack>  
@@ -140,6 +140,7 @@ export function HomeScreen() {
         </Avatar>
         <YStack maw={800}>
           <H3 ta="center" >Анастасия Лукьянова</H3>
+          <YStack m="$8" />
           <H1 ta="center" >Куратор курса</H1>
           <Paragraph ta="center">
             Я - билингв, носитель русского и испанских языков. Родившись в Эквадоре, в 5 лет я переехала в Россию, в 16 поступила в МГУ на филологический факультет, в 19 отправилась на стажировку в Мексику, а в 23, закончив университет с красным дипломом по специальности "Преподаватель и переводчик испанского языка", переехала в Аргентину. Уже 10 лет я преподаю язык и рада делиться своими знаниями и опытом.
@@ -152,7 +153,7 @@ export function HomeScreen() {
           Что говорят наши студенты
         </Paragraph>
         <Separator />
-        <XStack jc='space-around' fw='wrap' maw={1600} space="$6" >
+        <XStack m="$5" jc='space-around' ai="center" fw='wrap' maw={1600} >
           <YStack maw={300}>
             <H3 ta="center">Александр</H3>
             <Paragraph>
@@ -173,13 +174,12 @@ export function HomeScreen() {
           </YStack>
         </XStack>
       </YStack>
-      <YStack mt='$20' maw={1600}>
+      <YStack mt='$20' ai="center" maw={1600}>
         <H1 ta="center">Подробнее о курсе</H1> 
         <Paragraph ta="center">
           Почему он самый лучший ?
         </Paragraph>
-        <Separator />
-        <XStack jc='space-around' ai='baseline' fw='wrap' space="$6">
+        <XStack mt="$4" jc='space-around' ai="flex-start" fw='wrap'>
           <YStack
             bw={1}
             boc="$color1"
@@ -187,6 +187,8 @@ export function HomeScreen() {
             br="$10" 
             w={400}
             p="$4"
+            m="$4"
+            space="$4"
             shadowColor={"$shadowColor"}
             shadowRadius={15}
             shadowOffset={{ width: 0, height: 4 }}
@@ -203,6 +205,8 @@ export function HomeScreen() {
             br="$10" 
             w={400}
             p="$4"
+            m="$4"
+            space="$4"
             shadowColor={"$shadowColor"}
             shadowRadius={15}
             shadowOffset={{ width: 0, height: 4 }}
@@ -219,6 +223,8 @@ export function HomeScreen() {
             br="$10" 
             w={400}
             p="$4"
+            m="$4"
+            space="$4"
             shadowColor={"$shadowColor"}
             shadowRadius={15}
             shadowOffset={{ width: 0, height: 4 }}
@@ -235,6 +241,8 @@ export function HomeScreen() {
             br="$10" 
             w={400}
             p="$4"
+            m="$4"
+            space="$4"
             shadowColor={"$shadowColor"}
             shadowRadius={15}
             shadowOffset={{ width: 0, height: 4 }}
@@ -247,8 +255,8 @@ export function HomeScreen() {
           </YStack>
         </XStack>
       </YStack>
-      <YStack pt='$10' pb='$10' backgroundColor="$backgroundFocus" >
-        <H1 fow='200' >
+      <YStack pt="$10" pb="$10" backgroundColor="$backgroundHover" >
+        <H1 fow="200" ta="center">
           записаться
         </H1>
       </YStack>

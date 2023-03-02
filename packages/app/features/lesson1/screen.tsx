@@ -1,4 +1,9 @@
-import { Paragraph, YStack, H3 } from "@my/ui";
+import { Paragraph,
+  YStack,
+  XStack,
+  H3,
+  Square
+ } from "@my/ui";
 import { Player,
   BigPlayButton,
   PosterImage,
@@ -44,7 +49,7 @@ ForwardControl.propTypes = {
 
 export function lesson1Screen() {
   return (
-    <YStack ai="center" jc="flex-start" flex={1} space="$10" className="background-image">
+    <YStack ai="center" jc="flex-start" flex={1} space="$4" className="background-image">
       <Paragraph ta="center" fow="$16" >
         ЧАСТЬ 1. ФОНЕТИКА
       </Paragraph>
@@ -53,9 +58,8 @@ export function lesson1Screen() {
         boc="$color1"
         bc="$background"
         br="$10" 
-        maw={1000}
-        miw={400}
         p="$4"
+        maw={800}
         shadowColor={"$shadowColor"}
         shadowRadius={15}
         shadowOffset={{ width: 0, height: 4 }}
@@ -73,10 +77,235 @@ export function lesson1Screen() {
             <ForwardControl seconds={30} order={3.3} />
           </ControlBar>
         </Player>
-        <H3 ta="center"  mt='$10'>Сложные буквы</H3>
-        <Paragraph maw={350} ta='center'>
-           какой то текст
-        </Paragraph>
+        <YStack mt="$10" maw={800}>
+          <H3 ta="center">Сложные буквы</H3>
+          <XStack jc="flex-start" fw='wrap'>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>C</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>G</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>H</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>J</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>K</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>L</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>N</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>Q</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>R</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>V</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>W</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>X</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>Y</H3>
+            </Square>
+            <Square
+              bc="$color1"
+              animation="bouncy"
+              elevation="$4"
+              size="$8"
+              br="$9"
+              m="4"
+              hoverStyle={{
+                scale: 1.2,
+              }}
+              pressStyle={{
+                scale: 0.9,
+              }}
+              >
+              <H3>Z</H3>
+            </Square>
+          </XStack>
+        </YStack>
       </YStack>
     </YStack>
   );
