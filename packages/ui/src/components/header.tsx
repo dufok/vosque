@@ -12,7 +12,6 @@ export function header() {
       px='4'
       boxShadow='0 0 4px rgba(0, 0, 0, 0.2)'
     >
-      <img src={logo} alt='Logo' height='24' />
       <nav>
         <text>Home</text>
         <text>About</text>
