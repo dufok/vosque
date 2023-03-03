@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { XStack, YStack, VisuallyHidden, Text } from '@my/ui';
+import { XStack, YStack, VisuallyHidden, Text } from "tamagui";
 import { NextLink } from './NextLink';
 import { GithubIcon } from './GithubIcon';
 import { HeaderProps } from './HeaderProps';

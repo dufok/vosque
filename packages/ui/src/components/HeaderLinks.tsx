@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { XStack, YStack } from '@my/ui';
+import { XStack, YStack } from "tamagui";
 import { NextLink } from './NextLink';
 import { HeaderProps } from './HeaderProps';
 
