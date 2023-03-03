@@ -15,6 +15,7 @@ import { Player,
 import React from "react";
 import '../../background.css';
 import PropTypes from 'prop-types';
+import { HeaderContents } from '@my/ui/src/components/header';
 
 import "./../../../../node_modules/video-react/dist/video-react.css"; // import css
 //https://link.us1.storjshare.io/raw/jw264knny3k3jt6433cxg4adpuha/vosque/lessons/lesson1/Screenshot%202023-02-25%20033445.jpg
@@ -50,6 +51,7 @@ ForwardControl.propTypes = {
 export function lesson1Screen() {
   return (
     <YStack ai="center" jc="flex-start" flex={1} space="$4" className="background-image">
+    <HeaderContents />
       <Paragraph ta="center" fow="$16" >
         ЧАСТЬ 1. ФОНЕТИКА
       </Paragraph>
