@@ -48,6 +48,7 @@ export function HomeScreen() {
 
   return (
     <YStack f={1} jc="flex-start" className="background-image" miw={500} space="$6">
+      <HeaderContents />
       <YStack>
           <Image
             als="center"
