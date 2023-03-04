@@ -15,7 +15,7 @@ import { useLink } from "solito/link";
 import { trpc } from "../../utils/trpc";
 import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
 import '../../background.css';
-import { Header} from '@my/ui/src/components/header';
+import { Header} from '@my/ui/src/components/HeaderComp';
 
 
 export function HomeScreen() {

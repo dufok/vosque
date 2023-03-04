@@ -15,7 +15,7 @@ import { Player,
 import React from "react";
 import '../../background.css';
 import PropTypes from 'prop-types';
-import { Header } from '@my/ui/src/components/header';
+import { Header } from '@my/ui/src/components/HeaderComp';
 
 import "./../../../../node_modules/video-react/dist/video-react.css"; // import css
 //https://link.us1.storjshare.io/raw/jw264knny3k3jt6433cxg4adpuha/vosque/lessons/lesson1/Screenshot%202023-02-25%20033445.jpg
