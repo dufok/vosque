@@ -1,10 +1,49 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { XStack, YStack, VisuallyHidden, Text } from "tamagui";
+import { XStack, YStack, VisuallyHidden, Text, isClient, Paragraph, ParagraphProps } from "@my/ui";
 import { NextLink } from './NextLink';
 import { GithubIcon } from './GithubIcon';
 import { HeaderProps } from './HeaderProps';
-import { HeaderLinks } from './HeaderLinks';
+
+export function Header(props: HeaderProps) {
+  const [isScrolled, setIsScrolled] = React.useState(false)
+
+  if (isClient) {
+    React.useEffect(() => {
+      const onScroll = () => {
+        setIsScrolled(window.scrollY > 30)
+      }
+      window.addEventListener('scroll', onScroll, { passive: true })
+      return () => {
+        window.removeEventListener('scroll', onScroll)
+      }
+    }, [])
+  }
+
+  return (
+    <>
+      <XStack
+        className={`ease-out all ms200 ${
+          isScrolled ? 'blur-light hover-highlights ' : ''
+        }`}
+        bbc="$borderColor"
+        zi={50000}
+        // @ts-ignore
+        pos="fixed"
+        top={0}
+        my={isScrolled ? -2 : 0}
+        left={0}
+        right={0}
+        elevation={isScrolled ? '$1' : 0}
+        py={isScrolled ? '$0' : '$2'}
+      >
+        <YStack o={isScrolled ? 0.9 : 0} fullscreen bc="$background" />
+        <HeaderContents floating {...props} />
+      </XStack>
+      <YStack height={54} w="100%" />
+    </>
+  )
+}
 
 export function HeaderContents(props: HeaderProps) {
   const router = useRouter();
@@ -42,3 +81,58 @@ export function HeaderContents(props: HeaderProps) {
     </XStack>
   );
 }
+
+export const HeaderLinks = ({ showExtra, forceShowAllLinks }: HeaderProps) => {
+  return (
+    <>
+      <NextLink prefetch={false} href="/home">
+        <HeadAnchor
+          $sm={{
+            display: forceShowAllLinks ? 'flex' : 'none',
+          }}
+        >
+          Docs
+        </HeadAnchor>
+      </NextLink>
+
+      <NextLink prefetch={false} href="/">
+        <HeadAnchor
+          $md={{
+            display: forceShowAllLinks ? 'flex' : 'none',
+          }}
+        >
+          Blog
+        </HeadAnchor>
+      </NextLink>
+
+      <NextLink prefetch={false} href="/lesson1">
+        <HeadAnchor
+          $md={{
+            display: forceShowAllLinks ? 'flex' : 'none',
+          }}
+        >
+          More
+        </HeadAnchor>
+      </NextLink>
+    </>
+  );
+};
+
+const HeadAnchor = React.forwardRef((props: ParagraphProps, ref) => (
+  <Paragraph
+    ref={ref as any}
+    fontFamily="$silkscreen"
+    px="$3"
+    py="$2"
+    cursor="pointer"
+    size="$3"
+    color="$color10"
+    hoverStyle={{ opacity: 1, color: '$color' }}
+    pressStyle={{ opacity: 0.25 }}
+    // @ts-ignore
+    tabIndex={-1}
+    w="100%"
+    // jc="flex-end"
+    {...props}
+  />
+))

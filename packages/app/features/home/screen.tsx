@@ -15,6 +15,7 @@ import { useLink } from "solito/link";
 import { trpc } from "../../utils/trpc";
 import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
 import '../../background.css';
+import { Header} from '@my/ui/src/components/header';
 
 
 export function HomeScreen() {
@@ -48,7 +49,7 @@ export function HomeScreen() {
 
   return (
     <YStack f={1} jc="flex-start" className="background-image" miw={500} space="$6">
-      <HeaderContents />
+      <Header />
       <YStack>
           <Image
             als="center"
