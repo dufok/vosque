@@ -5,13 +5,13 @@ import { tokens } from '@tamagui/theme-base'
 
 const light = createTheme({
 
-  background: '#687146', // default background light
-  backgroundHover: tokens.color.green3Light,
-  backgroundPress: tokens.color.green4Light,
-  backgroundFocus: tokens.color.green5Light,
-  borderColor: tokens.color.green4Light,
-  borderColorHover: tokens.color.green6Light,
-  color: '#c6cfa6',
+  background: '#9BA47C', // default background light
+  backgroundHover: '#A3AB87',
+  backgroundPress: '#ADB493',
+  backgroundFocus: '#B6BC9F',
+  borderColor: '#0D0221',
+  borderColorHover: '#16033A',
+  color: '#000000',
   colorHover: tokens.color.green11Light,
   colorPress: tokens.color.green10Light,
   colorFocus: tokens.color.green6Light,
@@ -19,6 +19,7 @@ const light = createTheme({
   shadowColorHover: tokens.color.green10Light,
   borderColorPress: '#B8D3D1',
   borderColorFocus: '#5ABCB9',
+  placeholderColor: '#c6cfa6',
   color1: '#1f2c1a',
   color2: '#1f2c1a', 
   color3: 'hsl(0, 0%, 95.1%)',
@@ -38,7 +39,7 @@ type BaseTheme = typeof light
 // the rest of the themes use BaseTheme
 
 const dark: BaseTheme = {
-  background: '#171614', //default background Dark
+  background: '#9BA47C', //default background Dark
   backgroundHover: tokens.color.green2Dark,
   backgroundPress: tokens.color.green3Dark,
   backgroundFocus: tokens.color.green4Dark,
@@ -52,6 +53,7 @@ const dark: BaseTheme = {
   color: '#ddd',
   borderColorPress: '#B8D3D1',
   borderColorFocus: '#3A2618',
+  placeholderColor: '#ddd',
   color1: '#191919',
   color2: '#232323',
   color3: '#282828',

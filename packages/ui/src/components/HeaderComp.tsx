@@ -91,7 +91,7 @@ export const HeaderLinks = ({ showExtra, forceShowAllLinks }: HeaderProps) => {
             display: forceShowAllLinks ? 'flex' : 'none',
           }}
         >
-          Docs
+          <Text>Home</Text>
         </HeadAnchor>
       </NextLink>
 
@@ -101,7 +101,7 @@ export const HeaderLinks = ({ showExtra, forceShowAllLinks }: HeaderProps) => {
             display: forceShowAllLinks ? 'flex' : 'none',
           }}
         >
-          Blog
+          <Text>Home</Text>
         </HeadAnchor>
       </NextLink>
 
@@ -111,7 +111,7 @@ export const HeaderLinks = ({ showExtra, forceShowAllLinks }: HeaderProps) => {
             display: forceShowAllLinks ? 'flex' : 'none',
           }}
         >
-          More
+          <Text>Lesson 1</Text>
         </HeadAnchor>
       </NextLink>
     </>
