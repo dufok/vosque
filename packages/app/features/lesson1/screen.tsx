@@ -27,7 +27,6 @@ import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
 import { LangTest, LangComponent } from '@my/ui/src/components/LangTest1';
 
 import "./../../../../node_modules/video-react/dist/video-react.css"; // import css
-//https://link.us1.storjshare.io/raw/jw264knny3k3jt6433cxg4adpuha/vosque/lessons/lesson1/Screenshot%202023-02-25%20033445.jpg
 
 BigPlayButton.propTypes = {
   position: PropTypes.string,

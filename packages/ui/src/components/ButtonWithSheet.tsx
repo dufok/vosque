@@ -19,7 +19,7 @@ export function ButtonWithSheet(Props) {
       <Dialog modal>
         <Dialog.Trigger asChild>
           <Square
-            bc="$color1"
+            bc="$background"
             animation="bouncy"
             elevation="$4"
             size="$8"

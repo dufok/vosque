@@ -8,17 +8,24 @@ import {
   XStack,
   YStack,
   Image,
-  Avatar
+  Avatar,
+  useEvent,
+  useControllableState
 } from "@my/ui";
 import React, { useRef, useEffect,  useState } from "react";
 import { useLink } from "solito/link";
 import { trpc } from "../../utils/trpc";
 import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
-import '../../background.css';
+
+//add background css
+import '@my/ui/src/background.css';
+//add Font style
+import '@my/ui/src/styles.css'
+//add Header
 import { Header} from '@my/ui/src/components/HeaderComp';
 
 
-export function HomeScreen() {
+export function HomeScreen(props) {
   const { signOut, userId } = useAuth();
   const userLinkProps = useLink({
     href: "/user/nate",
@@ -29,6 +36,7 @@ export function HomeScreen() {
   const signUpLinkProps = useLink({
     href: "/signup",
   });
+  //add link Props to lesson1
   const lesson1Props = useLink({
     href: "/lesson1",
   });
@@ -50,28 +58,27 @@ export function HomeScreen() {
   return (
     <YStack f={1} jc="flex-start" className="background-image" miw={500} space="$6">
       <Header />
-      <YStack>
-          <Image
-            als="center"
-            src="https://link.us1.storjshare.io/raw/jx3mkaq7sfl37heqxnwzlw5mglhq/vosque/images/Logo.png"
-            accessibilityLabel="vosque logo"
-            width={400}
-            height={200}
-          />
-        <H1 ta="center" tt="uppercase" fos={50} fow="$4" mt="$20" mb="$20" >
+      <YStack maw={800} ai="center">
+        <Image
+          als="center"
+          src="https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/Logo.PNG"
+          accessibilityLabel="vosque logo"
+          width={400}
+          height={200}
+        />
+        <H1 ta="center" tt="uppercase" fos={70} fow="$4" mt="$20" mb="$20" style={{ fontFamily: 'VosqueStyle' }}>
           Курс аргентинского испанского языка
         </H1>
       </YStack>
       <YStack ai="center" >
-        <Paragraph miw={500} maw={800} ta='center'>
+        <H5 miw={300} maw={600} ta='center'>
           Курс аргентинского диалекта испанского языка для всех, кто хочет жить в Аргентине или по другим причинам интересуется культурой Аргентины и особенностями аргентинского испанского
-        </Paragraph>
+        </H5>
         <XStack m="$5" jc='space-around' ai="flex-start" fw='wrap' maw={1600}>
           <YStack
+              ai="center"
               p="$4"
               bw={1}
-              boc="$color1"
-              bc="$background"
               br="$10" 
               w={400}
               shadowColor={"$shadowColor"}
@@ -80,56 +87,18 @@ export function HomeScreen() {
               space="$4"
               m="$4"
               >
+            <Avatar circular size="$10" y="$-19">
+              <Avatar.Image src="https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/circle_talking_talk.png" />
+              <Avatar.Fallback bc="$color" />
+            </Avatar>
             <H5 ta="center" mt="$2" color="$color1" w={350}>
               Курс аргентинского испанского языка
             </H5>
             <Separator />
-            <Paragraph ta="center" w={350} >
+            <Paragraph ta="center" color="$color1" w={350} >
               Нет смысла учить язык, если потом не можешь на нем разговаривать. Уже с первых уроков нашего курса мы будем учиться строить диалоги - и не сухие, а так, как это делают носители.
             </Paragraph>
           </YStack>
-          <YStack
-            bw={1}
-            boc="$color1"
-            bc="$background"
-            br="$10" 
-            w={400}
-            p="$4"
-            shadowColor={"$shadowColor"}
-            shadowRadius={15}
-            shadowOffset={{ width: 0, height: 4 }}
-            space="$4"
-            m="$4"
-            >
-            <H5 ta="center" mt="$2" color="$color1" w={350} >
-              Культурный контекст
-            </H5>
-            <Separator />
-            <Paragraph ta='center' w={350} >
-              Все про Аргентину и не только - постоянные исторические и культурные отсылки помогут Вам лучше понять жителей Аргентины и быстрее влиться в среду.
-            </Paragraph>
-          </YStack>
-          <YStack
-            bw={1}
-            boc="$color1"
-            bc="$background"
-            br="$10" 
-            w={400}
-            p="$4"
-            shadowColor={"$shadowColor"}
-            shadowRadius={15}
-            shadowOffset={{ width: 0, height: 4 }}
-            space="$4"
-            m="$4"
-            >
-            <H5 ta="center" mt="$2" color="$color1" w={350} >
-              Структура языка
-            </H5>
-            <Separator />
-            <Paragraph ta='center' w={350} >
-              Часто на курсах обещают разговорную речь, но не дают структуры. Этот метод подходит для детей, но голова взрослого человека работает иначе - весь материал будет структурирован в таблицах.
-            </Paragraph>
-          </YStack>  
         </XStack>
       </YStack> 
       <YStack f={1} ai="center" mt='$20' pt='$10' pb='$10' space="$6" backgroundColor="$color1">
@@ -303,3 +272,6 @@ export function HomeScreen() {
     </YStack>
   );
 }
+
+//Position declaration for Animated Block
+const positions = [0, 1, 2]
