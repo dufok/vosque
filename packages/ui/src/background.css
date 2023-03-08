@@ -1,7 +1,7 @@
 /* Scale the image to fit the width or height of the container, while preserving its aspect ratio */
  .background-image {
     position: relative;
-    background-image: url('https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/background_image.PNG');
+    background-image: url('https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/background_light.png');
     background-repeat: no-repeat;
     background-position: top;
     background-size: contain;

@@ -22,9 +22,9 @@ export function ButtonWithSheet(Props) {
             bc="$background"
             animation="bouncy"
             elevation="$4"
-            size="$8"
+            size="$7"
             br="$5"
-            m="$2"
+            m="$1.5"
             hoverStyle={{
               scale: 1.2,
             }}
