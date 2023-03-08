@@ -17,3 +17,11 @@
     background-size: 50vw 50vh; /* 50% of the viewport width and height */
     z-index: -1;
   }
+  .background-image {
+    position: relative;
+    background-image: url('https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/background_down_light.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    background-size: 110lvw; /* 110% of the viewport width */
+  }
