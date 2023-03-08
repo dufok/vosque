@@ -1,4 +1,4 @@
-import { Paragraph, YStack, XStack, Button, Input, Dialog, Sheet, Adapt, Unspaced } from "@my/ui";
+import { Paragraph, YStack, XStack, Button, Input, Dialog, Sheet, Adapt, Unspaced } from 'tamagui';
 import React, { useState, Children, cloneElement } from "react";
 import { X } from '@tamagui/lucide-icons';
 

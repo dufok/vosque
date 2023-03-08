@@ -10,7 +10,7 @@ import {
   Unspaced,
   Separator,
   Square
-  } from "@my/ui";
+  } from 'tamagui';
 import { X } from '@tamagui/lucide-icons'
 import React from "react";
 
