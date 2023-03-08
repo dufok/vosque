@@ -145,13 +145,13 @@ export function HomeScreen(props) {
             </AnimatePresence>
           </XStack>
       </YStack>
-      <YStack f={1} ai="center" mt='$20' pt='$10' pb='$10' space="$6"  >
-        <Image pos="relative" width={1200} height={1200} src='https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/curator_fon.png'/>
+      <YStack f={1} ai="center" jc="center" pt='$10' pb='$10' space="$6"  >
+        <Image pos="relative" width={1400} height={1400} src='https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/curator_fon.png'/>
         <YStack position="absolute"
           ai="center"
           jc="center"
           bw={3}
-          boc="$color1"
+          boc="$color2"
           bc="$background"
           opacity={0.8}
           br="$10"
@@ -182,7 +182,7 @@ export function HomeScreen(props) {
           </XStack>
         </YStack>
       </YStack>
-      <YStack ai="center">
+      <YStack ai="center" jc="center">
         <YStack
           position="relative"
           w={800} h={300}
@@ -361,87 +361,6 @@ export function HomeScreen(props) {
             elevate
             onPress={() => paginate(1)}
           />
-        </XStack>
-      </YStack>
-      <YStack mt='$20' ai="center" maw={1600}>
-        <H1 ta="center">Подробнее о курсе</H1> 
-        <Paragraph ta="center">
-          Почему он самый лучший ?
-        </Paragraph>
-        <XStack mt="$4" jc='space-around' ai="flex-start" fw='wrap'>
-          <YStack
-            bw={1}
-            boc="$color1"
-            bc="$background"
-            br="$10" 
-            w={400}
-            p="$4"
-            m="$4"
-            space="$4"
-            shadowColor={"$shadowColor"}
-            shadowRadius={15}
-            shadowOffset={{ width: 0, height: 4 }}
-            >
-            <H3 ta="center">Видео с профессиональным преподавателем-билингвом</H3>
-            <Paragraph>
-              Видео, которые приятно и интересно смотреть. Анастасия - носитель испанского и русского языков - доступно ведет уроки, объясняя все правила, давая примеры и рассказывая про разные жизненные ситуации, с которыми Вы можете столкнуться.
-            </Paragraph>
-          </YStack>
-          <YStack
-            bw={1}
-            boc="$color1"
-            bc="$background"
-            br="$10" 
-            w={400}
-            p="$4"
-            m="$4"
-            space="$4"
-            shadowColor={"$shadowColor"}
-            shadowRadius={15}
-            shadowOffset={{ width: 0, height: 4 }}
-            >
-            <H3 ta="center">Теория на доступном</H3>
-            <Paragraph maw={350} ta='center'>
-              После каждого видео Вы увидите теоретический блок - в котором вся теория разложена по полочкам в таблицы для удобства визуального восприятия
-            </Paragraph>
-          </YStack>
-          <YStack
-            bw={1}
-            boc="$color1"
-            bc="$background"
-            br="$10" 
-            w={400}
-            p="$4"
-            m="$4"
-            space="$4"
-            shadowColor={"$shadowColor"}
-            shadowRadius={15}
-            shadowOffset={{ width: 0, height: 4 }}
-            >
-            <H3 ta="center">Практика</H3>
-            <Paragraph maw={350} ta='center'>
-              После каждого видео Вы увидите теоретический блок - в котором вся теория разложена по полочкам в таблицы для удобства визуального восприятия
-            </Paragraph>
-          </YStack>
-          <YStack
-            bw={1}
-            boc="$color1"
-            bc="$background"
-            br="$10" 
-            w={400}
-            p="$4"
-            m="$4"
-            space="$4"
-            shadowColor={"$shadowColor"}
-            shadowRadius={15}
-            shadowOffset={{ width: 0, height: 4 }}
-            >
-            <H3 ta="center">Видео диалогов между носителями на каждую пройденную тему!</H3>
-            <Paragraph maw={350} ta='center'>
-              Это уникально! В конце каждого грамматического урока Вас ждут видео, записаные специально для этого курса носителями языка:
-              Вы не просто учите материал, Вы сразу видите, как использовать его в живую!
-            </Paragraph>
-          </YStack>
         </XStack>
       </YStack>
       <YStack pt="$10" pb="$10" backgroundColor="$backgroundHover" >
