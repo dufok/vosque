@@ -10,7 +10,7 @@ import {
 } from "tamagui";
 import { Link } from "solito/link";
 import { OAuthStrategy } from "@clerk/types";
-
+//changes
 interface Props {
   type: "sign-up" | "sign-in";
   handleOAuthWithPress: (strategy: OAuthStrategy) => void;
