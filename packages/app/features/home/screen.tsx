@@ -26,17 +26,9 @@ import { Header} from '@my/ui/src/components/HeaderComp';
 import { AnimatePresence } from '@tamagui/animate-presence';
 import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons';
 import { reviews } from '@my/ui/src/texts/reviews';
-import { welcome } from '@my/ui/src/texts/welcome';
 
 //Review block animation config
 const YStackEnterable = styled(YStack, {
-  variants: {
-    isLeft: { true: { x: -300, opacity: 0 } },
-    isRight: { true: { x: 300, opacity: 0 } },
-  } as const,
-})
-//Welcome block animation config
-const WelcomeEnterable = styled(YStack, {
   variants: {
     isLeft: { true: { x: -300, opacity: 0 } },
     isRight: { true: { x: 300, opacity: 0 } },
@@ -68,15 +60,6 @@ export function HomeScreen(props) {
   const enterVariant = direction === 1 || direction === 0 ? 'isRight' : 'isLeft'
   const exitVariant = direction === 1 ? 'isLeft' : 'isRight'
 
-  //add animated block with Welcome
-  const [[wpage, wdirection], wsetpage] = useState([0, 0])
-  const welcomeIndex = wrap(0, welcome.length, wpage)
-  const wpaginate = (newDirection: number) => {
-    wsetpage([wpage + newDirection, newDirection]) 
-  }
-  const wenterVariant = wdirection === 1 || wdirection === 0 ? 'isRight' : 'isLeft'
-  const wexitVariant = wdirection === 1 ? 'isLeft' : 'isRight'
-
 
   //block with errors from Author 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
@@ -103,47 +86,97 @@ export function HomeScreen(props) {
           width={150}
           height={150}
         />
-        <H1 ta="center" fos={90} fow="$4" mt="$10" mb="$20" color="$color2" maw={1000} style={{ fontFamily: 'VosqueStyle' }}>
+        <H1 ta="center" fos={90} fow="$4" mt="15" mb="$20" color="$color2" w={1000}>
           Курсы аргентинского испанского языка
         </H1>
       </YStack>
       <YStack ai="center" >
-        <H5 miw={300} maw={600} ta='center'>
+        <H3 fos={50} miw={300} maw={600} ta='center'>
           Курс аргентинского диалекта испанского языка для всех, кто хочет жить в Аргентине или по другим причинам интересуется культурой Аргентины и особенностями аргентинского испанского
-        </H5>
-          <XStack m="$5" ov="hidden" bc="$background" pos="relative" h={600} w={800} ai="center">
-            <AnimatePresence enterVariant={wenterVariant} exitVariant={wexitVariant}>
-              <WelcomeEnterable key={wpage} animation="bouncy" fullscreen x={0} o={1} ai="center">
-                <YStack ai="center" onPress={() => wpaginate(1)}>
-                  <Avatar circular size="$8" y="$10" bc="$background" zi={100} >
-                    <Avatar.Image src={welcome[welcomeIndex].photo} />
-                    <Avatar.Fallback bc="$background" />
-                  </Avatar>
-                  <YStack
-                      ai="center"
-                      p="$4"
-                      bw={3}
-                      br="$10"
-                      boc="$color2"
-                      w={400}
-                      shadowColor={"$shadowColor"}
-                      shadowRadius={15}
-                      shadowOffset={{ width: 0, height: 4 }}
-                      space="$4"
-                      m="$4"
-                      >              
-                    <H5 ta="center" mt="$8" color="$color1" w={350}>
-                      {welcome[welcomeIndex].name}
-                    </H5>
-                    <Separator />
-                    <Paragraph ta="center" color="$color1" w={350} >
-                      {welcome[welcomeIndex].text}
-                    </Paragraph>
-                  </YStack>
-                </YStack>
-              </WelcomeEnterable>
-            </AnimatePresence>
-          </XStack>
+        </H3>
+        <XStack  mt="$4" jc='space-around' ai="flex-start" fw='wrap' >
+          <YStack ai="center">
+            <Avatar circular size="$8" y="$10" bc="$background" zi={100} >
+              <Avatar.Image src='https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/circle_talking_talk.png' />
+              <Avatar.Fallback bc="$background" />
+            </Avatar>
+            <YStack
+                ai="center"
+                p="$4"
+                bw={3}
+                br="$10"
+                boc="$color2"
+                w={400}
+                shadowColor={"$shadowColor"}
+                shadowRadius={15}
+                shadowOffset={{ width: 0, height: 4 }}
+                space="$4"
+                m="$4"
+                >              
+              <H5 ta="center" mt="$8" color="$color1" w={350}>
+                Разговорная речь
+              </H5>
+              <Separator />
+              <Paragraph ta="center" color="$color1" w={350} >
+                Нет смысла учить язык, если потом не можешь на нем разговаривать. Уже с первых уроков нашего курса мы будем учиться строить диалоги - и не сухие, а так, как это делают носители.
+              </Paragraph>
+            </YStack>
+          </YStack>
+          <YStack ai="center">
+            <Avatar circular size="$8" y="$10" bc="$background" zi={100} >
+              <Avatar.Image src='https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/circle_kult_cots.png' />
+              <Avatar.Fallback bc="$background" />
+            </Avatar>
+            <YStack
+                ai="center"
+                p="$4"
+                bw={3}
+                br="$10"
+                boc="$color2"
+                w={400}
+                shadowColor={"$shadowColor"}
+                shadowRadius={15}
+                shadowOffset={{ width: 0, height: 4 }}
+                space="$4"
+                m="$4"
+                >              
+              <H5 ta="center" mt="$8" color="$color1" w={350}>
+                Культурный контекст
+              </H5>
+              <Separator />
+              <Paragraph ta="center" color="$color1" w={350} >
+                Все про Аргентину и не только - постоянные исторические и культурные отсылки помогут Вам лучше понять жителей Аргентины и быстрее влиться в среду.
+              </Paragraph>
+            </YStack>
+          </YStack>
+          <YStack ai="center">
+            <Avatar circular size="$8" y="$10" bc="$background" zi={100} >
+              <Avatar.Image src='https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/circle_struct_lang.png' />
+              <Avatar.Fallback bc="$background" />
+            </Avatar>
+            <YStack
+                ai="center"
+                p="$4"
+                bw={3}
+                br="$10"
+                boc="$color2"
+                w={400}
+                shadowColor={"$shadowColor"}
+                shadowRadius={15}
+                shadowOffset={{ width: 0, height: 4 }}
+                space="$4"
+                m="$4"
+                >              
+              <H5 ta="center" mt="$8" color="$color1" w={350}>
+                Структура языка
+              </H5>
+              <Separator />
+              <Paragraph ta="center" color="$color1" w={350} >
+                Часто на курсах обещают разговорную речь, но не дают структуры. Этот метод подходит для детей, но голова взрослого человека работает иначе - весь материал будет структурирован в таблицах.
+              </Paragraph>
+            </YStack>
+          </YStack>
+        </XStack>
       </YStack>
       <YStack f={1} ai="center" jc="center" pt='$10' pb='$10' space="$6"  >
         <Image pos="relative" width={1400} height={1400} src='https://link.us1.storjshare.io/raw/jwgfjiapmo2t6vfo7gvkcarnk4la/vosque/images/curator_fon.png'/>
@@ -327,6 +360,7 @@ export function HomeScreen(props) {
                 shadowRadius={15}
                 shadowOffset={{ width: 0, height: 4 }}
                 ai="center"
+                onPress={() => paginate(1)}
                 >
                   <Avatar circular size="$10">
                     <Avatar.Image
