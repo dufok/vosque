@@ -85,23 +85,23 @@ export function HeaderContents(props: HeaderProps) {
 export const HeaderLinks = ({ showExtra, forceShowAllLinks }: HeaderProps) => {
   return (
     <>
-      <NextLink prefetch={false} href="/home">
+      <NextLink prefetch={false} href="/user">
         <HeadAnchor
           $sm={{
             display: forceShowAllLinks ? 'flex' : 'none',
           }}
         >
-          <Text>Home</Text>
+          <Text>Личный Кабинет</Text>
         </HeadAnchor>
       </NextLink>
 
-      <NextLink prefetch={false} href="/">
+      <NextLink prefetch={false} href="/home">
         <HeadAnchor
           $md={{
             display: forceShowAllLinks ? 'flex' : 'none',
           }}
         >
-          <Text>Home</Text>
+          <Text>Разговорники</Text>
         </HeadAnchor>
       </NextLink>
 
@@ -111,7 +111,17 @@ export const HeaderLinks = ({ showExtra, forceShowAllLinks }: HeaderProps) => {
             display: forceShowAllLinks ? 'flex' : 'none',
           }}
         >
-          <Text>Lesson 1</Text>
+          <Text>Курсы</Text>
+        </HeadAnchor>
+      </NextLink>
+
+      <NextLink prefetch={false} href="/home">
+        <HeadAnchor
+          $md={{
+            display: forceShowAllLinks ? 'flex' : 'none',
+          }}
+        >
+          <Text>Главная</Text>
         </HeadAnchor>
       </NextLink>
     </>
