@@ -6,7 +6,6 @@ import {
   Paragraph,
   Button,
 } from "@my/ui";
-import "@my/ui/src/background.css";
 import "@my/ui/src/styles.css";
 import { Header } from "@my/ui/src/components/HeaderComp";
 import { UserDetailScreen } from "app/features/user/detail-screen";
@@ -26,7 +25,7 @@ export function testScreen() {
   }
 
   return (
-    <YStack f={1} ai="center" className="background-image" miw={400} space="$6">
+    <YStack f={1} ai="center" miw={400} space="$6">
       <Header />
       <H1>Test Screen</H1>
       <Paragraph>
