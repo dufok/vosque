@@ -30,8 +30,6 @@ model Entry {
 // user model
 model User {
   id        String   @id @default(cuid())
-  firstName String?
-  lastName  String?
   email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
