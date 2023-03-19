@@ -14,11 +14,6 @@ import {
 import React, { useRef, useEffect, useState } from "react";
 import { useLink } from "solito/link";
 
-//add background css
-import '@my/ui/src/background.css';
-//add Font style
-import '@my/ui/src/styles.css'
-//add Header
 import { Header} from '@my/ui/src/components/HeaderComp';
 //add blocks animation
 import { AnimatePresence } from '@tamagui/animate-presence';
@@ -76,7 +71,7 @@ export function HomeScreen(props) {
   */
 
   return (
-    <YStack f={1} className="background-image" miw={500} space="$6">
+    <YStack f={1} miw={500} space="$6">
       <Header />
       <YStack ai="center">
         <Image

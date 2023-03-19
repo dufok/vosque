@@ -20,7 +20,6 @@ import { Player,
   } from 'video-react';
 import { X } from '@tamagui/lucide-icons'
 import React from "react";
-import '@my/ui/src/background.css'
 import PropTypes from 'prop-types';
 import { Header } from '@my/ui/src/components/HeaderComp';
 import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
@@ -58,7 +57,7 @@ ForwardControl.propTypes = {
 
 export function lesson1Screen() {
   return (
-    <YStack ai="center" jc="flex-start" flex={1} space="$4" className="background-image">
+    <YStack ai="center" jc="flex-start" flex={1} space="$4">
     <Header />
       <Paragraph ta="center" fow="$16" >
         ЧАСТЬ 1. ФОНЕТИКА
