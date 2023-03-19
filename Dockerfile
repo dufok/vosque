@@ -17,5 +17,9 @@ COPY . .
 # Expose the port your application will run on
 EXPOSE 3000
 
+# yarn install
+# yarn db-push
+# yarn web
+
 # Start the application
 #CMD ["npm", "start"]
