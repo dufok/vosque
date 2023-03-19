@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { YStack, H1, Paragraph, Button } from "@my/ui";
+import { YStack, H1, Paragraph, Button, XStack, Input } from "@my/ui";
 import { useLink } from "solito/link";
 import { Header } from "@my/ui/src/components/HeaderComp";
 import { trpc } from "../../utils/trpc";
@@ -18,6 +18,18 @@ export function testScreen() {
   const { signOut } = useAuth();
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
+
+  const [name, setName] = useState("");
+  const createEntryMutation = trpc.entry.create.useMutation();
+
+  const handleCreate = async () => {
+    try {
+      await createEntryMutation.mutate({ name });
+      setName("");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 
   useEffect(() => {
@@ -38,19 +50,25 @@ export function testScreen() {
       <H1>Test Screen</H1>
       {currentUser && (
         <>
-        <Paragraph>User ID: {currentUser.id}</Paragraph>
-        <Paragraph>User Email: {currentUser.email}</Paragraph>
+          <Paragraph>User Email: {currentUser.email}</Paragraph>
+          <Paragraph>Add new entry:</Paragraph>
+          <XStack ai="center" space="$2">
+            <Input f={1} size="$2" placeholder={currentUser.name || "none"} value={name} onChangeText={setName} />
+            <Button size="$2" onPress={handleCreate}>
+              Add
+            </Button>
+          </XStack>
         </>
       )}
       <SignedOut>
-        <YStack space>
+        <XStack space>
           <Button {...signInLinkProps} theme="gray">
             Sign In (Clerk)
           </Button>
           <Button {...signUpLinkProps} theme="gray">
             Sign Up (Clerk)
           </Button>
-        </YStack>
+        </XStack>
       </SignedOut>
       <SignedIn>
         <Button onPress={() => signOut()} theme="red">
