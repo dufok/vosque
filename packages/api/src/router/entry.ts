@@ -9,6 +9,7 @@ export const entryRouter = router({
   create: protectedProcedure
     .input(
       z.object({
+        name: z.string(),
         entryDay: z.date(),
         urlFrontPhotoThumbnail: z.string(),
         urlFrontPhotoHD: z.string(),
@@ -20,6 +21,7 @@ export const entryRouter = router({
       //create entry and link it to the user
       return ctx.prisma.entry.create({
         data: {
+          name: input.name,
           entryDay: input.entryDay,
           urlFrontPhotoThumbnail: input.urlFrontPhotoThumbnail,
           urlFrontPhotoHD: input.urlFrontPhotoHD,
