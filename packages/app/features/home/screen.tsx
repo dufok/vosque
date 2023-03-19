@@ -13,10 +13,7 @@ import {
 } from "@my/ui";
 import React, { useRef, useEffect, useState } from "react";
 import { useLink } from "solito/link";
-import { trpc } from "../../utils/trpc";
-import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
 
-//add Header
 import { Header} from '@my/ui/src/components/HeaderComp';
 //add blocks animation
 import { AnimatePresence } from '@tamagui/animate-presence';
@@ -32,7 +29,6 @@ const YStackEnterable = styled(YStack, {
 })
 
 export function HomeScreen(props) {
-  const { signOut, userId } = useAuth();
   const userLinkProps = useLink({
     href: "/user/nate",
   });
@@ -57,20 +53,22 @@ export function HomeScreen(props) {
   const exitVariant = direction === 1 ? 'isLeft' : 'isRight'
 
 
+  /*
   //block with errors from Author 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
-  
+  /*
   /*if (isLoading) {
     return <Paragraph>Loading...</Paragraph>
   }*/
-
+  /*
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
+  */
 
   return (
     <YStack f={1} miw={500} space="$6">
@@ -408,34 +406,6 @@ export function HomeScreen(props) {
           User Page(Routing)
         </Button>
       </XStack>
-      <SignedOut>
-        <XStack space ai="center">
-          <Button {...signInLinkProps} theme={"gray"}>
-            Sign In(Clerk)
-          </Button>
-          <Button {...signUpLinkProps} theme={"gray"}>
-            Sign Up(Clerk)
-          </Button>
-        </XStack>
-      </SignedOut>
-      <SignedIn>
-        <Button
-          onPress={() => {
-            signOut();
-          }}
-          theme={"red"}
-        >
-          Sign Out
-        </Button>
-      </SignedIn>
-      <YStack p="$2">
-        <Paragraph>tRPC Query Demo</Paragraph>
-        {data?.map((entry) => (
-          <Paragraph opacity={0.5} key={entry.id}>
-            {entry.id}
-          </Paragraph>
-        ))}
-      </YStack>
     </YStack>
   );
 }

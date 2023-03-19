@@ -26,7 +26,6 @@ import { Player,
             } from 'video-react';
 import { X } from '@tamagui/lucide-icons'
 import React from "react";
-import '@my/ui/src/background.css'
 import PropTypes from 'prop-types';
 import { Header } from '@my/ui/src/components/HeaderComp';
 import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
