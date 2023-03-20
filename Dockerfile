@@ -9,7 +9,7 @@ WORKDIR /workspaces/vosque
 COPY package*.json ./
 
 # Install the project dependencies
-RUN npm install
+RUN npm install -g npm@9.6.2
 
 # Copy the rest of the project files to the working directory
 COPY . .
