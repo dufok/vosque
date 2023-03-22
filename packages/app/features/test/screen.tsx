@@ -20,13 +20,18 @@ export function testScreen() {
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
   //Below is the code I'm trying to add New User Name to the database
-  const [newUserName, setNewUserName] = useState("")
+  const [newUserName, setNewUserName] = useState("");
+
+  const utils = trpc.useContext();
+  const updateUserName = trpc.user.update.useMutation({
+    onSuccess: () => {
+      utils.user.current.invalidate();
+    },
+  });
 
   const handleInputChange = (e) => {
     setNewUserName(e.target.value);
   };
-
-  const updateUserName = trpc.user.update.useMutation();
 
   const handleUpdateUserName = async () => {
     if (!currentUser) {
@@ -57,16 +62,17 @@ export function testScreen() {
           <Paragraph>User ID: {currentUser.id}</Paragraph>
           <Paragraph>User Email: {currentUser.email}</Paragraph>
           <Paragraph>User Name: {currentUser.userName}</Paragraph>
-          <Input
-            f={1}
-            size="$2"
-            value={newUserName}
-            onChange={handleInputChange}
-            placeholder={currentUser.userName}
-          />
-          <Button size="$2" onPress={handleUpdateUserName} theme="gray">
-            Update User Name
-          </Button>
+          <XStack space="$2" f={1}>
+            <Input
+              size="$2"
+              value={newUserName}
+              onChange={handleInputChange}
+              placeholder={currentUser.userName}
+            />
+            <Button size="$2" onPress={handleUpdateUserName} theme="gray">
+              Update User Name
+            </Button>
+          </XStack>
         </>
       )}
       <SignedOut>
