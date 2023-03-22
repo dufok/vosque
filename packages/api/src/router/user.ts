@@ -12,6 +12,7 @@ export const userRouter = router({
       z.object({
         email: z.string(),
         id: z.string(),
+        userName: z.string(), // Add the userName field with default value "none"
       })
     )
     .mutation(({ ctx, input }) => {
@@ -20,7 +21,23 @@ export const userRouter = router({
         data: {
           email: input.email,
           id: input.id,
+          userName: input.userName, // Add the userName field
         },
+      });
+    }),
+  update: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        userName: z.string(), // Add the userName field with default value "none"
+      })
+    )
+    .mutation(async({ ctx, input }) => {
+      const { id, userName } = input;
+      //update user
+      return ctx.prisma.user.update({
+        where: { id },
+        data: { userName },
       });
     }),
 });

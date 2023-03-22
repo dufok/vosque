@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { YStack, H1, Paragraph, Button, XStack, Input } from "@my/ui";
+=======
+import { YStack, XStack, H1, Paragraph, Button, Input} from "@my/ui";
+>>>>>>> userpage
 import { useLink } from "solito/link";
 import { Header } from "@my/ui/src/components/HeaderComp";
 import { trpc } from "../../utils/trpc";
@@ -19,6 +23,7 @@ export function testScreen() {
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
+<<<<<<< HEAD
   const [name, setName] = useState("");
   const createEntryMutation = trpc.entry.create.useMutation();
 
@@ -31,6 +36,24 @@ export function testScreen() {
     }
   };
 
+=======
+  //Below is the code I'm trying to add New User Name to the database
+  const [newUserName, setNewUserName] = useState("")
+
+  const handleInputChange = (e) => {
+    setNewUserName(e.target.value);
+  };
+
+  const updateUserName = trpc.user.update.useMutation();
+
+  const handleUpdateUserName = async () => {
+    if (!currentUser) {
+      return;
+    }
+    await updateUserName.mutateAsync({ id: currentUser.id, userName: newUserName });
+    setNewUserName("");
+  };
+>>>>>>> userpage
 
   useEffect(() => {
     console.log(data);
@@ -50,6 +73,7 @@ export function testScreen() {
       <H1>Test Screen</H1>
       {currentUser && (
         <>
+<<<<<<< HEAD
           <Paragraph>User Email: {currentUser.email}</Paragraph>
           <Paragraph>Add new entry:</Paragraph>
           <XStack ai="center" space="$2">
@@ -58,6 +82,21 @@ export function testScreen() {
               Add
             </Button>
           </XStack>
+=======
+          <Paragraph>User ID: {currentUser.id}</Paragraph>
+          <Paragraph>User Email: {currentUser.email}</Paragraph>
+          <Paragraph>User Name: {currentUser.userName}</Paragraph>
+          <Input
+            f={1}
+            size="$2"
+            value={newUserName}
+            onChange={handleInputChange}
+            placeholder={currentUser.userName}
+          />
+          <Button size="$2" onPress={handleUpdateUserName} theme="gray">
+            Update User Name
+          </Button>
+>>>>>>> userpage
         </>
       )}
       <SignedOut>
