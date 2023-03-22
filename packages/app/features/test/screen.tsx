@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { YStack, H1, Paragraph, Button } from "@my/ui";
+import { YStack, XStack, H1, Paragraph, Button, Input} from "@my/ui";
 import { useLink } from "solito/link";
 import { Header } from "@my/ui/src/components/HeaderComp";
 import { trpc } from "../../utils/trpc";
@@ -19,6 +19,22 @@ export function testScreen() {
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
+  //Below is the code I'm trying to add New User Name to the database
+  const [newUserName, setNewUserName] = useState("")
+
+  const handleInputChange = (e) => {
+    setNewUserName(e.target.value);
+  };
+
+  const updateUserName = trpc.user.update.useMutation();
+
+  const handleUpdateUserName = async () => {
+    if (!currentUser) {
+      return;
+    }
+    await updateUserName.mutateAsync({ id: currentUser.id, userName: newUserName });
+    setNewUserName("");
+  };
 
   useEffect(() => {
     console.log(data);
@@ -38,8 +54,19 @@ export function testScreen() {
       <H1>Test Screen</H1>
       {currentUser && (
         <>
-        <Paragraph>User ID: {currentUser.id}</Paragraph>
-        <Paragraph>User Email: {currentUser.email}</Paragraph>
+          <Paragraph>User ID: {currentUser.id}</Paragraph>
+          <Paragraph>User Email: {currentUser.email}</Paragraph>
+          <Paragraph>User Name: {currentUser.userName}</Paragraph>
+          <Input
+            f={1}
+            size="$2"
+            value={newUserName}
+            onChange={handleInputChange}
+            placeholder={currentUser.userName}
+          />
+          <Button size="$2" onPress={handleUpdateUserName} theme="gray">
+            Update User Name
+          </Button>
         </>
       )}
       <SignedOut>
