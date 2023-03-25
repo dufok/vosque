@@ -29,18 +29,14 @@ const YStackEnterable = styled(YStack, {
 })
 
 export function HomeScreen(props) {
-  const userLinkProps = useLink({
-    href: "/user/nate",
+  const userpageLinkProps = useLink({
+    href: "/userpage",
   });
-  const signInLinkProps = useLink({
-    href: "/signin",
+  const phasebookLinkProps = useLink({
+    href: "/phasebook",
   });
-  const signUpLinkProps = useLink({
-    href: "/signup",
-  });
-  //add link Props to lesson1
-  const lesson1Props = useLink({
-    href: "/lesson1",
+  const courseLinkProps = useLink({
+    href: "/course",
   });
 
   //add animated block with Reviews
@@ -220,6 +216,7 @@ export function HomeScreen(props) {
             width={800}
             height={300}
             hoverStyle={{ opacity: 0.5 }}
+            {...courseLinkProps}
           />
           <H3
             position="absolute"
@@ -245,6 +242,7 @@ export function HomeScreen(props) {
               width={400}
               height={200}
               hoverStyle={{ opacity: 0.5 }}
+              {...phasebookLinkProps}
             />
             <H3
               position="absolute"
@@ -264,6 +262,7 @@ export function HomeScreen(props) {
               width={400}
               height={200}
               hoverStyle={{ opacity: 0.5 }}
+              {...phasebookLinkProps}
             />
             <H3
               position="absolute"
@@ -283,6 +282,7 @@ export function HomeScreen(props) {
               width={400}
               height={200}
               hoverStyle={{ opacity: 0.5 }}
+              {...phasebookLinkProps}
             />
             <H3
               position="absolute"
@@ -302,6 +302,7 @@ export function HomeScreen(props) {
               width={400}
               height={200}
               hoverStyle={{ opacity: 0.5 }}
+              {...phasebookLinkProps}
             />
             <H3
               position="absolute"
@@ -321,6 +322,7 @@ export function HomeScreen(props) {
               width={400}
               height={200}
               hoverStyle={{ opacity: 0.5 }}
+              {...phasebookLinkProps}
             />
             <H3
               position="absolute"
@@ -392,20 +394,10 @@ export function HomeScreen(props) {
         </XStack>
       </YStack>
       <YStack pt="$10" pb="$10" backgroundColor="$backgroundHover" >
-        <H1 fow="200" ta="center">
-          записаться
-        </H1>
+        <Button f={1} {...userpageLinkProps} theme={"gray"}>
+          ЛИЧНЫЙ КАБИНЕТ (ВОЙТИ/ЗАПИСАТЬСЯ)
+        </Button>
       </YStack>
-      <XStack space>
-        <Button {...lesson1Props} theme={"gray"}>
-          Lesson 1 (text)
-        </Button>
-      </XStack>
-      <XStack space>
-        <Button {...userLinkProps} theme={"gray"}>
-          User Page(Routing)
-        </Button>
-      </XStack>
     </YStack>
   );
 }

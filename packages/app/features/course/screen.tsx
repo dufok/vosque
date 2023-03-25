@@ -9,27 +9,20 @@ import {
   Circle,
   Square,
   Image,
-  Dialog,
-  Adapt,
-  Sheet,
   Button,
-  Unspaced,
   Separator
             } from "@my/ui";
+import { useLink } from "solito/link";
 import { Player,
   BigPlayButton,
   PosterImage,
   LoadingSpinner,
   ControlBar,
   ForwardControl,
-  PlaybackRateMenuButton
             } from 'video-react';
-import { X } from '@tamagui/lucide-icons'
 import React from "react";
 import PropTypes from 'prop-types';
 import { Header } from '@my/ui/src/components/HeaderComp';
-import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
-import { LangTest, LangComponent } from '@my/ui/src/components/LangTest1';
 
 import "./../../../../node_modules/video-react/dist/video-react.css"; // import css
 
@@ -63,6 +56,16 @@ ForwardControl.propTypes = {
 };
 
 export function courseScreen() {
+  const userpageLinkProps = useLink({
+    href: "/userpage",
+  });
+  //add link Props to lesson1
+  const phrasebookProps = useLink({
+    href: "/phrasebook",
+  });
+  
+
+
   return (
     <YStack f={1} space="$4" ai="center">
       <Header />
@@ -220,11 +223,13 @@ export function courseScreen() {
             <Circle size={300} backgroundColor="$backgroundHover">
               <H3 ta="center">
                 Тариф Онлайн
+                Стоимость 200USDT
               </H3>
             </Circle>
             <Circle size={300} backgroundColor="$backgroundHover">
               <H3 ta="center">
                 Тариф c преподавателем
+                Стоимость 200USDT
               </H3>
             </Circle>
           </XStack>
@@ -244,6 +249,8 @@ export function courseScreen() {
                 width={300}
                 height={600}
                 hoverStyle={{ opacity: 0.5 }}
+                //on press go to the link use props
+                {...phrasebookProps}
               />
             </Square>
             <YStack>
@@ -254,7 +261,7 @@ export function courseScreen() {
           </XStack>
         </YStack>
         <YStack f={1} m="$5">
-          <Button p="$8">
+          <Button {...userpageLinkProps} p="$8">
             <H5 ta="center" tt="uppercase" color="$color1" w={500}>ЛИЧНЫЙ КАБИНЕТ (ВОЙТИ/ЗАПИСАТЬСЯ)</H5>
           </Button>
         </YStack>
