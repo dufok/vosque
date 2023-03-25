@@ -33,7 +33,7 @@ export function HomeScreen(props) {
     href: "/userpage",
   });
   const phasebookLinkProps = useLink({
-    href: "/phasebook",
+    href: "/phrasebook",
   });
   const courseLinkProps = useLink({
     href: "/course",
