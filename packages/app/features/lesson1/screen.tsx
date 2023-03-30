@@ -18,9 +18,9 @@ import { Player,
   ForwardControl,
   PlaybackRateMenuButton
   } from 'video-react';
+import { useLink } from "solito/link";
 import { X } from '@tamagui/lucide-icons'
 import React from "react";
-import '@my/ui/src/background.css'
 import PropTypes from 'prop-types';
 import { Header } from '@my/ui/src/components/HeaderComp';
 import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
@@ -57,11 +57,19 @@ ForwardControl.propTypes = {
 };
 
 export function lesson1Screen() {
+  const userpageLinkProps = useLink({
+    href: "/userpage",
+  });
+  const lesson2LinkProps = useLink({
+    href: "/lesson2",
+  });
+
+
   return (
-    <YStack ai="center" jc="flex-start" flex={1} space="$4" className="background-image">
+    <YStack ai="center" jc="flex-start" flex={1} space="$4">
     <Header />
       <Paragraph ta="center" fow="$16" >
-        ЧАСТЬ 1. ФОНЕТИКА
+        УРОК 1. ФОНЕТИКА
       </Paragraph>
       <YStack
         bw={1}
@@ -290,6 +298,16 @@ export function lesson1Screen() {
               />
           </LangComponent>
         </YStack>
+      </YStack>
+      <YStack pt="$10" pb="$10" >
+        <Button f={1} {...lesson2LinkProps} theme={"gray"}>
+          Следующий урок
+        </Button>
+      </YStack>
+      <YStack pt="$10" pb="$10" backgroundColor="$backgroundHover" >
+        <Button f={1} {...userpageLinkProps} theme={"gray"}>
+          ЛИЧНЫЙ КАБИНЕТ (ВОЙТИ/ЗАПИСАТЬСЯ)
+        </Button>
       </YStack>
     </YStack>
   );

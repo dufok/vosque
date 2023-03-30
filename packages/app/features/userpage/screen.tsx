@@ -5,7 +5,7 @@ import { Header } from "@my/ui/src/components/HeaderComp";
 import { trpc } from "../../utils/trpc";
 import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
 
-export function testScreen() {
+export function userpageScreen() {
   const userLinkProps = useLink({
     href: "/user/nate",
   });
