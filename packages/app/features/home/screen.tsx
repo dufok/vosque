@@ -1,3 +1,5 @@
+// @ts-ignore
+// @ts-ignore
 import {
   Button,
   H1,
@@ -10,7 +12,7 @@ import {
   Image,
   Avatar,
   styled
-} from "@my/ui";
+} from '@my/ui';
 import React, { useRef, useEffect, useState } from "react";
 import { useLink } from "solito/link";
 
