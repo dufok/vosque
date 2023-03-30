@@ -18,8 +18,8 @@ export function userpageScreen() {
   const { signOut } = useAuth();
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
+  const isSignedIn = !!currentUser;
 
-  //Below is the code I'm trying to add New User Name to the database
   const [newUserName, setNewUserName] = useState("");
 
   const utils = trpc.useContext();
@@ -56,9 +56,21 @@ export function userpageScreen() {
   return (
     <YStack f={1} ai="center" miw={400} space="$6">
       <Header />
-      <H1>Test Screen</H1>
-      {currentUser && (
-        <>
+      <H1>Личный Кабинет</H1>
+      {isSignedIn && (
+        <YStack 
+          bw={1}
+          boc="$color1"
+          bc="$background"
+          br="$10" 
+          m="$4"
+          p="$4"
+          miw={400}
+          maw={1000}
+          shadowColor={"$shadowColor"}
+          shadowRadius={15}
+          shadowOffset={{ width: 0, height: 4 }}
+          >
           <Paragraph>User ID: {currentUser.id}</Paragraph>
           <Paragraph>User Email: {currentUser.email}</Paragraph>
           <Paragraph>User Name: {currentUser.userName}</Paragraph>
@@ -73,7 +85,11 @@ export function userpageScreen() {
               Update User Name
             </Button>
           </XStack>
-        </>
+          <YStack>
+            <Paragraph>Список Уроков</Paragraph>
+            
+          </YStack>
+        </YStack>
       )}
       <SignedOut>
         <XStack space>

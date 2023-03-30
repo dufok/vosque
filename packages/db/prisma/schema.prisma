@@ -36,4 +36,20 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   entries   Entry[]
+  lessonPackId Int?
+  lessonPack   LessonPack? @relation(name: "LessonPackUsers", fields: [lessonPackId], references: [id])
+}
+// Lesson Pack model
+model LessonPack {
+  id          Int       @id @default(autoincrement())
+  name        String
+  users       User[]    @relation("LessonPackUsers")
+  lessons     Lesson[]
+}
+model Lesson {
+  id           Int          @id @default(autoincrement())
+  name         String
+  content      Json
+  lessonPackId Int
+  lessonPack   LessonPack   @relation(fields: [lessonPackId], references: [id])
 }

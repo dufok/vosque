@@ -40,6 +40,25 @@ export const userRouter = router({
         data: { userName },
       });
     }),
+  userLessons: protectedProcedure
+    .query(async ({ ctx }) => {
+      const userId = ctx.user.id;
+  
+      const user = await ctx.prisma.user.findUnique({
+        where: { id: userId },
+        include: { lessonPack: true },
+      });
+  
+      if (!user || !user.lessonPack) {
+        return [];
+      }
+  
+      const lessons = await ctx.prisma.lesson.findMany({
+        where: { lessonPackId: user.lessonPack.id },
+      });
+  
+      return lessons;
+    }),
 });
 
 //question: can we get the id from ctx instead of input?
