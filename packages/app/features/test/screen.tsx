@@ -9,7 +9,7 @@ import { ButtonPay } from "@my/ui/src/components/ButtonPay";
 export function testScreen() {
 
   return (
-    <YStack f={1} ai="center" miw={400} space="$6">
+    <YStack f={1} ai="center" miw={800} space="$6">
       <Header />
       <H1>Тест Кнопки Купить</H1>
       <Paragraph>

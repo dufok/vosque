@@ -8,7 +8,7 @@ import {
   Button,
   Unspaced,
   Square,
-  RadioGroup,
+  Switch,
   Label,
   SizeTokens,
   Input
@@ -16,7 +16,7 @@ import {
 import { X } from '@tamagui/lucide-icons'
 import React, { useState } from "react";
 
-export function ButtonPay(Props: {
+export function ButtonPay(props: {
   title: string
   description: string
   curse: string
@@ -25,15 +25,15 @@ export function ButtonPay(Props: {
   priceusdt: number
   size: SizeTokens
 }){
-  //this is for radio button checks
-  const id = `radiogroup-$2`
-  //this is for radio button checks currency
+  //this is for switch 
+  const id = `switch-${props.size.toString().slice(1)}`
+  //this is for swithc currency
   const [currency, setCurrency] = useState("RUB")
   const handleCerrencyChange = (e) => {
     setCurrency(e.target.value);
   };
   const price =
-    currency === "RUB" ? Props.pricerub : Props.priceusdt;
+    currency === "RUB" ? props.pricerub : props.priceusdt;
   
 
   //this is for coupon input
@@ -41,7 +41,7 @@ export function ButtonPay(Props: {
   const applyDiscount = () => {
     const inputElement = document.getElementById("coupon-input");
     const inputValue = inputElement instanceof HTMLInputElement ? inputElement.value : null;
-    if (inputValue === Props.coupon) {
+    if (inputValue === props.coupon) {
       setDiscountedPrice(price * 0.75);
     } else {
       setDiscountedPrice(price);
@@ -56,8 +56,8 @@ export function ButtonPay(Props: {
           bc="$background"
           animation="bouncy"
           elevation="$4"
-          w="$10"
-          h="$5"
+          w="$15"
+          h="$10"
           br="$5"
           m="$1.5"
           hoverStyle={{
@@ -67,7 +67,7 @@ export function ButtonPay(Props: {
             scale: 0.9,
           }}
           >
-          <H3>{Props.title}</H3>
+          <H3>{props.title}</H3>
         </Square>
       </Dialog.Trigger>
       <Adapt when="sm" platform="touch">
@@ -102,34 +102,36 @@ export function ButtonPay(Props: {
           exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
           space
         >
-          <Dialog.Title>{Props.title}</Dialog.Title>
+          <Dialog.Title>{props.title}</Dialog.Title>
           <Dialog.Description>
-            {Props.description}
+            {props.description}
           </Dialog.Description>
           <YStack ai="center" m="$4">
             <Dialog.Close displayWhenAdapted asChild>
               <YStack>
                 <YStack>
-                    <RadioGroup.Item
-                        id={id} size={Props.size}
+                    <Switch
+                        id={id} size={props.size}
                         name="currency"
                         value="RUB"
                         checked={ currency === "RUB"}
-                        onChange={handleCerrencyChange}>
-                      <RadioGroup.Indicator />
-                    </RadioGroup.Item>
-                    <Label size={Props.size} htmlFor={id} >
+                        onPress={handleCerrencyChange}
+                        >
+                      <Switch.Thumb animation="quick" />
+                    </Switch>
+                    <Label size={props.size} htmlFor={id} >
                       Перевод рубли на карту РФ "НОМЕР КАРТЫ"
                     </Label>
                 </YStack>
                 <YStack>
-                    <RadioGroup.Item id={id} size={Props.size}
+                    <Switch id={id} size={props.size}
                         name="currency"
                         value="USDT"
                         checked={ currency === "USDT"}
-                        onChange={handleCerrencyChange}>
-                      <RadioGroup.Indicator />
-                    </RadioGroup.Item>
+                        onPress={handleCerrencyChange}
+                        >
+                      <Switch.Thumb animation="quick" />
+                    </Switch>
                     <Label size="$3" htmlFor={id}>
                       Перевод USDT на крипто кошелек по Binance ID "НОМЕР ID"<br/>
                       либо по адресу кошелька"АДРЕC"
@@ -137,8 +139,8 @@ export function ButtonPay(Props: {
                 </YStack>
                 <YStack>
                   <XStack ai="center" space="$2">
-                    <Input f={1} size={Props.size} placeholder={`ВАШ КУПОН`} id="coupon-input"/>
-                    <Button size={Props.size} onPress={applyDiscount} >ПРИМЕНИТЬ</Button>
+                    <Input f={1} size={props.size} placeholder={`ВАШ КУПОН`} id="coupon-input"/>
+                    <Button size={props.size} onPress={applyDiscount} >ПРИМЕНИТЬ</Button>
                   </XStack>
                 </YStack>
                 <YStack>
