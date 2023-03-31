@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Greetings1",
+    "content": {
+      "text": "¡Hola! ¿Cómo estás?",
+      "audio": "https://example.com/audio/greetings.mp3",
+      "video": "https://example.com/video/greetings.mp4"
+    },
+    "lessonPackId": 1
+  },
+  {
+    "id": 2,
+    "name": "Greetings2",
+    "content": {
+      "text": "¡Hola! ¿Cómo estás?",
+      "audio": "https://example.com/audio/greetings.mp3",
+      "video": "https://example.com/video/greetings.mp4"
+    },
+    "lessonPackId": 1
+  },
+  {
+    "id": 3,
+    "name": "Greetings3",
+    "content": {
+      "text": "¡Hola! ¿Cómo estás?",
+      "audio": "https://example.com/audio/greetings.mp3",
+      "video": "https://example.com/video/greetings.mp4"
+    },
+    "lessonPackId": 1
+  }
+]
