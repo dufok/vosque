@@ -11,7 +11,8 @@ import {
   Switch,
   Label,
   SizeTokens,
-  Input
+  Input,
+  Select
   } from 'tamagui';
 import { X } from '@tamagui/lucide-icons'
 import React, { useState } from "react";
@@ -33,7 +34,7 @@ export function ButtonPay(props: {
     setCurrency(e.target.value);
   };
   const price =
-    currency === "RUB" ? props.pricerub : props.priceusdt;
+    currency === "RUB" ? props.pricerub ?? 0 : props.priceusdt ?? 0;
   
 
   //this is for coupon input
@@ -52,24 +53,9 @@ export function ButtonPay(props: {
   return (
     <Dialog modal>
       <Dialog.Trigger asChild>
-        <Square
-          bc="$background"
-          animation="bouncy"
-          elevation="$4"
-          w="$15"
-          h="$10"
-          br="$5"
-          m="$1.5"
-          hoverStyle={{
-            scale: 1.2,
-          }}
-          pressStyle={{
-            scale: 0.9,
-          }}
-          >
-          <H3>{props.title}</H3>
-        </Square>
+       <Button w="50%" als="center" > {props.title} </Button>
       </Dialog.Trigger>
+
       <Adapt when="sm" platform="touch">
         <Sheet zIndex={200000} modal dismissOnSnapToBottom>
           <Sheet.Frame padding="$4" space>
@@ -78,6 +64,7 @@ export function ButtonPay(props: {
           <Sheet.Overlay />
         </Sheet>
       </Adapt>
+
       <Dialog.Portal>
         <Dialog.Overlay
           key="overlay"
@@ -86,6 +73,7 @@ export function ButtonPay(props: {
           enterStyle={{ o: 0 }}
           exitStyle={{ o: 0 }}
         />
+
         <Dialog.Content
           bordered
           elevate
@@ -106,8 +94,7 @@ export function ButtonPay(props: {
           <Dialog.Description>
             {props.description}
           </Dialog.Description>
-          <YStack ai="center" m="$4">
-            <Dialog.Close displayWhenAdapted asChild>
+            <YStack ai="center" m="$4">
               <YStack>
                 <YStack>
                     <Switch
@@ -144,14 +131,24 @@ export function ButtonPay(props: {
                   </XStack>
                 </YStack>
                 <YStack>
-                  <H3>Стоимость: {discontedPrice} " " {currency} </H3>
-                </YStack>
-                <YStack>
-                  <Button w="50%"> Перевод выполнен ! </Button>
+                  <H3>Стоимость: {discontedPrice} </H3>
+                  <Select
+                    value={currency}
+                    onChange={(event) => setCurrency(event.target.value)}
+                  >
+                    <option value="RUB">RUB</option>
+                    <option value="USDT">USDT</option>
+                  </Select>
                 </YStack>
               </YStack>
-            </Dialog.Close>
-          </YStack>
+
+              <YStack ai="flex-end" mt="$2">
+                <Dialog.Close displayWhenAdapted asChild>
+                  <Button theme="alt1" aria-label="Close"> Перевод выполнен ! </Button>
+                </Dialog.Close>
+              </YStack>
+            </YStack>
+
           <Unspaced>
             <Dialog.Close asChild>
               <Button pos="absolute" t="$3" r="$3" size="$2" circular icon={X} />

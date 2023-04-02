@@ -38,6 +38,7 @@ model User {
   entries   Entry[]
   lessonPackId Int?
   lessonPack   LessonPack? @relation(name: "LessonPackUsers", fields: [lessonPackId], references: [id])
+  phrasebookId Phrasebook[]
 }
 // Lesson Pack model
 model LessonPack {
@@ -52,4 +53,13 @@ model Lesson {
   content      Json
   lessonPackId Int
   lessonPack   LessonPack   @relation(fields: [lessonPackId], references: [id])
+}
+
+//Phrasebook model
+model Phrasebook {
+  id        Int       @id @default(autoincrement())
+  name      String
+  content   Json
+  userId  String
+  user    User     @relation(fields: [userId], references: [id])
 }

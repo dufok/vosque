@@ -9,19 +9,26 @@ import { ButtonPay } from "@my/ui/src/components/ButtonPay";
 export function testScreen() {
 
   return (
-    <YStack f={1} ai="center" miw={800} space="$6">
+    <YStack f={1} ai="center" w={800} space="$6">
       <Header />
       <H1>Тест Кнопки Купить</H1>
       <Paragraph>
         title: "Тестовый курс"<br/>
         description: "Тестовое описание"<br/>
-        curse: "Тестовый курс"<br/>
+        curse: "Basic Uno"<br/>
         coupon: "MYARGENTINA"<br/>
         pricerub: {24000}<br/>
         priceusdt: {200}<br/>
         size: "$3"<br/>
       </Paragraph>
-      <ButtonPay title="Тестовый курс" description="Тестовое описание" curse="Тестовый курс" coupon="MYARGENTINA" pricerub={24000} priceusdt={200} size="$3" />
+      <ButtonPay
+        title="Тестовый курс"
+        description="Тестовое описание"
+        curse="Basic Uno"
+        coupon="MYARGENTINA"
+        pricerub={24000}
+        priceusdt={200}
+        size="$2" />
     </YStack>
   );
 }
