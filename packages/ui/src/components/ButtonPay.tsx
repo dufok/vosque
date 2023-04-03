@@ -7,15 +7,14 @@ import {
   Sheet,
   Button,
   Unspaced,
-  Square,
   Switch,
   Label,
   SizeTokens,
   Input,
-  Select
+  Separator
   } from 'tamagui';
 import { X } from '@tamagui/lucide-icons'
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 
 export function ButtonPay(props: {
   title: string
@@ -28,26 +27,32 @@ export function ButtonPay(props: {
 }){
   //this is for switch 
   const id = `switch-${props.size.toString().slice(1)}`
+  
   //this is for swithc currency
-  const [discountedPrice, setDiscountedPrice] = useState(price);
-  const [currency, setCurrency] = useState(props.currency);
+  const [currency, setCurrency] = useState("RUB");
+  const price = currency === "RUB" ? props.pricerub : currency === "USDT" ? props.priceusdt : 0;
+  
+  const handleCerrencyChange = (e) => {
+    setCurrency(e.target.value);
+  };
 
-  useEffect(() => {
-    const newPrice = currency === "RUB" ? props.pricerub : props.priceusdt;
-    setDiscountedPrice(newPrice);
-  }, [currency, props.pricerub, props.priceusdt]);
+  //this is for coupon input
+  
+  const [discontedPrice, setDiscountedPrice] = useState(price)
 
   const applyDiscount = () => {
-    const inputValue = document.getElementById("coupon-input")?.value || null;
+    const inputElement = document.getElementById("coupon-input");
+    const inputValue = inputElement instanceof HTMLInputElement ? inputElement.value : null;
     if (inputValue === props.coupon) {
       setDiscountedPrice(price * 0.75);
     } else {
       setDiscountedPrice(price);
     } 
   };
-  
-  const price =
-    currency === "RUB" ? props.pricerub ?? 0 : props.priceusdt ?? 0;
+
+  useEffect(() => {
+    setDiscountedPrice(price);
+  }, [price]);
 
   return (
     <Dialog modal>
@@ -94,8 +99,8 @@ export function ButtonPay(props: {
             {props.description}
           </Dialog.Description>
             <YStack ai="center" m="$4">
-              <YStack>
-                <YStack>
+              <YStack miw={500} mih={300} p="$4" space="$4">
+                <XStack w={400} ai="center" space="$4">
                     <Switch
                         id={id} size={props.size}
                         name="currency"
@@ -105,39 +110,35 @@ export function ButtonPay(props: {
                         >
                       <Switch.Thumb animation="quick" />
                     </Switch>
-                    <Label size={props.size} htmlFor={id} >
+                    <Separator mih={30} vertical />
+                    <Label pl="$0" miw={100} jc="flex-start" size={props.size} htmlFor={id} >
                       Перевод рубли на карту РФ "НОМЕР КАРТЫ"
                     </Label>
-                </YStack>
-                <YStack>
-                    <Switch id={id} size={props.size}
+                </XStack>
+                <Separator/>
+                <XStack w={400} ai="center" mt="$4" space="$4">
+                    <Switch
+                        id={id} size={props.size}
                         name="currency"
                         value="USDT"
-                        checked={ currency === "USDT"}
+                        checked={ currency === "USDT" }
                         onPress={handleCerrencyChange}
+                        ai="flex-start"
                         >
                       <Switch.Thumb animation="quick" />
                     </Switch>
-                    <Label size="$3" htmlFor={id}>
+                    <Separator mih={30} vertical />
+                    <Label pl="$0" miw={100} jc="flex-start" size={props.size} htmlFor={id}>
                       Перевод USDT на крипто кошелек по Binance ID "НОМЕР ID"<br/>
                       либо по адресу кошелька"АДРЕC"
                     </Label>
-                </YStack>
+                </XStack>
+                <XStack ai="center" space="$2" mt="$4">
+                  <Input f={1} size={props.size} placeholder={`ВАШ КУПОН`} id="coupon-input"/>
+                  <Button size={props.size} onPress={applyDiscount} >ПРИМЕНИТЬ</Button>
+                </XStack>
                 <YStack>
-                  <XStack ai="center" space="$2">
-                    <Input f={1} size={props.size} placeholder={`ВАШ КУПОН`} id="coupon-input"/>
-                    <Button size={props.size} onPress={applyDiscount} >ПРИМЕНИТЬ</Button>
-                  </XStack>
-                </YStack>
-                <YStack>
-                  <H3>Стоимость: {discontedPrice} </H3>
-                  <Select
-                    value={currency}
-                    onChange={(event) => setCurrency(event.target.value)}
-                  >
-                    <option value="RUB">RUB</option>
-                    <option value="USDT">USDT</option>
-                  </Select>
+                  <H3>Стоимость: {discontedPrice} {currency}</H3>
                 </YStack>
               </YStack>
 
