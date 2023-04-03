@@ -11,11 +11,7 @@ import {
   Label,
   SizeTokens,
   Input,
-<<<<<<< HEAD
-  Select
-=======
   Separator
->>>>>>> paywindow
   } from 'tamagui';
 import { X } from '@tamagui/lucide-icons'
 import React, { useState , useEffect } from "react";
@@ -39,12 +35,6 @@ export function ButtonPay(props: {
   const handleCerrencyChange = (e) => {
     setCurrency(e.target.value);
   };
-<<<<<<< HEAD
-  const price =
-    currency === "RUB" ? props.pricerub ?? 0 : props.priceusdt ?? 0;
-  
-=======
->>>>>>> paywindow
 
   //this is for coupon input
   
@@ -109,13 +99,8 @@ export function ButtonPay(props: {
             {props.description}
           </Dialog.Description>
             <YStack ai="center" m="$4">
-<<<<<<< HEAD
-              <YStack>
-                <YStack>
-=======
               <YStack miw={500} mih={300} p="$4" space="$4">
                 <XStack w={400} ai="center" space="$4">
->>>>>>> paywindow
                     <Switch
                         id={id} size={props.size}
                         name="currency"
@@ -153,24 +138,7 @@ export function ButtonPay(props: {
                   <Button size={props.size} onPress={applyDiscount} >ПРИМЕНИТЬ</Button>
                 </XStack>
                 <YStack>
-<<<<<<< HEAD
-                  <XStack ai="center" space="$2">
-                    <Input f={1} size={props.size} placeholder={`ВАШ КУПОН`} id="coupon-input"/>
-                    <Button size={props.size} onPress={applyDiscount} >ПРИМЕНИТЬ</Button>
-                  </XStack>
-                </YStack>
-                <YStack>
-                  <H3>Стоимость: {discontedPrice} </H3>
-                  <Select
-                    value={currency}
-                    onChange={(event) => setCurrency(event.target.value)}
-                  >
-                    <option value="RUB">RUB</option>
-                    <option value="USDT">USDT</option>
-                  </Select>
-=======
                   <H3>Стоимость: {discontedPrice} {currency}</H3>
->>>>>>> paywindow
                 </YStack>
               </YStack>
 
