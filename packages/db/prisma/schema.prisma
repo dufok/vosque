@@ -30,23 +30,25 @@ model Entry {
 
 // user model
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  userName  String   @default("none") 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  entries   Entry[]
-  lessonPackId Int?
-  lessonPack   LessonPack? @relation(name: "LessonPackUsers", fields: [lessonPackId], references: [id])
-  phrasebookId Phrasebook[]
+  id           String       @id @default(cuid())
+  email        String       @unique
+  userName     String       @default("none") 
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  entries      Entry[]
+  lessonPacks  LessonPack[] @relation(name: "LessonPackUsers")
+  phrasebooks  Phrasebook[]
 }
+
 // Lesson Pack model
 model LessonPack {
-  id          Int       @id @default(autoincrement())
-  name        String
-  users       User[]    @relation("LessonPackUsers")
-  lessons     Lesson[]
+  id       Int        @id @default(autoincrement())
+  name     String
+  users    User[]     @relation(name: "LessonPackUsers")
+  lessons  Lesson[]
 }
+
+// Lesson model
 model Lesson {
   id           Int          @id @default(autoincrement())
   name         String
@@ -55,11 +57,11 @@ model Lesson {
   lessonPack   LessonPack   @relation(fields: [lessonPackId], references: [id])
 }
 
-//Phrasebook model
+// Phrasebook model
 model Phrasebook {
-  id        Int       @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   name      String
   content   Json
-  userId  String
-  user    User     @relation(fields: [userId], references: [id])
+  userId    String
+  user      User       @relation(fields: [userId], references: [id])
 }

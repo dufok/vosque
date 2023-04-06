@@ -1,0 +1,70 @@
+{
+    "lessonPacks": [
+      {
+        "name": "Lesson Pack 1",
+        "lessons": [
+          {
+            "name": "Lesson 1",
+            "content": {
+              "text": "This is the content of Lesson 1"
+            }
+          },
+          {
+            "name": "Lesson 2",
+            "content": {
+              "text": "This is the content of Lesson 2"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Lesson Pack 2",
+        "lessons": [
+          {
+            "name": "Lesson 3",
+            "content": {
+              "text": "This is the content of Lesson 3"
+            }
+          },
+          {
+            "name": "Lesson 4",
+            "content": {
+              "text": "This is the content of Lesson 4"
+            }
+          }
+        ]
+      }
+    ],
+    "phrasebooks": [
+      {
+        "name": "Phrasebook 1",
+        "content": {
+          "phrases": [
+            {
+              "phrase": "Hello",
+              "translation": "Bonjour"
+            },
+            {
+              "phrase": "Goodbye",
+              "translation": "Au revoir"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Phrasebook 2",
+        "content": {
+          "phrases": [
+            {
+              "phrase": "Yes",
+              "translation": "Oui"
+            },
+            {
+              "phrase": "No",
+              "translation": "Non"
+            }
+          ]
+        }
+      }
+    ]
+  }
