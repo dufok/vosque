@@ -24,13 +24,22 @@ async function seedDatabase() {
     }
   }
 
-  for (const phrasebook of seedData.phrasebooks) {
-    await prisma.phrasebook.create({
+  for (const phrasebookPack of seedData.phrasebookPacks) {
+    const createdPhrasebookPack = await prisma.phrasebookPack.create({
       data: {
-        name: phrasebook.name,
-        content: phrasebook.content,
+        name: phrasebookPack.name,
       },
     });
+
+    for (const phrasebook of phrasebookPack.phrasebooks) {
+      await prisma.phrasebook.create({
+        data: {
+          name: phrasebook.name,
+          content: phrasebook.content,
+          phrasebookPackId: createdPhrasebookPack.id,
+        },
+      });
+    }
   }
 }
 

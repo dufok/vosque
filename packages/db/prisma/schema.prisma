@@ -32,12 +32,12 @@ model Entry {
 model User {
   id           String       @id @default(cuid())
   email        String       @unique
-  userName     String       @default("none") 
+  userName     String       @default("No Name") 
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
   entries      Entry[]
   lessonPacks  LessonPack[] @relation(name: "LessonPackUsers")
-  phrasebooks  Phrasebook[]
+  phrasebooksPacks  PhrasebookPack[] @relation(name: "PhrasebookPackUsers")
 }
 
 // Lesson Pack model
@@ -57,11 +57,19 @@ model Lesson {
   lessonPack   LessonPack   @relation(fields: [lessonPackId], references: [id])
 }
 
+// Phrasebook Pack model
+model PhrasebookPack {
+  id       Int        @id @default(autoincrement())
+  name     String
+  users    User[]     @relation(name: "PhrasebookPackUsers")
+  phrasebook  Phrasebook[]
+}
+
 // Phrasebook model
 model Phrasebook {
-  id        Int        @id @default(autoincrement())
-  name      String
-  content   Json
-  userId    String
-  user      User       @relation(fields: [userId], references: [id])
+  id           Int          @id @default(autoincrement())
+  name         String
+  content      Json
+  phrasebookPackId Int
+  phrasebookPack   PhrasebookPack   @relation(fields: [phrasebookPackId], references: [id])
 }

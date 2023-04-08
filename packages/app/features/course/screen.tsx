@@ -23,6 +23,7 @@ import { Player,
 import React from "react";
 import PropTypes from 'prop-types';
 import { Header } from '@my/ui/src/components/HeaderComp';
+import { ButtonPay } from "@my/ui/src/components/ButtonPay";
 
 import "./../../../../node_modules/video-react/dist/video-react.css"; // import css
 
@@ -225,12 +226,28 @@ export function courseScreen() {
                 Тариф Онлайн
                 Стоимость 200USDT
               </H3>
+              <ButtonPay
+                title="Тестовый курс"
+                description="Тестовое описание"
+                curse="Basic Uno"
+                coupon="MYARGENTINA"
+                pricerub={24000}
+                priceusdt={200}
+                size="$2" />
             </Circle>
             <Circle size={300} backgroundColor="$backgroundHover">
               <H3 ta="center">
                 Тариф c преподавателем
                 Стоимость 200USDT
               </H3>
+              <ButtonPay
+                title="Тестовый курс"
+                description="Тестовое описание"
+                curse="Basic Uno"
+                coupon="MYARGENTINA"
+                pricerub={24000}
+                priceusdt={200}
+                size="$2" />
             </Circle>
           </XStack>
         </YStack>

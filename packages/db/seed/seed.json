@@ -35,36 +35,40 @@
         ]
       }
     ],
-    "phrasebooks": [
+    "phrasebookPacks": [
       {
-        "name": "Phrasebook 1",
-        "content": {
-          "phrases": [
-            {
-              "phrase": "Hello",
-              "translation": "Bonjour"
-            },
-            {
-              "phrase": "Goodbye",
-              "translation": "Au revoir"
+        "name": "Phrasebook Pack 1",
+        "phrasebooks": [
+          {
+            "name": "Phrasebook 1",
+            "content": {
+              "text": "This is the content of Phrasebook 1"
             }
-          ]
-        }
+          },
+          {
+            "name": "Phrasebook 2",
+            "content": {
+              "text": "This is the content of Phrasebook 2"
+            }
+          }
+        ]
       },
       {
-        "name": "Phrasebook 2",
-        "content": {
-          "phrases": [
-            {
-              "phrase": "Yes",
-              "translation": "Oui"
-            },
-            {
-              "phrase": "No",
-              "translation": "Non"
+        "name": "Phrasebook Pack 2",
+        "phrasebooks": [
+          {
+            "name": "Phrasebook 3",
+            "content": {
+              "text": "This is the content of Phrasebook 3"
             }
-          ]
-        }
+          },
+          {
+            "name": "Phrasebook 4",
+            "content": {
+              "text": "This is the content of Phrasebook 4"
+            }
+          }
+        ]
       }
     ]
   }
