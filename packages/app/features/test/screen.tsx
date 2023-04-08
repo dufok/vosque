@@ -22,6 +22,8 @@ export function testScreen() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    console.log('currentUser:', currentUser);
+    console.log('AdminEmail:', AdminEmail);
     if (currentUser?.email !== AdminEmail) {
       setMessage("You are not allowed to seed the database");
     }
