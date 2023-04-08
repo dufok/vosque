@@ -37,7 +37,12 @@ export function testScreen() {
   });
 
   const seedDatabase = async () => {
+    try{
     await seedData.mutate();
+    setMessage("Database seeded");
+    } catch (error) {
+      setMessage("Error seeding database: " + error.message);
+    }
   };
 
   useEffect(() => {
