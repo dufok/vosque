@@ -109,11 +109,11 @@
   "lessonPacks": [
     {
       "name": "Lesson Pack 0",
-      "lessons": ["1", "2", "3"]
+      "lessons": [1, 2, 3]
     },
     {
       "name": "Lesson Pack 1",
-      "lessons": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+      "lessons": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     }
   ],
   "phrasebooks": [
@@ -164,7 +164,7 @@
     {
       "id": 1,
       "name": "Phrasebook Pack 1",
-      "phrasebooks": ["1", "2", "3", "4", "5", "6"]
+      "phrasebooks": [1, 2, 3, 4, 5, 6]
     }
   ]
 }
