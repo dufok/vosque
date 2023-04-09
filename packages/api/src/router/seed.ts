@@ -7,11 +7,11 @@ const prisma = new PrismaClient();
 
 async function seedDatabase() {
   
-  // Delete all data from the tables before seeding
-  //await prisma.lessonPack.deleteMany({});
-  //await prisma.lesson.deleteMany({});
-  //await prisma.phrasebookPack.deleteMany({});
-  //await prisma.phrasebook.deleteMany({});
+  //Delete all data from the tables before seeding
+  await prisma.lessonPack.deleteMany({});
+  await prisma.lesson.deleteMany({});
+  await prisma.phrasebookPack.deleteMany({});
+  await prisma.phrasebook.deleteMany({});
 
   const lessonsById = Object.fromEntries(
     seedData.lessons.map((lesson) => [lesson.id, lesson])
@@ -30,6 +30,10 @@ async function seedDatabase() {
 
     for (const lessonId of lessonPack.lessons) {
       const lesson = lessonsById[lessonId];
+      if (!lesson) {
+        console.warn(`Lesson with ID ${lessonId} not found. Skipping...`);
+        continue;
+      }
       await prisma.lesson.create({
         data: {
           name: lesson.name,
@@ -49,6 +53,10 @@ async function seedDatabase() {
 
     for (const phrasebookId of phrasebookPack.phrasebooks) {
       const phrasebook = phrasebooksById[phrasebookId];
+      if (!phrasebook) {
+        console.warn(`Phrasebook with ID ${phrasebookId} not found. Skipping...`);
+        continue;
+      }
       await prisma.phrasebook.create({
         data: {
           name: phrasebook.name,
