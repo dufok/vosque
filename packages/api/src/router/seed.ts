@@ -13,7 +13,7 @@ async function deleteAllData() {
   await prisma.phrasebookPack.deleteMany({});
 }
 
-async function seedDataInParallel(lessonPack, lessonsById, phrasebookPack, phrasebooksById) {
+async function seedLessonsInParallel(lessonPack, lessonsById) {
   const lessonPromises = lessonPack.lessons.map(async (lessonId) => {
     const lesson = lessonsById[lessonId];
     if (!lesson) {
@@ -28,7 +28,10 @@ async function seedDataInParallel(lessonPack, lessonsById, phrasebookPack, phras
       },
     });
   });
+  await Promise.all([...lessonPromises]);
+}
 
+async function seedPhrasebookInParallel(phrasebookPack, phrasebooksById) {
   const phrasebookPromises = phrasebookPack.phrasebooks.map(async (phrasebookId) => {
     const phrasebook = phrasebooksById[phrasebookId];
     if (!phrasebook) {
@@ -43,43 +46,71 @@ async function seedDataInParallel(lessonPack, lessonsById, phrasebookPack, phras
       },
     });
   });
-
-  await Promise.all([...lessonPromises, ...phrasebookPromises]);
+  await Promise.all([...phrasebookPromises]);
 }
 
-async function seedDatabase() {
-  await deleteAllData();
-
-  const lessonsById = Object.fromEntries(
-    seedData.lessons.map((lesson) => [lesson.id, lesson])
-  );
-
-  const phrasebooksById = Object.fromEntries(
-    seedData.phrasebooks.map((phrasebook) => [phrasebook.id, phrasebook])
-  );
-
-  for (const lessonPack of seedData.lessonPacks) {
-    const createdLessonPack = await prisma.lessonPack.create({
-      data: {
-        name: lessonPack.name,
-      },
-    });
-
-    for (const phrasebookPack of seedData.phrasebookPacks) {
-      const createdPhrasebookPack = await prisma.phrasebookPack.create({
-        data: {
-          name: phrasebookPack.name,
-        },
-      });
-
-      await seedDataInParallel(createdLessonPack, lessonsById, createdPhrasebookPack, phrasebooksById);
-    }
+async function seedDatabase(action) {
+  switch (action) {
+    case "deleteAllData":
+      await deleteAllData();
+      break;
+    case "seedLessons":
+      const lessonsById = Object.fromEntries(
+        seedData.lessons.map((lesson) => [lesson.id, lesson])
+      );
+      for (const lessonPack of seedData.lessonPacks) {
+        const createdLessonPack = await prisma.lessonPack.create({
+          data: {
+            name: lessonPack.name,
+          },
+        });
+      await seedLessonsInParallel(createdLessonPack, lessonsById);
+      };
+      break;
+    case "seedPhrasebooks":
+      const phrasebooksById = Object.fromEntries(
+        seedData.phrasebooks.map((phrasebook) => [phrasebook.id, phrasebook])
+      );
+      for (const phrasebookPack of seedData.phrasebookPacks) {
+        const createdPhrasebookPack = await prisma.phrasebookPack.create({
+          data: {
+            name: phrasebookPack.name,
+          },
+        });
+      await seedPhrasebookInParallel(createdPhrasebookPack, phrasebooksById);
+      };
+      break;
+    default:
+      throw new Error(`Invalid action: ${action}`);
   }
 }
 
-
 export const seedRouter = router({
-  seed: protectedProcedure.mutation(async () => {
-      await seedDatabase();
+  deleteAllData: protectedProcedure.mutation(async () => {
+    try {
+      await seedDatabase("deleteAllData");
+      return "All data deleted";
+    } catch (error) {
+      console.log("Error while deleting data:", error);
+      return `Error while deleting data: ${error.message}`;
+    }
+  }),
+  seedLessons: protectedProcedure.mutation(async () => {
+    try {
+      await seedDatabase("seedLessons");
+      return "Lessons seeded successfully";
+    } catch (error) {
+      console.log("Error while seeding lessons:", error);
+      return `Error while seeding lessons: ${error.message}`;
+    }
+  }),
+  seedPhrasebooks: protectedProcedure.mutation(async () => {
+    try {
+      await seedDatabase("seedPhrasebooks");
+      return "Phrasebooks seeded successfully";
+    } catch (error) {
+      console.log("Error while seeding phrasebooks:", error);
+      return `Error while seeding phrasebooks: ${error.message}`;
+    }
   }),
 });
