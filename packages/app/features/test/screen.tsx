@@ -24,7 +24,7 @@ export function testScreen() {
   useEffect(() => {
     console.log('currentUser:', currentUser);
     console.log('AdminEmail:', AdminEmail);
-    if (currentUser?.email !== AdminEmail) {
+    if (!!currentUser && currentUser.email !== AdminEmail) {
       setMessage("You are not allowed to seed the database");
     }
   }, [currentUser, AdminEmail]);
@@ -38,8 +38,8 @@ export function testScreen() {
 
   const seedDatabase = async () => {
     try{
-    await seedData.mutate();
-    setMessage("Database seeded");
+      await seedData.mutate();
+      setMessage("Database seeded");
     } catch (error) {
       setMessage("Error seeding database: " + error.message);
     }
