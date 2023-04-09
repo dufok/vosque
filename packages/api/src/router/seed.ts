@@ -62,7 +62,12 @@ async function seedDatabase() {
 
 export const seedRouter = router({
   seed: protectedProcedure.mutation(async () => {
-    await seedDatabase();
-    return "Database seeded successfully";
+    try {
+      await seedDatabase();
+      return "Database seeded successfully";
+    } catch (error) {
+      console.log("Error while seeding:", error);
+      return `Error while seeding: ${error.message}`;
+    }
   }),
 });
