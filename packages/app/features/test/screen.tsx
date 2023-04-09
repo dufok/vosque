@@ -29,38 +29,22 @@ export function testScreen() {
     }
   }, [currentUser, AdminEmail]);
 
-  const deleteAllDataMutation = trpc.seed.deleteAllData.useMutation();
-  const seedLessonsMutation = trpc.seed.seedLessons.useMutation();
-  const seedPhrasebooksMutation = trpc.seed.seedPhrasebooks.useMutation();
+  const utils = trpc.useContext();
+  const seedData = trpc.seed.seed.useMutation({
+    onSuccess: () => {
+      utils.user.current.invalidate();
+    },
+  });
 
+  const seedDatabase = async () => {
+    try{
+      await seedData.mutate();
+      setMessage("Database seeded");
+    } catch (error) {
+      setMessage("Error seeding database: " + error.message);
+    }
+  };
 
-  const deleteAllData = async () => {
-    try {
-      await deleteAllDataMutation.mutate();
-      setMessage("All data deleted");
-    } catch (error) {
-      setMessage("Error deleting data: " + error.message);
-    }
-  };
-  
-  const seedLessons = async () => {
-    try {
-      await seedLessonsMutation.mutate();
-      setMessage("Lessons seeded");
-    } catch (error) {
-      setMessage("Error seeding lessons: " + error.message);
-    }
-  };
-  
-  const seedPhrasebooks = async () => {
-    try {
-      await seedPhrasebooksMutation.mutate();
-      setMessage("Phrasebooks seeded");
-    } catch (error) {
-      setMessage("Error seeding phrasebooks: " + error.message);
-    }
-  };
-  
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
@@ -91,17 +75,9 @@ export function testScreen() {
       shadowOffset={{ width: 0, height: 4 }}
       >
       <YStack f={1} pt="$10" pb="$10" backgroundColor="$backgroundHover">
-        <XStack> 
-        <Button f={1} onPress={deleteAllData} theme={"gray"}>
-          DELETE ALL DATA (NEED)
+        <Button f={1} onPress={seedDatabase} theme={"gray"}>
+          SEED DATABASE
         </Button>
-        <Button f={1} onPress={seedLessons} theme={"gray"}>
-          SEED LESSONS IN DB
-        </Button>
-        <Button f={1} onPress={seedPhrasebooks} theme={"gray"}>
-          SEED PHRASEBOOKS IN DB
-        </Button>
-        </XStack>
       </YStack>
     </YStack>
     )}
