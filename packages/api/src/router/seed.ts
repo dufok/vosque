@@ -13,72 +13,90 @@ async function deleteAllData() {
   await prisma.phrasebookPack.deleteMany({});
 }
 
-async function seedLessonsInParallel(lessonPack, lessonsById) {
-  const lessonPromises = lessonPack.lessons.map(async (lessonId) => {
-    const lesson = lessonsById[lessonId];
-    if (!lesson) {
-      console.warn(`Lesson with ID ${lessonId} not found. Skipping...`);
-      return;
-    }
-    return prisma.lesson.create({
-      data: {
-        name: lesson.name,
-        content: lesson.content,
-        lessonPackId: lessonPack.id,
-      },
-    });
-  });
-  await Promise.all([...lessonPromises]);
+async function seedLessonsInParallel(lessons) {
+  const lessonPromises = lessons.map((lesson) =>
+    prisma.lesson.create({ data: lesson })
+  );
+  const createdLessons = await Promise.all(lessonPromises);
+  return createdLessons.map((lesson) => lesson.id);
 }
 
-async function seedPhrasebookInParallel(phrasebookPack, phrasebooksById) {
-  const phrasebookPromises = phrasebookPack.phrasebooks.map(async (phrasebookId) => {
-    const phrasebook = phrasebooksById[phrasebookId];
-    if (!phrasebook) {
-      console.warn(`Phrasebook with ID ${phrasebookId} not found. Skipping...`);
-      return;
-    }
-    return prisma.phrasebook.create({
+async function seedPhrasebooksInParallel(phrasebooks) {
+  const phrasebookPromises = phrasebooks.map((phrasebook) =>
+    prisma.phrasebook.create({ data: phrasebook })
+  );
+  const createdPhrasebooks = await Promise.all(phrasebookPromises);
+  return createdPhrasebooks.map((phrasebook) => phrasebook.id);
+}
+
+async function seedLessonPacksInParallel(lessonPacks) {
+  const lessonPackPromises = lessonPacks.map(async (lessonPack) => {
+    const createdLessonPack = await prisma.lessonPack.create({
       data: {
-        name: phrasebook.name,
-        content: phrasebook.content,
-        phrasebookPackId: phrasebookPack.id,
+        name: lessonPack.name,
       },
     });
+
+    const addedLessonsToPack = await prisma.lessonPack.update({
+      where: { id: createdLessonPack.id },
+      data: {
+        lessons: {
+          connect: lessonPack.lessons.map((lessonId) => ({ id: lessonId })),
+        },
+      },
+    });
+
+    return addedLessonsToPack.id;
   });
-  await Promise.all([...phrasebookPromises]);
+
+  const lessonPackIds = await Promise.all(lessonPackPromises);
+  return lessonPackIds;
+}
+
+async function seedPhrasebookPacksInParallel(phrasebookPacks) {
+  const phrasebookPackPromises = phrasebookPacks.map(async (phrasebookPack) => {
+    const createdPhrasebookPack = await prisma.phrasebookPack.create({
+      data: {
+        name: phrasebookPack.name,
+      },
+    });
+
+    const addedPhrasebooksToPack = await prisma.phrasebookPack.update({
+      where: { id: createdPhrasebookPack.id },
+      data: {
+        phrasebook: {
+          connect: phrasebookPack.phrasebooks.map((phrasebookId) => ({ id: phrasebookId })),
+        },
+      },
+    });
+
+    return addedPhrasebooksToPack.id;
+  });
+
+  const phrasebookPackIds = await Promise.all(phrasebookPackPromises);
+  return phrasebookPackIds;
 }
 
 async function seedDatabase(action) {
   switch (action) {
     case "deleteAllData":
-      await deleteAllData();
+        await deleteAllData();
       break;
     case "seedLessons":
-      const lessonsById = Object.fromEntries(
-        seedData.lessons.map((lesson) => [lesson.id, lesson])
-      );
-      for (const lessonPack of seedData.lessonPacks) {
-        const createdLessonPack = await prisma.lessonPack.create({
-          data: {
-            name: lessonPack.name,
-          },
-        });
-      await seedLessonsInParallel(createdLessonPack, lessonsById);
-      };
+      await prisma.$connect();
+        const lessons = seedData.lessons;
+        const lessonPacks = seedData.lessonPacks;
+        await seedLessonsInParallel(lessons);
+        await seedLessonPacksInParallel(lessonPacks);
+      await prisma.$disconnect();
       break;
     case "seedPhrasebooks":
-      const phrasebooksById = Object.fromEntries(
-        seedData.phrasebooks.map((phrasebook) => [phrasebook.id, phrasebook])
-      );
-      for (const phrasebookPack of seedData.phrasebookPacks) {
-        const createdPhrasebookPack = await prisma.phrasebookPack.create({
-          data: {
-            name: phrasebookPack.name,
-          },
-        });
-      await seedPhrasebookInParallel(createdPhrasebookPack, phrasebooksById);
-      };
+      await prisma.$connect();
+        const phrasebooks = seedData.phrasebooks;
+        const phrasebookPacks = seedData.phrasebookPacks;
+        await seedPhrasebooksInParallel(phrasebooks);
+        await seedPhrasebookPacksInParallel(phrasebookPacks);
+      await prisma.$disconnect();
       break;
     default:
       throw new Error(`Invalid action: ${action}`);
