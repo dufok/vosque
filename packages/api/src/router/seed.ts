@@ -12,6 +12,14 @@ async function seedDatabase() {
   await prisma.phrasebookPack.deleteMany({});
   await prisma.phrasebook.deleteMany({});
 
+  const lessonsById = Object.fromEntries(
+    seedData.lessons.map((lesson) => [lesson.id, lesson])
+  );
+
+  const phrasebooksById = Object.fromEntries(
+    seedData.phrasebooks.map((phrasebook) => [phrasebook.id, phrasebook])
+  );
+
   for (const lessonPack of seedData.lessonPacks) {
     const createdLessonPack = await prisma.lessonPack.create({
       data: {
@@ -19,7 +27,8 @@ async function seedDatabase() {
       },
     });
 
-    for (const lesson of lessonPack.lessons) {
+    for (const lessonId of lessonPack.lessons) {
+      const lesson = lessonsById[lessonId];
       await prisma.lesson.create({
         data: {
           name: lesson.name,
@@ -37,7 +46,8 @@ async function seedDatabase() {
       },
     });
 
-    for (const phrasebook of phrasebookPack.phrasebooks) {
+    for (const phrasebookId of phrasebookPack.phrasebooks) {
+      const phrasebook = phrasebooksById[phrasebookId];
       await prisma.phrasebook.create({
         data: {
           name: phrasebook.name,
