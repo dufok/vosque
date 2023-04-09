@@ -6,6 +6,12 @@ import seedData from '@my/db/seed/seed.json';
 const prisma = new PrismaClient();
 
 async function seedDatabase() {
+
+  await prisma.lessonPack.deleteMany({});
+  await prisma.lesson.deleteMany({});
+  await prisma.phrasebookPack.deleteMany({});
+  await prisma.phrasebook.deleteMany({});
+
   for (const lessonPack of seedData.lessonPacks) {
     const createdLessonPack = await prisma.lessonPack.create({
       data: {
