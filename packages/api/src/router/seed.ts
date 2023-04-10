@@ -49,7 +49,7 @@ async function seedDatabase() {
         });
 
         if (existingLesson) {
-          console.log(`Lesson with name "${lesson.name}" and content "${lesson.content}" already exists in lessonPack "${createdLessonPack.name}". Skipping...`);
+          console.log(`Lesson with name "${lesson.name}" and content "${lesson.content}" already exists in lessonPack "${updatedLessonPack.name}". Skipping...`);
           continue;
         }
 
