@@ -24,40 +24,78 @@ async function seedDatabase() {
     
     if (existingLessonPack) {
       console.log(`LessonPack with name "${lessonPack.name}" already exists. Skipping...`);
-      continue;
-    }
-
-    const createdLessonPack = await prisma.lessonPack.create({
-      data: {
-        name: lessonPack.name,
-      },
-    });
-
-    for (const lessonId of lessonPack.lessons) {
-      const lesson = lessonsById[lessonId];
-      if (!lesson) {
-        console.warn(`Lesson with ID ${lessonId} not found. Skipping...`);
-        continue;
-      }
-
-      const existingLesson = await prisma.lesson.findUnique({
+      
+      const updatedLessonPack = await prisma.lessonPack.update({
         where: {
-          name: lesson.name,
+          id: existingLessonPack.id,
         },
-      });
-
-      if (existingLesson) {
-        console.log(`Lesson with name "${lesson.name}" and content "${lesson.content}" already exists in lessonPack "${createdLessonPack.name}". Skipping...`);
-        continue;
-      }
-
-      await prisma.lesson.create({
         data: {
-          name: lesson.name,
-          content: lesson.content,
-          lessonPackId: createdLessonPack.id,
+          name: lessonPack.name, // update the name if necessary
         },
       });
+
+      for (const lessonId of lessonPack.lessons) {
+        
+        const lesson = lessonsById[lessonId];
+        if (!lesson) {
+          console.warn(`Lesson with ID ${lessonId} not found. Skipping...`);
+          continue;
+        }
+
+        const existingLesson = await prisma.lesson.findUnique({
+          where: {
+            name: lesson.name,
+          },
+        });
+
+        if (existingLesson) {
+          console.log(`Lesson with name "${lesson.name}" and content "${lesson.content}" already exists in lessonPack "${createdLessonPack.name}". Skipping...`);
+          continue;
+        }
+
+        await prisma.lesson.create({
+          data: {
+            name: lesson.name,
+            content: lesson.content,
+            lessonPackId: createdLessonPack.id,
+          },
+        });
+
+      }
+    } else
+    {
+      const createdLessonPack = await prisma.lessonPack.create({
+        data: {
+          name: lessonPack.name,
+        },
+      });
+
+      for (const lessonId of lessonPack.lessons) {
+        const lesson = lessonsById[lessonId];
+        if (!lesson) {
+          console.warn(`Lesson with ID ${lessonId} not found. Skipping...`);
+          continue;
+        }
+
+        const existingLesson = await prisma.lesson.findUnique({
+          where: {
+            name: lesson.name,
+          },
+        });
+
+        if (existingLesson) {
+          console.log(`Lesson with name "${lesson.name}" and content "${lesson.content}" already exists in lessonPack "${createdLessonPack.name}". Skipping...`);
+          continue;
+        }
+
+        await prisma.lesson.create({
+          data: {
+            name: lesson.name,
+            content: lesson.content,
+            lessonPackId: createdLessonPack.id,
+          },
+        });
+      }
     }
   }
 
