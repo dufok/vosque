@@ -43,7 +43,7 @@ model User {
 // Lesson Pack model
 model LessonPack {
   id       Int        @id @default(autoincrement())
-  name     String
+  name     String     @unique
   users    User[]     @relation(name: "LessonPackUsers")
   lessons  Lesson[]
 }
@@ -51,8 +51,8 @@ model LessonPack {
 // Lesson model
 model Lesson {
   id           Int          @id @default(autoincrement())
-  name         String
-  content      Json
+  name         String       @unique
+  content      Json         
   lessonPackId Int
   lessonPack   LessonPack   @relation(fields: [lessonPackId], references: [id])
 }
@@ -60,7 +60,7 @@ model Lesson {
 // Phrasebook Pack model
 model PhrasebookPack {
   id       Int        @id @default(autoincrement())
-  name     String
+  name     String     @unique
   users    User[]     @relation(name: "PhrasebookPackUsers")
   phrasebook  Phrasebook[]
 }
@@ -68,7 +68,7 @@ model PhrasebookPack {
 // Phrasebook model
 model Phrasebook {
   id           Int          @id @default(autoincrement())
-  name         String
+  name         String       @unique
   content      Json
   phrasebookPackId Int
   phrasebookPack   PhrasebookPack   @relation(fields: [phrasebookPackId], references: [id])

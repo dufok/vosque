@@ -13,7 +13,6 @@ async function seedDatabase() {
   //await prisma.lessonPack.deleteMany({});
   //await prisma.phrasebookPack.deleteMany({});
   
-
   const lessonsById = Object.fromEntries(
     seedData.lessons.map((lesson) => [lesson.id, lesson])
   );
@@ -23,6 +22,17 @@ async function seedDatabase() {
   );
 
   for (const lessonPack of seedData.lessonPacks) {
+    const existingLessonPack = await prisma.lessonPack.findUnique({
+      where: {
+        name: lessonPack.name,
+      },
+    });
+    
+    if (existingLessonPack) {
+      console.log(`LessonPack with name "${lessonPack.name}" already exists. Skipping...`);
+      continue;
+    }
+
     const createdLessonPack = await prisma.lessonPack.create({
       data: {
         name: lessonPack.name,
@@ -35,6 +45,18 @@ async function seedDatabase() {
         console.warn(`Lesson with ID ${lessonId} not found. Skipping...`);
         continue;
       }
+
+      const existingLesson = await prisma.lesson.findUnique({
+        where: {
+          name: lesson.name,
+        },
+      });
+
+      if (existingLesson) {
+        console.log(`Lesson with name "${lesson.name}" and content "${lesson.content}" already exists in lessonPack "${createdLessonPack.name}". Skipping...`);
+        continue;
+      }
+
       await prisma.lesson.create({
         data: {
           name: lesson.name,
@@ -46,6 +68,17 @@ async function seedDatabase() {
   }
 
   for (const phrasebookPack of seedData.phrasebookPacks) {
+    const existingPhrasebookPack = await prisma.phrasebookPack.findUnique({
+      where: {
+        name: phrasebookPack.name,
+      },
+    });
+
+    if (existingPhrasebookPack) {
+      console.log(`PhrasebookPack with name "${phrasebookPack.name}" already exists. Skipping...`);
+      continue;
+    }
+
     const createdPhrasebookPack = await prisma.phrasebookPack.create({
       data: {
         name: phrasebookPack.name,
@@ -58,6 +91,18 @@ async function seedDatabase() {
         console.warn(`Phrasebook with ID ${phrasebookId} not found. Skipping...`);
         continue;
       }
+
+      const existingPhrasebook = await prisma.phrasebook.findUnique({
+        where: {
+          name: phrasebook.name,
+        },
+      });
+
+      if (existingPhrasebook) {
+        console.log(`Phrasebook with name "${phrasebook.name}" and content "${phrasebook.content}" already exists in phrasebookPack "${createdPhrasebookPack.name}". Skipping...`);
+        continue;
+      }
+
       await prisma.phrasebook.create({
         data: {
           name: phrasebook.name,
