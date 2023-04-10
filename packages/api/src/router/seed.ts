@@ -7,12 +7,6 @@ const prisma = new PrismaClient();
 
 async function seedDatabase() {
   
-  //Delete all data from the tables before seeding
-  //await prisma.lesson.deleteMany({});
-  //await prisma.phrasebook.deleteMany({});
-  //await prisma.lessonPack.deleteMany({});
-  //await prisma.phrasebookPack.deleteMany({});
-  
   const lessonsById = Object.fromEntries(
     seedData.lessons.map((lesson) => [lesson.id, lesson])
   );
