@@ -57,7 +57,7 @@ async function seedDatabase() {
           data: {
             name: lesson.name,
             content: lesson.content,
-            lessonPackId: createdLessonPack.id,
+            lessonPackId: updatedLessonPack.id,
           },
         });
 
