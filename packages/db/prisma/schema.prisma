@@ -55,7 +55,8 @@ model Lesson {
   id           Int          @id @default(autoincrement())
   name         String       @unique
   content      Json         
-  lessonPack   LessonPack   @relation("LessonPackLessons")
+  lessonPack   LessonPack   @relation(fields: [lessonPackId], references: [id], name: "LessonPackLessons")
+  lessonPackId Int
 }
 
 // Phrasebook Pack model
@@ -71,6 +72,6 @@ model Phrasebook {
   id           Int          @id @default(autoincrement())
   name         String       @unique
   content      Json
+  phrasebookPack   PhrasebookPack   @relation(fields: [phrasebookPackId], references: [id], name: "PhrasebookPackPhrasebooks")
   phrasebookPackId Int
-  phrasebookPack   PhrasebookPack   @relation("PhrasebookPackPhrasebooks")
 }
