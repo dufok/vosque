@@ -5,6 +5,46 @@ import seedData from '@my/db/seed/seed_exemple.json';
 
 const prisma = new PrismaClient();
 
+async function upsertLessonPackLesson(lessonPackId: number, lessonId: number) {
+  const existingRelation = await prisma.lessonPackLesson.findUnique({
+    where: {
+      lessonId_lessonPackId: {
+        lessonId: lessonId,
+        lessonPackId: lessonPackId,
+      },
+    },
+  });
+
+  if (!existingRelation) {
+    await prisma.lessonPackLesson.create({
+      data: {
+        lessonId: lessonId,
+        lessonPackId: lessonPackId,
+      },
+    });
+  }
+}
+
+async function upsertPhrasebookPackPhrasebook(phrasebookPackId: number, phrasebookId: number) {
+  const existingRelation = await prisma.phrasebookPackPhrasebook.findUnique({
+    where: {
+      phrasebookId_phrasebookPackId: {
+        phrasebookId: phrasebookId,
+        phrasebookPackId: phrasebookPackId,
+      },
+    },
+  });
+
+  if (!existingRelation) {
+    await prisma.phrasebookPackPhrasebook.create({
+      data: {
+        phrasebookId: phrasebookId,
+        phrasebookPackId: phrasebookPackId,
+      },
+    });
+  }
+}
+
 async function seedDatabase() {
   
   const lessonsById = Object.fromEntries(
@@ -53,13 +93,7 @@ async function seedDatabase() {
           continue;
         }
 
-        await prisma.lesson.create({
-          data: {
-            name: lesson.name,
-            content: lesson.content,
-            lessonPackId: updatedLessonPack.id,
-          },
-        });
+        await upsertLessonPackLesson(updatedLessonPack.id, lessonId);
 
       }
     } else
@@ -88,13 +122,7 @@ async function seedDatabase() {
           continue;
         }
 
-        await prisma.lesson.create({
-          data: {
-            name: lesson.name,
-            content: lesson.content,
-            lessonPackId: createdLessonPack.id,
-          },
-        });
+        await upsertLessonPackLesson(createdLessonPack.id, lessonId);
       }
     }
   }
@@ -135,13 +163,7 @@ async function seedDatabase() {
         continue;
       }
 
-      await prisma.phrasebook.create({
-        data: {
-          name: phrasebook.name,
-          content: phrasebook.content,
-          phrasebookPackId: createdPhrasebookPack.id,
-        },
-      });
+      await upsertPhrasebookPackPhrasebook(createdPhrasebookPack.id, phrasebookId);
     }
   }
 }
