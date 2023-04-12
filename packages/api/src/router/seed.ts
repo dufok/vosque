@@ -1,172 +1,79 @@
 // api/src/router/seed.ts
 import { router, protectedProcedure } from "../trpc";
 import { PrismaClient } from "@prisma/client";
-import seedData from '@my/db/seed/seed_exemple.json';
+import seedData from '@my/db/seed/example.seed.json';
 
 const prisma = new PrismaClient();
 
-async function upsertLessonPackLesson(lessonPackId: number, lessonId: number) {
-  const existingRelation = await prisma.lessonPackLesson.findUnique({
-    where: {
-      lessonId_lessonPackId: {
-        lessonId: lessonId,
-        lessonPackId: lessonPackId,
-      },
-    },
-  });
-
-  if (!existingRelation) {
-    await prisma.lessonPackLesson.create({
-      data: {
-        lessonId: lessonId,
-        lessonPackId: lessonPackId,
-      },
-    });
-  }
-}
-
-async function upsertPhrasebookPackPhrasebook(phrasebookPackId: number, phrasebookId: number) {
-  const existingRelation = await prisma.phrasebookPackPhrasebook.findUnique({
-    where: {
-      phrasebookId_phrasebookPackId: {
-        phrasebookId: phrasebookId,
-        phrasebookPackId: phrasebookPackId,
-      },
-    },
-  });
-
-  if (!existingRelation) {
-    await prisma.phrasebookPackPhrasebook.create({
-      data: {
-        phrasebookId: phrasebookId,
-        phrasebookPackId: phrasebookPackId,
-      },
-    });
-  }
-}
-
 async function seedDatabase() {
-  
-  const lessonsById = Object.fromEntries(
-    seedData.lessons.map((lesson) => [lesson.id, lesson])
-  );
-
-  const phrasebooksById = Object.fromEntries(
-    seedData.phrasebooks.map((phrasebook) => [phrasebook.id, phrasebook])
-  );
-
-  for (const lessonPack of seedData.lessonPacks) {
-    const existingLessonPack = await prisma.lessonPack.findUnique({
-      where: {
-        name: lessonPack.name,
+  // Seed Lesson data
+  const lessonsMap = new Map<number, any>();
+  for (const lesson of seedData.lessons) {
+    const createdLesson = await prisma.lesson.create({
+      data: {
+        name: lesson.name,
+        content: lesson.content,
       },
     });
-    
-    if (existingLessonPack) {
-      console.log(`LessonPack with name "${lessonPack.name}" already exists. Skipping...`);
-      
-      const updatedLessonPack = await prisma.lessonPack.update({
-        where: {
-          id: existingLessonPack.id,
-        },
-        data: {
-          name: lessonPack.name, // update the name if necessary
-        },
-      });
-
-      for (const lessonId of lessonPack.lessons) {
-        
-        const lesson = lessonsById[lessonId];
-        if (!lesson) {
-          console.warn(`Lesson with ID ${lessonId} not found. Skipping...`);
-          continue;
-        }
-
-        const existingLesson = await prisma.lesson.findUnique({
-          where: {
-            name: lesson.name,
-          },
-        });
-
-        if (existingLesson) {
-          console.log(`Lesson with name "${lesson.name}" and content "${lesson.content}" already exists in lessonPack "${updatedLessonPack.name}". Skipping...`);
-          continue;
-        }
-
-        await upsertLessonPackLesson(updatedLessonPack.id, lessonId);
-
-      }
-    } else
-    {
-      const createdLessonPack = await prisma.lessonPack.create({
-        data: {
-          name: lessonPack.name,
-        },
-      });
-
-      for (const lessonId of lessonPack.lessons) {
-        const lesson = lessonsById[lessonId];
-        if (!lesson) {
-          console.warn(`Lesson with ID ${lessonId} not found. Skipping...`);
-          continue;
-        }
-
-        const existingLesson = await prisma.lesson.findUnique({
-          where: {
-            name: lesson.name,
-          },
-        });
-
-        if (existingLesson) {
-          console.log(`Lesson with name "${lesson.name}" and content "${lesson.content}" already exists in lessonPack "${createdLessonPack.name}". Skipping...`);
-          continue;
-        }
-
-        await upsertLessonPackLesson(createdLessonPack.id, lessonId);
-      }
-    }
+    lessonsMap.set(lesson.id, createdLesson);
   }
 
-  for (const phrasebookPack of seedData.phrasebookPacks) {
-    const existingPhrasebookPack = await prisma.phrasebookPack.findUnique({
-      where: {
-        name: phrasebookPack.name,
-      },
-    });
-
-    if (existingPhrasebookPack) {
-      console.log(`PhrasebookPack with name "${phrasebookPack.name}" already exists. Skipping...`);
-      continue;
-    }
-
-    const createdPhrasebookPack = await prisma.phrasebookPack.create({
+  // Seed LessonPack data and relations
+  for (const lessonPack of seedData.lessonPacks) {
+    const createdLessonPack = await prisma.lessonPack.create({
       data: {
-        name: phrasebookPack.name,
+        lessonId: lessonId,
+        lessonPackId: lessonPackId,
       },
     });
+  }
 
-    for (const phrasebookId of phrasebookPack.phrasebooks) {
-      const phrasebook = phrasebooksById[phrasebookId];
-      if (!phrasebook) {
-        console.warn(`Phrasebook with ID ${phrasebookId} not found. Skipping...`);
-        continue;
-      }
+  for (const lessonId of lessonPack.lessons) {
+    const lesson = lessonsMap.get(lessonId);
 
-      const existingPhrasebook = await prisma.phrasebook.findUnique({
-        where: {
-          name: phrasebook.name,
+    if (lesson) {
+      await prisma.lessonPackLessons.create({
+        data: {
+          lessonId: lesson.id,
+          lessonPackId: createdLessonPack.id,
         },
       });
+    }
+  }
+  
 
-      if (existingPhrasebook) {
-        console.log(`Phrasebook with name "${phrasebook.name}" and content "${phrasebook.content}" already exists in phrasebookPack "${createdPhrasebookPack.name}". Skipping...`);
-        continue;
-      }
+  const phrasebooksMap = new Map<number, any>();
+  for (const phrasebook of seedData.phrasebooks) {
+    const createdPhrasebook = await prisma.phrasebook.create({
+      data: {
+        name: phrasebook.name,
+        content: phrasebook.content,
+      },
+    });
+    phrasebooksMap.set(phrasebook.id, createdPhrasebook);
+  }
 
-      await upsertPhrasebookPackPhrasebook(createdPhrasebookPack.id, phrasebookId);
+  // Seed phrasebookPack data and relations
+  const createdPhrasebookPack = await prisma.phrasebookPack.create({
+    data: {
+      name: phrasebookPack.name,
+    },
+  });
+
+  for (const phrasebookId of phrasebookPack.phrasebooks) {
+    const phrasebook = phrasebooksMap.get(phrasebookId);
+
+    if  (phrasebook) {
+      await prisma.phrasebookPackPhrasebook.create({
+        data: {
+          phrasebookId: phrasebook.id,
+          phrasebookPackId: createdPhrasebookPack.id,
+        },
+      });
     }
   }
 }
+
 
 export const seedRouter = router({
   seed: protectedProcedure.mutation(async () => {

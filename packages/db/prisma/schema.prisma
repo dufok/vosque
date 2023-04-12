@@ -47,16 +47,24 @@ model LessonPack {
   id       Int        @id @default(autoincrement())
   name     String     @unique
   users    User[]     @relation(name: "LessonPackUsers")
-  lessons  Lesson[]   @relation("LessonPackLessons")
+  lessons  LessonPackLessons[]
 }
 
 // Lesson model
 model Lesson {
   id           Int          @id @default(autoincrement())
-  name         String       @unique
-  content      Json         
-  lessonPack   LessonPack   @relation(fields: [lessonPackId], references: [id], name: "LessonPackLessons")
-  lessonPackId Int
+  name         String
+  content      Json
+  lessonPack   LessonPackLessons[]
+}
+
+model LessonPackLessons {
+  id           Int          @id @default(autoincrement())
+  lessonId     Int
+  lesson       Lesson       @relation(fields: [lessonId], references: [id])
+  lessonPackId  Int
+  lessonPack   LessonPack   @relation(fields: [lessonPackId], references: [id])
+  @@unique([lessonId, lessonPackId])
 }
 
 // Phrasebook Pack model
@@ -64,7 +72,7 @@ model PhrasebookPack {
   id       Int        @id @default(autoincrement())
   name     String     @unique
   users    User[]     @relation(name: "PhrasebookPackUsers")
-  phrasebook  Phrasebook[]  @relation("PhrasebookPackPhrasebooks")
+  phrasebook  PhrasebookPackPhrasebook[]
 }
 
 // Phrasebook model
@@ -72,6 +80,14 @@ model Phrasebook {
   id           Int          @id @default(autoincrement())
   name         String       @unique
   content      Json
-  phrasebookPack   PhrasebookPack   @relation(fields: [phrasebookPackId], references: [id], name: "PhrasebookPackPhrasebooks")
-  phrasebookPackId Int
+  phrasebookPack   PhrasebookPackPhrasebook[]
+}
+
+model PhrasebookPackPhrasebook {
+  id           Int          @id @default(autoincrement())
+  phrasebookId     Int
+  phrasebook       Phrasebook       @relation(fields: [phrasebookId], references: [id])
+  phrasebookPackId  Int
+  phrasebookPack   PhrasebookPack   @relation(fields: [phrasebookPackId], references: [id])
+  @@unique([phrasebookId, phrasebookPackId])
 }

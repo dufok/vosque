@@ -29,19 +29,14 @@ export function testScreen() {
     }
   }, [currentUser, AdminEmail]);
 
-  const utils = trpc.useContext();
-  const seedData = trpc.seed.seed.useMutation({
-    onSuccess: () => {
-      utils.user.current.invalidate();
-    },
-  });
+  const seedData = trpc.seed.seed.useMutation();
 
   const seedDatabase = async () => {
-    try{
+    try {
       await seedData.mutate();
-      setMessage("Database seeded");
+      setMessage("Database seeded successfully");
     } catch (error) {
-      setMessage("Error seeding database: " + error.message);
+      setMessage("Error seeding the database");
     }
   };
 

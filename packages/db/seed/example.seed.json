@@ -1,0 +1,175 @@
+{
+  "lessons": [
+    {
+      "id": 1,
+      "name": "Lesson 1",
+      "content": {
+        "text": "This is the content of Lesson 1"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Lesson 2",
+      "content": {
+        "text": "This is the content of Lesson 2"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Lesson 3",
+      "content": {
+        "text": "This is the content of Lesson 3"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Lesson 4",
+      "content": {
+        "text": "This is the content of Lesson 4"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Lesson 5",
+      "content": {
+        "text": "This is the content of Lesson 5"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Lesson 6",
+      "content": {
+        "text": "This is the content of Lesson 6"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Lesson 7",
+      "content": {
+        "text": "This is the content of Lesson 7"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Lesson 8",
+      "content": {
+        "text": "This is the content of Lesson 8"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Lesson 9",
+      "content": {
+        "text": "This is the content of Lesson 9"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Lesson 10",
+      "content": {
+        "text": "This is the content of Lesson 10"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Lesson 11",
+      "content": {
+        "text": "This is the content of Lesson 11"
+      }
+    },
+    {
+      "id": 12,
+      "name": "Lesson 12",
+      "content": {
+        "text": "This is the content of Lesson 12"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Lesson 13",
+      "content": {
+        "text": "This is the content of Lesson 13"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Lesson 14",
+      "content": {
+        "text": "This is the content of Lesson 14"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Lesson 15",
+      "content": {
+        "text": "This is the content of Lesson 15"
+      }
+    }
+  ],
+  "lessonPacks": [
+    {
+      "name": "Lesson Pack 0",
+      "lessons": [1, 2, 3]
+    },
+    {
+      "name": "Lesson Pack 1",
+      "lessons": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    }
+  ],
+  "phrasebooks": [
+    {
+      "id": 1,
+      "name": "Phrasebook 1",
+      "content": {
+        "text": "This is the content of Phrasebook 1"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Phrasebook 2",
+      "content": {
+        "text": "This is the content of Phrasebook 2"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Phrasebook 3",
+      "content": {
+        "text": "This is the content of Phrasebook 3"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Phrasebook 4",
+      "content": {
+        "text": "This is the content of Phrasebook 4"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Phrasebook 5",
+      "content": {
+        "text": "This is the content of Phrasebook 5"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Phrasebook 6",
+      "content": {
+        "text": "This is the content of Phrasebook 6"
+      }
+    }
+  ],
+  "phrasebookPacks": [
+    {
+      "id": 1,
+      "name": "Phrasebook Pack 1",
+      "phrasebooks": [1, 2, 3, 4, 5, 6]
+    },
+    {
+      "id": 2,
+      "name": "Phrasebook Pack 2",
+      "phrasebooks": [1]
+    }
+  ]
+}
