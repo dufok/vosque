@@ -1,7 +1,7 @@
 // api/src/router/seed.ts
 import { router, protectedProcedure } from "../trpc";
 import { PrismaClient } from "@prisma/client";
-import seedData from '@my/db/seed/seed.json';
+import seedData from '@my/db/seed/example.seed.json';
 
 const prisma = new PrismaClient();
 
