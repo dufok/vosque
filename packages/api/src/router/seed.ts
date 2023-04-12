@@ -22,25 +22,23 @@ async function seedDatabase() {
   for (const lessonPack of seedData.lessonPacks) {
     const createdLessonPack = await prisma.lessonPack.create({
       data: {
-        lessonId: lessonId,
-        lessonPackId: lessonPackId,
+        name: lessonPack.name,
       },
     });
-  }
 
-  for (const lessonId of lessonPack.lessons) {
-    const lesson = lessonsMap.get(lessonId);
+    for (const lessonId of lessonPack.lessons) {
+      const lesson = lessonsMap.get(lessonId);
 
-    if (lesson) {
-      await prisma.lessonPackLessons.create({
-        data: {
-          lessonId: lesson.id,
-          lessonPackId: createdLessonPack.id,
-        },
-      });
+      if (lesson) {
+        await prisma.lessonPackLessons.create({
+          data: {
+            lessonId: lesson.id,
+            lessonPackId: createdLessonPack.id,
+          },
+        });
+      }
     }
   }
-  
 
   const phrasebooksMap = new Map<number, any>();
   for (const phrasebook of seedData.phrasebooks) {
@@ -54,35 +52,31 @@ async function seedDatabase() {
   }
 
   // Seed phrasebookPack data and relations
-  const createdPhrasebookPack = await prisma.phrasebookPack.create({
-    data: {
-      name: phrasebookPack.name,
-    },
-  });
+  for (const phrasebookPack of seedData.phrasebookPacks) {
+    const createdPhrasebookPack = await prisma.phrasebookPack.create({
+      data: {
+        name: phrasebookPack.name,
+      },
+    });
 
-  for (const phrasebookId of phrasebookPack.phrasebooks) {
-    const phrasebook = phrasebooksMap.get(phrasebookId);
+    for (const phrasebookId of phrasebookPack.phrasebooks) {
+      const phrasebook = phrasebooksMap.get(phrasebookId);
 
-    if  (phrasebook) {
-      await prisma.phrasebookPackPhrasebook.create({
-        data: {
-          phrasebookId: phrasebook.id,
-          phrasebookPackId: createdPhrasebookPack.id,
-        },
-      });
+      if  (phrasebook) {
+        await prisma.phrasebookPackPhrasebook.create({
+          data: {
+           phrasebookId: phrasebook.id,
+            phrasebookPackId: createdPhrasebookPack.id,
+          },
+        });
+      }
     }
   }
 }
 
-
 export const seedRouter = router({
   seed: protectedProcedure.mutation(async () => {
-    try {
-      await seedDatabase();
-      return "Database seeded successfully";
-    } catch (error) {
-      console.log("Error while seeding:", error);
-      return `Error while seeding: ${error.message}`;
-    }
+    await seedDatabase();
+    return "Database seeded successfully";
   }),
 });
