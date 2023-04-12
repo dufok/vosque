@@ -6,6 +6,19 @@ import seedData from '@my/db/seed/example.seed.json';
 const prisma = new PrismaClient();
 
 async function seedDatabase() {
+  // Seed Lesson data
+  const lessonsMap = new Map<number, any>();
+  for (const lesson of seedData.lessons) {
+    const createdLesson = await prisma.lesson.create({
+      data: {
+        name: lesson.name,
+        content: lesson.content,
+      },
+    });
+    lessonsMap.set(lesson.id, createdLesson);
+  }
+
+  // Seed LessonPack data and relations
   for (const lessonPack of seedData.lessonPacks) {
     const createdLessonPack = await prisma.lessonPack.create({
       data: {
@@ -13,17 +26,32 @@ async function seedDatabase() {
       },
     });
 
-    for (const lesson of lessonPack.lessons) {
-      await prisma.lesson.create({
-        data: {
-          name: lesson.name,
-          content: lesson.content,
-          lessonPackId: createdLessonPack.id,
-        },
-      });
+    for (const lessonId of lessonPack.lessons) {
+      const lesson = lessonsMap.get(lessonId);
+
+      if (lesson) {
+        await prisma.lessonPackLessons.create({
+          data: {
+            lessonId: lesson.id,
+            lessonPackId: createdLessonPack.id,
+          },
+        });
+      }
     }
   }
 
+  const phrasebooksMap = new Map<number, any>();
+  for (const phrasebook of seedData.phrasebooks) {
+    const createdPhrasebook = await prisma.phrasebook.create({
+      data: {
+        name: phrasebook.name,
+        content: phrasebook.content,
+      },
+    });
+    phrasebooksMap.set(phrasebook.id, createdPhrasebook);
+  }
+
+  // Seed phrasebookPack data and relations
   for (const phrasebookPack of seedData.phrasebookPacks) {
     const createdPhrasebookPack = await prisma.phrasebookPack.create({
       data: {
@@ -31,14 +59,17 @@ async function seedDatabase() {
       },
     });
 
-    for (const phrasebook of phrasebookPack.phrasebooks) {
-      await prisma.phrasebook.create({
-        data: {
-          name: phrasebook.name,
-          content: phrasebook.content,
-          phrasebookPackId: createdPhrasebookPack.id,
-        },
-      });
+    for (const phrasebookId of phrasebookPack.phrasebooks) {
+      const phrasebook = phrasebooksMap.get(phrasebookId);
+
+      if  (phrasebook) {
+        await prisma.phrasebookPackPhrasebook.create({
+          data: {
+           phrasebookId: phrasebook.id,
+            phrasebookPackId: createdPhrasebookPack.id,
+          },
+        });
+      }
     }
   }
 }
