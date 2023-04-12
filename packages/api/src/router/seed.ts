@@ -9,18 +9,21 @@ async function seedDatabase() {
   // Seed Lesson data
   const lessonsMap = new Map<number, any>();
   for (const lesson of seedData.lessons) {
-    const createdLesson = await prisma.lesson.create({
+    const prismaInstance = new PrismaClient();
+    const createdLesson = await prismaInstance.lesson.create({
       data: {
         name: lesson.name,
         content: lesson.content,
       },
     });
     lessonsMap.set(lesson.id, createdLesson);
+    await prismaInstance.$disconnect();
   }
 
   // Seed LessonPack data and relations
   for (const lessonPack of seedData.lessonPacks) {
-    const createdLessonPack = await prisma.lessonPack.create({
+    const prismaInstance = new PrismaClient();
+    const createdLessonPack = await prismaInstance.lessonPack.create({
       data: {
         name: lessonPack.name,
       },
@@ -38,22 +41,26 @@ async function seedDatabase() {
         });
       }
     }
+    await prismaInstance.$disconnect();
   }
 
   const phrasebooksMap = new Map<number, any>();
   for (const phrasebook of seedData.phrasebooks) {
-    const createdPhrasebook = await prisma.phrasebook.create({
+    const prismaInstance = new PrismaClient();
+    const createdPhrasebook = await prismaInstance.phrasebook.create({
       data: {
         name: phrasebook.name,
         content: phrasebook.content,
       },
     });
     phrasebooksMap.set(phrasebook.id, createdPhrasebook);
+    await prismaInstance.$disconnect();
   }
 
   // Seed phrasebookPack data and relations
   for (const phrasebookPack of seedData.phrasebookPacks) {
-    const createdPhrasebookPack = await prisma.phrasebookPack.create({
+    const prismaInstance = new PrismaClient();
+    const createdPhrasebookPack = await prismaInstance.phrasebookPack.create({
       data: {
         name: phrasebookPack.name,
       },
@@ -71,6 +78,7 @@ async function seedDatabase() {
         });
       }
     }
+    await prismaInstance.$disconnect();
   }
 }
 
