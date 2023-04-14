@@ -7,7 +7,8 @@
   ],
   "packageManager": "yarn@3.3.1",
   "prisma": {
-    "schema": "./packages/db/prisma/schema.prisma"
+    "schema": "./packages/db/prisma/schema.prisma",
+    "seed": "ts-node ./packages/db/seed/seed.ts"
   },
   "scripts": {
     "web": "turbo run dev --filter nextjs",

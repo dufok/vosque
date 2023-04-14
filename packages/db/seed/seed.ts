@@ -1,11 +1,9 @@
-// api/src/router/seed.ts
-import { router, protectedProcedure } from "../trpc";
 import { PrismaClient } from "@prisma/client";
-import seedData from '@my/db/seed/example.seed.json';
+import seedData from './example.seed.json';
 
 const prisma = new PrismaClient();
 
-async function seedDatabase() {
+async function main() {
   // Seed Lesson data
   const lessonsMap = new Map<number, any>();
   for (const lesson of seedData.lessons) {
@@ -82,9 +80,12 @@ async function seedDatabase() {
   }
 }
 
-export const seedRouter = router({
-  seed: protectedProcedure.mutation(async () => {
-    await seedDatabase();
-    return "Database seeded successfully";
-  }),
-});
+main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
