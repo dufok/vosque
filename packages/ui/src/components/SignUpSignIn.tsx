@@ -122,11 +122,11 @@ export const SignUpSignInComponent: React.FC<Props> = ({
         secureTextEntry
       />
       
-      {passwordMessage &&
+      {passwordMessage && (
         <Paragraph size="$2" color="red" opacity={0.5}>
           {passwordMessage}
         </Paragraph>
-      }
+      )}
 
       {/* sign up button */}
       <Button
