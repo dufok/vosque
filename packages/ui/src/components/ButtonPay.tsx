@@ -122,8 +122,8 @@ export function ButtonPay(props: {
             {props.description}
           </Dialog.Description>
             <YStack ai="center" m="$4">
-              <YStack miw={500} mih={300} p="$4" space="$4">
               {isSignedIn && (
+              <YStack miw={500} mih={300} p="$4" space="$4">
                 <XStack w={400} ai="center" space="$4">
                     <Switch
                         id={id} size={props.size}
@@ -164,18 +164,22 @@ export function ButtonPay(props: {
                 <YStack>
                   <H3>Стоимость: {discontedPrice} {currency}</H3>
                 </YStack>
+              
+                <YStack ai="flex-end" mt="$2">
+                  <Dialog.Close displayWhenAdapted asChild>
+                    <Button theme="alt1" aria-label="Close" onPress={handleTransferCompleted}> Перевод выполнен ! </Button>
+                  </Dialog.Close>
+                </YStack>
+              </YStack>
               )}
+
               {!isSignedIn && (
                 <YStack ai="center" space="$2">
                   <H3>Для покупки курса необходимо авторизоваться</H3>
-                  <Button size={props.size} {...page}>Авторизоваться</Button>
-              </YStack>
-
-              <YStack ai="flex-end" mt="$2">
-                <Dialog.Close displayWhenAdapted asChild>
-                  <Button theme="alt1" aria-label="Close" onPress={handleTransferCompleted}> Перевод выполнен ! </Button>
-                </Dialog.Close>
-              </YStack>
+                  <Button size={props.size} {...userpageLinkProps}>Авторизоваться</Button>
+                </YStack>
+              )}
+              
             </YStack>
 
           <Unspaced>
