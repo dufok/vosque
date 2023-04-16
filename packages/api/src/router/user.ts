@@ -40,24 +40,64 @@ export const userRouter = router({
         data: { userName },
       });
     }),
-  userLessons: protectedProcedure
+    userLessons: protectedProcedure
     .query(async ({ ctx }) => {
       const userId = ctx.user.id;
   
       const user = await ctx.prisma.user.findUnique({
         where: { id: userId },
-        include: { lessonPack: true },
+        include: { lessonPacks: true },
       });
   
-      if (!user || !user.lessonPack) {
+      if (!user || !user.lessonPacks) {
         return [];
       }
   
-      const lessons = await ctx.prisma.lesson.findMany({
-        where: { lessonPackId: user.lessonPack.id },
-      });
+      const allLessons = await Promise.all(
+        user.lessonPacks.map(async (lessonPack) => {
+          const lessonPackLessons = await ctx.prisma.lessonPackLessons.findMany({
+            where: { lessonPackId: lessonPack.id },
+          });
   
-      return lessons;
+          const lessons = await Promise.all(
+            lessonPackLessons.map(async (lessonPackLesson) => {
+              return ctx.prisma.lesson.findUnique({
+                where: { id: lessonPackLesson.lessonId },
+              });
+            })
+          );
+  
+          return lessons;
+        })
+      );
+  
+      return allLessons.flat();
+    }),
+  lessonPackByName: protectedProcedure
+    .input(z.object({ name: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { name } = input;
+      return ctx.prisma.lessonPack.findFirst({ where: { name } });
+    }),
+  updateUserLessonPack: protectedProcedure
+    .input(
+      z.object({
+        userId: z.string(),
+        lessonPackName: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { userId, lessonPackName } = input;
+      const lessonPack = await ctx.prisma.lessonPack.findUnique({ where: { name: lessonPackName } });
+  
+      if (!lessonPack) {
+        throw new Error('LessonPack not found');
+      }
+  
+      return ctx.prisma.user.update({
+        where: { id: userId },
+        data: { lessonPacks: { connect: { id: lessonPack.id } } },
+      });
     }),
 });
 

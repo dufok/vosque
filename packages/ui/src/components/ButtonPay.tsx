@@ -15,11 +15,13 @@ import {
   } from 'tamagui';
 import { X } from '@tamagui/lucide-icons'
 import React, { useState , useEffect } from "react";
+import { trpc } from "app/utils/trpc";
+
 
 export function ButtonPay(props: {
   title: string
   description: string
-  curse: string
+  course: string
   coupon: string
   pricerub: number
   priceusdt: number
@@ -48,6 +50,19 @@ export function ButtonPay(props: {
     } else {
       setDiscountedPrice(price);
     } 
+  };
+
+  // This is for Lesson pack Mutation
+  const { data: currentUser } = trpc.user.current.useQuery();
+  const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
+
+  const handleTransferCompleted = async () => {
+    if (!currentUser) {
+      return;
+    }
+    
+    // Update the user's lessonPacks
+    await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: props.course });
   };
 
   useEffect(() => {
@@ -144,7 +159,7 @@ export function ButtonPay(props: {
 
               <YStack ai="flex-end" mt="$2">
                 <Dialog.Close displayWhenAdapted asChild>
-                  <Button theme="alt1" aria-label="Close"> Перевод выполнен ! </Button>
+                  <Button theme="alt1" aria-label="Close" onPress={handleTransferCompleted}> Перевод выполнен ! </Button>
                 </Dialog.Close>
               </YStack>
             </YStack>

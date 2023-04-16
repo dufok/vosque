@@ -229,7 +229,7 @@ export function courseScreen() {
               <ButtonPay
                 title="Тестовый курс"
                 description="Тестовое описание"
-                curse="Basic Uno"
+                course="Lesson Pack 0"
                 coupon="MYARGENTINA"
                 pricerub={24000}
                 priceusdt={200}
@@ -243,7 +243,7 @@ export function courseScreen() {
               <ButtonPay
                 title="Тестовый курс"
                 description="Тестовое описание"
-                curse="Lesson Pack 0"
+                course="Lesson Pack 0"
                 coupon="MYARGENTINA"
                 pricerub={24000}
                 priceusdt={200}

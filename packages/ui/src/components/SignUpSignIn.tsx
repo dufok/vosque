@@ -17,6 +17,13 @@ interface Props {
   handleEmailWithPress: (emailAddress, password) => void;
 }
 
+function isValidPassword(password) {
+  const hasNumber = /\d/;
+  const hasSpecialSymbol = /[!@#$%^&*(),.?":{}|<>]/;
+
+  return hasNumber.test(password) && hasSpecialSymbol.test(password);
+}
+
 export const SignUpSignInComponent: React.FC<Props> = ({
   type,
   handleOAuthWithPress,
@@ -24,6 +31,7 @@ export const SignUpSignInComponent: React.FC<Props> = ({
 }) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
 
   return (
     <YStack
@@ -104,10 +112,21 @@ export const SignUpSignInComponent: React.FC<Props> = ({
         placeholder="Password"
         onChangeText={(text) => {
           setPassword(text);
+          if (isValidPassword(text)) {
+            setPasswordMessage("");
+          } else {
+            setPasswordMessage("Password must contain a number and a special symbol.");
+          }
         }}
         textContentType="password"
         secureTextEntry
       />
+      
+      {passwordMessage &&
+        <Paragraph size="$2" color="red" opacity={0.5}>
+          {passwordMessage}
+        </Paragraph>
+      }
 
       {/* sign up button */}
       <Button

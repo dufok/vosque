@@ -41,6 +41,9 @@ export function userpageScreen() {
     setNewUserName("");
   };
 
+  //part for lessons
+  const { data: userLessons } = trpc.user.userLessons.useQuery();
+
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
@@ -86,8 +89,13 @@ export function userpageScreen() {
             </Button>
           </XStack>
           <YStack>
+            <Paragraph>Уроки</Paragraph>
             <Paragraph>Список Уроков</Paragraph>
-            
+              {userLessons?.flatMap((lesson) => 
+                lesson !== null 
+                  ? [<Paragraph opacity={0.5} key={lesson.id}>{lesson.name}</Paragraph>]
+                  : []
+              )}
           </YStack>
         </YStack>
       )}
