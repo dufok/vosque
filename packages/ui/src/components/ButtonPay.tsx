@@ -15,7 +15,7 @@ import {
   } from 'tamagui';
 import { X } from '@tamagui/lucide-icons'
 import React, { useState , useEffect } from "react";
-import { trpc } from "app/utils/trpc";
+import { trpc } from "./packages/app/utils/trpc.tsx";
 import { useLink } from "solito/link";
 
 
