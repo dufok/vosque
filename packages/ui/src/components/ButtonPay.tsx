@@ -61,8 +61,6 @@ export function ButtonPay(props: {
     if (!currentUser) {
       return;
     }
-    
-   Update the user's lessonPacks
     await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: props.course });
   };
 
