@@ -21,7 +21,7 @@ function isValidPassword(password) {
   const hasNumber = /\d/;
   const hasSpecialSymbol = /[!@#$%^&*(),.?":{}|<>]/;
 
-  return hasNumber.test(password) && hasSpecialSymbol.test(password);
+  return password.length >= 8 && hasNumber.test(password) && hasSpecialSymbol.test(password);
 }
 
 export const SignUpSignInComponent: React.FC<Props> = ({
@@ -115,7 +115,7 @@ export const SignUpSignInComponent: React.FC<Props> = ({
           if (isValidPassword(text)) {
             setPasswordMessage("");
           } else {
-            setPasswordMessage("Password must contain a number and a special symbol.");
+            setPasswordMessage("Password must contain a number, a special symbol and at least 8 characters long ");
           }
         }}
         textContentType="password"
