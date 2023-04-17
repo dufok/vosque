@@ -62,7 +62,7 @@ export function ButtonPay(props: {
       return;
     }
     
-  // Update the user's lessonPacks
+   Update the user's lessonPacks
     await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: props.course });
   };
 
@@ -70,6 +70,8 @@ export function ButtonPay(props: {
   const userpageLinkProps = useLink({
     href: "/userpage",
   });
+
+  const isSignedIn = !!currentUser;
 
   useEffect(() => {
     setDiscountedPrice(price);
@@ -120,59 +122,63 @@ export function ButtonPay(props: {
             {props.description}
           </Dialog.Description>
             <YStack ai="center" m="$4">
-              <YStack miw={500} mih={300} p="$4" space="$4">
-                <XStack w={400} ai="center" space="$4">
-                    <Switch
-                        id={id} size={props.size}
-                        name="currency"
-                        value="RUB"
-                        checked={ currency === "RUB"}
-                        onPress={ handleCerrencyChange }
-                        >
-                      <Switch.Thumb animation="quick" />
-                    </Switch>
-                    <Separator mih={30} vertical />
-                    <Label pl="$0" miw={100} jc="flex-start" size={props.size} htmlFor={id} >
-                      Перевод рубли на карту РФ "НОМЕР КАРТЫ"
-                    </Label>
-                </XStack>
-                <Separator/>
-                <XStack w={400} ai="center" mt="$4" space="$4">
-                    <Switch
-                        id={id} size={props.size}
-                        name="currency"
-                        value="USDT"
-                        checked={ currency === "USDT" }
-                        onPress={handleCerrencyChange}
-                        ai="flex-start"
-                        >
-                      <Switch.Thumb animation="quick" />
-                    </Switch>
-                    <Separator mih={30} vertical />
-                    <Label pl="$0" miw={100} jc="flex-start" size={props.size} htmlFor={id}>
-                      Перевод USDT на крипто кошелек по Binance ID "НОМЕР ID"<br/>
-                      либо по адресу кошелька"АДРЕC"
-                    </Label>
-                </XStack>
-                <XStack ai="center" space="$2" mt="$4">
-                  <Input f={1} size={props.size} placeholder={`ВАШ КУПОН`} id="coupon-input"/>
-                  <Button size={props.size} onPress={applyDiscount} >ПРИМЕНИТЬ</Button>
-                </XStack>
-                <YStack>
-                  <H3>Стоимость: {discontedPrice} {currency}</H3>
+              {isSignedIn && (
+                <YStack miw={500} mih={300} p="$4" space="$4">
+                  <XStack w={400} ai="center" space="$4">
+                      <Switch
+                          id={id} size={props.size}
+                          name="currency"
+                          value="RUB"
+                          checked={ currency === "RUB"}
+                          onPress={ handleCerrencyChange }
+                          >
+                        <Switch.Thumb animation="quick" />
+                      </Switch>
+                      <Separator mih={30} vertical />
+                      <Label pl="$0" miw={100} jc="flex-start" size={props.size} htmlFor={id} >
+                        Перевод рубли на карту РФ "НОМЕР КАРТЫ"
+                      </Label>
+                  </XStack>
+                  <Separator/>
+                  <XStack w={400} ai="center" mt="$4" space="$4">
+                      <Switch
+                          id={id} size={props.size}
+                          name="currency"
+                          value="USDT"
+                          checked={ currency === "USDT" }
+                          onPress={handleCerrencyChange}
+                          ai="flex-start"
+                          >
+                        <Switch.Thumb animation="quick" />
+                      </Switch>
+                      <Separator mih={30} vertical />
+                      <Label pl="$0" miw={100} jc="flex-start" size={props.size} htmlFor={id}>
+                        Перевод USDT на крипто кошелек по Binance ID "НОМЕР ID"<br/>
+                        либо по адресу кошелька"АДРЕC"
+                      </Label>
+                  </XStack>
+                  <XStack ai="center" space="$2" mt="$4">
+                    <Input f={1} size={props.size} placeholder={`ВАШ КУПОН`} id="coupon-input"/>
+                    <Button size={props.size} onPress={applyDiscount} >ПРИМЕНИТЬ</Button>
+                  </XStack>
+                  <YStack>
+                    <H3>Стоимость: {discontedPrice} {currency}</H3>
+                  </YStack>
+                
+                  <YStack ai="flex-end" mt="$2">
+                    <Dialog.Close displayWhenAdapted asChild>
+                      <Button theme="alt1" aria-label="Close" onPress={handleTransferCompleted}> Перевод выполнен ! </Button>
+                    </Dialog.Close>
+                  </YStack>
                 </YStack>
-              
-                <YStack ai="flex-end" mt="$2">
-                  <Dialog.Close displayWhenAdapted asChild>
-                    <Button theme="alt1" aria-label="Close" onPress={handleTransferCompleted}> Перевод выполнен ! </Button>
-                  </Dialog.Close>
-                </YStack>
-              </YStack>
-
+              )}
+              {!isSignedIn && (
                 <YStack ai="center" space="$2">
                   <H3>Для покупки курса необходимо авторизоваться</H3>
                   <Button size={props.size} {...userpageLinkProps}>Авторизоваться</Button>
                 </YStack>
+              )}
+              
             </YStack>
 
           <Unspaced>

@@ -66,10 +66,7 @@ export function courseScreen() {
     href: "/phrasebook",
   });
   
-  //check user login
-  const { data: currentUser } = trpc.user.current.useQuery();
-  const isSignedIn = !!currentUser;
-
+  
   return (
     <YStack f={1} space="$4" ai="center">
       <Header />
@@ -229,7 +226,6 @@ export function courseScreen() {
                 Тариф Онлайн
                 Стоимость 200USDT
               </H3>
-              {isSignedIn && (
               <ButtonPay
                 title="Тестовый курс"
                 description="Тестовое описание"
@@ -238,12 +234,6 @@ export function courseScreen() {
                 pricerub={24000}
                 priceusdt={200}
                 size="$2" />
-              )}
-              {!isSignedIn && (
-              <Button {...userpageLinkProps} size="$2">
-                <H5 ta="center" tt="uppercase" color="$color1">Тестовый курс</H5>
-              </Button>
-              )}
             </Circle>
             <Circle size={300} backgroundColor="$backgroundHover">
               <H3 ta="center">
