@@ -15,8 +15,8 @@ import {
   } from 'tamagui';
 import { X } from '@tamagui/lucide-icons'
 import React, { useState , useEffect } from "react";
-import { trpc } from "./packages/app/utils/trpc.tsx";
 import { useLink } from "solito/link";
+import { trpc } from "app/utils/trpc";
 
 
 export function ButtonPay(props: {
@@ -71,8 +71,6 @@ export function ButtonPay(props: {
     href: "/userpage",
   });
 
-  const isSignedIn = !!currentUser;
-
   useEffect(() => {
     setDiscountedPrice(price);
   }, [price]);
@@ -122,7 +120,6 @@ export function ButtonPay(props: {
             {props.description}
           </Dialog.Description>
             <YStack ai="center" m="$4">
-              {isSignedIn && (
               <YStack miw={500} mih={300} p="$4" space="$4">
                 <XStack w={400} ai="center" space="$4">
                     <Switch
@@ -171,15 +168,11 @@ export function ButtonPay(props: {
                   </Dialog.Close>
                 </YStack>
               </YStack>
-              )}
 
-              {!isSignedIn && (
                 <YStack ai="center" space="$2">
                   <H3>Для покупки курса необходимо авторизоваться</H3>
                   <Button size={props.size} {...userpageLinkProps}>Авторизоваться</Button>
                 </YStack>
-              )}
-              
             </YStack>
 
           <Unspaced>

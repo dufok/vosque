@@ -1,6 +1,7 @@
 import { createTRPCReact } from '@trpc/react-query'
 import type { AppRouter } from '@my/api'
 /**
+ * test
  * Extend this function when going to production by
  * setting the baseUrl to your production API URL.
  */

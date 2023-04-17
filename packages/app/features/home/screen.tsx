@@ -14,7 +14,7 @@ import {
 import React, { useRef, useEffect, useState } from "react";
 import { useLink } from "solito/link";
 
-import { Header} from '@my/ui/src/components/HeaderComp';
+import { Header } from '@my/ui/src/components/HeaderComp';
 //add blocks animation
 import { AnimatePresence } from '@tamagui/animate-presence';
 import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons';
