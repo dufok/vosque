@@ -4,6 +4,15 @@ import seedData from './example.seed.json';
 const prisma = new PrismaClient();
 
 async function main() {
+  
+  // Clean tables
+  await prisma.lessonPackLessons.deleteMany();
+  await prisma.phrasebookPackPhrasebook.deleteMany();
+  await prisma.lesson.deleteMany();
+  await prisma.lessonPack.deleteMany();
+  await prisma.phrasebook.deleteMany();
+  await prisma.phrasebookPack.deleteMany();
+
   // Seed Lesson data
   const lessonsMap = new Map<number, any>();
   for (const lesson of seedData.lessons) {
