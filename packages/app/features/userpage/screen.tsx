@@ -89,7 +89,6 @@ export function userpageScreen() {
             </Button>
           </XStack>
           <YStack>
-            <Paragraph>Уроки</Paragraph>
             <Paragraph>Список Уроков</Paragraph>
               {userLessons?.flatMap((lesson) => 
                 lesson !== null 
