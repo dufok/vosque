@@ -7,7 +7,8 @@ import {
   H3,
   Image,
   Button,
-  Separator
+  Separator,
+  Spinner
  } from "@my/ui";
 import { Player,
   BigPlayButton,
@@ -19,7 +20,7 @@ import { Player,
   } from 'video-react';
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
-import React from "react";
+import React,{useEffect} from "react";
 import PropTypes from 'prop-types';
 import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
 import { ParagraphCustom } from '@my/ui/src/components/CustomText';
@@ -66,6 +67,7 @@ export function lesson1Screen() {
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
+  const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
   //lesson content
@@ -92,7 +94,19 @@ export function lesson1Screen() {
   const firstHalf = contentVocabularys.slice(0, midIndex);
   const secondHalf = contentVocabularys.slice(midIndex);
 
-  
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
+
+  if (isLoading) {
+    <YStack ai="center" jc="center" mih={600} flex={1} space="$4">
+      <Spinner size="large" color="$green" />;
+    </YStack>
+  }
+
+  if (error) {
+    return <Paragraph>{error.message}</Paragraph>;
+  }
 
   return (
     <YStack ai="center" jc="flex-start" flex={1} space="$4">
@@ -368,8 +382,8 @@ export function lesson1Screen() {
           </YStack>
         </YStack>
       )}
-        <YStack pt="$10" pb="$10" backgroundColor="$backgroundHover" >
-          <Button f={1} {...userpageLinkProps} theme={"gray"}>
+        <YStack f={1} pt="$10" pb="$10" backgroundColor="$backgroundHover" >
+          <Button {...userpageLinkProps} theme={"gray"}>
             ВОЙТИ/ЗАПИСАТЬСЯ
           </Button>
         </YStack>
