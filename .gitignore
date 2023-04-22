@@ -54,3 +54,5 @@ thumbs.db
 
 # sqlite
 **/*.sqlite
+
+DELETEME+

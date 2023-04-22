@@ -1,13 +1,12 @@
-import { Paragraph,
+import {
+  Paragraph,
   YStack,
   XStack,
+  H1,
+  H2,
   H3,
-  Square,
-  Dialog,
-  Adapt,
-  Sheet,
+  Image,
   Button,
-  Unspaced,
   Separator
  } from "@my/ui";
 import { Player,
@@ -18,15 +17,16 @@ import { Player,
   ForwardControl,
   PlaybackRateMenuButton
   } from 'video-react';
+import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
-import { X } from '@tamagui/lucide-icons'
 import React from "react";
 import PropTypes from 'prop-types';
-import { Header } from '@my/ui/src/components/HeaderComp';
 import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
-import { LangTest, LangComponent } from '@my/ui/src/components/LangTest1';
+import { ParagraphCustom } from '@my/ui/src/components/CustomText';
+import { ContentLesson1 } from './type_Lesson1';
 
 import "./../../../../node_modules/video-react/dist/video-react.css"; // import css
+import { red } from "@tamagui/colors";
 
 BigPlayButton.propTypes = {
   position: PropTypes.string,
@@ -64,251 +64,315 @@ export function lesson1Screen() {
     href: "/lesson2",
   });
 
+  //user check for lesson
+  const { data: currentUser } = trpc.user.current.useQuery();
+  const isSignedIn = !!currentUser;
+
+  //lesson content
+  const { data: userLessons } = trpc.user.userLessons.useQuery();
+  const firstLesson = userLessons?.[0];
+
+  //part with types from file json full
+  const content = firstLesson?.content as ContentLesson1;
+  const letters = content?.theoreticalBlock.complex.letters;
+  const atentionBlocks = content?.theoreticalBlock.attention.atentionBlocks;
+  const exercises = content?.exercisesBlock.training1.exercises;
+  const exercises2 = content?.exercisesBlock.training2.exercises2;
+  const linesAdditional = content?.exercisesBlock.additional.materials.readingPhrase.linesAdditional;
+  const contentAccents = content?.exercisesBlock.accent.contentAccents;
+  const lifehack1 = content?.lifehacks.lifehack1;
+  const lifehack2 = content?.lifehacks.lifehack2;
+  const lifehack3 = content?.lifehacks.lifehack3;
+
+  // Part for split last block on 2 parts
+  const contentVocabularys = Object.values(content?.vocabulary.contentVocabularys  || {});
+
+  // Split the array into two halves
+  const midIndex = Math.ceil(contentVocabularys.length / 2);
+  const firstHalf = contentVocabularys.slice(0, midIndex);
+  const secondHalf = contentVocabularys.slice(midIndex);
+
+  
 
   return (
     <YStack ai="center" jc="flex-start" flex={1} space="$4">
-    <Header />
-      <Paragraph ta="center" fow="$16" >
-        УРОК 1. ФОНЕТИКА
-      </Paragraph>
-      <YStack
-        bw={1}
-        boc="$color1"
-        bc="$background"
-        br="$10" 
-        m="$4"
-        p="$4"
-        miw={400}
-        maw={800}
-        shadowColor={"$shadowColor"}
-        shadowRadius={15}
-        shadowOffset={{ width: 0, height: 4 }}
-        >
-        <YStack f={1} m="$2">
-          <Player
-            autoPlay
-            poster="https://link.us1.storjshare.io/raw/jw264knny3k3jt6433cxg4adpuha/vosque/lessons/lesson1/Screenshot%202023-02-25%20033445.jpg"
-            src="https://link.us1.storjshare.io/raw/jvqqelv4y36p7bn2wbqndov4p2wq/vosque/lessons/lesson1/trailer_hd.mp4"
-            >
-            <LoadingSpinner />
-            <BigPlayButton position="center" />
-            <ControlBar autoHide={false} className="my-class">
-              <ForwardControl seconds={5} order={3.1} />
-              <ForwardControl seconds={10} order={3.2} />
-              <ForwardControl seconds={30} order={3.3} />
-            </ControlBar>
-          </Player>
-        </YStack>
-        <YStack mt="$10">
-          <H3 ta="center">Сложные буквы</H3>
-          <XStack jc="center" m="$4" fw='wrap'>
-            <ButtonWithSheet
-              Title="C"
-              Description="Сложные Буквы"
-              Colum1_1="1) перед a, o, u, согл. /К/"
-              Colum2_1="2) перед e,i  /С/"
-              Colum3_1="3) “CH” /Ч/"
-              Colum1_2="casa, cosa, cucu"
-              Colum2_2="cerveza, bici"
-              Colum3_2="noche"
+      {isSignedIn && (
+        <YStack ai="center" jc="flex-start" flex={1} space="$4">
+          <YStack mt="$4" p="$4" miw={400} maw={1000}>
+            <H1 ta="center">{firstLesson?.name}</H1>
+            <Paragraph ta="center">{content?.description}</Paragraph>
+            <YStack f={1} m="$2" maw={800}>
+              <Player
+                autoPlay
+                poster={content?.poster}
+                src={content?.video}
+                >
+                <LoadingSpinner />
+                <BigPlayButton position="center" />
+                <ControlBar autoHide={false} className="my-class">
+                  <ForwardControl seconds={5} order={3.1} />
+                  <ForwardControl seconds={10} order={3.2} />
+                  <ForwardControl seconds={30} order={3.3} />
+                </ControlBar>
+              </Player>
+            </YStack>
+            <YStack>
+              <Image
+                  src={content?.theoreticalBlock.image}
+                  width={50}
+                  height={50}
               />
-            <ButtonWithSheet
-              Title="G"
-              Description="Сложные Буквы"
-              Colum1_1="1) перед a, o, u, согл. /Г/"
-              Colum2_1="2) перед e, i /Х/"
-              Colum3_1="3)GUE /ге/, GUI /ги/"
-              Colum1_2="gracias, gato, gota, gusano"
-              Colum2_2="Argentina, gigante, Bélgica"
-              Colum3_2="guitarra, guerra"
-              />
-            <ButtonWithSheet
-              Title="H"
-              Description="Сложные Буквы"
-              Colum1_1="не читается"
-              Colum1_2="hola - привет"
-              Colum2_2="НО: ola - волна"
-              />
-            <ButtonWithSheet
-              Title="K"
-              Description="Сложные Буквы"
-              Colum1_1="в заимствованиях из английского языка"
-              Colum1_2="kiwi"
-              Colum2_2="kilo"
-              Colum3_2="kiosko"
-              />
-            <ButtonWithSheet
-              Title="K"
-              Description="Сложные Буквы"
-              Colum1_1="в заимствованиях из английского языка"
-              Colum1_2="kiwi"
-              Colum2_2="kilo"
-              Colum3_2="kiosko"
-              />
-            <ButtonWithSheet
-              Title="L"
-              Description="Сложные Буквы"
-              Colum1_1="1) перед a, o, u, согл. /Л/"
-              Colum2_1="2) перед e, i /ЛЬ/ "
-              Colum3_1="3) “LL” = /Ж,Ш/ "
-              Colum1_2="lana, lona, luna"
-              Colum2_2="español, capital"
-              Colum3_2="me llamo, pollo"
-              />
-            <ButtonWithSheet
-              Title="Ñ"
-              Description="Сложные Буквы"
-              Colum1_1="всегда /НЬ/"
-              Colum1_2="España"
-              Colum2_2="Español"
-              Colum3_2="niño"
-              />
-            <ButtonWithSheet
-              Title="L"
-              Description="Сложные Буквы"
-              Colum1_1="Нужна только для того чтобы создать звук К перед е, i "
-              Colum2_1="QUE /ке/"
-              Colum3_1="QUI /ки/"
-              Colum1_2="que - что"
-              Colum2_2="queso"
-              Colum3_2="kilo = quilo"
-              />
-            <ButtonWithSheet
-              Title="R"
-              Description="Сложные Буквы"
-              Colum1_1="не то же самое RR"
-              Colum1_2="pero  - но (but)"
-              Colum2_2="perro - собака"
-              />
-            <ButtonWithSheet
-              Title="W"
-              Description="Сложные Буквы"
-              Colum1_1="в заимствованиях из английского языка"
-              Colum1_2="kiwi"
-              />
-            <ButtonWithSheet
-              Title="X"
-              Description="Сложные Буквы"
-              Colum1_1="/кс/ "
-              Colum1_2="taxi"
-              Colum2_2="maxi"
-              />
-            <ButtonWithSheet
-              Title="Y"
-              Description="Сложные Буквы"
-              Colum1_1="читается как  /Ж,Ш/  во всех случаях кроме союза Y"
-              Colum1_2="yo"
-              Colum2_2="ya"
-              Colum3_2="yate"
-              Colum4_2="Maria y Ana"
-              />
-            <ButtonWithSheet
-              Title="Z"
-              Description="Сложные Буквы"
-              Colum1_1="всегда  /С/"
-              Colum1_2="zebra"
-              Colum2_2="cerveza"
-              />
-          </XStack>
-        </YStack>
-        <YStack>
-          <H3 ta="center" >Обратите внимание:</H3>
-          <YStack ml="$10">
-            <Paragraph>
-              GUE GUI = ге ги<br />
-              QUE QUI  = ке ки<br />
-              <br />
-              Удвоение в испанском меняет смысл:<br />
-              l - LL (lama - llama)<br />
-              R - RR (pero - perro)<br />
-              C-CC (canción - lección)<br />
-              <br />
-              Других удвоений не бывает: <br />
-                  SS<br />
-                  FF
-            </Paragraph>
+              <H2>{content?.theoreticalBlock.header}</H2>
+            </YStack>
+            <YStack >
+              <H3 ta="left" backgroundColor="red">{content?.theoreticalBlock.alfabet.header}</H3>
+              <Paragraph ta="center" >{content?.theoreticalBlock.alfabet.text}</Paragraph>
+            </YStack>
+            <YStack>
+              <H3 ta="left" backgroundColor="red">{content?.theoreticalBlock.complex.header}</H3>
+              <Paragraph ta="center" >{content?.theoreticalBlock.complex.description}</Paragraph>
+              <XStack jc="center" m="$4" fw='wrap'>
+                {Object.values(letters).map((letter) => (
+                  <ButtonWithSheet
+                    key={letter.name}
+                    Title={letter.name}
+                    Description={letter.description}
+                    Colum1_1={letter.Colum1_1}
+                    Colum2_1={letter.Colum2_1}
+                    Colum3_1={letter.Colum3_1}
+                    Colum4_1={letter.Colum4_1}
+                    Colum1_2={letter.Colum1_2}
+                    Colum2_2={letter.Colum2_2}
+                    Colum3_2={letter.Colum3_2}
+                    Colum4_2={letter.Colum4_2}
+                  />
+                ))}
+              </XStack>
+            </YStack>
+            <YStack>
+              <H3 ta="left" backgroundColor="red">{content?.theoreticalBlock.attention.title}</H3>
+              <XStack>
+                <YStack>
+                  {Object.values(atentionBlocks).map((atentionBlock) => (
+                    <YStack>
+                      <H3 ta="left" >{atentionBlock.description}</H3>
+                        <YStack ml="$10">
+                          <XStack>
+                            <YStack>
+                              <Paragraph ta="left" >{atentionBlock.example1}</Paragraph>
+                              <Paragraph ta="left" >{atentionBlock.example2}</Paragraph>
+                              <Paragraph ta="left" >{atentionBlock.example3}</Paragraph>
+                              <Paragraph ta="left" >{atentionBlock.example4}</Paragraph>
+                            </YStack>
+                            <YStack>
+                              <Paragraph ta="left" >{atentionBlock.prononce1}</Paragraph>
+                              <Paragraph ta="left" >{atentionBlock.prononce2}</Paragraph>
+                              <Paragraph ta="left" >{atentionBlock.prononce3}</Paragraph>
+                              <Paragraph ta="left" >{atentionBlock.prononce4}</Paragraph>
+                            </YStack>
+                          </XStack>
+                        </YStack>
+                    </YStack>
+                    ))}
+                </YStack>
+                <YStack
+                  ai="center"
+                  bw={1}
+                  boc="$color1"
+                  bc="$background"
+                  br="$10" 
+                  m="$4"
+                  p="$4"
+                  miw={400}
+                  maw={1000}
+                  shadowColor={"$shadowColor"}
+                  shadowRadius={15}
+                  shadowOffset={{ width: 0, height: 4 }}
+                >
+                  <Image
+                  src={lifehack1.image}
+                  width={50}
+                  height={50}
+                  />
+                  <H3>{lifehack1.title}</H3>
+                  <Paragraph ta="center">{lifehack1.description1}</Paragraph>
+                  <Paragraph ta="center">{lifehack1.content1[1].text}</Paragraph>
+                  <Paragraph ta="center">{lifehack1.content1[2].text}</Paragraph>
+                  <Paragraph ta="center">{lifehack1.content1[3].text}</Paragraph>
+                  <Paragraph ta="center">{lifehack1.description2}</Paragraph>
+                  <ParagraphCustom text={lifehack1.content2[1].text} />
+                  <ParagraphCustom text={lifehack1.content2[2].text} />
+                  <ParagraphCustom text={lifehack1.content2[3].text} />
+                </YStack>
+              </XStack>
+            </YStack>
+            <YStack>
+              <H2 ta="center">{content?.exercisesBlock.header}</H2>
+              <YStack>
+                <H3 ta="left" backgroundColor="red">{content?.exercisesBlock.training1.header}</H3>
+                <YStack>
+                  {Object.values(exercises).map((exercise) => (
+                    <XStack>
+                      <YStack>
+                        <H3 ta="left" >{exercise.description}</H3>
+                        <Paragraph ta="left" >{exercise.text}</Paragraph>
+                      </YStack>
+                      <YStack>
+                        <Player
+                          src={exercise.audio}
+                          >
+                        </Player>
+                      </YStack>
+                    </XStack>
+                  ))}
+                </YStack>
+              </YStack>
+            </YStack>
+            <YStack>
+              <H2 ta="center">{content?.exercisesBlock.additional.header}</H2>
+              <YStack>
+                <H3 ta="left" backgroundColor="red">{content?.exercisesBlock.additional.materials.readingPhrase.description}</H3>
+                <Paragraph ta="left" >{content?.exercisesBlock.additional.materials.readingPhrase.text}</Paragraph>
+                <YStack>
+                  {Object.values(linesAdditional).map((Line) => (
+                    <XStack>
+                      <YStack>
+                        <ParagraphCustom text={Line.text} />
+                      </YStack>
+                      <YStack>
+                        <Player
+                          src={Line.audio}
+                          >
+                        </Player>
+                      </YStack>
+                    </XStack>
+                  ))}
+                </YStack>
+              </YStack>
+            </YStack>
+            <YStack>
+              <XStack>
+                <YStack
+                  ai="center"
+                  bw={1}
+                  boc="$color1"
+                  bc="$background"
+                  br="$10" 
+                  m="$4"
+                  p="$4"
+                  miw={400}
+                  maw={1000}
+                  shadowColor={"$shadowColor"}
+                  shadowRadius={15}
+                  shadowOffset={{ width: 0, height: 4 }}
+                >
+                  <Image
+                  src={lifehack2.image}
+                  width={50}
+                  height={50}
+                  />
+                  <H3>{lifehack2.title}</H3>
+                  <Paragraph ta="center">{lifehack2.description1}</Paragraph>
+                </YStack>
+                <YStack
+                  ai="center"
+                  bw={1}
+                  boc="$color1"
+                  bc="$background"
+                  br="$10" 
+                  m="$4"
+                  p="$4"
+                  miw={400}
+                  maw={1000}
+                  shadowColor={"$shadowColor"}
+                  shadowRadius={15}
+                  shadowOffset={{ width: 0, height: 4 }}
+                >
+                  <Image
+                  src={lifehack3.image}
+                  width={50}
+                  height={50}
+                  />
+                  <H3>{lifehack3.title}</H3>
+                  <Paragraph ta="center">{lifehack3.description1}</Paragraph>
+                </YStack>
+              </XStack>
+            </YStack>
+            <YStack>
+              <H2 ta="center">{content?.exercisesBlock.accent.header}</H2>
+              <YStack>
+                {Object.values(contentAccents).map((ContentAccent) => (
+                  <YStack>
+                    <H3 ta="left" >{ContentAccent.text}</H3>
+                    <Paragraph ta="left" >{ContentAccent.example}</Paragraph>
+                  </YStack>
+                ))}
+              </YStack>
+            </YStack>
+            <YStack>
+              <H3 ta="left" backgroundColor="red">{content?.exercisesBlock.training2.header}</H3>
+              <Paragraph ta="left" >{content?.exercisesBlock.training2.description}</Paragraph>
+              <YStack>
+                {Object.values(exercises2).map((exercise2) => (
+                  <XStack>
+                    <YStack>
+                      <H3 ta="left" >{exercise2.description}</H3>
+                      <Paragraph ta="left" >{exercise2.text}</Paragraph>
+                    </YStack>
+                    <YStack>
+                      <Player
+                        src={exercise2.audio}
+                        >
+                      </Player>
+                    </YStack>
+                  </XStack>
+                ))}
+              </YStack>
+            </YStack>
+            <YStack>
+              <H2 ta="center">{content?.vocabulary.header}</H2>
+              <Paragraph ta="left" >{content?.vocabulary.description}</Paragraph>
+              <XStack>
+                <YStack>
+                  {firstHalf.map((ContentVocabulary, index) => (
+                  <YStack key={index}>
+                    <XStack>
+                      <Paragraph ta="left">{ContentVocabulary.text1}</Paragraph>
+                      <Separator />
+                      <Paragraph ta="right">{ContentVocabulary.text2}</Paragraph>
+                    </XStack>
+                    <Paragraph ta="center">{ContentVocabulary.description}</Paragraph>
+                  </YStack>
+                  ))}
+                </YStack>
+                <Separator vertical/>
+                <YStack>
+                  {secondHalf.map((ContentVocabulary, index) => (
+                  <YStack key={index}>
+                    <XStack>
+                      <Paragraph ta="left">{ContentVocabulary.text1}</Paragraph>
+                      <Separator />
+                      <Paragraph ta="right">{ContentVocabulary.text2}</Paragraph>
+                    </XStack>
+                    <Paragraph ta="center">{ContentVocabulary.description}</Paragraph>
+                  </YStack>
+                  ))}
+                </YStack>
+              </XStack>
+            </YStack>
+            <YStack pt="$10" pb="$10" >
+              <Button f={1} {...lesson2LinkProps} theme={"gray"}>
+                Урок 2
+              </Button>
+            </YStack>
           </YStack>
         </YStack>
-        <YStack>
-        <LangComponent
-            ButtonName="Check Answers"
-            messageIncorect="This is incorrect">
-            <LangTest 
-              text1="1) El "
-              text2=" Juan"
-              question="escribo..."
-              RightAnswer="es"
-              size="200"
-              />
-            <LangTest 
-              text1="2) Yo "
-              text2=" Maria"
-              question="escribo..."
-              RightAnswer="soy"
-              size="300"
-              />
-            <LangTest 
-              text1="3) Nosotros "
-              text2=" de Francia."
-              question="escribo..."
-              RightAnswer="somos"
-              size="300"
-              />
-              <LangTest 
-              text1="4) Ellos "
-              text2=" en Moscú."
-              question="escribo..."
-              RightAnswer="son"
-              size="300"
-              />
-              <LangTest 
-              text1="5) Vos "
-              text2=" inteligente."
-              question="escribo..."
-              RightAnswer="sos"
-              size="300"
-              />
-              <LangTest 
-              text1="6) Ellos "
-              text2=" nerviosos."
-              question="escribo..."
-              RightAnswer="son"
-              size="300"
-              />
-              <LangTest 
-              text1="7) Yo "
-              text2=" libre (свободен) hoy (сегодня)."
-              question="escribo..."
-              RightAnswer="estoy"
-              size="300"
-              />
-              <LangTest 
-              text1="8) Ustedes "
-              text2=" mis amigos."
-              question="escribo..."
-              RightAnswer="son"
-              size="300"
-              />
-              <LangTest 
-              text1="9) Mis papás "
-              text2=" ricos (богатые)."
-              question="escribo..."
-              RightAnswer="son"
-              size="300"
-              />
-          </LangComponent>
+      )}
+        <YStack pt="$10" pb="$10" backgroundColor="$backgroundHover" >
+          <Button f={1} {...userpageLinkProps} theme={"gray"}>
+            ВОЙТИ/ЗАПИСАТЬСЯ
+          </Button>
         </YStack>
-      </YStack>
-      <YStack pt="$10" pb="$10" >
-        <Button f={1} {...lesson2LinkProps} theme={"gray"}>
-          Следующий урок
-        </Button>
-      </YStack>
-      <YStack pt="$10" pb="$10" backgroundColor="$backgroundHover" >
-        <Button f={1} {...userpageLinkProps} theme={"gray"}>
-          ЛИЧНЫЙ КАБИНЕТ (ВОЙТИ/ЗАПИСАТЬСЯ)
-        </Button>
-      </YStack>
     </YStack>
   );
 } 
