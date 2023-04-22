@@ -16,7 +16,7 @@ function parseAndRenderText(text) {
       return part;
     }
   });
-},
+}
 
 export const ParagraphCustom = ({ text }) => {
   return (
@@ -24,7 +24,7 @@ export const ParagraphCustom = ({ text }) => {
       {parseAndRenderText(text)}
     </Paragraph>
   );
-},
+}
 
 export const H1Custom = ({ text }) => {
   return (
@@ -32,7 +32,7 @@ export const H1Custom = ({ text }) => {
       {parseAndRenderText(text)}
     </H1>
   );
-},
+}
 
 export const H2Custom = ({ text }) => {
   return (
@@ -40,7 +40,7 @@ export const H2Custom = ({ text }) => {
       {parseAndRenderText(text)}
     </H2>
   );
-},
+}
 
 export const H3Custom = ({ text }) => {
   return (
