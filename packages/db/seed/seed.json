@@ -323,7 +323,7 @@
 							"training2": {
 								"title": "Тренировка:",
 								"description": "Чтение фраз",
-								"content": {
+								"exercises2": {
 									"1": {
 										"text": "Yo soy de Rusia y estoy en Argentina",
 										"audio": "https://cdn.vosque.education/lessons/1/audio18-8f9d.mp3"
