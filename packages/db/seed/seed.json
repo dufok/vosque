@@ -298,48 +298,49 @@
 										"audio": "https://cdn.vosque.education/lessons/1/audio17-7f8d.mp3"
 									}
 								}
+							}
+						}
+					},
+					"accent": {
+						"header": "Ударение",
+						"contentAccent": {
+							"1": {
+								"text": "1. Если на конце слова гласная или согласные S, N - ударение будет ставиться на =ПРЕДПОСЛЕДНИЙ= слог (P.S. Это 99% испанских слов):",
+								"example": "сasa, casas, cosa, cosas, habla, hablan, come, comen"
 							},
-							"accent": {
-								"header": "Ударение",
-								"contentAccent": {
-									"1": {
-										"text": "1. Если на конце слова гласная или согласные S, N - ударение будет ставиться на =ПРЕДПОСЛЕДНИЙ= слог (P.S. Это 99% испанских слов):",
-										"example": "сasa, casas, cosa, cosas, habla, hablan, come, comen"
-									},
-									"2": {
-										"text": "2. Если на конце слова согласная (кроме S,N) - ударение будет ставиться на =ПОСЛЕДНИЙ= слог:",
-										"example": "universidad, facultad, capital, Madrid"
-									},
-									"3": {
-										"text": "3. Если ударение слышится не по правилам 1,2 - оно обозначается графически:",
-										"example": "teléfono, mamá, papá, está, están, Ramón, café"
-									},
-									"4": {
-										"text": "4. Маленькие слова/части слов в испанском часто пишутся одинаково, но имеют разные значения. В этом случае на одном из таких одинаковых слов будет писаться ударение, чтобы отличать его от другого такого же слова:",
-										"example": "te -  тебе\nmi - мой\nsé - знаю\nté - чай\nmí - мне (с предлогами)\nse - возвратная частица \\“ся\\”"
-									}
-								}
+							"2": {
+								"text": "2. Если на конце слова согласная (кроме S,N) - ударение будет ставиться на =ПОСЛЕДНИЙ= слог:",
+								"example": "universidad, facultad, capital, Madrid"
 							},
-							"training2": {
-								"header": "Тренировка:",
-								"description": "Чтение фраз",
-								"exercises2": {
-									"1": {
-										"text": "Yo soy de Rusia y estoy en Argentina",
-										"audio": "https://cdn.vosque.education/lessons/1/audio18-8f9d.mp3"
-									},
-									"2": {
-										"text": "Maria y Juan están en la ciudad Buenos Aires",
-										"audio": "https://cdn.vosque.education/lessons/1/audio19-9f1d.mp3"
-									},
-									"3": {
-										"text": "Mi mamá es médica y está en San-Petersburgo",
-										"audio": "https://cdn.vosque.education/lessons/1/audio20-0f2d.mp3"
-									}
-								}
+							"3": {
+								"text": "3. Если ударение слышится не по правилам 1,2 - оно обозначается графически:",
+								"example": "teléfono, mamá, papá, está, están, Ramón, café"
+							},
+							"4": {
+								"text": "4. Маленькие слова/части слов в испанском часто пишутся одинаково, но имеют разные значения. В этом случае на одном из таких одинаковых слов будет писаться ударение, чтобы отличать его от другого такого же слова:",
+								"example": "te -  тебе\nmi - мой\nsé - знаю\nté - чай\nmí - мне (с предлогами)\nse - возвратная частица \\“ся\\”"
+							}
+						}
+					},
+					"training2": {
+						"header": "Тренировка:",
+						"description": "Чтение фраз",
+						"exercises2": {
+							"1": {
+								"text": "Yo soy de Rusia y estoy en Argentina",
+								"audio": "https://cdn.vosque.education/lessons/1/audio18-8f9d.mp3"
+							},
+							"2": {
+								"text": "Maria y Juan están en la ciudad Buenos Aires",
+								"audio": "https://cdn.vosque.education/lessons/1/audio19-9f1d.mp3"
+							},
+							"3": {
+								"text": "Mi mamá es médica y está en San-Petersburgo",
+								"audio": "https://cdn.vosque.education/lessons/1/audio20-0f2d.mp3"
 							}
 						}
 					}
+
 				},
 				"vocabulary": {
 					"header": "Лексика",
