@@ -1,8 +1,8 @@
-import { Paragraph, H1, H2, H3 } from "@my/ui";
+import { Paragraph, H1, H2, H3 } from 'tamagui';
 import React from "react";
 
 function parseAndRenderText(text) {
-  const parts = text.split(/(~|*)/);
+  const parts = text.split(/(~|\*)/);
   return parts.map((part, index) => {
     if (index % 2 === 1) {
       if (part === '~') {
