@@ -4,11 +4,11 @@
 			"name": "1 Урок. Фонетика",
 			"content": {
 				"description": "Фонетика испанского языка - не такая уж увлекательная, но нужная база",
-				"video": "https://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
-				"poster": "https://cdn.vosque.education/images/poster.jpg",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 				"theoreticalBlock": {
 					"header": "Теоретический блок",
-					"image": "https://cdn.vosque.education/lessons/1/circle_talking_talk.png",
+					"image": "http://cdn.vosque.education/lessons/1/circle_talking_talk.png",
 					"alfabet": {
 						"header": "Алфавит",
 						"text": "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z"
@@ -215,42 +215,42 @@
 							"1": {
 								"description": "Звук \\“Б\\” (буквы B \\“larga\\” или V \\“corta\\”): ",
 								"text": "Cuba, boca, base, venta, volcán, uva, iba, no vive, verde, rublo, bosque",
-								"audio": "https://cdn.vosque.education/lessons/1/audio1-84u8.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio1-84u8.mp3"
 							},
 							"2": {
 								"description": "Звук “К” (буква С):",
 								"text": "Ca, co, cu, casa, cosa, cultura, Cristian, calabaza, conejo, camisa",
-								"audio": "https://cdn.vosque.education/lessons/1/audio2-WE5N.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio2-WE5N.mp3"
 							},
 							"3": {
 								"description": "Но при этом буква С перед e,i читается как русская С:",
 								"text": "ce, ci, ciudad, cilantro, cerveza, cebolla, piscina",
-								"audio": "https://cdn.vosque.education/lessons/1/audio3-vhpE.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio3-vhpE.mp3"
 							},
 							"4": {
 								"description": "Звук “К” (конструкция QUE QUI):",
 								"text": "Que, qui, queso, Quito, mantequilla, parque, raqueta, química, bosque",
-								"audio": "https://cdn.vosque.education/lessons/1/audio4-jk3d.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio4-jk3d.mp3"
 							},
 							"5": {
 								"description": "Звук “Г” (буква G и конструкция GUE GUI):",
 								"text": "Gue, gui, guitarra, guerra, guirnalda, alargue, colgué, seguidor, Guillermo, espárragos",
-								"audio": "https://cdn.vosque.education/lessons/1/audio5-4fnR.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio5-4fnR.mp3"
 							},
 							"6": {
 								"description": "Но при этом буква G перед e,i читается как русская X:",
 								"text": "Argentina, gitano, pagina, gente, generación, Bélgica",
-								"audio": "https://cdn.vosque.education/lessons/1/audio6-kJ4m.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio6-kJ4m.mp3"
 							},
 							"7": {
 								"description": "Звук “Ж/Ш” (буква Y и конструкция LL):",
 								"text": "Llamó, llenar, yo, ya, llamo, llanto, yolo, yate, pollo, el yacuta, el yodo, el hierro, cebolla",
-								"audio": "https://cdn.vosque.education/lessons/1/audio7-aE2P.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio7-aE2P.mp3"
 							},
 							"8": {
 								"description": "Звуки “НЬ”, “ЛЬ” (буквы Ñ, L):",
 								"text": "Ñe, ñi, niña, niño, España, español, escalera, Lima, capital",
-								"audio": "https://cdn.vosque.education/lessons/1/audio8-5fzY.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio8-5fzY.mp3"
 							}
 						}
 					},
@@ -263,39 +263,39 @@
 								"content": {
 									"1": {
 										"text": "En una casa */возможна пауза/* vive */возможна пауза/* un chico lindo.",
-										"audio": "https://cdn.vosque.education/lessons/1/audio9-Kl8t.mp3"
+										"audio": "http://cdn.vosque.education/lessons/1/audio9-Kl8t.mp3"
 									},
 									"2": {
 										"text": "Mi mamá */возможна пауза/* está */возможна пауза/* en un museo.",
-										"audio": "https://cdn.vosque.education/lessons/1/audio10-bX9W.mp3"
+										"audio": "http://cdn.vosque.education/lessons/1/audio10-bX9W.mp3"
 									},
 									"3": {
 										"text": "Mi amiga Natalia */возможна пауза/* es */возможна пауза/* una chica muy guapa.",
-										"audio": "https://cdn.vosque.education/lessons/1/audio11-4f2d.mp3"
+										"audio": "http://cdn.vosque.education/lessons/1/audio11-4f2d.mp3"
 									},
 									"4": {
 										"text": "En mi habitación */возможна пауза/* duerme */возможна пауза/* mi gato.",
-										"audio": "https://cdn.vosque.education/lessons/1/audio12-2f3d.mp3"
+										"audio": "http://cdn.vosque.education/lessons/1/audio12-2f3d.mp3"
 									},
 									"5": {
 										"text": "Mi mamá */возможна пауза/* no estudia  */возможна пауза/* ella trabaja.",
-										"audio": "https://cdn.vosque.education/lessons/1/audio13-3f4d.mp3"
+										"audio": "http://cdn.vosque.education/lessons/1/audio13-3f4d.mp3"
 									},
 									"6": {
 										"text": "Las ultimas noticias */возможна пауза/* no son */возможна пауза/* muy positivas",
-										"audio": "https://cdn.vosque.education/lessons/1/audio14-4f5d.mp3"
+										"audio": "http://cdn.vosque.education/lessons/1/audio14-4f5d.mp3"
 									},
 									"7": {
 										"text": "Las clases */возможна пауза/* de español */возможна пауза/* son interesantes",
-										"audio": "https://cdn.vosque.education/lessons/1/audio15-5f6d.mp3"
+										"audio": "http://cdn.vosque.education/lessons/1/audio15-5f6d.mp3"
 									},
 									"8": {
 										"text": "Para las personas */возможна пауза/* de Argentina  */возможна пауза/* es difícil */возможна пауза/* hablar ruso",
-										"audio": "https://cdn.vosque.education/lessons/1/audio16-6f7d.mp3"
+										"audio": "http://cdn.vosque.education/lessons/1/audio16-6f7d.mp3"
 									},
 									"9": {
 										"text": "Juan y María */возможна пауза/* están */возможна пауза/* en casa */возможна пауза/*  con sus amigos  */возможна пауза/* de Francia.",
-										"audio": "https://cdn.vosque.education/lessons/1/audio17-7f8d.mp3"
+										"audio": "http://cdn.vosque.education/lessons/1/audio17-7f8d.mp3"
 									}
 								}
 							}
@@ -328,15 +328,15 @@
 						"exercises2": {
 							"1": {
 								"text": "Yo soy de Rusia y estoy en Argentina",
-								"audio": "https://cdn.vosque.education/lessons/1/audio18-8f9d.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio18-8f9d.mp3"
 							},
 							"2": {
 								"text": "Maria y Juan están en la ciudad Buenos Aires",
-								"audio": "https://cdn.vosque.education/lessons/1/audio19-9f1d.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio19-9f1d.mp3"
 							},
 							"3": {
 								"text": "Mi mamá es médica y está en San-Petersburgo",
-								"audio": "https://cdn.vosque.education/lessons/1/audio20-0f2d.mp3"
+								"audio": "http://cdn.vosque.education/lessons/1/audio20-0f2d.mp3"
 							}
 						}
 					}
@@ -409,7 +409,7 @@
 				},
 				"lifehacks": {
 					"lifehack1": {
-						"image": "https://cdn.vosque.education/lessons/1/lifehack1-VhiH.jpg",
+						"image": "http://cdn.vosque.education/lessons/1/lifehack1-VhiH.jpg",
 						"title": "Лайфхак 1:",
 						"description1": "Удвоение в испанском меняет звучание буквы и, следовательно, смысл:",
 						"content1": {
@@ -437,12 +437,12 @@
 						}
 					},
 					"lifehack2": {
-						"image": "https://cdn.vosque.education/lessons/1/lifehack2-p2cV.jpg",
+						"image": "http://cdn.vosque.education/lessons/1/lifehack2-p2cV.jpg",
 						"title": "Лайфхак 2:",
 						"description1": "практически всегда слова из ⅔ букв (как правило, артикли/предлоги) мы присоединяем к последующему большому слову. Делать паузу между ними и большим словом не нужно!"
 					},
 					"lifehack3": {
-						"image": "https://cdn.vosque.education/lessons/1/lifehack3-3Q4g.jpg",
+						"image": "http://cdn.vosque.education/lessons/1/lifehack3-3Q4g.jpg",
 						"title": "Лайфхак 3:",
 						"description1": "ударные гласные, как правило, произносятся дольше, чем безударные. Не стесняйтесь тянуть их и утрировать - дальше. Вы привыкните к этому и это будет звучать естественно."
 					}
@@ -453,8 +453,8 @@
 			"id": 2,
 			"name": "Lesson 2",
 			"content": {
-				"video": "https://cdn.vosque.education/lessons/2/сlase2-NN61.mp4",
-				"poster": "https://cdn.vosque.education/images/poster.jpg",
+				"video": "http://cdn.vosque.education/lessons/2/сlase2-NN61.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 				"text": "This is the content of Lesson 2"
 			}
 		},
