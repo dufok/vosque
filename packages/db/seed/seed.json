@@ -321,7 +321,7 @@
 								}
 							},
 							"training2": {
-								"title": "Тренировка:",
+								"header": "Тренировка:",
 								"description": "Чтение фраз",
 								"exercises2": {
 									"1": {
