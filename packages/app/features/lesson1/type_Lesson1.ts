@@ -104,7 +104,6 @@ export type ContentLesson1 = {
   };
 
   export type exercise2 = {
-    description: string;
     text: string;
     audio: string
   };

@@ -329,7 +329,6 @@ export function lesson1Screen() {
                 {Object.values(exercises2).map((exercise2) => (
                   <XStack>
                     <YStack>
-                      <H3 ta="left" >{exercise2.description}</H3>
                       <Paragraph ta="left" >{exercise2.text}</Paragraph>
                     </YStack>
                     <YStack>
