@@ -1,4 +1,4 @@
-import { createTamagui } from 'tamagui'
+import { createFont ,createTamagui } from 'tamagui'
 import { createInterFont } from '@tamagui/font-inter'
 import { shorthands } from '@tamagui/shorthands'
 import { tokens, themes } from '@tamagui/theme-base'
@@ -51,6 +51,55 @@ const bodyFont = createInterFont(
   }
 )
 
+const headingFontCustom = createFont ({
+  family: 'Custom',
+  size: {
+    6: 15,
+  },
+  transform: {
+    6: 'uppercase',
+    7: 'none',
+  },
+  weight: {
+    6: '400',
+    7: '700',
+  },
+  color: {
+    6: '$colorFocus',
+    7: '$color',
+  },
+  letterSpacing: {
+    5: 2,
+    6: 1,
+    7: 0,
+    8: -1,
+    9: -2,
+    10: -3,
+    12: -4,
+    14: -5,
+    15: -6,
+  },
+  lineHeight: {
+    4: 16
+  },
+  face: {
+  700: { normal: 'Monserat' }
+  },
+})
+
+const bodyFontCustom = createFont(
+  {
+    family: 'Custom',
+    face: {
+      700: { normal: 'Noto Sans' },
+    },
+  },
+  {
+    sizeSize: (size: number) => Math.round(size * 1.1),
+    sizeLineHeight: (size) => Math.round(size * 1.1 + (size > 20 ? 10 : 10)),
+  }
+)
+
 
 export const config = createTamagui({
   animations,
@@ -58,7 +107,7 @@ export const config = createTamagui({
   themeClassNameOnRoot: true,
   shorthands,
   fonts: {
-    heading: headingFont,
+    heading: headingFontCustom,
     body: bodyFont,
   },
   themes,
