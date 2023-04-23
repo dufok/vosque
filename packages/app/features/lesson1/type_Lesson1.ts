@@ -7,7 +7,7 @@ export type ContentLesson1 = {
       header: string;
       image: string;
       alfabet: { header: string; text: string; };
-      complex: { header: string; letters: {  [key: string]: letter }; description: string};
+      complex: { header: string; description: string; letters: {  [key: string]: Letter }};
       attention: { title: string; atentionBlocks: { [key: string]: atentionBlock }};
     },
     exercisesBlock: {
@@ -72,7 +72,7 @@ export type ContentLesson1 = {
     }
   };
 
-  export type letter = {
+  export type Letter = {
     name: string;
     description: string;
     Colum1_1: string;
