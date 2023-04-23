@@ -76,15 +76,15 @@ export function lesson1Screen() {
 
   //part with types from file json full
   const content = firstLesson?.content as ContentLesson1;
-  const letters = content?.theoreticalBlock.complex.letters;
-  const atentionBlocks = content?.theoreticalBlock.attention.atentionBlocks;
-  const exercises = content?.exercisesBlock.training1.exercises;
-  const exercises2 = content?.exercisesBlock.training2.exercises2;
-  const linesAdditional = content?.exercisesBlock.additional.materials.readingPhrase.linesAdditional;
-  const contentAccents = content?.exercisesBlock.accent.contentAccents;
-  const lifehack1 = content?.lifehacks.lifehack1;
-  const lifehack2 = content?.lifehacks.lifehack2;
-  const lifehack3 = content?.lifehacks.lifehack3;
+  const letters = content?.theoreticalBlock.complex.letters ?? [];
+  const atentionBlocks = content?.theoreticalBlock.attention.atentionBlocks ?? [];
+  const exercises = content?.exercisesBlock.training1.exercises ?? [];
+  const exercises2 = content?.exercisesBlock.training2.exercises2 ?? [];
+  const linesAdditional = content?.exercisesBlock.additional.materials.readingPhrase.linesAdditional ?? [];
+  const contentAccents = content?.exercisesBlock.accent.contentAccents ?? [];
+  const lifehack1 = content?.lifehacks.lifehack1 ?? [];
+  const lifehack2 = content?.lifehacks.lifehack2 ?? [];
+  const lifehack3 = content?.lifehacks.lifehack3 ?? [];
 
   // Part for split last block on 2 parts
   const contentVocabularys = Object.values(content?.vocabulary.contentVocabularys  || {});
@@ -323,17 +323,17 @@ export function lesson1Screen() {
               </YStack>
             </YStack>
             <YStack>
-              <H3 ta="left" backgroundColor="red">{content?.exercisesBlock.training2.header}</H3>
-              <Paragraph ta="left" >{content?.exercisesBlock.training2.description}</Paragraph>
+              <H3 ta="left" backgroundColor="red">{content?.exercisesBlock.training2.header ?? []}</H3>
+              <Paragraph ta="left" >{content?.exercisesBlock.training2.description ?? []}</Paragraph>
               <YStack>
                 {Object.values(exercises2).map((exercise2) => (
                   <XStack>
                     <YStack>
-                      <Paragraph ta="left" >{exercise2.text}</Paragraph>
+                      <Paragraph ta="left" >{exercise2.text ?? []}</Paragraph>
                     </YStack>
                     <YStack>
                       <Player
-                        src={exercise2.audio}
+                        src={exercise2.audio ?? []}
                         >
                       </Player>
                     </YStack>
@@ -353,7 +353,7 @@ export function lesson1Screen() {
                       <Separator />
                       <Paragraph ta="right">{ContentVocabulary.text2}</Paragraph>
                     </XStack>
-                    <Paragraph ta="center">{ContentVocabulary.description}</Paragraph>
+                    <Paragraph ta="center">{ContentVocabulary.description ?? []}</Paragraph>
                   </YStack>
                   ))}
                 </YStack>
@@ -366,7 +366,7 @@ export function lesson1Screen() {
                       <Separator />
                       <Paragraph ta="right">{ContentVocabulary.text2}</Paragraph>
                     </XStack>
-                    <Paragraph ta="center">{ContentVocabulary.description}</Paragraph>
+                    <Paragraph ta="center">{ContentVocabulary.description ?? []}</Paragraph>
                   </YStack>
                   ))}
                 </YStack>
