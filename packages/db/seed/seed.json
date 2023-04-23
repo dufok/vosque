@@ -303,7 +303,7 @@
 					},
 					"accent": {
 						"header": "Ударение",
-						"contentAccent": {
+						"contentAccents": {
 							"1": {
 								"text": "1. Если на конце слова гласная или согласные S, N - ударение будет ставиться на =ПРЕДПОСЛЕДНИЙ= слог (P.S. Это 99% испанских слов):",
 								"example": "сasa, casas, cosa, cosas, habla, hablan, come, comen"
