@@ -165,7 +165,7 @@ export function ButtonPay(props: {
                 
                   <YStack ai="flex-end" mt="$2">
                     <Dialog.Close displayWhenAdapted asChild>
-                      <Button theme="alt1" aria-label="Close" onPress={handleTransferCompleted}> Перевод выполнен ! </Button>
+                      <Button aria-label="Close" onPress={handleTransferCompleted}> Перевод выполнен ! </Button>
                     </Dialog.Close>
                   </YStack>
                 </YStack>
