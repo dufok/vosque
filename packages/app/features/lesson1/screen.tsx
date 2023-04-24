@@ -23,11 +23,11 @@ import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 import PropTypes from 'prop-types';
 import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
+import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons';
 import { ParagraphCustom } from '@my/ui/src/components/CustomText';
 import { ContentLesson1 } from './type_Lesson1';
 
 import "./../../../../node_modules/video-react/dist/video-react.css"; // import css
-import { red } from "@tamagui/colors";
 
 BigPlayButton.propTypes = {
   position: PropTypes.string,
@@ -374,7 +374,7 @@ export function lesson1Screen() {
               </XStack>
             </YStack>
             <YStack pt="$10" pb="$10" >
-              <Button f={1} {...lesson2LinkProps} theme={"gray"}>
+              <Button f={1} {...lesson2LinkProps} theme={"gray"} icon={ArrowRight}>
                 Урок 2
               </Button>
             </YStack>
