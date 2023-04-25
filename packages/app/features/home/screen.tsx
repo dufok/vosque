@@ -52,29 +52,29 @@ export function HomeScreen(props) {
   */
 
   return (
-    <YStack f={1} miw={600} space="$6" >
+    <YStack f={1} miw={600}>
       <YStack f={1} ai="center">
         <YStack h={600}>
-          <Image pos="relative" width={2000} height={600} src='http://cdn.vosque.education/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw' />
+          <Image pos="relative" width={2000} height={600} src='https://cdn.vosque.education/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw' />
         </YStack>
         <YStack position="absolute" zIndex={500} space="$4">
-          <Circle size={600} boc={"$blue1Light"} bw="$1">
-            <H1 ta="center" mt="100" mb="$5">
+          <Circle size={600} boc="$background" bw="$1">
+            <H1 ta="center" mt="100" mb="$5" col="$background">
               Курсы аргентинского<br/>испанского языка
             </H1>
-            <Paragraph w={400} ta='center'>
+            <Paragraph w={400} ta='center' col="$background">
               Курс аргентинского диалекта испанского языка для всех, кто хочет жить в Аргентине или по другим причинам интересуется культурой Аргентины и особенностями аргентинского испанского
             </Paragraph>
-            <Button {...userpageLinkProps} br="$1" bw={3} boc="$color2" >
+            <Button mt="100" {...userpageLinkProps} br={9} bw="$1" boc="$background">
               ВОЙТИ
             </Button>
           </Circle>
         </YStack>
       </YStack>
       <YStack ai="center" >
-        <XStack  mt="$4" ai="flex-start">
-          <YStack ai="center" >
-            <YStack >   
+        <XStack>
+          <YStack ai="center" w={700} f={1}>
+            <YStack>   
                 <H3 ta="center" mt="$8" w={350} pos="relative" hoverStyle={{ opacity: 0 }}>
                   Разговорная речь
                 </H3>
@@ -101,58 +101,60 @@ export function HomeScreen(props) {
                 </Paragraph>
             </YStack>
           </YStack>
-          <YStack ai="center" bc="$backgroundStrong">
-            <Avatar size="$15">
-              <Avatar.Image
-                accessibilityLabel="Анастасия Лукьянова"
-                src="http://cdn.vosque.education/images/avatar.png?raw"
-              />
-              <Avatar.Fallback backgroundColor="$backgroundFocus" />
-            </Avatar>
-            <H1 ta="center" >Анастасия Лукьянова</H1>
-            <YStack maw={600}>
-              <YStack m="$2" />
-              <Paragraph ta="center">
-                Я - билингв, носитель русского и испанских языков. Родившись в Эквадоре, в 5 лет я переехала в Россию, в 16 поступила в МГУ на филологический факультет, в 19 отправилась на стажировку в Мексику, а в 23, закончив университет с красным дипломом по специальности "Преподаватель и переводчик испанского языка", переехала в Аргентину. Уже 10 лет я преподаю язык и рада делиться своими знаниями и опытом.
-              </Paragraph>
+          <YStack ai="center" bc="$backgroundFocus" f={1}>
+            <YStack ai="center" w={700} l={1}>
+              <Avatar size="$15" mt={85}>
+                <Avatar.Image
+                  accessibilityLabel="Анастасия Лукьянова"
+                  src="https://cdn.vosque.education/images/avatar.png?raw"
+                />
+                <Avatar.Fallback backgroundColor="$backgroundFocus" />
+              </Avatar>
+              <H1 ta="center" col="$background">Анастасия Лукьянова</H1>
+              <YStack maw={450}>
+                <YStack m="$2" />
+                <Paragraph ta="center" col="$background">
+                  Я - билингв, носитель русского и испанских языков. Родившись в Эквадоре, в 5 лет я переехала в Россию, в 16 поступила в МГУ на филологический факультет, в 19 отправилась на стажировку в Мексику, а в 23, закончив университет с красным дипломом по специальности "Преподаватель и переводчик испанского языка", переехала в Аргентину. Уже 10 лет я преподаю язык и рада делиться своими знаниями и опытом.
+                </Paragraph>
+              </YStack>
             </YStack>
           </YStack>
         </XStack>
       </YStack>
-      <YStack ai="center">
-        <Avatar circular size="$10">
+      <YStack ai="center" h={700}>
+        <Avatar circular size="$6" mt={150}>
           <Avatar.Image
-            src="http://cdn.vosque.education/images/img-home-course.png?raw"
+            src="https://cdn.vosque.education/images/img-home-course.png?raw"
           />
           <Avatar.Fallback backgroundColor="$backgroundFocus" />
         </Avatar>
         <H2 tt="uppercase">курсы</H2>
-        <Paragraph>Для вас, чтобы выучить родной испанский язык наилучшим образом</Paragraph>
-        <XStack>
-          <YStack>
-            <Button {...courseLinkProps} w={350} h={72} br={9} boc={"$blue1Light"} bw="$1">
+        <Paragraph mt={40} >Для вас, чтобы выучить родной<br/>испанский язык наилучшим образом</Paragraph>
+        <XStack mt={53}>
+          <YStack p={35}>
+            <Button bc="$backgroundFocus" {...courseLinkProps} w={350} h={72} br={9} bw="$2">
               Базовый курс аргентинского испанского
             </Button>
           </YStack> 
-          <YStack>
-            <Button w={350} h={72} br={9} boc={"$blue1Light"} bw="$1">
+          <YStack p={35}>
+            <Button w={350} h={72} br={9} bw="$2">
               Скоро Больше
             </Button>
           </YStack>
         </XStack>
       </YStack>
-      <YStack ai="center" bc="$backgroundStrong" >
-        <Avatar circular size="$10">
+      <YStack ai="center" bc="$backgroundFocus" >
+        <Avatar circular size="$6" mt={150}>
           <Avatar.Image
-            src="http://cdn.vosque.education/images/img-home-phrasebook.png?raw"
+            src="https://cdn.vosque.education/images/img-home-phrasebook.png?raw"
           />
           <Avatar.Fallback backgroundColor="$backgroundHover" />
         </Avatar>
-        <H2 tt="uppercase" color="$color1" >разговорники</H2>
-        <H5>что это такое ?</H5>
+        <H2 tt="uppercase" col="$background">разговорники</H2>
+        <H5 mt={50}>что это такое ?</H5>
         <Paragraph>Наши разговорники - это охуенная вещь потому что потому что</Paragraph>
         <YStack>
-          <Button {...phasebookLinkProps} w={200} h={72} br={9} boc={"$blue1Light"} bw="$1">
+          <Button mt={50} {...phasebookLinkProps} w={200} h={72} br={9} boc={"$blue1Light"} bw="$1">
             СМОТРЕТЬ ВСЕ
           </Button>
         </YStack> 
@@ -164,7 +166,7 @@ export function HomeScreen(props) {
   
         
       </YStack>
-      <YStack f={1} pt="$10" pb="$10" backgroundColor="$backgroundHover" >
+      <YStack w="100%" pt="$10" pb="$10" backgroundColor="$backgroundFocus" >
         <Button {...userpageLinkProps} theme={"gray"}>
           ЛИЧНЫЙ КАБИНЕТ (ВОЙТИ/ЗАПИСАТЬСЯ)
         </Button>
