@@ -10,11 +10,10 @@ import {
   YStack,
   Image,
   Avatar,
-  Circle,
+  Circle
 } from "@my/ui";
 import React, { useState } from "react";
 import { useLink } from "solito/link";
-import { Adapt } from '@tamagui/adapt'
 
 //import { Header } from '@my/ui/src/components/HeaderComp';
 //add blocks animation
@@ -54,10 +53,8 @@ export function HomeScreen(props) {
     <YStack f={1} miw={600}>
       <YStack f={1} ai="center">
         <YStack h={600}>
-          <Adapt
-            sm={
               <Image
-                source={{ 
+                src={{ 
                   width: 2000, 
                   height: 600, 
                   uri: 'https://cdn.vosque.education/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw' 
@@ -66,20 +63,6 @@ export function HomeScreen(props) {
                 height="100%"
                 pos="relative"
               />
-            }
-            default={
-              <Image
-                source={{ 
-                  width: 2000, 
-                  height: 600, 
-                  uri: 'https://cdn.vosque.education/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw' 
-                }}
-                width="1400px"
-                height="100%"
-                pos="relative"
-              />
-            }
-          />
         </YStack>
         <YStack position="absolute" zIndex={500} space="$4">
           <Circle size={600} boc="$background" bw="$1">
