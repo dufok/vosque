@@ -13,7 +13,7 @@ import {
   Image,
   Circle
 } from "@my/ui";
-import { GithubIcon } from '/workspaces/vosque/packages/ui/src/components/GithubIcon';
+import { GithubIcon } from '@my/ui/src/components/GithubIcon';
 import { useLink } from "solito/link";
 import { ImageBackground } from "react-native"
 
