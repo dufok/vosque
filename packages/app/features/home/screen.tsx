@@ -86,7 +86,7 @@ function Welcome({ imageSource, userpageLinkProps }){
 function AboutAutor(){
   return(
     <XStack fw="wrap" >
-      <YStack ai="center" jc="center" miw={500} f={1}>
+      <YStack ai="center" jc="center" f={1}>
         <YStack p="$8">   
           <H3 ta="center" mt="$8" pos="relative" hoverStyle={{ opacity: 0 }}>
             Разговорная речь
