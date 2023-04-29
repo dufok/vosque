@@ -10,17 +10,12 @@ import {
   YStack,
   Square,
   Avatar,
+  Image,
   Circle
 } from "@my/ui";
-import React, { useState } from "react";
+import { GithubIcon } from '/workspaces/vosque/packages/ui/src/components/GithubIcon';
 import { useLink } from "solito/link";
 import { ImageBackground } from "react-native"
-
-//import { Header } from '@my/ui/src/components/HeaderComp';
-//add blocks animation
-import { reviews } from '@my/ui/src/texts/reviews';
-import { SignalLow } from "@tamagui/lucide-icons";
-
 
 
 export function HomeScreen(props) {
@@ -29,6 +24,9 @@ export function HomeScreen(props) {
   const courseLinkProps = useLink({href: "/course"});
 
   const imageSource = { uri: 'http://cdn.vosque.education/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw'};
+  const imageSource1 = { uri: 'https://cdn.vosque.education/images/avatar.png?raw'};
+  const imageSource2 = { uri: 'https://cdn.vosque.education/images/img-home-course.png?raw'};
+  const imageSource3 = { uri: 'https://cdn.vosque.education/images/img-home-phrasebook.png?raw'};
 
   /*
   //block with errors from Author 
@@ -50,8 +48,8 @@ export function HomeScreen(props) {
   return (
     <YStack>
         <Welcome imageSource={imageSource} userpageLinkProps={userpageLinkProps} />
-        <AboutAutor />
-        <AboutCourse courseLinkProps={courseLinkProps} />
+        <AboutAutor imageSource1={imageSource1}/>
+        <AboutCourse courseLinkProps={courseLinkProps}/>
         <Prasephrase phasebookLinkProps={phasebookLinkProps}/>
         <ReviewSection />
         <SubMenu userpageLinkProps={userpageLinkProps}/>
@@ -64,18 +62,16 @@ function Welcome({ imageSource, userpageLinkProps }){
   return(
     <YStack>
         <ImageBackground source={imageSource} style={{ flex: 1, width: '100%', height: '100%' }}>
-          <YStack space="$4" ai="center">
-            <Circle size={600} boc="$background" bw="$1">
-              <H1 ta="center" mt="100" mb="$5" col="$background">
+          <YStack space="$4" ai="center" h={600}>
+              <H1 mt="$15" ta="center" mb="$5" col="$background">
                 Курсы аргентинского<br/>испанского языка
               </H1>
-              <Paragraph p="$5" ta='center' col="$background">
+              <Paragraph p="$5" ta='center' col="$background" maw={600}>
                 Курс аргентинского диалекта испанского языка для всех, кто хочет жить в Аргентине или по другим причинам интересуется культурой Аргентины и особенностями аргентинского испанского
               </Paragraph>
               <Button mt="100" {...userpageLinkProps} br={9} bw="$1" boc="$background">
                 ВОЙТИ
               </Button>
-            </Circle>
           </YStack>
         </ImageBackground>
       </YStack>
@@ -83,7 +79,7 @@ function Welcome({ imageSource, userpageLinkProps }){
 };
 
 
-function AboutAutor(){
+function AboutAutor({imageSource1}){
   return(
     <XStack fw="wrap" >
       <YStack ai="center" jc="center" f={1}>
@@ -119,7 +115,7 @@ function AboutAutor(){
           <Avatar size="$15" mt={85}>
             <Avatar.Image
               accessibilityLabel="Анастасия Лукьянова"
-              src="https://cdn.vosque.education/images/avatar.png?raw"
+              src={imageSource1}
             />
             <Avatar.Fallback backgroundColor="$backgroundFocus" />
           </Avatar>
@@ -138,26 +134,24 @@ function AboutAutor(){
 
 function AboutCourse ({courseLinkProps}) {
     return(
-        <YStack ai="center">
-            <Avatar circular size="$6" mt={150}>
-                <Avatar.Image
-                src="https://cdn.vosque.education/images/img-home-course.png?raw"
-                />
-                <Avatar.Fallback backgroundColor="$backgroundFocus" />
-            </Avatar>
+        <YStack ai="center" mb={100}>
+            <Image mt={100} src={{uri: 'https://cdn.vosque.education/images/img-home-course.png?raw', width: 34, height: 67}}
+            height="$8"
+            width="$6"
+            />
             <H2 tt="uppercase">курсы</H2>
-            <Paragraph mt={40} >Для вас, чтобы выучить родной<br/>испанский язык наилучшим образом</Paragraph>
-            <XStack mt={53} fw="wrap">
-                <YStack p={35}>
+            <Paragraph ai="center" mt={40} >Для вас, чтобы выучить родной<br/>испанский язык наилучшим образом</Paragraph>
+            <XStack mt={53} jc={"center"} fw="wrap">
+              <YStack p="$5">
                 <Button bc="$backgroundFocus" {...courseLinkProps}>
                     Базовый курс аргентинского испанского
                 </Button>
-                </YStack> 
-                <YStack p={35}>
-                    <Button>
-                        Скоро Больше
-                    </Button>
-                </YStack>
+              </YStack> 
+              <YStack p="$5">
+                <Button boc="$backgroundFocus" bw="$1" paddingHorizontal="$14">
+                    Скоро Больше
+                </Button>
+              </YStack>
             </XStack>
         </YStack>
         
@@ -167,17 +161,18 @@ function AboutCourse ({courseLinkProps}) {
 function Prasephrase({phasebookLinkProps: {href}}){
     return(
         <YStack ai="center" bc="$backgroundFocus" >
-            <Avatar circular size="$6" mt={150}>
-                <Avatar.Image
-                src="https://cdn.vosque.education/images/img-home-phrasebook.png?raw"
-                />
-                <Avatar.Fallback backgroundColor="$backgroundHover" />
-            </Avatar>
+            <Image mt={30} src={{uri: 'https://cdn.vosque.education/images/img-home-phrasebook.png?raw', width: 34, height: 67}}
+            height="$8"
+            width="$6"
+            />
             <H2 tt="uppercase" col="$background">разговорники</H2>
-            <H5 mt={50}>что это такое ?</H5>
-            <Paragraph>Наши разговорники - это охуенная вещь потому что потому что</Paragraph>
+            <H5 fontWeight="bold" mt={50}>что это такое ?</H5>
+            <Paragraph> Мы пока что сами не знаем, все еще в разработке.</Paragraph>
             <YStack p={35}>
-                <Button mt={50} href={href} br={9} bw="$1">
+                <Button
+                  mt={50} href={href}
+                  br={9} bw="$1" boc="$background"
+                  bc="$backgroundFocus">
                     СМОТРЕТЬ ВСЕ
                 </Button>
             </YStack> 
@@ -189,7 +184,30 @@ function ReviewSection () {
     return(
         <YStack ai="center">
             <H2 tt="uppercase" ta="center">Отзывы</H2>
-            <Square h={600} w='100%' />
+            <XStack p="$6" fw="wrap">
+                <YStack space="$6" p="$6">
+                  <Button bc="$backgroundFocus" paddingHorizontal="$14">
+                    TEST
+                  </Button>
+                  <Button bc="$backgroundFocus" paddingHorizontal="$14">
+                    TEST
+                  </Button>
+                  <Button bc="$backgroundFocus" paddingHorizontal="$14">
+                    TEST
+                  </Button>
+                </YStack>
+                <YStack space="$6" p="$6">
+                  <Button bc="$backgroundFocus" paddingHorizontal="$14">
+                    TEST
+                  </Button>
+                  <Button bc="$backgroundFocus" paddingHorizontal="$14">
+                    TEST
+                  </Button>
+                  <Button bc="$backgroundFocus" paddingHorizontal="$14">
+                    TEST
+                  </Button>
+                </YStack>
+            </XStack>
         </YStack>
 
     )
@@ -198,10 +216,17 @@ function ReviewSection () {
 
 function SubMenu({userpageLinkProps}) {
     return(
-        <YStack w="100%" pt="$10" pb="$10" backgroundColor="$backgroundFocus" >
-            <Button {...userpageLinkProps}>
-                ЛИЧНЫЙ КАБИНЕТ (ВОЙТИ/ЗАПИСАТЬСЯ)
+      <YStack w="100%" pt="$5" pb="$5" backgroundColor="$backgroundFocus" >
+        <XStack jc="space-between">
+        <YStack>
+            <GithubIcon width={30}/>
+          </YStack>
+          <YStack>
+            <Button {...userpageLinkProps} bc="$backgroundFocus">
+              ВОЙТИ/ЗАПИСАТЬСЯ
             </Button>
+          </YStack>
+        </XStack>
       </YStack>
     )
 }
