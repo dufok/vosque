@@ -121,7 +121,7 @@ export function ButtonPay(props: {
             {props.description}
           </Dialog.Description>
             <YStack ai="center" m="$4">
-              {isSignedIn && (
+              {/*{isSignedIn && (*/}
                 <YStack miw={500} mih={300} p="$4" space="$4">
                   <XStack w={400} ai="center" space="$4">
                       <Switch
@@ -170,7 +170,7 @@ export function ButtonPay(props: {
                     </Dialog.Close>
                   </YStack>
                 </YStack>
-              )}
+              {/*})}*/}
               {!isSignedIn && (
                 <YStack ai="center" space="$2">
                   <H3>Для покупки курса необходимо авторизоваться</H3>
