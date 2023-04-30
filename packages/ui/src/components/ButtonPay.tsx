@@ -27,6 +27,7 @@ export function ButtonPay(props: {
   pricerub: number
   priceusdt: number
   size: SizeTokens
+  backgroundColor: string
 }){
   //this is for switch 
   const id = `switch-${props.size.toString().slice(1)}`
@@ -78,7 +79,7 @@ export function ButtonPay(props: {
   return (
     <Dialog modal>
       <Dialog.Trigger asChild>
-       <Button w="50%" als="center" > {props.title} </Button>
+       <Button als="center" bc={props.backgroundColor}> {props.title} </Button>
       </Dialog.Trigger>
 
       <Adapt when="sm" platform="touch">

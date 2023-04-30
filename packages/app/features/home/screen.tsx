@@ -13,8 +13,9 @@ import {
   Image,
   Circle
 } from "@my/ui";
-import { GithubIcon } from '@my/ui/src/components/GithubIcon';
 import { useLink } from "solito/link";
+import { SubMenu} from '@my/ui/src/components/SubMenu';
+import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ImageBackground } from "react-native"
 
 
@@ -50,7 +51,7 @@ export function HomeScreen(props) {
         <Welcome imageSource={imageSource} userpageLinkProps={userpageLinkProps} />
         <AboutAutor imageSource1={imageSource1}/>
         <AboutCourse courseLinkProps={courseLinkProps}/>
-        <Prasephrase phasebookLinkProps={phasebookLinkProps}/>
+        <PhraseBooks phasebookLinkProps={phasebookLinkProps}/>
         <ReviewSection />
         <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
@@ -122,7 +123,7 @@ function AboutAutor({imageSource1}){
           <H1 ta="center" col="$background">Анастасия Лукьянова</H1>
           <YStack>
             <YStack/>
-                <Paragraph ta="center" col="$background" p="$8" maw={400}>
+                <Paragraph ta="left" col="$background" p="$8" maw={400}>
                     Я - билингв, носитель русского и испанских языков. Родившись в Эквадоре, в 5 лет я переехала в Россию, в 16 поступила в МГУ на филологический факультет, в 19 отправилась на стажировку в Мексику, а в 23, закончив университет с красным дипломом по специальности "Преподаватель и переводчик испанского языка", переехала в Аргентину. Уже 10 лет я преподаю язык и рада делиться своими знаниями и опытом.
                 </Paragraph>
           </YStack>
@@ -158,28 +159,6 @@ function AboutCourse ({courseLinkProps}) {
     )
 }
 
-function Prasephrase({phasebookLinkProps: {href}}){
-    return(
-        <YStack ai="center" bc="$backgroundFocus" >
-            <Image mt={30} src={{uri: 'https://cdn.vosque.education/images/img-home-phrasebook.png?raw', width: 34, height: 67}}
-            height="$8"
-            width="$6"
-            />
-            <H2 tt="uppercase" col="$background">разговорники</H2>
-            <H5 fontWeight="bold" mt={50}>что это такое ?</H5>
-            <Paragraph> Мы пока что сами не знаем, все еще в разработке.</Paragraph>
-            <YStack p={35}>
-                <Button
-                  mt={50} href={href}
-                  br={9} bw="$1" boc="$background"
-                  bc="$backgroundFocus">
-                    СМОТРЕТЬ ВСЕ
-                </Button>
-            </YStack> 
-        </YStack>
-    )
-}
-
 function ReviewSection () {
     return(
         <YStack ai="center">
@@ -212,22 +191,5 @@ function ReviewSection () {
 
     )
     
-}
-
-function SubMenu({userpageLinkProps}) {
-    return(
-      <YStack w="100%" pt="$5" pb="$5" backgroundColor="$backgroundFocus" >
-        <XStack jc="space-between">
-        <YStack>
-            <GithubIcon width={30}/>
-          </YStack>
-          <YStack>
-            <Button {...userpageLinkProps} bc="$backgroundFocus">
-              ВОЙТИ/ЗАПИСАТЬСЯ
-            </Button>
-          </YStack>
-        </XStack>
-      </YStack>
-    )
 }
 
