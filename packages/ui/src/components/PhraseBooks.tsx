@@ -1,4 +1,4 @@
-import { Paragraph, YStack, Image, H5, H2, Button } from "@my/ui";
+import { Paragraph, YStack, Image, H5, H2, Button } from "tamagui";
 import React from "react";
 
 export function PhraseBooks({phasebookLinkProps: {href}}){
