@@ -117,15 +117,7 @@ function WelcomeCourse() {
                 backgroundColor="$backgroundFocus"/>
             </YStack>
             <YStack p='$6'>
-              <ButtonPay
-                title="Тариф с преподователем"
-                description="Тестовое описание"
-                course="Lesson Pack 0"
-                coupon="MYARGENTINA"
-                pricerub={24000}
-                priceusdt={200}
-                size="$2"
-                backgroundColor="" />
+              <Button>Тариф с преподователем</Button>
             </YStack>
           </XStack>
         </YStack>

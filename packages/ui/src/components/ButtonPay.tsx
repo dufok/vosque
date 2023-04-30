@@ -1,6 +1,7 @@
 import { 
   YStack,
   H3,
+  H6,
   XStack,
   Dialog,
   Adapt,
@@ -11,12 +12,16 @@ import {
   Label,
   SizeTokens,
   Input,
-  Separator
+  Separator,
+  Image,
+  Paragraph
   } from 'tamagui';
 import { X } from '@tamagui/lucide-icons'
 import React, { useState , useEffect } from "react";
 import { useLink } from "solito/link";
 import { trpc } from "app/utils/trpc";
+import { useToastController } from '@tamagui/toast';
+
 
 
 export function ButtonPay(props: {
@@ -39,6 +44,16 @@ export function ButtonPay(props: {
   const handleCerrencyChange = (e) => {
     setCurrency(e.target.value);
   };
+
+  //this for paying options
+  const summaryCardBody = `Номер карты СберБанка. После перевода подтвердите нажав ниже кнопку "Перевод Выполнен"`;
+  const summaryUSDTBody = `Номер кошелька USDT (TRC20). После перевода подтвердите нажав ниже кнопку "Перевод Выполнен"`;
+  const summaryCardHead = `0000 0000 0000 0000`;
+  const summaryUSDTHead = `TVyFKcfTPAmEdF5iYX3XiveLQ6HaV1UQ38`;
+
+  const summaryBody = currency === "RUB" ? summaryCardBody : currency === "USDT" ? summaryUSDTBody : "";
+  const summaryHead = currency === "RUB" ? summaryCardHead : currency === "USDT" ? summaryUSDTHead : "";
+
 
   //this is for coupon input
   
@@ -71,6 +86,10 @@ export function ButtonPay(props: {
   });
 
   const isSignedIn = !!currentUser;
+
+  // this is for toast message
+  const toast = useToastController();
+
 
   useEffect(() => {
     setDiscountedPrice(price);
@@ -121,10 +140,11 @@ export function ButtonPay(props: {
             {props.description}
           </Dialog.Description>
             <YStack ai="center" m="$4">
-              {/*{isSignedIn && (*/}
-                <YStack miw={500} mih={300} p="$4" space="$4">
-                  <XStack w={400} ai="center" space="$4">
+              {isSignedIn && (
+                <YStack p="$4" space="$4">
+                  <XStack ai="center" space="$4">
                       <Switch
+                          bc="$backgroundFocus"
                           id={id} size={props.size}
                           name="currency"
                           value="RUB"
@@ -135,12 +155,12 @@ export function ButtonPay(props: {
                       </Switch>
                       <Separator mih={30} vertical />
                       <Label pl="$0" miw={100} jc="flex-start" size={props.size} htmlFor={id} >
-                        Перевод рубли на карту РФ "НОМЕР КАРТЫ"
+                        Перевод в рублях на карту РФ
                       </Label>
                   </XStack>
-                  <Separator/>
-                  <XStack w={400} ai="center" mt="$4" space="$4">
+                  <XStack ai="center" mt="$4" space="$4">
                       <Switch
+                          bc="$backgroundFocus"
                           id={id} size={props.size}
                           name="currency"
                           value="USDT"
@@ -152,12 +172,13 @@ export function ButtonPay(props: {
                       </Switch>
                       <Separator mih={30} vertical />
                       <Label pl="$0" miw={100} jc="flex-start" size={props.size} htmlFor={id}>
-                        Перевод USDT на крипто кошелек по Binance ID "НОМЕР ID"<br/>
-                        либо по адресу кошелька"АДРЕC"
+                        Перевод в USDT на крипто кошелек
                       </Label>
                   </XStack>
+                  <Paragraph>{summaryHead}</Paragraph>
+                  <Paragraph>{summaryBody}</Paragraph>
                   <XStack ai="center" space="$2" mt="$4">
-                    <Input f={1} size={props.size} placeholder={`ВАШ КУПОН`} id="coupon-input"/>
+                    <Input f={1} size={props.size} placeholder={`Есть вписка ?`} id="coupon-input"/>
                     <Button size={props.size} onPress={applyDiscount} >ПРИМЕНИТЬ</Button>
                   </XStack>
                   <YStack>
@@ -166,11 +187,16 @@ export function ButtonPay(props: {
                 
                   <YStack ai="flex-end" mt="$2">
                     <Dialog.Close displayWhenAdapted asChild>
-                      <Button aria-label="Close" onPress={handleTransferCompleted}> Перевод выполнен ! </Button>
+                      <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
+                          await handleTransferCompleted();
+                          toast.show('Нам нужно проверить ваш перевод!', {
+                              message: "Пока мы это делаем, вы уже можете начать изучать Испанский язык!"
+                          })
+                      }}> Перевод выполнен ! </Button>
                     </Dialog.Close>
                   </YStack>
                 </YStack>
-              {/*})}*/}
+              )}
               {!isSignedIn && (
                 <YStack ai="center" space="$2">
                   <H3>Для покупки курса необходимо авторизоваться</H3>
