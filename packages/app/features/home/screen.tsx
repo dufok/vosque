@@ -27,7 +27,7 @@ export function HomeScreen(props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // 2 seconds delay
+    }, 5500); // 2 seconds delay
 
     return () => clearTimeout(timer); // Clean up on component unmount
   }, []);
@@ -61,7 +61,7 @@ export function HomeScreen(props) {
   */
 
   if (isLoading) {
-    return <Spinner />; // Show spinner when data is loading
+    return <Spinner size="large"  ai="center" jc="center" f={1} />;
   }
 
   return (
