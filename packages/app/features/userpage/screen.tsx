@@ -70,8 +70,7 @@ function Welcome() {
   const lessonCount = userLessons ? userLessons.length : 0;
 
   return (
-    <YStack bc="$backgroundFocus" ai="center">
-        <Paragraph>Личный Кабинет</Paragraph>
+    <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6">
             <YStack space="$4" ai="center" p="$4">
               <H3 col="$background">Привет {currentUser?.userName} !</H3>
             </YStack>

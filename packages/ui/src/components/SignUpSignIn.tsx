@@ -49,58 +49,6 @@ export const SignUpSignInComponent: React.FC<Props> = ({
         {type === "sign-up" ? "Create your account" : "Log in to your account"}
       </Paragraph>
       {/* all the oauth sign up options */}
-      <XStack space jc={"space-evenly"} theme="light">
-        {/* 3 buttons, for google, apple, discord */}
-        <Button
-          size="$5"
-          onPress={() => handleOAuthWithPress("oauth_google")}
-          hoverStyle={{ opacity: 0.8 }}
-          focusStyle={{ scale: 0.95 }}
-          borderColor="$gray8Light"
-        >
-          <Image
-            src="https://qwvsfvhphdefqfyuuhlb.supabase.co/storage/v1/object/public/logos/Google%20logo.png"
-            width={20}
-            height={20}
-          />
-        </Button>
-        <Button
-          size="$5"
-          onPress={() => handleOAuthWithPress("oauth_apple")}
-          hoverStyle={{ opacity: 0.8 }}
-          focusStyle={{ scale: 0.95 }}
-          borderColor="$gray8Light"
-        >
-          <Image
-            src="https://qwvsfvhphdefqfyuuhlb.supabase.co/storage/v1/object/public/logos/Apple%20logo.png"
-            width={22}
-            height={22}
-            resizeMode="contain"
-          />
-        </Button>
-        <Button
-          size="$5"
-          onPress={() => handleOAuthWithPress("oauth_discord")}
-          hoverStyle={{ opacity: 0.8 }}
-          focusStyle={{ scale: 0.95 }}
-          borderColor="$gray8Light"
-        >
-          <Image
-            src="https://qwvsfvhphdefqfyuuhlb.supabase.co/storage/v1/object/public/logos/Discord%20logo.png"
-            width={25}
-            height={22}
-            resizeMode="contain"
-          />
-        </Button>
-      </XStack>
-      <XStack ai="center" width="100%" jc="space-between">
-        <Stack h="$0.25" bg="black" w="$10" opacity={0.1} />
-        <Paragraph size="$3" opacity={0.5}>
-          or
-        </Paragraph>
-        <Stack h="$0.25" bg="black" w="$10" opacity={0.1} />
-      </XStack>
-
       {/* email sign up option */}
       <Input
         placeholder="Email"
