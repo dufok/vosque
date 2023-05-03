@@ -8,6 +8,7 @@ import {
   Separator,
   XStack,
   YStack,
+  Spinner,
   Square,
   Avatar,
   Image,
@@ -17,9 +18,20 @@ import { useLink } from "solito/link";
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ImageBackground } from "react-native"
+import React, { useState, useEffect } from 'react';
 
 
 export function HomeScreen(props) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 seconds delay
+
+    return () => clearTimeout(timer); // Clean up on component unmount
+  }, []);
+
   const userpageLinkProps = useLink({ href: "/userpage"});
   const phasebookLinkProps = useLink({href: "/phrasebook"});
   const courseLinkProps = useLink({href: "/course"});
@@ -33,11 +45,13 @@ export function HomeScreen(props) {
   //block with errors from Author 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
+
+/*
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
   /*
-  /*if (isLoading) {
+  if (isLoading) {
     return <Paragraph>Loading...</Paragraph>
   }*/
   /*
@@ -45,6 +59,10 @@ export function HomeScreen(props) {
     return <Paragraph>{error.message}</Paragraph>;
   }
   */
+
+  if (isLoading) {
+    return <Spinner />; // Show spinner when data is loading
+  }
 
   return (
     <YStack>
