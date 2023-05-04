@@ -113,8 +113,6 @@ export function lesson1Screen() {
   
   function TeoryBlock({img, header, name1, text1, name2, description2, lettersBlock, name3, AtentionBlocks}) {
 
-    const letters = {lettersBlock};
-    const atentionBlocks = {AtentionBlocks};
 
     return (
       <YStack mt="$6" mb="$4">
@@ -142,7 +140,7 @@ export function lesson1Screen() {
           <Paragraph ta="left">{description2}</Paragraph>
           <YStack mt="$4" ai="center" maw={800}>
             <XStack jc="center" m="$4" fw='wrap'>
-                  {Object.values(letters).map((letter) => (
+                  {Object.values({lettersBlock}).map((letter) => (
                     <ButtonWithSheet
                       key={letter.name}
                       Title={letter.name}
@@ -167,7 +165,7 @@ export function lesson1Screen() {
           <YStack mt="$4" ai="flex-start" maw={800}>
             <XStack fw="wrap" ai="stretch">
               <YStack>
-                {Object.values(atentionBlocks).map((atentionBlock) => (
+                {Object.values({AtentionBlocks}).map((atentionBlock) => (
                   <YStack>
                     <H3 ta="left" >{atentionBlock.description}</H3>
                       <YStack ml="$10">
