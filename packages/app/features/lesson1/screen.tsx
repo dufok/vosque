@@ -15,8 +15,9 @@ import {
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect} from "react";
-import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
 import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons';
+
+import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
 import { ParagraphCustom } from '@my/ui/src/components/CustomText';
 import { ContentLesson1 } from './type_Lesson1';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
@@ -52,6 +53,10 @@ export function lesson1Screen() {
 
   useEffect(() => {
     console.log(data);
+    console.log(letters);
+    console.log(atentionBlocks);
+    console.log(Array.isArray(letters));
+    console.log(Array.isArray(atentionBlocks));
   }, [isLoading]);
 
   if (isLoading) {
