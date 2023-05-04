@@ -61,7 +61,7 @@ export function HomeScreen(props) {
   */
 
   if (isLoading) {
-    return <Spinner size="large" color="$green" ai="center" jc="center" f={1} />;
+    return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
   }
 
   return (

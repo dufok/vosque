@@ -56,7 +56,7 @@ export function lesson1Screen() {
   }, [isLoading]);
 
   if (isLoading) {
-      return <Spinner size="large" color="$green" ai="center" jc="center" f={1} />;
+      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
   }
 
   if (error) {
@@ -80,7 +80,8 @@ export function lesson1Screen() {
             name2={content?.theoreticalBlock.complex.header}
             description2={content?.theoreticalBlock.complex.description}
             name3={content?.theoreticalBlock.attention.title}
-            testAtention={content?.theoreticalBlock.attention.atentionBlocks}
+            letters={letters}
+            atentionBlocks={atentionBlocks}
             />
             {/*
           <ExercisesBlock />
@@ -111,14 +112,7 @@ export function lesson1Screen() {
     
     // Theoretical block (i think it is needed to make a component) (^.^')
   
-  function TeoryBlock({img, header, name1, text1, name2, description2, name3, testAtention}) {
-
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const firstLesson = userLessons?.[0];
-
-  const content = firstLesson?.content as ContentLesson1;
-  const letters = content?.theoreticalBlock.complex.letters;
-  const atentionBlocks = content?.theoreticalBlock.attention.atentionBlocks;
+  function TeoryBlock({img, header, name1, text1, name2, description2, name3, letters, atentionBlocks}: TeoryBlockProps) {
 
     return (
       <YStack mt="$6" mb="$4">
@@ -144,7 +138,7 @@ export function lesson1Screen() {
         <YStack m="$6" ai="flex-start" mt="$6">
           <SquareText text={name2}/>
           <Paragraph ta="left">{description2}</Paragraph>
-          <YStack mt="$4" ai="center" maw={800}>
+          <YStack mt="$4" ai="center" f={1} maw={800}>
             <XStack jc="center" m="$4" fw='wrap'>
                   {Object.values(letters).map((letter) => (
                     <ButtonWithSheet
@@ -171,7 +165,7 @@ export function lesson1Screen() {
           <YStack mt="$4" ai="flex-start" maw={800}>
             <XStack fw="wrap" ai="stretch">
               <YStack>
-                {Object.values({testAtention}).map((atentionBlock) => (
+                {Object.values(atentionBlocks).map((atentionBlock) => (
                   <YStack>
                     <H3 ta="left" >{atentionBlock.description}</H3>
                       <YStack ml="$10">

@@ -97,6 +97,18 @@ export type ContentLesson1 = {
     prononce4: string;
   };
 
+  export type TeoryBlockProps = {
+    img: string;
+    header: string;
+    name1: string;
+    text1: string;
+    name2: string;
+    description2: string;
+    name3: string;
+    letters: Record<string, Letter>;
+    atentionBlocks: Record<string, atentionBlock>;
+  };
+
   export type exercise = {
     description: string;
     text: string;
