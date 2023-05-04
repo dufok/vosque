@@ -53,10 +53,6 @@ export function lesson1Screen() {
 
   useEffect(() => {
     console.log(data);
-    console.log(letters);
-    console.log(atentionBlocks);
-    console.log(Array.isArray(letters));
-    console.log(Array.isArray(atentionBlocks));
   }, [isLoading]);
 
   if (isLoading) {
@@ -83,7 +79,7 @@ export function lesson1Screen() {
             text1={content?.theoreticalBlock.alfabet.text} 
             name2={content?.theoreticalBlock.complex.header}
             description2={content?.theoreticalBlock.complex.description}
-            lettersBlock={letters}
+            lettersBlocks={letters}
             name3={content?.theoreticalBlock.attention.title}
             AtentionBlocks={atentionBlocks}
             />
@@ -116,9 +112,9 @@ export function lesson1Screen() {
     
     // Theoretical block (i think it is needed to make a component) (^.^')
   
-  function TeoryBlock({img, header, name1, text1, name2, description2, lettersBlock, name3, AtentionBlocks}) {
-
-
+  function TeoryBlock({img, header, name1, text1, name2, description2, lettersBlocks, name3, AtentionBlocks}) {
+    const letters={lettersBlocks}
+    const atention={AtentionBlocks}
     return (
       <YStack mt="$6" mb="$4">
 
@@ -145,7 +141,7 @@ export function lesson1Screen() {
           <Paragraph ta="left">{description2}</Paragraph>
           <YStack mt="$4" ai="center" maw={800}>
             <XStack jc="center" m="$4" fw='wrap'>
-                  {Object.values({lettersBlock}).map((letter) => (
+                  {Object.values(letters).map((letter) => (
                     <ButtonWithSheet
                       key={letter.name}
                       Title={letter.name}
@@ -170,7 +166,7 @@ export function lesson1Screen() {
           <YStack mt="$4" ai="flex-start" maw={800}>
             <XStack fw="wrap" ai="stretch">
               <YStack>
-                {Object.values({AtentionBlocks}).map((atentionBlock) => (
+                {Object.values(atention).map((atentionBlock) => (
                   <YStack>
                     <H3 ta="left" >{atentionBlock.description}</H3>
                       <YStack ml="$10">
