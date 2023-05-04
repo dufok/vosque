@@ -15,50 +15,13 @@ import {
   ProgressFrame
             } from "@my/ui";
 import { useLink } from "solito/link";
-import { Player,
-  BigPlayButton,
-  PosterImage,
-  LoadingSpinner,
-  ControlBar,
-  ForwardControl,
-            } from 'video-react';
 import React from "react";
-import PropTypes from 'prop-types';
 import { Header } from '@my/ui/src/components/HeaderComp';
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ButtonPay } from "@my/ui/src/components/ButtonPay";
+import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
 
-import "./../../../../node_modules/video-react/dist/video-react.css"; // import css
-
-//All for video-react
-BigPlayButton.propTypes = {
-  position: PropTypes.string,
-};
-PosterImage.propTypes = {
-  poster: PropTypes.string,
-};
-ControlBar.propTypes = {
-  // Hide the control bar automatically after the player is inactive
-  // default: true
-  autoHide: PropTypes.bool,
-  // The waiting time for auto hide after player is inactive (in milliseconds)
-  // default: 3000
-  autoHideTime: PropTypes.number,
-  // Do not render default controls, only use custom ones provided as children of <ControlBar>
-  // default: false
-  disableDefaultControls: PropTypes.bool,
-  // Do not render the control bar if set it to true
-  // default: false
-  disableCompletely: PropTypes.bool,
-};
-ForwardControl.propTypes = {
-
-  // How many seconds to go forward
-  // default: 10
-  seconds: PropTypes.oneOf([5, 10, 30]),
-
-};
 
 export function courseScreen() {
   const userpageLinkProps = useLink({href: "/userpage"});
@@ -87,19 +50,7 @@ function WelcomeCourse() {
             <H1 ta="center" mt={50} mb={50}>
               Базовый курс аргентинского испанского
             </H1>
-            <Player
-              autoPlay
-              poster=""
-              src="https://cdn.vosque.education/lessons/1/%D1%81lase1-LMTC.mp4?raw"
-              >
-              <LoadingSpinner />
-              {/*<BigPlayButton position="center" />*/}
-              <ControlBar autoHide={false} className="my-class">
-                <ForwardControl seconds={5} order={3.1} />
-                <ForwardControl seconds={10} order={3.2} />
-                <ForwardControl seconds={30} order={3.3} />
-              </ControlBar>
-            </Player>
+            <VideoPlayer linkVideo="https://cdn.vosque.education/images/welcome.mp4?raw"/>
           </YStack>
           <H2 tt="uppercase" ta="center" mt={50} >
             Тарифы

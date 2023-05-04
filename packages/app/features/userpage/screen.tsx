@@ -22,7 +22,7 @@ export function userpageScreen() {
   }, [isLoading]);
 
   if (isLoading) {
-    return <Spinner size="large"  ai="center" jc="center" f={1} />;
+    return <Spinner size="large"  color="$green" ai="center" jc="center" f={1} />;
   }
 
   if (error) {

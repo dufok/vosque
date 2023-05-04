@@ -8,62 +8,26 @@ import {
   Image,
   Button,
   Separator,
-  Spinner
+  Spinner,
+  Avatar,
+  Square
  } from "@my/ui";
-import { Player,
-  BigPlayButton,
-  PosterImage,
-  LoadingSpinner,
-  ControlBar,
-  ForwardControl,
-  PlaybackRateMenuButton
-  } from 'video-react';
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect} from "react";
-import PropTypes from 'prop-types';
 import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
 import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons';
 import { ParagraphCustom } from '@my/ui/src/components/CustomText';
 import { ContentLesson1 } from './type_Lesson1';
+import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
+import { SquareText } from '@my/ui/src/components/SquareText';
+import { SubMenu } from "@my/ui/src/components/SubMenu";
 
-import "./../../../../node_modules/video-react/dist/video-react.css"; // import css
-
-BigPlayButton.propTypes = {
-  position: PropTypes.string,
-};
-PosterImage.propTypes = {
-  poster: PropTypes.string,
-};
-ControlBar.propTypes = {
-  // Hide the control bar automatically after the player is inactive
-  // default: true
-  autoHide: PropTypes.bool,
-  // The waiting time for auto hide after player is inactive (in milliseconds)
-  // default: 3000
-  autoHideTime: PropTypes.number,
-  // Do not render default controls, only use custom ones provided as children of <ControlBar>
-  // default: false
-  disableDefaultControls: PropTypes.bool,
-  // Do not render the control bar if set it to true
-  // default: false
-  disableCompletely: PropTypes.bool,
-};
-ForwardControl.propTypes = {
-
-  // How many seconds to go forward
-  // default: 10
-  seconds: PropTypes.oneOf([5, 10, 30]),
-
-};
 
 export function lesson1Screen() {
-  const userpageLinkProps = useLink({
-    href: "/userpage",
-  });
-  const lesson2LinkProps = useLink({
-    href: "/lesson2",
-  });
+  //hrefs
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPage = useLink({ href: "/lesson2"});
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
@@ -86,22 +50,12 @@ export function lesson1Screen() {
   const lifehack2 = content?.lifehacks.lifehack2;
   const lifehack3 = content?.lifehacks.lifehack3;
 
-  // Part for split last block on 2 parts
-  const contentVocabularys = Object.values(content?.vocabulary.contentVocabularys  || {});
-
-  // Split the array into two halves
-  const midIndex = Math.ceil(contentVocabularys.length / 2);
-  const firstHalf = contentVocabularys.slice(0, midIndex);
-  const secondHalf = contentVocabularys.slice(midIndex);
-
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
 
   if (isLoading) {
-    <YStack ai="center" jc="center" mih={600} flex={1} space="$4">
-      <Spinner size="large" color="$green" />;
-    </YStack>
+      return <Spinner size="large" color="$green" ai="center" jc="center" f={1} />;
   }
 
   if (error) {
@@ -109,86 +63,151 @@ export function lesson1Screen() {
   }
 
   return (
-    <YStack ai="center" jc="flex-start" flex={1} space="$4">
-      { isSignedIn && ( 
-        <YStack ai="center" jc="flex-start" flex={1} space="$4">
-          <YStack mt="$4" p="$4" miw={400} maw={1000}>
-            <H1 ta="center">{firstLesson?.name}</H1>
-            <Paragraph ta="center">{content?.description}</Paragraph>
-            <YStack f={1} m="$2" maw={800}>
-              <Player
-                autoPlay
-                poster={content?.poster}
-                src={content?.video}
-                >
-                <LoadingSpinner />
-                <BigPlayButton position="center" />
-                <ControlBar autoHide={false} className="my-class">
-                  <ForwardControl seconds={5} order={3.1} />
-                  <ForwardControl seconds={10} order={3.2} />
-                  <ForwardControl seconds={30} order={3.3} />
-                </ControlBar>
-              </Player>
-            </YStack>
-            <YStack>
-              <Image
-                  src={content?.theoreticalBlock.image}
-                  width={50}
-                  height={50}
-              />
-              <H2>{content?.theoreticalBlock.header}</H2>
-            </YStack>
-            <YStack >
-              <H3 ta="left" backgroundColor="red">{content?.theoreticalBlock.alfabet.header}</H3>
-              <Paragraph ta="center" >{content?.theoreticalBlock.alfabet.text}</Paragraph>
-            </YStack>
-            <YStack>
-              <H3 ta="left" backgroundColor="red">{content?.theoreticalBlock.complex.header}</H3>
-              <Paragraph ta="center" >{content?.theoreticalBlock.complex.description}</Paragraph>
-              <XStack jc="center" m="$4" fw='wrap'>
-                {Object.values(letters).map((letter) => (
-                  <ButtonWithSheet
-                    key={letter.name}
-                    Title={letter.name}
-                    Description={letter.description}
-                    Colum1_1={letter.Colum1_1}
-                    Colum2_1={letter.Colum2_1}
-                    Colum3_1={letter.Colum3_1}
-                    Colum4_1={letter.Colum4_1}
-                    Colum1_2={letter.Colum1_2}
-                    Colum2_2={letter.Colum2_2}
-                    Colum3_2={letter.Colum3_2}
-                    Colum4_2={letter.Colum4_2}
-                  />
+    <YStack>
+      { isSignedIn && (
+        <YStack>
+          <Welcome
+            name={firstLesson?.name}
+            description={content?.description}/>
+          <VideoPlayer
+            linkVideo={content?.video}/>
+          <TeoryBlock
+            img={content?.theoreticalBlock.image}
+            header={content?.theoreticalBlock.header}
+            name1={content?.theoreticalBlock.alfabet.header}
+            text1={content?.theoreticalBlock.alfabet.text} 
+            name2={content?.theoreticalBlock.complex.header}
+            description2={content?.theoreticalBlock.complex.description}
+            lettersBlock={content?.theoreticalBlock.complex.letters}
+            name3={content?.theoreticalBlock.attention.title}
+            AtentionBlocks={content?.theoreticalBlock.attention.atentionBlocks}
+            />
+            {/*
+          <ExercisesBlock />
+          <AditionalBlock />
+          <LifeHackerBlock />
+          <AccentBlock />
+          <ExercisesBlock2 />
+          <LexicalBlock />
+          <DialogBlock />
+            */}
+          <NavigationBlock lessonLinkPage={lessonLinkPage}/>
+        </YStack>
+      )}
+        <SubMenu userpageLinkProps={userpageLinkProps}/>
+      </YStack>
+    );
+  }
+
+  // Welcome Block
+  function Welcome({name, description}) {
+    return (
+      <YStack ai="center" mt="$6" mb="$4">
+          <H3 tt="uppercase" ta="center"> Добро пожаловать на {name}</H3>
+          <Paragraph p="$2" ta="center">{description}</Paragraph>
+      </YStack>
+    );
+  }
+    
+    // Theoretical block (i think it is needed to make a component) (^.^')
+  
+  function TeoryBlock({img, header, name1, text1, name2, description2, lettersBlock, name3, AtentionBlocks}) {
+
+    const letters = {lettersBlock};
+    const atentionBlocks = {AtentionBlocks};
+
+    return (
+      <YStack mt="$6" mb="$4">
+
+        {/* Header Block */}
+        <YStack ai="center">
+          <Avatar circular size="$4" backgroundColor="$backgroundFocus">
+            <Avatar.Image src={img}/>
+            <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
+          </Avatar>
+          <H2 tt="uppercase" ta="center" mt="$4">{header}</H2>
+        </YStack>
+
+        {/* Specific Block */}
+        <YStack m="$6" ai="flex-start" mt="$6">
+          <SquareText text={name1}/>
+          <YStack mt="$4" ai="flex-start" maw={800}>
+            <Paragraph ta="center">{text1}</Paragraph>
+          </YStack>
+        </YStack>
+
+        {/* Specific Block */}
+        <YStack m="$6" ai="flex-start" mt="$6">
+          <SquareText text={name2}/>
+          <Paragraph ta="left">{description2}</Paragraph>
+          <YStack mt="$4" ai="center" maw={800}>
+            <XStack jc="center" m="$4" fw='wrap'>
+                  {Object.values(letters).map((letter) => (
+                    <ButtonWithSheet
+                      key={letter.name}
+                      Title={letter.name}
+                      Description={letter.description}
+                      Colum1_1={letter.Colum1_1}
+                      Colum2_1={letter.Colum2_1}
+                      Colum3_1={letter.Colum3_1}
+                      Colum4_1={letter.Colum4_1}
+                      Colum1_2={letter.Colum1_2}
+                      Colum2_2={letter.Colum2_2}
+                      Colum3_2={letter.Colum3_2}
+                      Colum4_2={letter.Colum4_2}
+                    />
+                  ))}
+                </XStack>
+          </YStack>
+        </YStack>
+
+        {/* Text with examples and Lifi Hack on the right */}
+        <YStack m="$6" ai="flex-start" mt="$6">
+          <SquareText text={name3}/>
+          <YStack mt="$4" ai="flex-start" maw={800}>
+            <XStack fw="wrap" ai="stretch">
+              <YStack>
+                {Object.values(atentionBlocks).map((atentionBlock) => (
+                  <YStack>
+                    <H3 ta="left" >{atentionBlock.description}</H3>
+                      <YStack ml="$10">
+                        <XStack>
+                          <YStack>
+                            <Paragraph ta="left" >{atentionBlock.example1}</Paragraph>
+                            <Paragraph ta="left" >{atentionBlock.example2}</Paragraph>
+                            <Paragraph ta="left" >{atentionBlock.example3}</Paragraph>
+                            <Paragraph ta="left" >{atentionBlock.example4}</Paragraph>
+                          </YStack>
+                          <YStack>
+                            <Paragraph ta="left" >{atentionBlock.prononce1}</Paragraph>
+                            <Paragraph ta="left" >{atentionBlock.prononce2}</Paragraph>
+                            <Paragraph ta="left" >{atentionBlock.prononce3}</Paragraph>
+                            <Paragraph ta="left" >{atentionBlock.prononce4}</Paragraph>
+                          </YStack>
+                        </XStack>
+                      </YStack>
+                  </YStack>
                 ))}
-              </XStack>
-            </YStack>
+              </YStack>
+              <YStack>
+                <Square size={300} bc="$backgroundFocus"/>
+              </YStack>
+            </XStack>
+          </YStack>
+        </YStack>
+    </YStack>
+    )
+  }
+    
+    {/*
+
+            
             <YStack>
               <H3 ta="left" backgroundColor="red">{content?.theoreticalBlock.attention.title}</H3>
               <XStack>
-                <YStack>
-                  {Object.values(atentionBlocks).map((atentionBlock) => (
-                    <YStack>
-                      <H3 ta="left" >{atentionBlock.description}</H3>
-                        <YStack ml="$10">
-                          <XStack>
-                            <YStack>
-                              <Paragraph ta="left" >{atentionBlock.example1}</Paragraph>
-                              <Paragraph ta="left" >{atentionBlock.example2}</Paragraph>
-                              <Paragraph ta="left" >{atentionBlock.example3}</Paragraph>
-                              <Paragraph ta="left" >{atentionBlock.example4}</Paragraph>
-                            </YStack>
-                            <YStack>
-                              <Paragraph ta="left" >{atentionBlock.prononce1}</Paragraph>
-                              <Paragraph ta="left" >{atentionBlock.prononce2}</Paragraph>
-                              <Paragraph ta="left" >{atentionBlock.prononce3}</Paragraph>
-                              <Paragraph ta="left" >{atentionBlock.prononce4}</Paragraph>
-                            </YStack>
-                          </XStack>
-                        </YStack>
-                    </YStack>
-                    ))}
-                </YStack>
+                
+
+
                 <YStack
                   ai="center"
                   bw={1}
@@ -220,6 +239,10 @@ export function lesson1Screen() {
                 </YStack>
               </XStack>
             </YStack>
+
+
+
+
             <YStack>
               <H2 ta="center">{content?.exercisesBlock.header}</H2>
               <YStack>
@@ -389,3 +412,24 @@ export function lesson1Screen() {
     </YStack>
   );
 } 
+
+*/}
+
+// Navigation block
+
+function NavigationBlock({lessonLinkPage}) {
+  return (
+    <XStack m="$2" mt="$6" f={1}>
+      <YStack f={0.5} ai="flex-start">
+        <Button {...lessonLinkPage} icon={ArrowLeft}>
+          Урок 1
+        </Button>
+      </YStack>
+      <YStack f={0.5} ai="flex-end">
+        <Button {...lessonLinkPage} icon={ArrowRight}>
+          Урок 2
+        </Button> 
+      </YStack>
+    </XStack>
+  )
+}
