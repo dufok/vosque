@@ -78,9 +78,9 @@ export function lesson1Screen() {
             text1={content?.theoreticalBlock.alfabet.text} 
             name2={content?.theoreticalBlock.complex.header}
             description2={content?.theoreticalBlock.complex.description}
-            lettersBlock={content?.theoreticalBlock.complex.letters}
+            lettersBlock={letters}
             name3={content?.theoreticalBlock.attention.title}
-            AtentionBlocks={content?.theoreticalBlock.attention.atentionBlocks}
+            AtentionBlocks={atentionBlocks}
             />
             {/*
           <ExercisesBlock />
