@@ -79,9 +79,8 @@ export function lesson1Screen() {
             text1={content?.theoreticalBlock.alfabet.text} 
             name2={content?.theoreticalBlock.complex.header}
             description2={content?.theoreticalBlock.complex.description}
-            lettersBlocks={letters}
             name3={content?.theoreticalBlock.attention.title}
-            AtentionBlocks={atentionBlocks}
+            testAtention={content?.theoreticalBlock.attention.atentionBlocks}
             />
             {/*
           <ExercisesBlock />
@@ -112,9 +111,15 @@ export function lesson1Screen() {
     
     // Theoretical block (i think it is needed to make a component) (^.^')
   
-  function TeoryBlock({img, header, name1, text1, name2, description2, lettersBlocks, name3, AtentionBlocks}) {
-    const letters={lettersBlocks}
-    const atention={AtentionBlocks}
+  function TeoryBlock({img, header, name1, text1, name2, description2, name3, testAtention}) {
+
+  const { data: userLessons } = trpc.user.userLessons.useQuery();
+  const firstLesson = userLessons?.[0];
+
+  const content = firstLesson?.content as ContentLesson1;
+  const letters = content?.theoreticalBlock.complex.letters;
+  const atentionBlocks = content?.theoreticalBlock.attention.atentionBlocks;
+
     return (
       <YStack mt="$6" mb="$4">
 
@@ -166,7 +171,7 @@ export function lesson1Screen() {
           <YStack mt="$4" ai="flex-start" maw={800}>
             <XStack fw="wrap" ai="stretch">
               <YStack>
-                {Object.values(atention).map((atentionBlock) => (
+                {Object.values({testAtention}).map((atentionBlock) => (
                   <YStack>
                     <H3 ta="left" >{atentionBlock.description}</H3>
                       <YStack ml="$10">
