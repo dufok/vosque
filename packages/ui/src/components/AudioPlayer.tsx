@@ -4,7 +4,7 @@ import { Play } from '@tamagui/lucide-icons';
 
 export function AudioPlayer({src}) {
 
-  let audio = new Audio({src});
+  let audio = new Audio(src);
 
   const start = () => {
     audio.play();
