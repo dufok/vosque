@@ -21,6 +21,7 @@ import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
 import { ParagraphCustom } from '@my/ui/src/components/CustomText';
 import { ContentLesson1 } from './type_Lesson1';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
+import { AudioPlayer } from "@my/ui/src/components/AudioPlayer";
 import { SquareText } from '@my/ui/src/components/SquareText';
 import { SubMenu } from "@my/ui/src/components/SubMenu";
 
@@ -41,9 +42,7 @@ export function lesson1Screen() {
 
   //part with types from file json full
   const content = firstLesson?.content as ContentLesson1;
-  const letters = content?.theoreticalBlock.complex.letters;
-  const atentionBlocks = content?.theoreticalBlock.attention.atentionBlocks;
-  const exercises = content?.exercisesBlock.training1.exercises;
+  
   const exercises2 = content?.exercisesBlock.training2.exercises2;
   const linesAdditional = content?.exercisesBlock.additional.materials.readingPhrase.linesAdditional;
   const contentAccents = content?.exercisesBlock.accent.contentAccents;
@@ -80,11 +79,22 @@ export function lesson1Screen() {
             name2={content?.theoreticalBlock.complex.header}
             description2={content?.theoreticalBlock.complex.description}
             name3={content?.theoreticalBlock.attention.title}
-            letters={letters}
-            atentionBlocks={atentionBlocks}
+            lifehack1image={lifehack1.image}
+            lifehack1title={lifehack1.title}
+            lifehack1description1={lifehack1.description1}
+            lifehack1content1_1text={lifehack1.content1[1].text}
+            lifehack1content1_2text={lifehack1.content1[2].text}
+            lifehack1content1_3text={lifehack1.content1[3].text}
+            lifehack1description2={lifehack1.description2}
+            lifehack1content2_1text={lifehack1.content2[1].text}
+            lifehack1content2_2text={lifehack1.content2[2].text}
+            lifehack1content2_3text={lifehack1.content2[3].text}
             />
-            {/*
-          <ExercisesBlock />
+          <ExercisesBlock 
+            header={content?.exercisesBlock.header}
+            name={content?.exercisesBlock.training1.header}
+            />
+          {/*
           <AditionalBlock />
           <LifeHackerBlock />
           <AccentBlock />
@@ -112,7 +122,33 @@ export function lesson1Screen() {
     
     // Theoretical block (i think it is needed to make a component) (^.^')
   
-  function TeoryBlock({img, header, name1, text1, name2, description2, name3, letters, atentionBlocks}: TeoryBlockProps) {
+  function TeoryBlock({
+    img,
+    header,
+    name1,
+    text1,
+    name2,
+    description2,
+    name3,
+    lifehack1image,
+    lifehack1title,
+    lifehack1description1,
+    lifehack1content1_1text,
+    lifehack1content1_2text,
+    lifehack1content1_3text,
+    lifehack1description2,
+    lifehack1content2_1text,
+    lifehack1content2_2text,
+    lifehack1content2_3text}) {
+
+    const { data: userLessons } = trpc.user.userLessons.useQuery();
+    const firstLesson = userLessons?.[0];
+
+    //part with types from file json full
+    const content = firstLesson?.content as ContentLesson1;
+    const letters = content?.theoreticalBlock.complex.letters;
+    const atentionBlocks = content?.theoreticalBlock.attention.atentionBlocks;
+    
 
     return (
       <YStack mt="$6" mb="$4">
@@ -140,7 +176,7 @@ export function lesson1Screen() {
           <Paragraph ta="left">{description2}</Paragraph>
           <YStack mt="$4" ai="center" f={1} maw={800}>
             <XStack jc="center" m="$4" fw='wrap'>
-                  {Object.values(letters).map((letter) => (
+                  {Object.values({letters}).map((letter) => (
                     <ButtonWithSheet
                       key={letter.name}
                       Title={letter.name}
@@ -187,8 +223,33 @@ export function lesson1Screen() {
                   </YStack>
                 ))}
               </YStack>
-              <YStack>
-                <Square size={300} bc="$backgroundFocus"/>
+              <YStack
+                  ai="center"
+                  bw={2}
+                  boc="$backgroundFocus"
+                  bc="$background"
+                  br="$4" 
+                  m="$4"
+                  p="$4"
+                  w="$20"
+                  shadowColor={"$shadowColor"}
+                  shadowRadius={15}
+                  shadowOffset={{ width: 0, height: 4 }}
+                >
+                  <Image
+                  src={lifehack1image}
+                  width={50}
+                  height={50}
+                  />
+                  <H3>{lifehack1title}</H3>
+                  <Paragraph ta="center">{lifehack1description1}</Paragraph>
+                  <Paragraph ta="center">{lifehack1content1_1text}</Paragraph>
+                  <Paragraph ta="center">{lifehack1content1_2text}</Paragraph>
+                  <Paragraph ta="center">{lifehack1content1_3text}</Paragraph>
+                  <Paragraph ta="center">{lifehack1description2}</Paragraph>
+                  <ParagraphCustom text={lifehack1content2_1text} />
+                  <ParagraphCustom text={lifehack1content2_2text} />
+                  <ParagraphCustom text={lifehack1content2_3text} />
               </YStack>
             </XStack>
           </YStack>
@@ -196,54 +257,56 @@ export function lesson1Screen() {
     </YStack>
     )
   }
+
+  // Exercises block
+
+  function ExercisesBlock({header,name}) {
+    
+    const { data: userLessons } = trpc.user.userLessons.useQuery();
+    const firstLesson = userLessons?.[0];
+    const content = firstLesson?.content as ContentLesson1;
+    const exercises = content?.exercisesBlock.training1.exercises;
+
+    return (
+      <YStack mt="$6" mb="$4">
+
+        {/* Header Block */}
+        <YStack ai="center">
+         <H2 tt="uppercase" ta="center" mt="$4">{header}</H2>
+        </YStack>
+        
+        {/* Text with exercises */}
+        <YStack m="$6" ai="flex-start" mt="$6">
+          <SquareText text={name}/>
+          <YStack mt="$4" ai="flex-start" maw={800}>
+            <YStack>
+              {Object.values(exercises).map((exercise) => (
+                <XStack>
+                  <YStack>
+                    <H3 ta="left" >{exercise.description}</H3>
+                    <Paragraph ta="left" >{exercise.text}</Paragraph>
+                  </YStack>
+                  <YStack>
+                    <AudioPlayer src={exercise.audio}/>
+                  </YStack>
+                </XStack>
+                ))}
+            </YStack>
+          </YStack>
+        </YStack>
+      </YStack>
+    )
+  }
     
     {/*
 
             
-            <YStack>
-              <H3 ta="left" backgroundColor="red">{content?.theoreticalBlock.attention.title}</H3>
-              <XStack>
                 
 
 
-                <YStack
-                  ai="center"
-                  bw={1}
-                  boc="$color1"
-                  bc="$background"
-                  br="$10" 
-                  m="$4"
-                  p="$4"
-                  miw={400}
-                  maw={1000}
-                  shadowColor={"$shadowColor"}
-                  shadowRadius={15}
-                  shadowOffset={{ width: 0, height: 4 }}
-                >
-                  <Image
-                  src={lifehack1.image}
-                  width={50}
-                  height={50}
-                  />
-                  <H3>{lifehack1.title}</H3>
-                  <Paragraph ta="center">{lifehack1.description1}</Paragraph>
-                  <Paragraph ta="center">{lifehack1.content1[1].text}</Paragraph>
-                  <Paragraph ta="center">{lifehack1.content1[2].text}</Paragraph>
-                  <Paragraph ta="center">{lifehack1.content1[3].text}</Paragraph>
-                  <Paragraph ta="center">{lifehack1.description2}</Paragraph>
-                  <ParagraphCustom text={lifehack1.content2[1].text} />
-                  <ParagraphCustom text={lifehack1.content2[2].text} />
-                  <ParagraphCustom text={lifehack1.content2[3].text} />
-                </YStack>
-              </XStack>
-            </YStack>
 
 
 
-
-            <YStack>
-              <H2 ta="center">{content?.exercisesBlock.header}</H2>
-              <YStack>
                 <H3 ta="left" backgroundColor="red">{content?.exercisesBlock.training1.header}</H3>
                 <YStack>
                   {Object.values(exercises).map((exercise) => (
@@ -263,6 +326,9 @@ export function lesson1Screen() {
                 </YStack>
               </YStack>
             </YStack>
+
+
+
             <YStack>
               <H2 ta="center">{content?.exercisesBlock.additional.header}</H2>
               <YStack>
