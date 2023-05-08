@@ -126,7 +126,7 @@ function Lessons() {
           <XStack p="$2" fw="wrap" >
             {userLessons?.flatMap((lesson, index) =>
               lesson !== null ? [
-                <YStack   ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
+                <YStack ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}} flexWrap="wrap">
                   <XStack ai="center">
                     <Avatar circular size="$4" backgroundColor="$backgroundFocus">
                       <Avatar.Image 
@@ -140,7 +140,7 @@ function Lessons() {
                           href={contentLessons[index]?.href}
                           target="_blank"
                         >{lesson.name}</Anchor></H5>
-                      <Paragraph key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
+                      <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
                     </YStack>
                   </XStack>
                 </YStack>
