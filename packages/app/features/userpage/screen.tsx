@@ -124,6 +124,7 @@ function Lessons() {
         <YStack pb="$6" pt="$6" ai="center" f={1}>
           <Paragraph pb="$4" ta="center">Список Уроков</Paragraph>
           <XStack p="$2" fw="wrap" >
+
             <Adapt platform="touch" when="sm">
               <YStack jc="flex-start">
                 {userLessons?.slice(0, userLessons.length/2)?.map((lesson, index) =>
@@ -175,6 +176,7 @@ function Lessons() {
               </YStack>
             </Adapt>
 
+            <Adapt platform="web" when="gtSm">
             <YStack jc="flex-start">
                 {userLessons?.slice(0, userLessons.length/2)?.map((lesson, index) =>
                   lesson !== null ? [
@@ -223,6 +225,7 @@ function Lessons() {
                     ] : []
                   )}
               </YStack>
+            </Adapt>
 
           </XStack>
         </YStack>
