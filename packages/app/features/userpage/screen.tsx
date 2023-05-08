@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { YStack, XStack, H1, H3, H5, Paragraph, Button, Input, Image, Spinner, Avatar, Anchor } from "@my/ui";
+import { Adapt, YStack, XStack, H1, H3, H5, Paragraph, Button, Input, Image, Spinner, Avatar, Anchor } from "@my/ui";
 import { useLink } from "solito/link";
 import { Header } from "@my/ui/src/components/HeaderComp";
 import { trpc } from "../../utils/trpc";
@@ -124,32 +124,59 @@ function Lessons() {
         <YStack pb="$6" pt="$6" ai="center" f={1}>
           <Paragraph pb="$4" ta="center">Список Уроков</Paragraph>
           <XStack p="$2" fw="wrap" >
-            <YStack>
-              {userLessons?.slice(0, userLessons.length/2)?.map((lesson, index) =>
-                lesson !== null ? [
-                  <YStack ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
-                    <XStack ai="center">
-                      <Avatar circular size="$4" backgroundColor="$backgroundFocus">
-                        <Avatar.Image 
-                          src={contentLessons[index]?.image}
-                        />
-                        <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
-                      </Avatar>
-                      <YStack ml={10} flexWrap="wrap">
-                        <H5 key={lesson.id}>
-                          <Anchor
-                            href={contentLessons[index]?.href}
-                            target="_blank"
-                          >{lesson.name}</Anchor></H5>
-                        <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
+            <Adapt platform="touch" when="sm">
+              <YStack jc="flex-start">
+                {userLessons?.slice(0, userLessons.length/2)?.map((lesson, index) =>
+                  lesson !== null ? [
+                    <YStack ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}} maw={300}>
+                      <XStack ai="center">
+                        <Avatar circular size="$4" backgroundColor="$backgroundFocus">
+                          <Avatar.Image 
+                            src={contentLessons[index]?.image}
+                          />
+                          <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
+                        </Avatar>
+                        <YStack ml={10} flexWrap="wrap">
+                          <H5 key={lesson.id}>
+                            <Anchor
+                              href={contentLessons[index]?.href}
+                              target="_blank"
+                            >{lesson.name}</Anchor></H5>
+                          <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
+                        </YStack>
+                      </XStack>
+                    </YStack>
+                  ] : []
+                )}
+              </YStack>
+              <YStack jc="flex-start">
+                {userLessons?.slice(userLessons.length/2)?.map((lesson, index) =>
+                    lesson !== null ? [
+                      <YStack ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}  maw={300}>
+                        <XStack ai="center">
+                          <Avatar circular size="$4" backgroundColor="$backgroundFocus">
+                            <Avatar.Image 
+                              src={contentLessons[index]?.image}
+                            />
+                            <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
+                          </Avatar>
+                          <YStack ml={10} flexWrap="wrap">
+                            <H5 key={lesson.id}>
+                              <Anchor
+                                href={contentLessons[index]?.href}
+                                target="_blank"
+                              >{lesson.name}</Anchor></H5>
+                            <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
+                          </YStack>
+                        </XStack>
                       </YStack>
-                    </XStack>
-                  </YStack>
-                ] : []
-              )}
-            </YStack>
-            <YStack>
-              {userLessons?.slice(userLessons.length/2)?.map((lesson, index) =>
+                    ] : []
+                  )}
+              </YStack>
+            </Adapt>
+
+            <YStack jc="flex-start">
+                {userLessons?.slice(0, userLessons.length/2)?.map((lesson, index) =>
                   lesson !== null ? [
                     <YStack ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
                       <XStack ai="center">
@@ -171,7 +198,32 @@ function Lessons() {
                     </YStack>
                   ] : []
                 )}
-            </YStack>
+              </YStack>
+              <YStack jc="flex-start">
+                {userLessons?.slice(userLessons.length/2)?.map((lesson, index) =>
+                    lesson !== null ? [
+                      <YStack ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
+                        <XStack ai="center">
+                          <Avatar circular size="$4" backgroundColor="$backgroundFocus">
+                            <Avatar.Image 
+                              src={contentLessons[index]?.image}
+                            />
+                            <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
+                          </Avatar>
+                          <YStack ml={10} flexWrap="wrap">
+                            <H5 key={lesson.id}>
+                              <Anchor
+                                href={contentLessons[index]?.href}
+                                target="_blank"
+                              >{lesson.name}</Anchor></H5>
+                            <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
+                          </YStack>
+                        </XStack>
+                      </YStack>
+                    ] : []
+                  )}
+              </YStack>
+
           </XStack>
         </YStack>
       )}
