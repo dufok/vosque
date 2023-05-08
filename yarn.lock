@@ -2598,10 +2598,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@my/db@workspace:packages/db"
   dependencies:
-    "@prisma/client": latest
+    "@prisma/client": 4.12.0-integration-rtld-deepbind.3
+    "@types/node": ^14.14.21
     dotenv-cli: ^6.0.0
-    prisma: latest
-    typescript: 4.9.4
+    prisma: 4.12.0-integration-rtld-deepbind.3
+    ts-node: ^9.1.1
+    typescript: 4.1.3
   languageName: unknown
   linkType: soft
 
@@ -2847,31 +2849,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@latest":
-  version: 4.9.0
-  resolution: "@prisma/client@npm:4.9.0"
+"@prisma/client@npm:4.12.0-integration-rtld-deepbind.3":
+  version: 4.12.0-integration-rtld-deepbind.3
+  resolution: "@prisma/client@npm:4.12.0-integration-rtld-deepbind.3"
   dependencies:
-    "@prisma/engines-version": 4.9.0-42.ceb5c99003b99c9ee2c1d2e618e359c14aef2ea5
+    "@prisma/engines-version": 4.12.0-22.3b9f029aeb9a91829e6648c61146b02f3646d1e7
   peerDependencies:
     prisma: "*"
   peerDependenciesMeta:
     prisma:
       optional: true
-  checksum: 54c4fc3fde67d21567ead0e22e66d3258c2045f274b465781b89e4f258f1a6431c4c83e3371e71661f2c7ccdf4cf24169002e40e378c7384f99aefe8dfb81be1
+  checksum: c5f3e1e6d56bac878b26766967975201ab18cadafa01daee947e1597bfc424d2b99e1cdd9b441cf869528182f1ee69be0fafbf47bb7c82c902fe1502445c1f15
   languageName: node
   linkType: hard
 
-"@prisma/engines-version@npm:4.9.0-42.ceb5c99003b99c9ee2c1d2e618e359c14aef2ea5":
-  version: 4.9.0-42.ceb5c99003b99c9ee2c1d2e618e359c14aef2ea5
-  resolution: "@prisma/engines-version@npm:4.9.0-42.ceb5c99003b99c9ee2c1d2e618e359c14aef2ea5"
-  checksum: b7b1a41acd8c761ea8111e0d9562623d0735c58546594626de1bd4b35e09122f210e0c4727aa0775b53e5222d8ed1c0fa822e0a8c4ba72271e854532f52a2416
+"@prisma/engines-version@npm:4.12.0-22.3b9f029aeb9a91829e6648c61146b02f3646d1e7":
+  version: 4.12.0-22.3b9f029aeb9a91829e6648c61146b02f3646d1e7
+  resolution: "@prisma/engines-version@npm:4.12.0-22.3b9f029aeb9a91829e6648c61146b02f3646d1e7"
+  checksum: f4e5b01ef4884267685b2362cd6ed7c61f2ee0a5708d05a1312976d910f56b83e25d6c559b38cc0162e65e987ecba032ad59b8fa8fa8291b097fa36337cbb0dc
   languageName: node
   linkType: hard
 
-"@prisma/engines@npm:4.9.0":
-  version: 4.9.0
-  resolution: "@prisma/engines@npm:4.9.0"
-  checksum: b73306b3e34ebb544f797342cb594f4a73602c6e63961e31e9158f02afdfc209f2cc1d59ae87cbb0165b3dff58eaa145c601ac2a1cfc460e8e439cea8425a3ed
+"@prisma/engines@npm:4.12.0-integration-rtld-deepbind.3":
+  version: 4.12.0-integration-rtld-deepbind.3
+  resolution: "@prisma/engines@npm:4.12.0-integration-rtld-deepbind.3"
+  checksum: 36a10d94a5338fff53519e17fcafb0c069b2a01bf5647c9d53d804d202e575981cde2917366f0d640a772b7d85e62a6b937428f8aebc1c12cbfdeccad17dbc2a
   languageName: node
   linkType: hard
 
@@ -5155,6 +5157,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^14.14.21":
+  version: 14.18.42
+  resolution: "@types/node@npm:14.18.42"
+  checksum: 1c92f04a482ab54a21342b3911fc6f0093f04d3314197bc0e2f20012e9efc929c44e2ea41990b9b3cde420d7859c9ed716733f3e65c0cd6c2910a55799465f6b
+  languageName: node
+  linkType: hard
+
 "@types/normalize-package-data@npm:^2.4.0":
   version: 2.4.1
   resolution: "@types/normalize-package-data@npm:2.4.1"
@@ -5621,6 +5630,13 @@ __metadata:
   version: 4.1.0
   resolution: "arg@npm:4.1.0"
   checksum: ea97513bf27aa5f2acf5dadf41501108fe786631fdd9d33f373174631800b57f85272dbf8190e937008a02b38d5c2f679514146f89a23123d8cb4ba30e8c066c
+  languageName: node
+  linkType: hard
+
+"arg@npm:^4.1.0":
+  version: 4.1.3
+  resolution: "arg@npm:4.1.3"
+  checksum: 544af8dd3f60546d3e4aff084d451b96961d2267d668670199692f8d054f0415d86fc5497d0e641e91546f0aa920e7c29e5250e99fc89f5552a34b5d93b77f43
   languageName: node
   linkType: hard
 
@@ -7021,6 +7037,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"create-require@npm:^1.1.0":
+  version: 1.1.1
+  resolution: "create-require@npm:1.1.1"
+  checksum: a9a1503d4390d8b59ad86f4607de7870b39cad43d929813599a23714831e81c520bddf61bcdd1f8e30f05fd3a2b71ae8538e946eb2786dc65c2bbc520f692eff
+  languageName: node
+  linkType: hard
+
 "critters@npm:^0.0.16":
   version: 0.0.16
   resolution: "critters@npm:0.0.16"
@@ -7479,6 +7502,13 @@ __metadata:
   version: 1.1.0
   resolution: "detect-node-es@npm:1.1.0"
   checksum: e46307d7264644975b71c104b9f028ed1d3d34b83a15b8a22373640ce5ea630e5640b1078b8ea15f202b54641da71e4aa7597093bd4b91f113db520a26a37449
+  languageName: node
+  linkType: hard
+
+"diff@npm:^4.0.1":
+  version: 4.0.2
+  resolution: "diff@npm:4.0.2"
+  checksum: f2c09b0ce4e6b301c221addd83bf3f454c0bc00caa3dd837cf6c127d6edf7223aa2bbe3b688feea110b7f262adbfc845b757c44c8a9f8c0c5b15d8fa9ce9d20d
   languageName: node
   linkType: hard
 
@@ -11436,6 +11466,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"make-error@npm:^1.1.1":
+  version: 1.3.6
+  resolution: "make-error@npm:1.3.6"
+  checksum: b86e5e0e25f7f777b77fabd8e2cbf15737972869d852a22b7e73c17623928fccb826d8e46b9951501d3f20e51ad74ba8c59ed584f610526a48f8ccf88aaec402
+  languageName: node
+  linkType: hard
+
 "make-fetch-happen@npm:^10.0.3":
   version: 10.2.1
   resolution: "make-fetch-happen@npm:10.2.1"
@@ -13396,15 +13433,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-prisma@latest:
-  version: 4.9.0
-  resolution: "prisma@npm:4.9.0"
+"prisma@npm:4.12.0-integration-rtld-deepbind.3":
+  version: 4.12.0-integration-rtld-deepbind.3
+  resolution: "prisma@npm:4.12.0-integration-rtld-deepbind.3"
   dependencies:
-    "@prisma/engines": 4.9.0
+    "@prisma/engines": 4.12.0-integration-rtld-deepbind.3
   bin:
     prisma: build/index.js
     prisma2: build/index.js
-  checksum: 82f680008a61824a40f3daae9e0e5766f33d28c6641d04e0ee0918c2cb42110579187f3fce2d08ec8baa1124b3115229e9d83d7f64987bf46f6403f56b07e711
+  checksum: 9473925f9b6949b776f3397685c2898971d8fed16073e9c30f0fbecbf2fafb1a5518ac45d8dfb5c17475aba70d5050bb483c3165cdea298efce9f653f9e1c8b0
   languageName: node
   linkType: hard
 
@@ -15045,7 +15082,7 @@ prisma@latest:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:^0.5.16, source-map-support@npm:~0.5.20":
+"source-map-support@npm:^0.5.16, source-map-support@npm:^0.5.17, source-map-support@npm:~0.5.20":
   version: 0.5.21
   resolution: "source-map-support@npm:0.5.21"
   dependencies:
@@ -15910,6 +15947,27 @@ prisma@latest:
   languageName: node
   linkType: hard
 
+"ts-node@npm:^9.1.1":
+  version: 9.1.1
+  resolution: "ts-node@npm:9.1.1"
+  dependencies:
+    arg: ^4.1.0
+    create-require: ^1.1.0
+    diff: ^4.0.1
+    make-error: ^1.1.1
+    source-map-support: ^0.5.17
+    yn: 3.1.1
+  peerDependencies:
+    typescript: ">=2.7"
+  bin:
+    ts-node: dist/bin.js
+    ts-node-script: dist/bin-script.js
+    ts-node-transpile-only: dist/bin-transpile.js
+    ts-script: dist/bin-script-deprecated.js
+  checksum: 356e2647b8b1e6ab00380c0537fa569b63bd9b6f006cc40fd650f81fae1817bd8fecc075300036950d8f45c1d85b95be33cd1e48a1a424a7d86c3dbb42bf60e5
+  languageName: node
+  linkType: hard
+
 "tsconfig-paths@npm:^3.14.1":
   version: 3.14.1
   resolution: "tsconfig-paths@npm:3.14.1"
@@ -16118,6 +16176,16 @@ prisma@latest:
   languageName: node
   linkType: hard
 
+"typescript@npm:4.1.3":
+  version: 4.1.3
+  resolution: "typescript@npm:4.1.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 0a25f7d7cebbc5ad23f41cb30918643460477be265bd3bcd400ffedb77d16e97d46f2b0c31393b2f990c5cf5b9f7a829ad6aff8636988b8f30abf81c656237c0
+  languageName: node
+  linkType: hard
+
 "typescript@npm:4.9.4, typescript@npm:^4.7.4, typescript@npm:^4.9.4":
   version: 4.9.4
   resolution: "typescript@npm:4.9.4"
@@ -16125,6 +16193,16 @@ prisma@latest:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: e782fb9e0031cb258a80000f6c13530288c6d63f1177ed43f770533fdc15740d271554cdae86701c1dd2c83b082cea808b07e97fd68b38a172a83dbf9e0d0ef9
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@4.1.3#~builtin<compat/typescript>":
+  version: 4.1.3
+  resolution: "typescript@patch:typescript@npm%3A4.1.3#~builtin<compat/typescript>::version=4.1.3&hash=4a8eb8"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: ed3df76d9b6efb448e5e73bca671698cda353a3807199ad95c78782a857e7685ccc94b799ac885423ced65ee21c87cbbeb823642c5dfd715efae5ebbc6137070
   languageName: node
   linkType: hard
 
@@ -16945,6 +17023,13 @@ prisma@latest:
     y18n: ^4.0.0
     yargs-parser: ^18.1.2
   checksum: 40b974f508d8aed28598087720e086ecd32a5fd3e945e95ea4457da04ee9bdb8bdd17fd91acff36dc5b7f0595a735929c514c40c402416bbb87c03f6fb782373
+  languageName: node
+  linkType: hard
+
+"yn@npm:3.1.1":
+  version: 3.1.1
+  resolution: "yn@npm:3.1.1"
+  checksum: 2c487b0e149e746ef48cda9f8bad10fc83693cd69d7f9dcd8be4214e985de33a29c9e24f3c0d6bcf2288427040a8947406ab27f7af67ee9456e6b84854f02dd6
   languageName: node
   linkType: hard
 
