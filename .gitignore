@@ -54,3 +54,7 @@ thumbs.db
 
 # sqlite
 **/*.sqlite
+
+# dbseed file
+
+/packages/db/seed/seed.json
