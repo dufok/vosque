@@ -57,4 +57,4 @@ thumbs.db
 
 # dbseed file
 
-/packages/db/seed/seed.json
+packages/db/seed/seed.json
