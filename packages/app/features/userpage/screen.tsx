@@ -176,56 +176,7 @@ function Lessons() {
               </YStack>
             </Adapt>
 
-            <Adapt platform="web" when="gtSm">
-            <YStack jc="flex-start">
-                {userLessons?.slice(0, userLessons.length/2)?.map((lesson, index) =>
-                  lesson !== null ? [
-                    <YStack ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
-                      <XStack ai="center">
-                        <Avatar circular size="$4" backgroundColor="$backgroundFocus">
-                          <Avatar.Image 
-                            src={contentLessons[index]?.image}
-                          />
-                          <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
-                        </Avatar>
-                        <YStack ml={10} flexWrap="wrap">
-                          <H5 key={lesson.id}>
-                            <Anchor
-                              href={contentLessons[index]?.href}
-                              target="_blank"
-                            >{lesson.name}</Anchor></H5>
-                          <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
-                        </YStack>
-                      </XStack>
-                    </YStack>
-                  ] : []
-                )}
-              </YStack>
-              <YStack jc="flex-start">
-                {userLessons?.slice(userLessons.length/2)?.map((lesson, index) =>
-                    lesson !== null ? [
-                      <YStack ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
-                        <XStack ai="center">
-                          <Avatar circular size="$4" backgroundColor="$backgroundFocus">
-                            <Avatar.Image 
-                              src={contentLessons[index]?.image}
-                            />
-                            <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
-                          </Avatar>
-                          <YStack ml={10} flexWrap="wrap">
-                            <H5 key={lesson.id}>
-                              <Anchor
-                                href={contentLessons[index]?.href}
-                                target="_blank"
-                              >{lesson.name}</Anchor></H5>
-                            <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
-                          </YStack>
-                        </XStack>
-                      </YStack>
-                    ] : []
-                  )}
-              </YStack>
-            </Adapt>
+            
 
           </XStack>
         </YStack>
