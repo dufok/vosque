@@ -176,8 +176,6 @@ function Lessons() {
               </YStack>
             </Adapt>
 
-            
-
           </XStack>
         </YStack>
       )}
