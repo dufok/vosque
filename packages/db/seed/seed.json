@@ -3,12 +3,13 @@
 			"id": 1,
 			"name": "1 Урок. Фонетика",
 			"content": {
+				"image": "http://cdn.vosque.education/images/lesson1-img.png",
+				"href": "/lesson1",
 				"description": "Фонетика испанского языка - не такая уж увлекательная, но нужная база",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg",
 				"theoreticalBlock": {
 					"header": "Теоретический блок",
-					"image": "http://cdn.vosque.education/lessons/1/circle_talking_talk.png",
 					"alfabet": {
 						"header": "Алфавит",
 						"text": "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z"
@@ -451,102 +452,200 @@
 		},
 		{
 			"id": 2,
-			"name": "Lesson 2",
+			"name": "Урок 2. Существительные и Артикили",
 			"content": {
-				"video": "http://cdn.vosque.education/lessons/2/сlase2-NN61.mp4",
+				"image": "http://cdn.vosque.education/images/lesson2-img.png",
+				"href": "/lesson2",
+				"description": "Лексика: местоимения и самые нужные прилагательные",
+				"video": "http://cdn.vosque.education/lessons/1/сlase2-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg",
-				"text": "This is the content of Lesson 2"
 			}
 		},
 		{
 			"id": 3,
-			"name": "Lesson 3",
+			"name": "Урок 3 - Часть 1. Глаголы \"быть\"",
 			"content": {
-				"text": "This is the content of Lesson 3"
+				"image": "http://cdn.vosque.education/images/lesson3-img.png",
+				"href": "/lesson3",
+				"description": "Глаголы \"Быть\" в испанском языке. Лексика: семья и прилагательные описания.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 4,
-			"name": "Lesson 4",
+			"name": "Урок 3 - Часть 2. Исключения Значений",
 			"content": {
-				"text": "This is the content of Lesson 4"
+				"image": "http://cdn.vosque.education/images/lesson3-img.png",
+				"href": "/lesson4",
+				"description": "Глаголы \"Быть\" в испанском языке. Лексика: семья и прилагательные описания.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 5,
-			"name": "Lesson 5",
+			"name": "Урок 4. Предлоги",
 			"content": {
-				"text": "This is the content of Lesson 5"
+				"image": "http://cdn.vosque.education/images/lesson4-img.png",
+				"href": "/lesson5",
+				"description": "Закрепление. Предлоги испанского языка. Лексика: страны и национальности",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 6,
-			"name": "Lesson 6",
+			"name": "Урок 5 - Часть 1. Вопросительные Слова",
 			"content": {
-				"text": "This is the content of Lesson 6"
+				"image": "http://cdn.vosque.education/images/lesson5-img.png",
+				"href": "/lesson6",
+				"description": "Вопросы, сочетание вопросительных слов с предлогами.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 7,
-			"name": "Lesson 7",
+			"name": "Урок 5 - Часть 2. Вопросы И Предлоги",
 			"content": {
-				"text": "This is the content of Lesson 7"
+				"image": "http://cdn.vosque.education/images/lesson5-img.png",
+				"href": "/lesson7",
+				"description": "Вопросы, сочетание вопросительных слов с предлогами.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 8,
-			"name": "Lesson 8",
+			"name": "Урок 6. Простые Правельные Глаголы.",
 			"content": {
-				"text": "This is the content of Lesson 8"
+				"image": "http://cdn.vosque.education/images/lesson6-img.png",
+				"href": "/lesson8",
+				"description": "Закрепление. Простые правильные глаголы.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 9,
-			"name": "Lesson 9",
+			"name": "Урок 7 - Часть 1. Неправильные глаголы.",
 			"content": {
-				"text": "This is the content of Lesson 9"
+				"image": "http://cdn.vosque.education/images/lesson7-img.png",
+				"href": "/lesson9",
+				"description": "Закрепление. Глаголы индивиудуального сряжения по подгруппам. Лексика: описание жилья.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 10,
-			"name": "Lesson 10",
+			"name": "Урок 7 - Часть 2. Глагол HACER в теме погоды.",
 			"content": {
-				"text": "This is the content of Lesson 10"
+				"image": "http://cdn.vosque.education/images/lesson7-img.png",
+				"href": "/lesson10",
+				"description": "Закрепление. Глаголы индивиудуального сряжения по подгруппам. Лексика: описание жилья.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 11,
-			"name": "Lesson 11",
+			"name": "Урок 8. Конструкция С Глаголом \"HAY\".",
 			"content": {
-				"text": "This is the content of Lesson 11"
+				"image": "http://cdn.vosque.education/images/lesson8-img.png",
+				"href": "/lesson11",
+				"description": "Конструкция с глаголом hay. Лексика: мебель.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 12,
-			"name": "Lesson 12",
+			"name": "Урок 9 - Часть 1. Первая Группа Отклоняющихся Глаголов.",
 			"content": {
-				"text": "This is the content of Lesson 12"
+				"image": "http://cdn.vosque.education/images/lesson9-img.png",
+				"href": "/lesson12",
+				"description": "Закрепление. 1 и 2 группа глаголов. Лексика: время.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 13,
-			"name": "Lesson 13",
+			"name": "Урок 9 - Часть 2. Вторая Группа Отклоняющихся Глаголов.",
 			"content": {
-				"text": "This is the content of Lesson 13"
+				"image": "http://cdn.vosque.education/images/lesson9-img.png",
+				"href": "/lesson13",
+				"description": "Закрепление. 1 и 2 группа глаголов. Лексика: время.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 14,
-			"name": "Lesson 14",
+			"name": "Урок 10 - Часть 1. Глагол \"TENER\".",
 			"content": {
-				"text": "This is the content of Lesson 14"
+				"image": "http://cdn.vosque.education/images/lesson10-img.png",
+				"href": "/lesson14",
+				"description": "Глагол tener и конструкции с глаголом tener",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		},
 		{
 			"id": 15,
-			"name": "Lesson 15",
+			"name": "Урок 10 - Часть 2. Другие Глаголы Индивидульного Спряжения.",
 			"content": {
-				"text": "This is the content of Lesson 15"
+				"image": "http://cdn.vosque.education/images/lesson10-img.png",
+				"href": "/lesson15",
+				"description": "Глагол tener и конструкции с глаголом tener",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
+			}
+		},
+		{
+			"id": 16,
+			"name": "Урок 11 - Часть 1. Третья группа отклоняющихся глаголов.",
+			"content": {
+				"image": "http://cdn.vosque.education/images/lesson11-img.png",
+				"href": "/lesson16",
+				"description": "3, 4, 5 группы отклоняющихся глаголов.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
+			}
+		},
+		{
+			"id": 17,
+			"name": "Урок 11 - Часть 2. Четвертая группа отклоняющихся глаголов.",
+			"content": {
+				"image": "http://cdn.vosque.education/images/lesson11-img.png",
+				"href": "/lesson17",
+				"description": "3, 4, 5 группы отклоняющихся глаголов.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
+			}
+		},
+		{
+			"id": 17,
+			"name": "Урок 11 - Часть 3. Пятая группа отклоняющихся глаголов.",
+			"content": {
+				"image": "http://cdn.vosque.education/images/lesson11-img.png",
+				"href": "/lesson17",
+				"description": "3, 4, 5 группы отклоняющихся глаголов.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
+			}
+		},
+		{
+			"id": 18,
+			"name": "Урок 12. Будущее Время.",
+			"content": {
+				"image": "http://cdn.vosque.education/images/lesson12-img.png",
+				"href": "/lesson18",
+				"description": "Будущее Время.",
+				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
+				"poster": "http://cdn.vosque.education/images/poster.jpg",
 			}
 		}
 	],
@@ -556,7 +655,7 @@
 		},
 		{
 			"name": "Lesson Pack 1",
-			"lessons": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+			"lessons": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
 		}
 	],
 	"phrasebooks": [{
