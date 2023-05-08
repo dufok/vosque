@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { YStack, XStack, H1, H3, H5, Paragraph, Button, Input, Image, Spinner, Avatar} from "@my/ui";
+import { YStack, XStack, H1, H3, H5, Paragraph, Button, Input, Image, Spinner, Avatar, Anchor } from "@my/ui";
 import { useLink } from "solito/link";
 import { Header } from "@my/ui/src/components/HeaderComp";
 import { trpc } from "../../utils/trpc";
@@ -111,32 +111,36 @@ function Lessons() {
   const { data: userLessons } = trpc.user.userLessons.useQuery();
 
   type ContentLesson = {
-    description: string;
-    link: string;
     image: string;
+    href: string;
+    description: string;
   }
 
-  const content = userLessons?.[0]?.content as ContentLesson;
+  const contentLessons = userLessons?.map((lesson) => lesson.content) as ContentLesson[];
 
   return (
     <YStack>
       {isSignedIn && (
-        <YStack pb="$6" pt="$6" ai="center">
+        <YStack pb="$6" pt="$6" ai="center" f={1}>
           <Paragraph pb="$4" ta="center">Список Уроков</Paragraph>
           <XStack p="$2" fw="wrap" >
-            {userLessons?.flatMap((lesson) =>
+            {userLessons?.flatMap((lesson, index) =>
               lesson !== null ? [
                 <YStack   ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
                   <XStack ai="center">
                     <Avatar circular size="$4" backgroundColor="$backgroundFocus">
                       <Avatar.Image 
-                        src={content.image}
+                        src={contentLessons[index]?.image}
                       />
                       <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
                     </Avatar>
                     <YStack ml={10}>
-                      <H5 href={content.link} key={lesson.id}>{lesson.name}</H5>
-                      <Paragraph key={lesson.id}>{content.description}</Paragraph>
+                      <H5 key={lesson.id}>
+                        <Anchor
+                          href={contentLessons[index]?.href}
+                          target="_blank"
+                        >{lesson.name}</Anchor></H5>
+                      <Paragraph key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
                     </YStack>
                   </XStack>
                 </YStack>
@@ -148,6 +152,7 @@ function Lessons() {
     </YStack>
   );
 }
+
 
 
 function Login() {
