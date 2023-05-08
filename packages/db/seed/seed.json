@@ -1,7 +1,7 @@
 {
 	"lessons": [{
 			"id": 1,
-			"name": "1 Урок. Фонетика",
+			"name": "Урок 1. Фонетика",
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson1-img.png",
 				"href": "/lesson1",
@@ -456,7 +456,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson2-img.png",
 				"href": "/lesson2",
-				"description": "Лексика: местоимения и самые нужные прилагательные",
+				"description": "Существительные, местоимения и артикли; Семья и базовые языки/национальности.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase2-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -489,7 +489,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson4-img.png",
 				"href": "/lesson5",
-				"description": "Закрепление. Предлоги испанского языка. Лексика: страны и национальности",
+				"description": "Предлоги, полезные конструкции; Наречия, цифры.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -500,7 +500,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson5-img.png",
 				"href": "/lesson6",
-				"description": "Вопросы, сочетание вопросительных слов с предлогами.",
+				"description": "Вопросительные слова, вопросы; Отрицательные слова, страны.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -511,7 +511,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson5-img.png",
 				"href": "/lesson7",
-				"description": "Вопросы, сочетание вопросительных слов с предлогами.",
+				"description": "Вопросительные слова, вопросы; Отрицательные слова, страны.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -522,7 +522,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson6-img.png",
 				"href": "/lesson8",
-				"description": "Закрепление. Простые правильные глаголы.",
+				"description": "Простые правильные глаголы и их употребление.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -533,7 +533,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson7-img.png",
 				"href": "/lesson9",
-				"description": "Закрепление. Глаголы индивиудуального сряжения по подгруппам. Лексика: описание жилья.",
+				"description": "Глаголы индивидуального спряжения; Погода.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -544,7 +544,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson7-img.png",
 				"href": "/lesson10",
-				"description": "Закрепление. Глаголы индивиудуального сряжения по подгруппам. Лексика: описание жилья.",
+				"description": "Глаголы индивидуального спряжения; Погода.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -555,7 +555,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson8-img.png",
 				"href": "/lesson11",
-				"description": "Конструкция с глаголом hay. Лексика: мебель.",
+				"description": "Глагол hay и его употребление; Описание пространства, квартира, город.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -566,7 +566,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson9-img.png",
 				"href": "/lesson12",
-				"description": "Закрепление. 1 и 2 группа глаголов. Лексика: время.",
+				"description": "1 и 2 группы отклоняющихся глаголов; Время.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -577,7 +577,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson9-img.png",
 				"href": "/lesson13",
-				"description": "Закрепление. 1 и 2 группа глаголов. Лексика: время.",
+				"description": "1 и 2 группы отклоняющихся глаголов; Время.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -588,7 +588,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson10-img.png",
 				"href": "/lesson14",
-				"description": "Глагол tener и конструкции с глаголом tener",
+				"description": "Глагол tener в конструкциях и другие глаголы индивидуального спряжения; Дни недели, месяца.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -599,7 +599,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson10-img.png",
 				"href": "/lesson15",
-				"description": "Глагол tener и конструкции с глаголом tener",
+				"description": "Глагол tener в конструкциях и другие глаголы индивидуального спряжения; Дни недели, месяца.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -610,7 +610,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson11-img.png",
 				"href": "/lesson16",
-				"description": "3, 4, 5 группы отклоняющихся глаголов.",
+				"description": "3,4,5 группы отклоняющихся глаголов; Еда, ресторан.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -621,7 +621,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson11-img.png",
 				"href": "/lesson17",
-				"description": "3, 4, 5 группы отклоняющихся глаголов.",
+				"description": "3,4,5 группы отклоняющихся глаголов; Еда, ресторан.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -632,7 +632,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson11-img.png",
 				"href": "/lesson17",
-				"description": "3, 4, 5 группы отклоняющихся глаголов.",
+				"description": "3,4,5 группы отклоняющихся глаголов; Еда, ресторан.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
@@ -643,7 +643,7 @@
 			"content": {
 				"image": "http://cdn.vosque.education/images/lesson12-img.png",
 				"href": "/lesson18",
-				"description": "Будущее Время.",
+				"description": "Будущее время; Диалоги на каждый день.",
 				"video": "http://cdn.vosque.education/lessons/1/сlase1-LMTC.mp4",
 				"poster": "http://cdn.vosque.education/images/poster.jpg"
 			}
