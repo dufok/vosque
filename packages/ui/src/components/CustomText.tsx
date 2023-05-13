@@ -2,6 +2,12 @@ import { Paragraph, H1, H2, H3 } from 'tamagui';
 import React from "react";
 
 function parseAndRenderText(text) {
+
+  if (typeof text !== 'string') {
+    console.error('text must be a string, but got', typeof text);
+    return null; // Or return a default value or throw an error, as appropriate for your use case
+  }
+  
   const parts = text.split(/(~|\*)/);
   return parts.map((part, index) => {
     if (index % 2 === 1) {
