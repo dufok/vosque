@@ -76,7 +76,7 @@ export function lesson1Screen() {
   return (
     <YStack>
       { isSignedIn && (
-        <YStack ai="center">
+        <YStack>
           <WelcomeBlock
             name={firstLesson?.name}
             description={content?.description}/>

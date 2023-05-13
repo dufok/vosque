@@ -195,13 +195,13 @@ function ReviewSection () {
             <H2 tt="uppercase" ta="center">Отзывы</H2>
             <XStack p="$6" fw="wrap">
                 <YStack space="$6" p="$6">
-                  <Button bc="$backgroundFocus" paddingHorizontal="$14" w="100%">
+                  <Button bc="$backgroundFocus" paddingHorizontal="$6" f={0.7}>
                    “Мы приехали с нулевым знанием..." Альфия
                   </Button>
-                  <Button bc="$backgroundFocus" paddingHorizontal="$14"  w="100%">
+                  <Button bc="$backgroundFocus" paddingHorizontal="$6" f={0.7}>
                     “Настя стала для меня третьим..." Виталик
                   </Button>
-                  <Button bc="$backgroundFocus" paddingHorizontal="$14"  w="100%">
+                  <Button bc="$backgroundFocus" paddingHorizontal="$6" f={0.7}>
                      “Анастасия прекрасный учитель." Ольга
                   </Button>
                 </YStack>
