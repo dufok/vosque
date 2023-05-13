@@ -127,11 +127,11 @@ function Lessons() {
               <YStack jc="flex-start" m="$1">
                 {userLessons?.slice(0, userLessons.length/2)?.map((lesson, index) =>
                   lesson !== null ? [
-                    <YStack ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}} maw={300}>
+                    <YStack p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}} maw={300}>
                       <XStack ai="center">
-                        <Avatar circular size="$4" backgroundColor="$backgroundFocus">
+                        <Avatar circular size="$4" m="$0.5"  backgroundColor="$backgroundFocus">
                           <Avatar.Image 
-                            src={contentLessons[index]?.image}
+                            src={contentLessons[index]?.image} scale="50%"
                           />
                           <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
                         </Avatar>
@@ -151,9 +151,9 @@ function Lessons() {
               <YStack jc="flex-start" m="$1">
                 {userLessons?.slice(userLessons.length/2)?.map((lesson, index) =>
                     lesson !== null ? [
-                      <YStack ai="center" p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}  maw={300}>
+                      <YStack p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}  maw={300}>
                         <XStack ai="center">
-                          <Avatar circular size="$4" backgroundColor="$backgroundFocus">
+                          <Avatar circular size="$4" m="$0.5" backgroundColor="$backgroundFocus">
                             <Avatar.Image 
                               src={contentLessons[index]?.image} scale="50%"
                             />
