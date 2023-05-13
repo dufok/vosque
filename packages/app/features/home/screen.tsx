@@ -41,28 +41,24 @@ export function HomeScreen(props) {
   const imageSource2 = { uri: 'https://cdn.vosque.education/images/img-home-course.png?raw'};
   const imageSource3 = { uri: 'https://cdn.vosque.education/images/img-home-phrasebook.png?raw'};
 
-  /*
+
+/*
   //block with errors from Author 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
-
-/*
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
-  /*
   if (isLoading) {
     return <Paragraph>Loading...</Paragraph>
-  }*/
-  /*
+  }
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
-  */
-
   if (isLoading) {
     return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
   }
+*/
 
   return (
     <YStack>
@@ -100,48 +96,50 @@ function Welcome({ imageSource, userpageLinkProps }){
 
 function AboutAutor({imageSource1}){
   return(
-    <XStack fw="wrap" >
-      <YStack ai="center" jc="center" p="$6">
-        <YStack>
-          <Square w={280} h={150} pos="relative" hoverStyle={{ opacity: 0 }}>
+    <XStack flexWrap="wrap">
+
+      <YStack ai="center" jc="center">
+        <YStack p="$8" flex={0.3}>
+          <Square f={1} pos="relative" hoverStyle={{ opacity: 0 }}>
             <H3 ta="center">
               Разговорная речь
             </H3>
           </Square>
-          <Square  w={280} h={150} pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
-            <Paragraph ta="center" bc="$background" >
+          <Square  f={1} pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
+            <Paragraph ta="left" bc="$background" >
               Нет смысла учить язык, если потом не можешь на нем разговаривать. Уже с первых уроков нашего курса мы будем учиться строить диалоги - и не сухие, а так, как это делают носители.
             </Paragraph>
           </Square>
         </YStack >
 
-        <YStack>
-          <Square   w={280} h={150} pos="relative" hoverStyle={{ opacity: 0 }}>        
+        <YStack p="$8" flex={0.3}>
+          <Square f={1} pos="relative" hoverStyle={{ opacity: 0 }}>        
             <H3 ta="center">
               Культурный контекст
             </H3>
           </Square>
-          <Square   w={280} h={150} pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
-            <Paragraph ta="center" bc="$background">
+          <Square f={1}  pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
+            <Paragraph ta="left" bc="$background">
               Все про Аргентину и не только - постоянные исторические и культурные отсылки помогут Вам лучше понять жителей Аргентины и быстрее влиться в среду.
             </Paragraph>
           </Square>
         </YStack>
 
-          <YStack>
-            <Square  w={280} h={150} pos="relative" hoverStyle={{ opacity: 0 }}>
-              <H3 ta="center">
-                Структура языка
-              </H3>
-            </Square>
-            <Square  w={280} h={150} pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
-              <Paragraph ta="center" bc="$background">
-                Часто на курсах обещают разговорную речь, но не дают структуры. Этот метод подходит для детей, но голова взрослого человека работает иначе - весь материал будет структурирован в таблицах.
-              </Paragraph>
-            </Square>
-          </YStack>
+        <YStack f={1} p="$8" flex={0.3}>
+          <Square  pos="relative" hoverStyle={{ opacity: 0 }}>
+            <H3 ta="center">
+              Структура языка
+            </H3>
+          </Square>
+          <Square f={1}  pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
+            <Paragraph ta="left" bc="$background">
+              Часто на курсах обещают разговорную речь, но не дают структуры. Этот метод подходит для детей, но голова взрослого человека работает иначе - весь материал будет структурирован в таблицах.
+            </Paragraph>
+          </Square>
+        </YStack>
       </YStack>
-      <YStack bc="$backgroundFocus" f={1}>
+
+      <YStack bc="$backgroundFocus" >
         <YStack ai="center">
           <Avatar size="$15" mt={85}>
             <Avatar.Image
@@ -153,12 +151,13 @@ function AboutAutor({imageSource1}){
           <H1 ta="center" col="$background">Анастасия Лукьянова</H1>
           <YStack>
             <YStack/>
-                <Paragraph ta="left" maw={600} col="$background" p="$8">
-                    Я - билингв, носитель русского и испанских языков. Родившись в Эквадоре, в 5 лет я переехала в Россию, в 16 поступила в МГУ на филологический факультет, в 19 отправилась на стажировку в Мексику, а в 23, закончив университет с красным дипломом по специальности "Преподаватель и переводчик испанского языка", переехала в Аргентину. Уже 10 лет я преподаю язык и рада делиться своими знаниями и опытом.
-                </Paragraph>
+              <Paragraph ta="left" col="$background" p="$8">
+                Я - билингв, носитель русского и испанских языков. Родившись в Эквадоре, в 5 лет я переехала в Россию, в 16 поступила в МГУ на филологический факультет, в 19 отправилась на стажировку в Мексику, а в 23, закончив университет с красным дипломом по специальности "Преподаватель и переводчик испанского языка", переехала в Аргентину. Уже 10 лет я преподаю язык и рада делиться своими знаниями и опытом.
+              </Paragraph>
           </YStack>
         </YStack>
       </YStack>
+
     </XStack>
   )
 }
@@ -195,16 +194,17 @@ function ReviewSection () {
             <H2 tt="uppercase" ta="center">Отзывы</H2>
             <XStack p="$6" fw="wrap">
                 <YStack space="$6" p="$6">
-                  <Button bc="$backgroundFocus" paddingHorizontal="$14">
-                    TEST
+                  <Button bc="$backgroundFocus" paddingHorizontal="$14" w="100%">
+                   “Мы приехали с нулевым знанием..." Альфия
                   </Button>
-                  <Button bc="$backgroundFocus" paddingHorizontal="$14">
-                    TEST
+                  <Button bc="$backgroundFocus" paddingHorizontal="$14"  w="100%">
+                    “Настя стала для меня третьим..." Виталик
                   </Button>
-                  <Button bc="$backgroundFocus" paddingHorizontal="$14">
-                    TEST
+                  <Button bc="$backgroundFocus" paddingHorizontal="$14"  w="100%">
+                     “Анастасия прекрасный учитель." Ольга
                   </Button>
                 </YStack>
+                {/*
                 <YStack space="$6" p="$6">
                   <Button bc="$backgroundFocus" paddingHorizontal="$14">
                     TEST
@@ -216,6 +216,7 @@ function ReviewSection () {
                     TEST
                   </Button>
                 </YStack>
+                */}
             </XStack>
         </YStack>
 

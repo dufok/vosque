@@ -3,19 +3,19 @@ export type ContentLesson1 = {
     description: string;
     poster: string;
     video: string;
+    image: string;
     theoreticalBlock: { 
       header: string;
-      image: string;
       alfabet: { header: string; text: string; };
       complex: { header: string; description: string; letters: {  [key: string]: Letter }};
-      attention: { title: string; atentionBlocks: { [key: string]: atentionBlock }};
+      attention: { title: string; AtentionBlocks: { [key: string]: AtentionBlock }};
     },
     exercisesBlock: {
       header: string;
       training1: {
         header: string;
         description: string;
-        exercises: { [key: string]: exercise };
+        exercises: { [key: string]: Exercise };
       },
       additional: {
         header: string;
@@ -34,7 +34,7 @@ export type ContentLesson1 = {
       training2: {
         header: string;
         description: string;
-        exercises2: { [key: string]: exercise2 };
+        exercises2: { [key: string]: Exercise2 };
       },
     },
     vocabulary: {
@@ -85,7 +85,7 @@ export type ContentLesson1 = {
     Colum4_2: string;
   };
 
-  export type atentionBlock = {
+  export type AtentionBlock = {
     description: string;
     example1: string;
     example2: string;
@@ -106,16 +106,16 @@ export type ContentLesson1 = {
     description2: string;
     name3: string;
     letters: Record<string, Letter>;
-    atentionBlocks: Record<string, atentionBlock>;
+    AtentionBlocks: Record<string, AtentionBlock>;
   };
 
-  export type exercise = {
+  export type Exercise = {
     description: string;
     text: string;
     audio: string
   };
 
-  export type exercise2 = {
+  export type Exercise2 = {
     text: string;
     audio: string
   };
@@ -125,10 +125,7 @@ export type ContentLesson1 = {
     audio: string;
   };
 
-  export type ContentAccent = {
-    text: string;
-    example: string
-  }
+  
 
   export type ContentVocabulary = {
     text1: string;
