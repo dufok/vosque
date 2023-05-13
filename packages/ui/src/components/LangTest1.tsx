@@ -14,11 +14,13 @@ interface LangTestProps {
 export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
   return (
     <YStack ai="flex-start" m="$6">
+    {example && (
       <XStack space={4}>
         <Paragraph>{example.question}</Paragraph>
         <Paragraph>{example.unswer.join(', ')}</Paragraph>
       </XStack>
-      {tests.map(({ question, unswer }, index) => {
+      )}
+      {tests && tests.map(({ question, unswer }, index) => {
         const [answer, setAnswer] = useState("");
         const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
