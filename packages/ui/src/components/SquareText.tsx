@@ -1,4 +1,4 @@
-import { H4, Square } from "tamagui";
+import { H4, Square, YStack } from "tamagui";
 import React from "react";
 
 export function SquareText({text}) {
