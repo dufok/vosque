@@ -76,7 +76,7 @@ export function lesson1Screen() {
   return (
     <YStack>
       { isSignedIn && (
-        <YStack>
+        <YStack ai="center">
           <WelcomeBlock
             name={firstLesson?.name}
             description={content?.description}/>
@@ -96,7 +96,7 @@ export function lesson1Screen() {
           {/* Обратите внимание: */}
 
           <SquareText text={content?.theoreticalBlock.attention.title}/>
-          <XStack fw="wrap" ai="stretch">
+          <XStack fw="wrap">
             <TextExampleBlock textExamples={atentionBlocks}/>
             <LifeHackerBlock
               lifehackimage={lifehack1.image}
