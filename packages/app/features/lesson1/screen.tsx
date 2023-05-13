@@ -2,14 +2,7 @@ import {
   Paragraph,
   YStack,
   XStack,
-  H1,
-  H2,
-  H3,
-  Image,
-  Button,
-  Separator,
   Spinner,
-  Avatar
  } from "@my/ui";
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
