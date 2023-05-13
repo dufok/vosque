@@ -59,7 +59,7 @@ export function lesson1Screen() {
   const lifehack1 = content?.lifehacks.lifehack1;
   const lifehack2 = content?.lifehacks.lifehack2;
   const lifehack3 = content?.lifehacks.lifehack3;
-  const contentVocabularys = content?.vocabulary.contentVocabularys;
+  const contentVocabularys = Object.values(content?.vocabulary.contentVocabularys || {});
 
   useEffect(() => {
     console.log(data);
@@ -198,7 +198,7 @@ export function lesson1Screen() {
   const ButtonSquereSheet: React.FC<ButtonSquereSheetProps> = ({ letters }) => {
     return (
       <YStack mt="$4" ai="center" f={1} maw={800}>
-        <XStack jc="center" m="$4" fw='wrap'>
+        <XStack jc="center" m="$4" fw='wrap' ai="center">
           {letters.map(({name, description, Colum1_1, Colum2_1, Colum3_1, Colum4_1, Colum1_2, Colum2_2, Colum3_2, Colum4_2}) => (
            <ButtonWithSheet
            key={name}

@@ -12,7 +12,7 @@ export function AudioPlayer({src}) {
 
 
   return (
-    <YStack jc="center" ai="center">
+    <YStack m="$1" jc="center" ai="center">
       <Button icon={Play} onPress={start} />
     </YStack>
   );

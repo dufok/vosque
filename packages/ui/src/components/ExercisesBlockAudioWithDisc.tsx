@@ -19,11 +19,11 @@ interface ExercisesBlockAudioWithDiscProps {
       <YStack>
       {exercises.map(({description, text, audio}, index) => (
         <XStack  key={index}>
-          <YStack>
+          <YStack m="$1"> 
             <H3 ta="left" >{description}</H3>
             <Paragraph ta="left" >{text}</Paragraph>
           </YStack>
-          <YStack>
+          <YStack ai="center">
             <AudioPlayer src={audio}/>
           </YStack>
         </XStack>

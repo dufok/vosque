@@ -16,6 +16,7 @@ import React from "react";
 
 export function ButtonWithSheet(Props) {
   return (
+    <YStack ai="center">
       <Dialog modal>
         <Dialog.Trigger asChild>
           <Square
@@ -102,5 +103,6 @@ export function ButtonWithSheet(Props) {
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog>
+    </YStack>
   );
 } 

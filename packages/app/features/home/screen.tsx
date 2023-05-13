@@ -96,13 +96,9 @@ function Welcome({ imageSource, userpageLinkProps }){
 
 function AboutAutor({imageSource1}){
   return(
-    <XStack flexWrap="wrap" 
-      $gtSm={{
-        flexDirection: 'column',
-        flexWrap: 'nowrap',
-    }}>
+    <XStack flexWrap="wrap" >
 
-      <YStack ai="center" jc="center" w="50%" $gtSm={{ width: "100%" }}>
+      <YStack ai="center" jc="center" w="100%" $gtSm={{ width: "50%" }}>
         <YStack p="$8" flex={0.3}>
           <Square w="100%" pos="relative" hoverStyle={{ opacity: 0 }}>
             <H3 ta="center">
@@ -143,8 +139,8 @@ function AboutAutor({imageSource1}){
         </YStack>
       </YStack>
 
-      <YStack bc="$backgroundFocus" w="50%"
-        $gtSm={{ width: "100%" }}>
+      <YStack bc="$backgroundFocus" w="100%"
+        $gtSm={{ width: "50%" }}>
         <YStack ai="center">
           <Avatar size="$15" mt={85}>
             <Avatar.Image

@@ -18,10 +18,10 @@ export const ExercisesBlockAudio: React.FC<ExercisesBlockAudioProps> = ({ exerci
     <YStack m="$6" ai="flex-start" maw={800}>
      {exercises.map(({text, audio}, index) => (
         <XStack  key={index}>
-          <YStack>
+          <YStack m="$1">
             <ParagraphCustom text={text} />
           </YStack>
-          <YStack>
+          <YStack ai="center">
             <AudioPlayer src={audio}/>
           </YStack>
         </XStack>

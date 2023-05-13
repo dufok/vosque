@@ -1,7 +1,7 @@
 import { Paragraph, YStack, XStack, H3 } from "tamagui";
 import React from "react";
 
-export type AtentionBlock = {
+export type Example = {
   description: string;
   example1: string;
   example2: string;
@@ -14,7 +14,7 @@ export type AtentionBlock = {
 };
 
 interface TextExampleBlockProps {
-  textExamples: AtentionBlock[];
+  textExamples: Example[];
 }
 
 export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples }) => {
