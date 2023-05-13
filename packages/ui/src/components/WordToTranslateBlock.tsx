@@ -3,8 +3,8 @@ import React from "react";
 
 export function WordToTranslateBlock({ words }) {
 
-  if (typeof words !== 'string') {
-    console.error('words must be a string, but got', typeof words);
+  if (!Array.isArray(words)) {
+    console.error('words must be an array, but got', typeof words);
     return null; // Or return a default value or throw an error, as appropriate for your use case
   }
 
