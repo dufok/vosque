@@ -72,19 +72,7 @@ export type ContentLesson1 = {
     }
   };
 
-  export type Letter = {
-    name: string;
-    description: string;
-    Colum1_1: string;
-    Colum2_1: string;
-    Colum3_1: string;
-    Colum4_1: string;
-    Colum1_2: string;
-    Colum2_2: string;
-    Colum3_2: string;
-    Colum4_2: string;
-  };
-
+  
   export type AtentionBlock = {
     description: string;
     example1: string;
@@ -125,10 +113,26 @@ export type ContentLesson1 = {
     audio: string;
   };
 
-  
-
   export type ContentVocabulary = {
     text1: string;
     text2: string;
     description: string
   }
+
+  export type Letter = {
+    name: string;
+    description: string;
+    Colum1_1: string;
+    Colum2_1: string;
+    Colum3_1: string;
+    Colum4_1: string;
+    Colum1_2: string;
+    Colum2_2: string;
+    Colum3_2: string;
+    Colum4_2: string;
+  };
+
+  export type ContentAccent = {
+    text: string;
+    example: string;
+  };

@@ -96,16 +96,20 @@ function Welcome({ imageSource, userpageLinkProps }){
 
 function AboutAutor({imageSource1}){
   return(
-    <XStack flexWrap="wrap">
+    <XStack flexWrap="wrap" 
+      $gtSm={{
+        flexDirection: 'column',
+        flexWrap: 'nowrap',
+    }}>
 
-      <YStack ai="center" jc="center">
+      <YStack ai="center" jc="center" w="50%" $gtSm={{ width: "100%" }}>
         <YStack p="$8" flex={0.3}>
-          <Square f={1} pos="relative" hoverStyle={{ opacity: 0 }}>
+          <Square w="100%" pos="relative" hoverStyle={{ opacity: 0 }}>
             <H3 ta="center">
               Разговорная речь
             </H3>
           </Square>
-          <Square  f={1} pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
+          <Square w="100%" pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
             <Paragraph ta="left" bc="$background" >
               Нет смысла учить язык, если потом не можешь на нем разговаривать. Уже с первых уроков нашего курса мы будем учиться строить диалоги - и не сухие, а так, как это делают носители.
             </Paragraph>
@@ -139,7 +143,8 @@ function AboutAutor({imageSource1}){
         </YStack>
       </YStack>
 
-      <YStack bc="$backgroundFocus" >
+      <YStack bc="$backgroundFocus" w="50%"
+        $gtSm={{ width: "100%" }}>
         <YStack ai="center">
           <Avatar size="$15" mt={85}>
             <Avatar.Image
