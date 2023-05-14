@@ -20,7 +20,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ tables }) => {
         {tables.map((table, index) => (
           <React.Fragment key={index}>
             <tr>
-              <th>{table.name}</th>
+              <td>{table.name}</td>
             </tr>
             {["row1", "row2", "row3", "row4"].map((rowKey) => (
               table[rowKey] && (

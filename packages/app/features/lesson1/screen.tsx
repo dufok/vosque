@@ -73,10 +73,8 @@ export function lesson1Screen() {
           <WelcomeBlock
             name={firstLesson?.name}
             description={content?.description}/>
-          <YStack ai="center" mt="$1" mb="$1" maw={800}>
             <VideoPlayer
               linkVideo={content?.video}/>
-          </YStack>
           <ImageCircle img={content?.image}/>
 
           {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
@@ -93,21 +91,23 @@ export function lesson1Screen() {
           {/* Обратите внимание: */}
 
           <SquareText text={content?.theoreticalBlock.attention.title}/>
-          <XStack fw="wrap">
-            <TextExampleBlock textExamples={atentionBlocks}/>
-            <LifeHackerBlock
-              lifehackimage={lifehack1.image}
-              lifehacktitle={lifehack1.title}
-              lifehackdescription1={lifehack1.description1}
-              lifehackcontent1_1text={lifehack1.content1[1].text}
-              lifehackcontent1_2text={lifehack1.content1[2].text}
-              lifehackcontent1_3text={lifehack1.content1[3].text}
-              lifehackdescription2={lifehack1.description2}
-              lifehackcontent2_1text={lifehack1.content2[1].text}
-              lifehackcontent2_2text={lifehack1.content2[2].text}
-              lifehackcontent2_3text={lifehack1.content2[3].text}
-            />
-          </XStack>
+          <YStack flex={0.7}>
+            <XStack fw="wrap">
+              <TextExampleBlock textExamples={atentionBlocks}/>
+              <LifeHackerBlock
+                lifehackimage={lifehack1.image}
+                lifehacktitle={lifehack1.title}
+                lifehackdescription1={lifehack1.description1}
+                lifehackcontent1_1text={lifehack1.content1[1].text}
+                lifehackcontent1_2text={lifehack1.content1[2].text}
+                lifehackcontent1_3text={lifehack1.content1[3].text}
+                lifehackdescription2={lifehack1.description2}
+                lifehackcontent2_1text={lifehack1.content2[1].text}
+                lifehackcontent2_2text={lifehack1.content2[2].text}
+                lifehackcontent2_3text={lifehack1.content2[3].text}
+              />
+            </XStack>
+          </YStack>
 
           {/* БЛОК УПРАЖНЕНИЙ */}
 
