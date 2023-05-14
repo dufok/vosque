@@ -44,7 +44,7 @@ export function lesson1Screen() {
   //part with types from file json full
   const content = firstLesson?.content as ContentLesson1;
   const letters = Object.values(content?.theoreticalBlock.complex.letters || {});
-  const atentionBlocks = Object.values(content?.theoreticalBlock.attention.AtentionBlocks || {});
+  const atentionBlocks = Object.values(content?.theoreticalBlock.attention || {});
   const exercises = Object.values(content?.exercisesBlock.training1.exercises || {});
   const linesAdditional = Object.values(content?.exercisesBlock.additional.materials.readingPhrase.linesAdditional || {});
   const exercises2 = Object.values(content?.exercisesBlock.training2.exercises2  || {});
@@ -73,8 +73,10 @@ export function lesson1Screen() {
           <WelcomeBlock
             name={firstLesson?.name}
             description={content?.description}/>
-          <VideoPlayer
-            linkVideo={content?.video}/>
+          <YStack ai="center">
+            <VideoPlayer
+              linkVideo={content?.video}/>
+          </YStack>
           <ImageCircle img={content?.image}/>
 
           {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
@@ -83,8 +85,10 @@ export function lesson1Screen() {
           <SquareText text={content?.theoreticalBlock.alfabet.header}/>
           <HeaderBlock header={content?.theoreticalBlock.alfabet.text}/>
           <SquareText text={content?.theoreticalBlock.complex.header}/>
-          <DescriptionBlock description={content?.theoreticalBlock.complex.description}/>
-          <ButtonSquereSheet letters={letters} />
+          <YStack ai="center">
+            <DescriptionBlock description={content?.theoreticalBlock.complex.description}/>
+            <ButtonSquereSheet letters={letters} />
+          </YStack>
 
           {/* Обратите внимание: */}
 
@@ -141,7 +145,7 @@ export function lesson1Screen() {
                 lifehackdescription2={[]}
                 lifehackcontent2_1text={[]}
                 lifehackcontent2_2text={[]}
-                lifehackcontent2_3text={[]}s
+                lifehackcontent2_3text={[]}
               />
             </XStack>
           </YStack>
