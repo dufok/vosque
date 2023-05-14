@@ -41,7 +41,7 @@ ForwardControl.propTypes = {
 
 export function VideoPlayer({linkVideo}) {
   return (
-    <YStack ai="center">
+    <YStack ai="center" maw={800}>
       <Player
         poster=""
         src={linkVideo}

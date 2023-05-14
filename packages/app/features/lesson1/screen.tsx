@@ -69,7 +69,7 @@ export function lesson1Screen() {
   return (
     <YStack>
       { isSignedIn && (
-        <YStack f={1} w="100%">
+        <YStack flex={1}>
           <WelcomeBlock
             name={firstLesson?.name}
             description={content?.description}/>
@@ -117,33 +117,34 @@ export function lesson1Screen() {
           <SquareText text={content?.exercisesBlock.additional.materials.readingPhrase.description}/>
           <DescriptionBlock description={content?.exercisesBlock.additional.materials.readingPhrase.text}/>
           <ExercisesBlockAudio exercises={linesAdditional}/>
-          <XStack fw="wrap" ai="baseline">
-          <LifeHackerBlock
-              lifehackimage={lifehack2.image}
-              lifehacktitle={lifehack2.title}
-              lifehackdescription1={lifehack2.description1}
-              lifehackcontent1_1text={[]}
-              lifehackcontent1_2text={[]}
-              lifehackcontent1_3text={[]}
-              lifehackdescription2={[]}
-              lifehackcontent2_1text={[]}
-              lifehackcontent2_2text={[]}
-              lifehackcontent2_3text={[]}
-            />
+          <YStack ai="center">
+            <XStack fw="wrap" jc="space-around" >
             <LifeHackerBlock
-              lifehackimage={lifehack3.image}
-              lifehacktitle={lifehack3.title}
-              lifehackdescription1={lifehack3.description1}
-              lifehackcontent1_1text={[]}
-              lifehackcontent1_2text={[]}
-              lifehackcontent1_3text={[]}
-              lifehackdescription2={[]}
-              lifehackcontent2_1text={[]}
-              lifehackcontent2_2text={[]}
-              lifehackcontent2_3text={[]}
-            />
-          </XStack>
-
+                lifehackimage={lifehack2.image}
+                lifehacktitle={lifehack2.title}
+                lifehackdescription1={lifehack2.description1}
+                lifehackcontent1_1text={[]}
+                lifehackcontent1_2text={[]}
+                lifehackcontent1_3text={[]}
+                lifehackdescription2={[]}
+                lifehackcontent2_1text={[]}
+                lifehackcontent2_2text={[]}
+                lifehackcontent2_3text={[]}
+              />
+              <LifeHackerBlock
+                lifehackimage={lifehack3.image}
+                lifehacktitle={lifehack3.title}
+                lifehackdescription1={lifehack3.description1}
+                lifehackcontent1_1text={[]}
+                lifehackcontent1_2text={[]}
+                lifehackcontent1_3text={[]}
+                lifehackdescription2={[]}
+                lifehackcontent2_1text={[]}
+                lifehackcontent2_2text={[]}
+                lifehackcontent2_3text={[]}s
+              />
+            </XStack>
+          </YStack>
           {/* БЛОК УДАРЕНИЕ */}
 
           <SquareText text={content?.exercisesBlock.accent.header}/>
@@ -161,7 +162,7 @@ export function lesson1Screen() {
           <DescriptionBlock description={content?.vocabulary.description}/>
           <WordToTranslateBlock words={contentVocabularys}/>
 
-          <NavigationBlock lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
+          <NavigationBlock lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 2"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
         </YStack>
       )}
         <SubMenu userpageLinkProps={userpageLinkProps}/>

@@ -196,13 +196,13 @@ function ReviewSection () {
             <XStack p="$5" fw="wrap">
                 <YStack space="$5" >
                   <Square br="$2" bc="$backgroundFocus"  m="$2" >
-                    <Paragraph  ta="right">“Мы приехали с нулевым знанием..." Альфия</Paragraph>
+                    <Paragraph  ta="right" p="$3" >“Мы приехали с нулевым знанием..." Альфия</Paragraph>
                   </Square>
                   <Square br="$2" bc="$backgroundFocus"   m="$2" >
-                    <Paragraph  ta="right">“Настя стала для меня третьим..."  Виталик</Paragraph>
+                    <Paragraph  ta="right" p="$3" >“Настя стала для меня третьим..."  Виталик</Paragraph>
                   </Square>
                   <Square  br="$2" bc="$backgroundFocus" m="$2" >
-                    <Paragraph ta="right">“Анастасия прекрасный учитель." Ольга</Paragraph>
+                    <Paragraph ta="right" p="$3" >“Анастасия прекрасный учитель." Ольга</Paragraph>
                   </Square>
                 </YStack>
                 {/*
