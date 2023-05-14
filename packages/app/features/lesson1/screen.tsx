@@ -44,7 +44,7 @@ export function lesson1Screen() {
   //part with types from file json full
   const content = firstLesson?.content as ContentLesson1;
   const letters = Object.values(content?.theoreticalBlock.complex.letters || {});
-  const atentionBlocks = Object.values(content?.theoreticalBlock.attention || {});
+  const atentionBlocks = Object.values(content?.theoreticalBlock.attention.atentionBlocks || {});
   const exercises = Object.values(content?.exercisesBlock.training1.exercises || {});
   const linesAdditional = Object.values(content?.exercisesBlock.additional.materials.readingPhrase.linesAdditional || {});
   const exercises2 = Object.values(content?.exercisesBlock.training2.exercises2  || {});
@@ -73,7 +73,7 @@ export function lesson1Screen() {
           <WelcomeBlock
             name={firstLesson?.name}
             description={content?.description}/>
-          <YStack ai="center">
+          <YStack ai="center"mt="$1" mb="$1">
             <VideoPlayer
               linkVideo={content?.video}/>
           </YStack>

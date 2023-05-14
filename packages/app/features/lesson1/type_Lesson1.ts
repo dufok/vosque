@@ -8,7 +8,7 @@ export type ContentLesson1 = {
       header: string;
       alfabet: { header: string; text: string; };
       complex: { header: string; description: string; letters: {  [key: string]: Letter }};
-      attention: { title: string; AtentionBlocks: { [key: string]: AtentionBlock }};
+      attention: { title: string; atentionBlocks: { [key: string]: AtentionBlock }};
     },
     exercisesBlock: {
       header: string;
@@ -94,7 +94,7 @@ export type ContentLesson1 = {
     description2: string;
     name3: string;
     letters: Record<string, Letter>;
-    AtentionBlocks: Record<string, AtentionBlock>;
+    atentionBlocks: Record<string, AtentionBlock>;
   };
 
   export type Exercise = {

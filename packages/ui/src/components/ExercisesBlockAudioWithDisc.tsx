@@ -23,7 +23,7 @@ interface ExercisesBlockAudioWithDiscProps {
             <H3 ta="left" >{description}</H3>
             <Paragraph ta="left" >{text}</Paragraph>
           </YStack>
-          <YStack ai="center">
+          <YStack ai="center" style={{flex: 1}}>
             <AudioPlayer src={audio}/>
           </YStack>
         </XStack>

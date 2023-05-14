@@ -26,16 +26,16 @@ export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples
             <YStack ml="$10">
               <XStack>
                 <YStack>
-                  <Paragraph ta="left" >{example1}</Paragraph>
-                  <Paragraph ta="left" >{example2}</Paragraph>
-                  <Paragraph ta="left" >{example3}</Paragraph>
-                  <Paragraph ta="left" >{example4}</Paragraph>
+                  <Paragraph ta="left" >{example1 || ""}</Paragraph>
+                  <Paragraph ta="left" >{example2 || ""}</Paragraph>
+                  <Paragraph ta="left" >{example3 || ""}</Paragraph>
+                  <Paragraph ta="left" >{example4 || ""}</Paragraph>
                 </YStack>
                 <YStack>
-                  <Paragraph ta="left" >{prononce1}</Paragraph>
-                  <Paragraph ta="left" >{prononce2}</Paragraph>
-                  <Paragraph ta="left" >{prononce3}</Paragraph>
-                  <Paragraph ta="left" >{prononce4}</Paragraph>
+                  <Paragraph ta="left" >{prononce1 || ""}</Paragraph>
+                  <Paragraph ta="left" >{prononce2 || ""}</Paragraph>
+                  <Paragraph ta="left" >{prononce3 || ""}</Paragraph>
+                  <Paragraph ta="left" >{prononce4 || ""}</Paragraph>
                 </YStack>
               </XStack>
             </YStack>
