@@ -69,7 +69,7 @@ export function lesson1Screen() {
   return (
     <YStack>
       { isSignedIn && (
-        <YStack>
+        <YStack f={1} w="100%">
           <WelcomeBlock
             name={firstLesson?.name}
             description={content?.description}/>
@@ -117,7 +117,7 @@ export function lesson1Screen() {
           <SquareText text={content?.exercisesBlock.additional.materials.readingPhrase.description}/>
           <DescriptionBlock description={content?.exercisesBlock.additional.materials.readingPhrase.text}/>
           <ExercisesBlockAudio exercises={linesAdditional}/>
-          <XStack fw="wrap" ai="stretch">
+          <XStack fw="wrap" ai="baseline">
           <LifeHackerBlock
               lifehackimage={lifehack2.image}
               lifehacktitle={lifehack2.title}

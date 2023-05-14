@@ -99,39 +99,39 @@ function AboutAutor({imageSource1}){
     <XStack flexWrap="wrap" >
 
       <YStack ai="center" jc="center" w="100%" $gtSm={{ width: "50%" }}>
-        <YStack p="$8" flex={0.3}>
-          <Square w="100%" pos="relative" hoverStyle={{ opacity: 0 }}>
+        <YStack p="$8" flex={0.3} ai="center" jc="center">
+          <Square w="100%" pos="relative" hoverStyle={{ opacity: 0 }} >
             <H3 ta="center">
               Разговорная речь
             </H3>
           </Square>
-          <Square w="100%" pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
+          <Square f={1} pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }} ai="stretch" animation="bouncy">
             <Paragraph ta="left" bc="$background" >
               Нет смысла учить язык, если потом не можешь на нем разговаривать. Уже с первых уроков нашего курса мы будем учиться строить диалоги - и не сухие, а так, как это делают носители.
             </Paragraph>
           </Square>
         </YStack >
 
-        <YStack p="$8" flex={0.3}>
-          <Square f={1} pos="relative" hoverStyle={{ opacity: 0 }}>        
+        <YStack p="$8" flex={0.3} ai="center" jc="center">
+          <Square w="100%" pos="relative" hoverStyle={{ opacity: 0 }}>        
             <H3 ta="center">
               Культурный контекст
             </H3>
           </Square>
-          <Square f={1}  pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
+          <Square f={1}  pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }} ai="stretch" animation="bouncy">
             <Paragraph ta="left" bc="$background">
               Все про Аргентину и не только - постоянные исторические и культурные отсылки помогут Вам лучше понять жителей Аргентины и быстрее влиться в среду.
             </Paragraph>
           </Square>
         </YStack>
 
-        <YStack f={1} p="$8" flex={0.3}>
-          <Square  pos="relative" hoverStyle={{ opacity: 0 }}>
+        <YStack p="$8" flex={0.3} ai="center" jc="center">
+          <Square  w="100%" pos="relative" hoverStyle={{ opacity: 0 }}>
             <H3 ta="center">
               Структура языка
             </H3>
           </Square>
-          <Square f={1}  pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }}>
+          <Square f={1}  pos="absolute" style={{ opacity: 0 }} hoverStyle={{ opacity: 1 }} ai="stretch" animation="bouncy">
             <Paragraph ta="left" bc="$background">
               Часто на курсах обещают разговорную речь, но не дают структуры. Этот метод подходит для детей, но голова взрослого человека работает иначе - весь материал будет структурирован в таблицах.
             </Paragraph>
@@ -193,17 +193,17 @@ function ReviewSection () {
     return(
         <YStack ai="center">
             <H2 tt="uppercase" ta="center">Отзывы</H2>
-            <XStack p="$6" fw="wrap">
-                <YStack space="$6" p="$6">
-                  <Button bc="$backgroundFocus" paddingHorizontal="$6" f={0.7}>
-                   “Мы приехали с нулевым знанием..." Альфия
-                  </Button>
-                  <Button bc="$backgroundFocus" paddingHorizontal="$6" f={0.7}>
-                    “Настя стала для меня третьим..." Виталик
-                  </Button>
-                  <Button bc="$backgroundFocus" paddingHorizontal="$6" f={0.7}>
-                     “Анастасия прекрасный учитель." Ольга
-                  </Button>
+            <XStack p="$5" fw="wrap">
+                <YStack space="$5" >
+                  <Square br="$2" bc="$backgroundFocus"  m="$2" >
+                    <Paragraph  ta="right">“Мы приехали с нулевым знанием..." Альфия</Paragraph>
+                  </Square>
+                  <Square br="$2" bc="$backgroundFocus"   m="$2" >
+                    <Paragraph  ta="right">“Настя стала для меня третьим..."  Виталик</Paragraph>
+                  </Square>
+                  <Square  br="$2" bc="$backgroundFocus" m="$2" >
+                    <Paragraph ta="right">“Анастасия прекрасный учитель." Ольга</Paragraph>
+                  </Square>
                 </YStack>
                 {/*
                 <YStack space="$6" p="$6">
