@@ -73,7 +73,7 @@ export function lesson1Screen() {
           <WelcomeBlock
             name={firstLesson?.name}
             description={content?.description}/>
-          <YStack ai="center"mt="$1" mb="$1">
+          <YStack ai="center" mt="$1" mb="$1" maw={800}>
             <VideoPlayer
               linkVideo={content?.video}/>
           </YStack>
