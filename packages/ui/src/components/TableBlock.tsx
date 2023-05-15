@@ -1,12 +1,12 @@
-import { Paragraph, YStack } from "tamagui";
+import { Paragraph, YStack, XStack } from "tamagui";
 import React from "react";
 
 export type Tables = {
   name: string;
-  row1: string;
-  row2: string;
-  row3: string;
-  row4: string;
+  row1?: string;
+  row2?: string;
+  row3?: string;
+  row4?: string;
 };
 
 interface TableBlockProps {
@@ -15,24 +15,21 @@ interface TableBlockProps {
 
 export const TableBlock: React.FC<TableBlockProps> = ({ tables }) => {
   return (
-    <table>
-      <tbody>
-        {tables.map((table, index) => (
-          <React.Fragment key={index}>
-            <tr>
-              <td>{table.name}</td>
-            </tr>
-            {["row1", "row2", "row3", "row4"].map((rowKey) => (
-              table[rowKey] && (
-                <tr key={rowKey}>
-                  <td>{table[rowKey]}</td>
+    <YStack m="$6">
+      <table style={{ border: "1px solid #0E171A", borderCollapse: "collapse" }}>
+          <tbody>
+              {["name", "row1", "row2", "row3", "row4"].map((rowKey, index) => (
+                <tr key={index}>
+                  {tables.map((table, index) => (
+                    table[rowKey] && (
+                      <td key={index} style={{ border: "1px solid #0E171A", padding: "10px" }}>{table[rowKey]}</td>
+                    )
+                  ))}
                 </tr>
-              )
-            ))}
-          </React.Fragment>
-        ))}
-      </tbody>
-    </table>
+              ))}
+          </tbody>
+      </table>
+    </YStack>
   );
 };
 

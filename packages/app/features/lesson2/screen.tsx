@@ -8,7 +8,6 @@ import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
-import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
 import { ContentLesson2 } from './type_Lesson2';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
 import { SquareText } from '@my/ui/src/components/SquareText';
@@ -76,91 +75,116 @@ export function lesson2Screen() {
   return (
     <YStack>
       { isSignedIn && (
-        <YStack>
-          <WelcomeBlock
-            name={SecondLesson?.name}
-            description={content?.description}/>
-          <VideoPlayer
-            linkVideo={content?.video}/>
-          <ImageCircle img={content?.image}/>
-          <HeaderBlock header={content?.header1}/>
-          <TableBlock tables={tables1}/>
-          <SquareText text={content?.squeretext1}/>
-          <ExercisesBlockText exercises={blockText1}/>
-          <SquareText text={content?.squeretext2}/>
-          <ExercisesBlockText exercises={blockText2}/>
-          <SquareText text={content?.squeretext3}/>
-          <HeaderBlock header={content?.header2}/>
-          <TableBlock tables={tables2}/>
-          <LifeHackerBlock
-              lifehackimage={content?.lifehack1.image}
-              lifehacktitle={content?.lifehack1.title}
-              lifehackdescription1={content?.lifehack1.description1}
-              lifehackcontent1_1text={content?.lifehack1.content1[1].text}
-              lifehackcontent1_2text={content?.lifehack1.content1[2].text}
-              lifehackcontent1_3text={content?.lifehack1.content1[3].text}
-              lifehackdescription2={content?.lifehack1.description2}
-              lifehackcontent2_1text={content?.lifehack1.content2[1].text}
-              lifehackcontent2_2text={content?.lifehack1.content2[2].text}
-              lifehackcontent2_3text={content?.lifehack1.content2[3].text}
-            />
-          <HeaderBlock header={content?.header3}/>
-          <TableBlock tables={tables3}/>
-          <LifeHackerBlock
-              lifehackimage={content?.lifehack2.image}
-              lifehacktitle={content?.lifehack2.title}
-              lifehackdescription1={content?.lifehack2.description1}
-              lifehackcontent1_1text={content?.lifehack2.content1[1].text}
-              lifehackcontent1_2text={content?.lifehack2.content1[2].text}
-              lifehackcontent1_3text={content?.lifehack2.content1[3].text}
-              lifehackdescription2={content?.lifehack2.description2}
-              lifehackcontent2_1text={content?.lifehack2.content2[1].text}
-              lifehackcontent2_2text={content?.lifehack2.content2[2].text}
-              lifehackcontent2_3text={content?.lifehack2.content2[3].text}
-            />
-          <LifeHackerBlock
-              lifehackimage={content?.lifehack3.image}
-              lifehacktitle={content?.lifehack3.title}
-              lifehackdescription1={content?.lifehack3.description1}
-              lifehackcontent1_1text={content?.lifehack3.content1[1].text}
-              lifehackcontent1_2text={content?.lifehack3.content1[2].text}
-              lifehackcontent1_3text={content?.lifehack3.content1[3].text}
-              lifehackdescription2={content?.lifehack3.description2}
-              lifehackcontent2_1text={content?.lifehack3.content2[1].text}
-              lifehackcontent2_2text={content?.lifehack3.content2[2].text}
-              lifehackcontent2_3text={content?.lifehack3.content2[3].text}
-            />
-          <HeaderBlock header={content?.header4}/>
-          <DescriptionBlock description={content?.description4}/>
-          <LangTest tests={tests1} example={example1}/>
-          <DescriptionBlock description={content?.description5}/>
-          <LangTest tests={tests2} example={example2}/>
-          <DescriptionBlock description={content?.description6}/>
-          <LangTest tests={tests3} example={example3}/>
-          <HeaderBlock header={content?.header5}/>
-          <ExercisesBlockText exercises={blockText3}/>
-          <WordToTranslateBlock words={wordToTranlateBlock1}/>
-          <SquareText text={content?.squeretext5}/>
-          <DescriptionBlock description={content?.description7}/>
-          <ExercisesBlockText exercises={blockText4}/>
-          <DescriptionBlock description={content?.description8}/>
-          <TableBlock tables={tables4}/>
-          <LifeHackerBlock
-              lifehackimage={content?.lifehack4.image}
-              lifehacktitle={content?.lifehack4.title}
-              lifehackdescription1={content?.lifehack4.description1}
-              lifehackcontent1_1text={content?.lifehack4.content1[1].text}
-              lifehackcontent1_2text={content?.lifehack4.content1[2].text}
-              lifehackcontent1_3text={content?.lifehack4.content1[3].text}
-              lifehackdescription2={content?.lifehack4.description2}
-              lifehackcontent2_1text={content?.lifehack4.content2[1].text}
-              lifehackcontent2_2text={content?.lifehack4.content2[2].text}
-              lifehackcontent2_3text={content?.lifehack4.content2[3].text}
-            />
-          <SquareText text={content?.squeretext8}/>
-          <ExercisesBlockText exercises={blockText8}/>
-          <NavigationBlock  lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 3"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
-        </YStack>
+       <YStack f={1}>
+
+       <YStack ai="center">
+           <WelcomeBlock
+             name={SecondLesson?.name}
+             description={content?.description}/>
+             <YStack  w="100%" $gtSm={{ width: "70%" }}>
+               <VideoPlayer linkVideo={content?.video}/>
+             </YStack>
+           <ImageCircle img={content?.image}/>
+         </YStack>
+
+       {/* Теоритический Блок */}
+
+       <HeaderBlock header={content?.header1}/>
+       <TableBlock tables={tables1}/>
+
+       {/* Важные Исключения */}
+
+       <SquareText text={content?.squeretext1}/>
+       <ExercisesBlockText exercises={blockText1}/>
+
+       {/*  Множественное число */}
+
+       <SquareText text={content?.squeretext2}/>
+       <ExercisesBlockText exercises={blockText2}/>
+       <SquareText text={content?.squeretext3}/>
+
+       {/*  Неопределенный Артикль */}
+
+       <HeaderBlock header={content?.header2}/>
+       <XStack fw="wrap">
+         <TableBlock tables={tables2}/>
+         <LifeHackerBlock
+             lifehackimage={content?.lifehack1.image}
+             lifehacktitle={content?.lifehack1.title}
+             lifehackdescription1={content?.lifehack1.description1}
+             lifehackcontent1_1text={content?.lifehack1.content1[1].text}
+             lifehackcontent1_2text={content?.lifehack1.content1[2].text}
+             lifehackcontent1_3text={content?.lifehack1.content1[3].text}
+             lifehackdescription2={content?.lifehack1.description2}
+             lifehackcontent2_1text={content?.lifehack1.content2[1].text}
+             lifehackcontent2_2text={content?.lifehack1.content2[2].text}
+             lifehackcontent2_3text={content?.lifehack1.content2[3].text}
+           />
+         </XStack>
+
+       {/* Определенный Артикль */}
+
+       <HeaderBlock header={content?.header3}/>
+       <TableBlock tables={tables3}/>
+       <YStack ai="center">
+         <XStack fw="wrap" jc="space-around" >
+           <LifeHackerBlock
+               lifehackimage={content?.lifehack2.image}
+               lifehacktitle={content?.lifehack2.title}
+               lifehackdescription1={content?.lifehack2.description1}
+               lifehackcontent1_1text={content?.lifehack2.content1[1].text}
+               lifehackcontent1_2text={content?.lifehack2.content1[2].text}
+               lifehackcontent1_3text={content?.lifehack2.content1[3].text}
+               lifehackdescription2={content?.lifehack2.description2}
+               lifehackcontent2_1text={content?.lifehack2.content2[1].text}
+               lifehackcontent2_2text={content?.lifehack2.content2[2].text}
+               lifehackcontent2_3text={content?.lifehack2.content2[3].text}
+             />
+           <LifeHackerBlock
+               lifehackimage={content?.lifehack3.image}
+               lifehacktitle={content?.lifehack3.title}
+               lifehackdescription1={content?.lifehack3.description1}
+               lifehackcontent1_1text={content?.lifehack3.content1[1].text}
+               lifehackcontent1_2text={content?.lifehack3.content1[2].text}
+               lifehackcontent1_3text={content?.lifehack3.content1[3].text}
+               lifehackdescription2={content?.lifehack3.description2}
+               lifehackcontent2_1text={content?.lifehack3.content2[1].text}
+               lifehackcontent2_2text={content?.lifehack3.content2[2].text}
+               lifehackcontent2_3text={content?.lifehack3.content2[3].text}
+             />
+         </XStack>
+       </YStack>
+       <HeaderBlock header={content?.header4}/>
+       <DescriptionBlock description={content?.description4}/>
+       <LangTest tests={tests1} example={example1}/>
+       <DescriptionBlock description={content?.description5}/>
+       <LangTest tests={tests2} example={example2}/>
+       <DescriptionBlock description={content?.description6}/>
+       <LangTest tests={tests3} example={example3}/>
+       <HeaderBlock header={content?.header5}/>
+       <ExercisesBlockText exercises={blockText3}/>
+       <WordToTranslateBlock words={wordToTranlateBlock1}/>
+       <SquareText text={content?.squeretext5}/>
+       <DescriptionBlock description={content?.description7}/>
+       <ExercisesBlockText exercises={blockText4}/>
+       <DescriptionBlock description={content?.description8}/>
+       <TableBlock tables={tables4}/>
+       <LifeHackerBlock
+           lifehackimage={content?.lifehack4.image}
+           lifehacktitle={content?.lifehack4.title}
+           lifehackdescription1={content?.lifehack4.description1}
+           lifehackcontent1_1text={content?.lifehack4.content1[1].text}
+           lifehackcontent1_2text={content?.lifehack4.content1[2].text}
+           lifehackcontent1_3text={content?.lifehack4.content1[3].text}
+           lifehackdescription2={content?.lifehack4.description2}
+           lifehackcontent2_1text={content?.lifehack4.content2[1].text}
+           lifehackcontent2_2text={content?.lifehack4.content2[2].text}
+           lifehackcontent2_3text={content?.lifehack4.content2[3].text}
+         />
+       <SquareText text={content?.squeretext8}/>
+       <ExercisesBlockText exercises={blockText8}/>
+       <NavigationBlock  lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 3"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
+       </YStack>
       )}
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>

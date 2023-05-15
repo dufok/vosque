@@ -1,5 +1,7 @@
-import { Paragraph, YStack, XStack, Input } from 'tamagui';
+import { Paragraph, YStack, XStack, Input, Square } from 'tamagui';
 import React, { useState, useEffect } from "react";
+import { ParagraphCustom } from "./CustomText"; 
+import { Carrot, XCircle } from '@tamagui/lucide-icons';
 
 export type Test = {
   question: string;
@@ -15,9 +17,12 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
   return (
     <YStack ai="flex-start" m="$6">
     {example && (
-      <XStack space={4}>
-        <Paragraph>{example.question}</Paragraph>
-        <Paragraph>{example.unswer.join(', ')}</Paragraph>
+      <XStack space={4} >
+        <ParagraphCustom text={example.question}/>
+        <YStack m="$1"/>
+        <YStack borderWidth="$0.5" br="$3" p="$1" paddingHorizontal="$4">
+        <ParagraphCustom text={example.unswer}/>
+        </YStack>
       </XStack>
       )}
       {tests && tests.map(({ question, unswer }, index) => {
@@ -37,17 +42,21 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
         };
 
         return (
-          <XStack key={index} ml="$6" mt="$6">
-            <Paragraph m="$2" >{question}</Paragraph>
-            <YStack>
-              <Input 
-                size="$3" 
-                m="$2"
-                placeholder={"Ваш ответ"}
-                onChangeText={handleAnswerChange}
-                style={{ borderColor: isCorrect === false ? 'red' : 'initial' }}
-              />
-              {isCorrect === false && <Paragraph color="red">Incorrect</Paragraph>}
+          <XStack key={index} ai="center" >
+            <Paragraph mr="$2" >{question}</Paragraph>
+            <YStack jc="center" f={1}>
+              <XStack fw="wrap">
+                <Input 
+                  size="$3" 
+                  m="$2"
+                  opacity={0.7}
+                  placeholder={"Ваш ответ ..."}
+                  onChangeText={handleAnswerChange}
+                  backgroundColor={isCorrect === true ? 'green' : 'initial'}
+                  borderColor={isCorrect === false ? 'red' : 'initial'}
+                  borderWidth={isCorrect === false ? '$1' : '$0.5'}
+                />
+              </XStack>
             </YStack>
           </XStack>
         );
