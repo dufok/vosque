@@ -4,16 +4,15 @@ import { Play } from '@tamagui/lucide-icons';
 
 export function AudioPlayer({src}) {
 
-  let audio = new Audio(src);
-
   const start = () => {
+    let audio = new Audio(src);
     audio.play();
   }
 
 
   return (
     <YStack m="$1" jc="center" ai="center">
-      <Button icon={Play} onPress={start} />
+      <Button icon={Play} onPress={start} boc={"$backgroundFocus"}/>
     </YStack>
   );
 } 

@@ -1,4 +1,4 @@
-import { Paragraph, YStack, XStack, Separator } from "tamagui";
+import { H4, Paragraph, YStack, XStack, Separator } from "tamagui";
 import React from "react";
 
 export function WordToTranslateBlock({ words }) {
@@ -13,30 +13,29 @@ export function WordToTranslateBlock({ words }) {
   const secondHalf = words.slice(midIndex);
 
   return (
-    <YStack m="$6" >
-      <XStack>
-        <YStack>
+    <YStack m="$6" f={1}>
+      <XStack fw="wrap" jc="space-around">
+        <YStack f={0.5} maw={300}>
           {firstHalf.map((word, index) => (
-            <YStack key={index}>
+            <YStack f={0.5} key={index} m="$2">
               <XStack>
-                <Paragraph ta="left">{word.text1}</Paragraph>
-                <Separator />
-                <Paragraph ta="right">{word.text2}</Paragraph>
+                <H4 ta="left">{word.text1}</H4>
+                <Separator m="$2" alignSelf="center"/>
+                <H4 ta="right">{word.text2}</H4>
               </XStack>
-              <Paragraph ta="center">{word.description ?? []}</Paragraph>
+              <Paragraph f={0.7} ta="center">{word.description ?? []}</Paragraph>
             </YStack>
           ))}
         </YStack>
-        <Separator vertical />
-        <YStack>
+        <YStack f={0.5} maw={300}>
           {secondHalf.map((word, index) => (
-            <YStack key={index}>
+            <YStack key={index} f={0.5} m="$2">
               <XStack>
-                <Paragraph ta="left">{word.text1}</Paragraph>
-                <Separator />
-                <Paragraph ta="right">{word.text2}</Paragraph>
+                <H4 ta="left">{word.text1}</H4>
+                <Separator m="$2" alignSelf="center"/>
+                <H4 ta="right">{word.text2}</H4>
               </XStack>
-              <Paragraph ta="center">{word.description ?? []}</Paragraph>
+              <Paragraph f={0.7} ta="center">{word.description ?? []}</Paragraph>
             </YStack>
           ))}
         </YStack>

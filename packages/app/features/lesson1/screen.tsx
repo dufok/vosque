@@ -69,105 +69,108 @@ export function lesson1Screen() {
   return (
     <YStack>
       { isSignedIn && (
-        <YStack flex={1}>
+        <YStack f={1}>
+        <YStack ai="center">
           <WelcomeBlock
             name={firstLesson?.name}
             description={content?.description}/>
-            <VideoPlayer
-              linkVideo={content?.video}/>
+            <YStack  w="100%" $gtSm={{ width: "70%" }}>
+              <VideoPlayer linkVideo={content?.video}/>
+            </YStack>
           <ImageCircle img={content?.image}/>
-
-          {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
-
-          <HeaderBlock header={content?.theoreticalBlock.header}/>
-          <SquareText text={content?.theoreticalBlock.alfabet.header}/>
-          <HeaderBlock header={content?.theoreticalBlock.alfabet.text}/>
-          <SquareText text={content?.theoreticalBlock.complex.header}/>
-          <YStack ai="center">
-            <DescriptionBlock description={content?.theoreticalBlock.complex.description}/>
-            <ButtonSquereSheet letters={letters} />
-          </YStack>
-
-          {/* Обратите внимание: */}
-
-          <SquareText text={content?.theoreticalBlock.attention.title}/>
-          <YStack flex={0.7}>
-            <XStack fw="wrap">
-              <TextExampleBlock textExamples={atentionBlocks}/>
-              <LifeHackerBlock
-                lifehackimage={lifehack1.image}
-                lifehacktitle={lifehack1.title}
-                lifehackdescription1={lifehack1.description1}
-                lifehackcontent1_1text={lifehack1.content1[1].text}
-                lifehackcontent1_2text={lifehack1.content1[2].text}
-                lifehackcontent1_3text={lifehack1.content1[3].text}
-                lifehackdescription2={lifehack1.description2}
-                lifehackcontent2_1text={lifehack1.content2[1].text}
-                lifehackcontent2_2text={lifehack1.content2[2].text}
-                lifehackcontent2_3text={lifehack1.content2[3].text}
-              />
-            </XStack>
-          </YStack>
-
-          {/* БЛОК УПРАЖНЕНИЙ */}
-
-          <HeaderBlock header={content?.exercisesBlock.header}/>
-          <SquareText text={content?.exercisesBlock.training1.header}/>
-          <ExercisesBlockAudioWithDisc exercises={exercises} />
-
-          {/* Дополнительные Материалы */}
-
-          <HeaderBlock header={content?.exercisesBlock.additional.header}/>
-          <SquareText text={content?.exercisesBlock.additional.materials.readingPhrase.description}/>
-          <DescriptionBlock description={content?.exercisesBlock.additional.materials.readingPhrase.text}/>
-          <ExercisesBlockAudio exercises={linesAdditional}/>
-          <YStack ai="center">
-            <XStack fw="wrap" jc="space-around" >
-            <LifeHackerBlock
-                lifehackimage={lifehack2.image}
-                lifehacktitle={lifehack2.title}
-                lifehackdescription1={lifehack2.description1}
-                lifehackcontent1_1text={[]}
-                lifehackcontent1_2text={[]}
-                lifehackcontent1_3text={[]}
-                lifehackdescription2={[]}
-                lifehackcontent2_1text={[]}
-                lifehackcontent2_2text={[]}
-                lifehackcontent2_3text={[]}
-              />
-              <LifeHackerBlock
-                lifehackimage={lifehack3.image}
-                lifehacktitle={lifehack3.title}
-                lifehackdescription1={lifehack3.description1}
-                lifehackcontent1_1text={[]}
-                lifehackcontent1_2text={[]}
-                lifehackcontent1_3text={[]}
-                lifehackdescription2={[]}
-                lifehackcontent2_1text={[]}
-                lifehackcontent2_2text={[]}
-                lifehackcontent2_3text={[]}
-              />
-            </XStack>
-          </YStack>
-          {/* БЛОК УДАРЕНИЕ */}
-
-          <SquareText text={content?.exercisesBlock.accent.header}/>
-          <ExercisesBlockText exercises={ContentAccents}/>
-
-          {/* БЛОК ТРЕНИРОВКА */}
-
-          <SquareText text={content?.exercisesBlock.training2.header}/>
-          <DescriptionBlock description={content?.exercisesBlock.training2.description}/>
-          <ExercisesBlockAudio exercises={exercises2}/>
-
-          {/* БЛОК  ЛЕКСИКИ */}
-
-          <SquareText text={content?.vocabulary.header}/>
-          <DescriptionBlock description={content?.vocabulary.description}/>
-          <WordToTranslateBlock words={contentVocabularys}/>
-
-          <NavigationBlock lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 2"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
         </YStack>
+
+        {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
+
+        <HeaderBlock header={content?.theoreticalBlock.header}/>
+        <SquareText text={content?.theoreticalBlock.alfabet.header}/>
+        <HeaderBlock header={content?.theoreticalBlock.alfabet.text}/>
+        <SquareText text={content?.theoreticalBlock.complex.header}/>
+        <YStack ai="center">
+          <DescriptionBlock description={content?.theoreticalBlock.complex.description}/>
+          <ButtonSquereSheet letters={letters} />
+        </YStack>
+
+        {/* Обратите внимание: */}
+
+        <SquareText text={content?.theoreticalBlock.attention.title}/>
+        <YStack>
+          <XStack fw="wrap">
+            <TextExampleBlock textExamples={atentionBlocks}/>
+            <LifeHackerBlock
+              lifehackimage={lifehack1.image}
+              lifehacktitle={lifehack1.title}
+              lifehackdescription1={lifehack1.description1}
+              lifehackcontent1_1text={lifehack1.content1[1].text}
+              lifehackcontent1_2text={lifehack1.content1[2].text}
+              lifehackcontent1_3text={lifehack1.content1[3].text}
+              lifehackdescription2={lifehack1.description2}
+              lifehackcontent2_1text={lifehack1.content2[1].text}
+              lifehackcontent2_2text={lifehack1.content2[2].text}
+              lifehackcontent2_3text={lifehack1.content2[3].text}
+            />
+          </XStack>
+        </YStack>
+
+        {/* БЛОК УПРАЖНЕНИЙ */}
+
+        <HeaderBlock header={content?.exercisesBlock.header}/>
+        <SquareText text={content?.exercisesBlock.training1.header}/>
+        <ExercisesBlockAudioWithDisc exercises={exercises} />
+
+        {/* Дополнительные Материалы */}
+
+        <HeaderBlock header={content?.exercisesBlock.additional.header}/>
+        <SquareText text={content?.exercisesBlock.additional.materials.readingPhrase.description}/>
+        <DescriptionBlock description={content?.exercisesBlock.additional.materials.readingPhrase.text}/>
+        <ExercisesBlockAudio exercises={linesAdditional}/>
+        <YStack ai="center">
+          <XStack fw="wrap" jc="space-around" >
+          <LifeHackerBlock
+              lifehackimage={lifehack2.image}
+              lifehacktitle={lifehack2.title}
+              lifehackdescription1={lifehack2.description1}
+              lifehackcontent1_1text={""}
+              lifehackcontent1_2text={""}
+              lifehackcontent1_3text={""}
+              lifehackdescription2={""}
+              lifehackcontent2_1text={""}
+              lifehackcontent2_2text={""}
+              lifehackcontent2_3text={""}
+            />
+            <LifeHackerBlock
+              lifehackimage={lifehack3.image}
+              lifehacktitle={lifehack3.title}
+              lifehackdescription1={lifehack3.description1}
+              lifehackcontent1_1text={""}
+              lifehackcontent1_2text={""}
+              lifehackcontent1_3text={""}
+              lifehackdescription2={""}
+              lifehackcontent2_1text={""}
+              lifehackcontent2_2text={""}
+              lifehackcontent2_3text={""}
+            />
+          </XStack>
+        </YStack>
+        {/* БЛОК УДАРЕНИЕ */}
+
+        <SquareText text={content?.exercisesBlock.accent.header}/>
+        <ExercisesBlockText exercises={ContentAccents}/>
+
+        {/* БЛОК ТРЕНИРОВКА */}
+
+        <SquareText text={content?.exercisesBlock.training2.header}/>
+        <DescriptionBlock description={content?.exercisesBlock.training2.description}/>
+        <ExercisesBlockAudio exercises={exercises2}/>
+
+        {/* БЛОК  ЛЕКСИКИ */}
+
+        <SquareText text={content?.vocabulary.header}/>
+        <DescriptionBlock description={content?.vocabulary.description}/>
+        <WordToTranslateBlock words={contentVocabularys}/>
+
+        <NavigationBlock lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 2"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
+      </YStack>
       )}
         <SubMenu userpageLinkProps={userpageLinkProps}/>
       </YStack>

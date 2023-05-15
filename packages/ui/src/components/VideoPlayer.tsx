@@ -41,7 +41,6 @@ ForwardControl.propTypes = {
 
 export function VideoPlayer({linkVideo}) {
   return (
-    <YStack>
       <Player
         poster=""
         src={linkVideo}
@@ -54,6 +53,5 @@ export function VideoPlayer({linkVideo}) {
           <ForwardControl seconds={30} order={3.3} />
         </ControlBar>
       </Player>
-    </YStack>
   );
-} 
+}

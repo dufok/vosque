@@ -159,7 +159,7 @@ export function lesson2Screen() {
             />
           <SquareText text={content?.squeretext8}/>
           <ExercisesBlockText exercises={blockText8}/>
-          <NavigationBlock lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
+          <NavigationBlock  lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 3"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
         </YStack>
       )}
       <SubMenu userpageLinkProps={userpageLinkProps}/>

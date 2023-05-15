@@ -8,16 +8,21 @@ function parseAndRenderText(text) {
     return null; // Or return a default value or throw an error, as appropriate for your use case
   }
   
-  const parts = text.split(/(~|\*)/);
+  const parts = text.split(/(\*\/|\/\*|~)/);
+  let isBlue = false;
+  let isStrikeThrough = false;
   return parts.map((part, index) => {
-    if (index % 2 === 1) {
-      if (part === '~') {
-        return null;
-      }
-    } else if (index % 4 === 1) {
+    if (part === '*/' || part === '/*') {
+      isBlue = !isBlue;
+      return null;
+    } else if (part === '~') {
+      isStrikeThrough = !isStrikeThrough;
+      return null;
+    }
+    if (isBlue) {
+      return <Paragraph col='$blue8Light' >{part}</Paragraph>;
+    } else if (isStrikeThrough) {
       return <span style={{ textDecoration: 'line-through' }}>{part}</span>;
-    } else if (index % 4 === 3) {
-      return <span style={{ color: 'blue' }}>{part}</span>;
     } else {
       return part;
     }

@@ -19,11 +19,11 @@ interface ExercisesBlockAudioWithDiscProps {
       <YStack>
       {exercises.map(({description, text, audio}, index) => (
         <XStack  key={index} style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-          <YStack m="$1 style={{flex: 1}}"> 
+          <YStack m="$1" style={{flex: 1}}> 
             <H3 ta="left" >{description}</H3>
             <Paragraph ta="left" >{text}</Paragraph>
           </YStack>
-          <YStack ai="center" style={{flex: 1}}>
+          <YStack ai="flex-start" jc="center">
             <AudioPlayer src={audio}/>
           </YStack>
         </XStack>
