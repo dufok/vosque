@@ -26,8 +26,8 @@ import { LangTest } from "@my/ui/src/components/LangTest1";
 export function lesson3Screen() {
   //hrefs
   const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson3"});
-  const lessonLinkPageDown = useLink({ href: "/lesson1"});
+  const lessonLinkPageUP = useLink({ href: "/lesson4"});
+  const lessonLinkPageDown = useLink({ href: "/lesson2"});
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();

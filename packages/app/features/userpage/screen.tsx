@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Adapt, YStack, XStack, H1, H3, H5, Paragraph, Button, Input, Image, Spinner, Avatar, Anchor, Stack } from "@my/ui";
+import { YStack, XStack, H3, H5, Paragraph, Button, Input, Image, Spinner, Avatar, Anchor, Stack } from "@my/ui";
 import { useLink } from "solito/link";
 import { Header } from "@my/ui/src/components/HeaderComp";
 import { trpc } from "../../utils/trpc";
@@ -8,14 +8,9 @@ import { SubMenu } from '@my/ui/src/components/SubMenu';
 
 export function userpageScreen() {
 
-  const signInLinkProps = useLink({ href: "/signin" });
-  const signUpLinkProps = useLink({ href: "/signup" });
   const userpageLinkProps = useLink({ href: "/userpage"});
 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-  
-  //part for lessons
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
 
   useEffect(() => {
     console.log(data);
@@ -41,7 +36,6 @@ export function userpageScreen() {
 
 function Welcome() {
 
-  const { signOut } = useAuth();
   const { data: currentUser } = trpc.user.current.useQuery();
   const isSignedIn = !!currentUser;
 
@@ -131,14 +125,14 @@ function Lessons() {
                     <XStack ai="center">
                       <Avatar circular size="$4"  backgroundColor="$backgroundFocus">
                         <Avatar.Image 
-                          src={contentLessons[index]?.image} scale="50%"
+                          src={contentLessons[index].image} scale="50%"
                         />
                         <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
                       </Avatar>
                       <YStack m="$2" f={1}>
                         <H5 key={lesson.id}>
                           <Anchor
-                            href={contentLessons[index]?.href}
+                            href={contentLessons[index].href}
                             target="_blank"
                           >{lesson.name}</Anchor></H5>
                         <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
@@ -155,17 +149,17 @@ function Lessons() {
                       <XStack ai="center">
                         <Avatar circular size="$4" backgroundColor="$backgroundFocus">
                           <Avatar.Image 
-                            src={contentLessons[index]?.image} scale="50%"
+                            src={contentLessons[index + Math.floor(userLessons.length/2)]?.image} scale="50%"
                           />
                           <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
                         </Avatar>
                         <YStack m="$2" f={1}>
                           <H5 key={lesson.id}>
                             <Anchor
-                              href={contentLessons[index]?.href}
+                              href={contentLessons[index + Math.floor(userLessons.length/2)]?.href}
                               target="_blank"
                             >{lesson.name}</Anchor></H5>
-                          <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
+                          <Paragraph ww="initial" key={lesson.id}>{contentLessons[index + Math.floor(userLessons.length/2)]?.description}</Paragraph>
                         </YStack>
                       </XStack>
                     </YStack>
@@ -183,7 +177,6 @@ function Lessons() {
 
 function Login() {
   const { signOut } = useAuth();
-  const { data: currentUser } = trpc.user.current.useQuery();
 
   const signInLinkProps = useLink({
     href: "/signin",
