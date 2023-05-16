@@ -19,9 +19,12 @@ import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ImageBackground } from "react-native"
 import React, { useState, useEffect } from 'react';
+import { trpc } from "../../utils/trpc";
 
 
 export function HomeScreen(props) {
+
+  /*
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -31,6 +34,7 @@ export function HomeScreen(props) {
 
     return () => clearTimeout(timer); // Clean up on component unmount
   }, []);
+  */
 
   const userpageLinkProps = useLink({ href: "/userpage"});
   const phasebookLinkProps = useLink({href: "/phrasebook"});
@@ -42,7 +46,7 @@ export function HomeScreen(props) {
   const imageSource3 = { uri: 'https://cdn.vosque.education/images/img-home-phrasebook.png?raw'};
 
 
-/*
+
   //block with errors from Author 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
@@ -58,7 +62,6 @@ export function HomeScreen(props) {
   if (isLoading) {
     return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
   }
-*/
 
   return (
     <YStack>
