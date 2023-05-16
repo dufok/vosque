@@ -1,7 +1,6 @@
 import { Paragraph, YStack, XStack, Input, Square } from 'tamagui';
 import React, { useState, useEffect } from "react";
 import { ParagraphCustom } from "./CustomText"; 
-import { Carrot, XCircle } from '@tamagui/lucide-icons';
 
 export type Test = {
   question: string;
@@ -17,11 +16,11 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
   return (
     <YStack ai="flex-start" m="$6">
     {example && (
-      <XStack space={4} >
-        <ParagraphCustom text={example.question}/>
+      <XStack space={4} fw="wrap">
+          <ParagraphCustom text={example.question}/>
         <YStack m="$1"/>
-        <YStack borderWidth="$0.5" br="$3" p="$1" paddingHorizontal="$4">
-        <ParagraphCustom text={example.unswer}/>
+        <YStack f={1} borderWidth="$0.5" br="$3" p="$1" paddingHorizontal="$4">
+          <ParagraphCustom text={example.unswer}/>
         </YStack>
       </XStack>
       )}
@@ -42,10 +41,9 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
         };
 
         return (
-          <XStack key={index} ai="center" >
+          <XStack fw="wrap" key={index} ai="center" >
             <Paragraph mr="$2" >{question}</Paragraph>
             <YStack jc="center" f={1}>
-              <XStack fw="wrap">
                 <Input 
                   size="$3" 
                   m="$2"
@@ -56,7 +54,6 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
                   borderColor={isCorrect === false ? 'red' : 'initial'}
                   borderWidth={isCorrect === false ? '$1' : '$0.5'}
                 />
-              </XStack>
             </YStack>
           </XStack>
         );

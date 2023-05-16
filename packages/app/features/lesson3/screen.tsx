@@ -1,29 +1,118 @@
-import { Paragraph, YStack, Button } from "@my/ui";
-import React from "react";
+import {
+  Paragraph,
+  YStack,
+  XStack,
+  Spinner,
+ } from "@my/ui";
+import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
+import React,{useEffect} from "react";
 
+
+import { ContentLesson3 } from './type_Lesson3';
+import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
+import { SquareText } from '@my/ui/src/components/SquareText';
+import { SubMenu } from "@my/ui/src/components/SubMenu";
+import { WelcomeBlock } from "@my/ui/src/components/WelcomeBlock";
+import { ImageCircle } from "@my/ui/src/components/ImageCircle";
+import { HeaderBlock } from "@my/ui/src/components/HeaderBlock";
+import { DescriptionBlock } from "@my/ui/src/components/DescriptionBlock";
+import { ExercisesBlockText } from "@my/ui/src/components/ExercisesBlockText";
+import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
+import { TableBlock } from "@my/ui/src/components/TableBlock";
+import { LangTest } from "@my/ui/src/components/LangTest1";
+
+//* CHANCHE testScreen *///
 export function lesson3Screen() {
-  const userpageLinkProps = useLink({
-    href: "/userpage",
-  });
-  const lesson1LinkProps = useLink({
-    href: "/lesson1",
-  });
+  //hrefs
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson3"});
+  const lessonLinkPageDown = useLink({ href: "/lesson1"});
+
+  //user check for lesson
+  const { data: currentUser } = trpc.user.current.useQuery();
+  const { data, isLoading, error } = trpc.entry.all.useQuery();
+  const isSignedIn = !!currentUser;
+
+  //lesson content
+  const { data: userLessons } = trpc.user.userLessons.useQuery();
+  const ThirdLesson = userLessons?.[2];
+  
+
+  //part with types from file json full
+  const content = ThirdLesson?.content as ContentLesson3;
+  const tables1 = Object.values(content?.table1 || {});
+  const blockText1 = Object.values(content?.blockText1 || {});
+  const blockText2 = Object.values(content?.blockText2 || {});
+  const tests1 = Object.values(content?.test1.testContent || {});
+  const example1 = content?.test1.example;
+
+
+  
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
+
+  if (isLoading) {
+      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
+  }
+
+  if (error) {
+    return <Paragraph>{error.message}</Paragraph>;
+  }
+
+  
+  // NEED TO BACK { isSignedIn && ( //
   return (
-    <YStack f={1} jc="center" ai="center" space>
-      <Paragraph ta="center" fow="800">
-        УРОК 3. Глаголы “быть”.
-      </Paragraph>
-      <YStack pt="$10" pb="$10" >
-        <Button f={1} {...lesson1LinkProps} theme={"gray"}>
-          Следующий урок
-        </Button>
+    <YStack>
+      { isSignedIn && (
+      <YStack f={1}>
+
+        <YStack ai="center">
+            <WelcomeBlock
+              name={ThirdLesson?.name}
+              description={content?.description}/>
+              <YStack  w="100%" $gtSm={{ width: "70%" }}>
+                <VideoPlayer linkVideo={content?.video}/>
+              </YStack>
+            <ImageCircle img={content?.image}/>
+          </YStack>
+
+        {/* Теоритический Блок */}
+
+        <HeaderBlock header={content?.header1}/>
+        <SquareText text={content?.squaretext1}/>
+        <TableBlock tables={tables1}/>
+
+        {/* Формы на “Usted” - “Ustedes”: */}
+
+        <HeaderBlock header={content?.header2}/>
+        <DescriptionBlock description={content?.description2}/>
+        <DescriptionBlock description={content?.description3}/>
+        <DescriptionBlock description={content?.description4}/>
+        <DescriptionBlock description={content?.description5}/>
+        <DescriptionBlock description={content?.description6}/>
+
+        {/*  Построение простого вопроса: */}
+
+        <SquareText text={content?.squaretext2}/>
+        <ExercisesBlockText exercises={blockText1}/>
+
+        {/*  ППостроение Отрицания: */}
+
+        <SquareText text={content?.squaretext3}/>
+        <ExercisesBlockText exercises={blockText2}/>
+
+        {/*  Блок Упражнений */}
+
+        <HeaderBlock header={content?.header3}/>
+        <SquareText text={content?.squaretext4}/>
+        <LangTest tests={tests1} example={example1}/>
+
+        <NavigationBlock  lessonLinkPageDOWNname={"Урок 2"} lessonLinkPageUPname={"Урок 4"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
+        </YStack>
+      )}
+        <SubMenu userpageLinkProps={userpageLinkProps}/>
       </YStack>
-      <YStack pt="$10" pb="$10" backgroundColor="$backgroundHover" >
-        <Button f={1} {...userpageLinkProps} theme={"gray"}>
-          ЛИЧНЫЙ КАБИНЕТ (ВОЙТИ/ЗАПИСАТЬСЯ)
-        </Button>
-      </YStack>
-    </YStack>
-  );
-} 
+    );
+  }

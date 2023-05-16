@@ -94,14 +94,14 @@ export function lesson2Screen() {
 
        {/* Важные Исключения */}
 
-       <SquareText text={content?.squeretext1}/>
+       <SquareText text={content?.squaretext1}/>
        <ExercisesBlockText exercises={blockText1}/>
 
        {/*  Множественное число */}
 
-       <SquareText text={content?.squeretext2}/>
+       <SquareText text={content?.squaretext2}/>
        <ExercisesBlockText exercises={blockText2}/>
-       <SquareText text={content?.squeretext3}/>
+       <SquareText text={content?.squaretext3}/>
 
        {/*  Неопределенный Артикль */}
 
@@ -164,7 +164,7 @@ export function lesson2Screen() {
        <HeaderBlock header={content?.header5}/>
        <ExercisesBlockText exercises={blockText3}/>
        <WordToTranslateBlock words={wordToTranlateBlock1}/>
-       <SquareText text={content?.squeretext5}/>
+       <SquareText text={content?.squaretext5}/>
        <DescriptionBlock description={content?.description7}/>
        <ExercisesBlockText exercises={blockText4}/>
        <DescriptionBlock description={content?.description8}/>
@@ -181,7 +181,7 @@ export function lesson2Screen() {
            lifehackcontent2_2text={content?.lifehack4.content2[2].text}
            lifehackcontent2_3text={content?.lifehack4.content2[3].text}
          />
-       <SquareText text={content?.squeretext8}/>
+       <SquareText text={content?.squaretext8}/>
        <ExercisesBlockText exercises={blockText8}/>
        <NavigationBlock  lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 3"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
        </YStack>
