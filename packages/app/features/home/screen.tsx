@@ -23,7 +23,7 @@ import React, { useState, useEffect } from 'react';
 import { trpc } from "../../utils/trpc";
 
 
-export function HomeScreen(props) {
+export function HomeScreen() {
 
   /*
   const [isLoading, setIsLoading] = useState(true);
