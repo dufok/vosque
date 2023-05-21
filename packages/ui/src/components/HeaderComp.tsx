@@ -12,8 +12,6 @@ export function Header() {
       tag="header"
       jc="space-between"
       backgroundColor="$background"
-      // @ts-ignore
-      // pos="fixed" 
       pos="absolute"
       top={0}
       left={0}
