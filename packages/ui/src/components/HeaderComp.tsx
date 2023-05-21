@@ -2,7 +2,7 @@ import React from 'react';
 import { Paragraph, XStack, Button, YStack, isClient } from 'tamagui';
 import { TextLink } from 'solito/link';
 
-export function Header({userpageLinkProps}) {
+export function Header() {
 
   return (
     <XStack
