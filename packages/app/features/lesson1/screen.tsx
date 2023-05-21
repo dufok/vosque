@@ -8,7 +8,7 @@ import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
-import { Header } from "@my/ui/src/components/HeaderComp";
+import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 
 import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
 import { ContentLesson1 } from './type_Lesson1';
@@ -70,7 +70,7 @@ export function lesson1Screen() {
 
   return (
     <YStack>
-      <Header />
+      <HeaderComp />
       { isSignedIn && (
         <YStack f={1}>
         <YStack ai="center">
