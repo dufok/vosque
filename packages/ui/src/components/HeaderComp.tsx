@@ -15,17 +15,16 @@ export function Header() {
       top={0}
       left={0}
       right={0}
-      bbc="$borderColor"
-      zi={50000}
+      zi={2}
       paddingVertical="$2"
       paddingHorizontal="$6"
       elevation={2}
       >
         <XStack space="$4" $sm={{display: "none"}} >
-          <TextLink prefetch={false} href="/phrasebook">
+          <TextLink  href="/phrasebook">
             <Paragraph >Разговорники</Paragraph>
           </TextLink>
-          <TextLink prefetch={false} href="/course">
+          <TextLink  href="/course">
             <Paragraph >Курсы</Paragraph>
           </TextLink>
         </XStack>
