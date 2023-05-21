@@ -41,7 +41,7 @@ export function HomeScreen(props) {
   const phasebookLinkProps = useLink({href: "/phrasebook"});
   const courseLinkProps = useLink({href: "/course"});
 
-  const imageSource = { uri: 'http://cdn.vosque.education/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw'};
+  const imageSource = { uri: 'https://cdn.vosque.education/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw'};
   const imageSource1 = { uri: 'https://cdn.vosque.education/images/avatar.png?raw'};
   const imageSource2 = { uri: 'https://cdn.vosque.education/images/img-home-course.png?raw'};
   const imageSource3 = { uri: 'https://cdn.vosque.education/images/img-home-phrasebook.png?raw'};

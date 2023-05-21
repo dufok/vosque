@@ -13,7 +13,8 @@ export function Header() {
       jc="space-between"
       backgroundColor="$background"
       // @ts-ignore
-      pos="fixed" 
+      // pos="fixed" 
+      pos="absolute"
       top={0}
       left={0}
       right={0}
