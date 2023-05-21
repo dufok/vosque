@@ -1,10 +1,8 @@
 import React from 'react';
-import { Paragraph, XStack, Button, YStack, isClient } from 'tamagui';    
-import { useLink } from "solito/link";
+import { Paragraph, XStack, Button, YStack, isClient } from 'tamagui';
 import { TextLink } from 'solito/link';
 
-export function Header() {
-  const userpageLinkProps = useLink({ href: "/userpage"});
+export function Header({userpageLinkProps}) {
 
   return (
     <XStack
@@ -12,7 +10,8 @@ export function Header() {
       tag="header"
       jc="space-between"
       backgroundColor="$background"
-      pos="absolute"
+      //@ts-ignore
+      pos="fixed"
       top={0}
       left={0}
       right={0}
@@ -33,7 +32,9 @@ export function Header() {
         <TextLink href="/">
           <img src="https://cdn.vosque.education/images/Logo.PNG?raw" alt="Vosque Logo" width="50" height="50" />
         </TextLink>
-        <Button color="$background" backgroundColor="$backgroundPress" {...userpageLinkProps} space="$4" >Регистрация</Button>
+        <TextLink href="/userpage">
+          <Button color="$background"  backgroundColor="$backgroundPress" space="$4" >Регистрация</Button>
+        </TextLink>
       </XStack>
       
   );
