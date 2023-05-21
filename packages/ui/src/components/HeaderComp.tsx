@@ -12,7 +12,7 @@ export function Header() {
       tag="header"
       jc="space-between"
       backgroundColor="$background"
-      pos="fixed"
+      style={{position: 'fixed'}}
       top={0}
       left={0}
       right={0}
