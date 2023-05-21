@@ -18,6 +18,7 @@ import { useLink } from "solito/link";
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ImageBackground } from "react-native"
+import { Header } from "@my/ui/src/components/HeaderComp";
 import React, { useState, useEffect } from 'react';
 import { trpc } from "../../utils/trpc";
 
@@ -53,9 +54,6 @@ export function HomeScreen(props) {
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
-  if (isLoading) {
-    return <Paragraph>Loading...</Paragraph>
-  }
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
@@ -65,6 +63,7 @@ export function HomeScreen(props) {
 
   return (
     <YStack>
+        <Header />
         <Welcome imageSource={imageSource} userpageLinkProps={userpageLinkProps} />
         <AboutAutor imageSource1={imageSource1}/>
         <AboutCourse courseLinkProps={courseLinkProps}/>

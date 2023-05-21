@@ -5,7 +5,7 @@ import { tokens } from '@tamagui/theme-base'
 const light = createTheme({
 
   background: '#FFFDEF', // default background light
-  backgroundHover: '#A8A161',
+  backgroundHover: '#76714A9E',
   backgroundPress: '#918a50',
   backgroundFocus: '#76714A9E',
   borderColor: '#83503C',
@@ -39,7 +39,7 @@ type BaseTheme = typeof light
 
 const dark: BaseTheme = {
   background: '#FFFDEF', // default background light
-  backgroundHover: '#A8A161',
+  backgroundHover: '#76714A9E',
   backgroundPress: '#918a50',
   backgroundFocus: '#76714A9E',
   borderColor: '#83503C',

@@ -30,7 +30,7 @@ export function courseScreen() {
   
   return (
     <YStack>
-      {/*<Header />*/}
+      <Header />
       <WelcomeCourse />
       <StructureCourse />
       <ProgramCourse />

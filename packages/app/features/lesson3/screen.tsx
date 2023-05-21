@@ -8,6 +8,7 @@ import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
+import { Header } from "@my/ui/src/components/HeaderComp";
 
 import { ContentLesson3 } from './type_Lesson3';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
@@ -61,10 +62,9 @@ export function lesson3Screen() {
     return <Paragraph>{error.message}</Paragraph>;
   }
 
-  
-  // NEED TO BACK { isSignedIn && ( //
   return (
     <YStack>
+      <Header />
       { isSignedIn && (
       <YStack f={1}>
 

@@ -26,6 +26,7 @@ export function userpageScreen() {
 
   return (
     <YStack>
+      <Header />
       <Welcome />
       <Login />
       <Lessons />
@@ -125,14 +126,14 @@ function Lessons() {
                     <XStack ai="center">
                       <Avatar circular size="$4"  backgroundColor="$backgroundFocus">
                         <Avatar.Image 
-                          src={contentLessons[index].image} scale="50%"
+                          src={contentLessons[index]?.image} scale="50%"
                         />
                         <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
                       </Avatar>
                       <YStack m="$2" f={1}>
                         <H5 key={lesson.id}>
                           <Anchor
-                            href={contentLessons[index].href}
+                            href={contentLessons[index]?.href}
                             target="_blank"
                           >{lesson.name}</Anchor></H5>
                         <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
