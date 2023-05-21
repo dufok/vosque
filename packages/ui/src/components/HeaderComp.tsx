@@ -12,7 +12,8 @@ export function Header() {
       tag="header"
       jc="space-between"
       backgroundColor="$background"
-      style={{position: 'fixed'}}
+      // @ts-ignore
+      pos="fixed" 
       top={0}
       left={0}
       right={0}
