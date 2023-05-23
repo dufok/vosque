@@ -1,8 +1,13 @@
 import React from 'react';
 import { Paragraph, XStack, Button, YStack, isClient } from 'tamagui';
 import { TextLink } from 'solito/link';
+import { trpc } from "../../utils/trpc";
+
 
 export function HeaderComp() {
+
+  const { data: currentUser } = trpc.user.current.useQuery();
+  const isSignedIn = !!currentUser;
 
   return (
     <XStack
@@ -33,7 +38,8 @@ export function HeaderComp() {
           <img src="https://cdn.vosque.education/images/Logo.PNG?raw" alt="Vosque Logo" width="50" height="50" />
         </TextLink>
         <TextLink prefetch={false} href="/userpage">
-          <Button color="$background"  backgroundColor="$backgroundPress" space="$4" >Регистрация</Button>
+          {isSignedIn && ( <Button color="$background"  backgroundColor="$backgroundPress" space="$4" > Личный Кабинет </Button> )}
+          {!isSignedIn && ( <Button color="$background"  backgroundColor="$backgroundPress" space="$4" >Регистрация</Button> )}
         </TextLink>
       </XStack>
       
