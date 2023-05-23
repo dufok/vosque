@@ -1,18 +1,29 @@
 import { YStack, Button } from "tamagui";
-import React from "react";
-import { Play } from '@tamagui/lucide-icons';
+import React, { useState } from "react";
+import { Play, Pause } from '@tamagui/lucide-icons';
 
 export function AudioPlayer({src}) {
 
-  const start = () => {
-    let audio = new Audio(src);
-    audio.play();
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [audio, setAudio] = useState(new Audio(src));
+
+  const togglePlay = () => {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
   }
+
 
 
   return (
     <YStack m="$1" jc="center" ai="center">
-      <Button icon={Play} onPress={start} boc={"$backgroundFocus"}/>
+      <Button
+        icon={isPlaying ? Pause : Play}
+        onPress={togglePlay}
+        boc={"$backgroundFocus"}/>
     </YStack>
   );
 } 
