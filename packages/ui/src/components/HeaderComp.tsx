@@ -7,14 +7,16 @@ export function HeaderComp() {
   return (
     <XStack
       ai="center"
-      tag="header"
+      //tag="header"
       jc="space-between"
       backgroundColor="$background"
       //@ts-ignore
+      pos="fixed"
       top={0}
       left={0}
       right={0}
       zi={50}
+      opacity={0.95}
       paddingVertical="$2"
       paddingHorizontal="$6"
       elevation={2}

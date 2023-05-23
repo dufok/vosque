@@ -31,7 +31,7 @@ function parseAndRenderText(text) {
 
 export const ParagraphCustom = ({ text }) => {
   return (
-    <Paragraph ta="center">
+    <Paragraph ta="left">
       {parseAndRenderText(text)}
     </Paragraph>
   );
@@ -39,7 +39,7 @@ export const ParagraphCustom = ({ text }) => {
 
 export const H1Custom = ({ text }) => {
   return (
-    <H1 ta="center">
+    <H1 ta="left">
       {parseAndRenderText(text)}
     </H1>
   );
@@ -47,7 +47,7 @@ export const H1Custom = ({ text }) => {
 
 export const H2Custom = ({ text }) => {
   return (
-    <H2 ta="center">
+    <H2 ta="left">
       {parseAndRenderText(text)}
     </H2>
   );
@@ -55,7 +55,7 @@ export const H2Custom = ({ text }) => {
 
 export const H3Custom = ({ text }) => {
   return (
-    <H3 ta="center">
+    <H3 ta="left">
       {parseAndRenderText(text)}
     </H3>
   );

@@ -81,7 +81,6 @@ export function lesson1Screen() {
               <VideoPlayer linkVideo={content?.video}/>
             </YStack>
           <ImageCircle img={content?.image}/>
-        </YStack>
 
         {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
 
@@ -171,7 +170,7 @@ export function lesson1Screen() {
         <SquareText text={content?.vocabulary.header}/>
         <DescriptionBlock description={content?.vocabulary.description}/>
         <WordToTranslateBlock words={contentVocabularys}/>
-
+      </YStack>
         <NavigationBlock lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 2"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>
       )}

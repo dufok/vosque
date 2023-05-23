@@ -13,7 +13,7 @@ export function WordToTranslateBlock({ words }) {
   const secondHalf = words.slice(midIndex);
 
   return (
-    <YStack m="$6" f={1}>
+    <YStack m="$6" f={1} w="100%">
       <XStack fw="wrap" jc="space-around">
         <YStack f={0.5} maw={400}>
           {firstHalf.map((word, index) => (

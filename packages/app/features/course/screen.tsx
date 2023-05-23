@@ -16,7 +16,7 @@ import {
             } from "@my/ui";
 import { useLink } from "solito/link";
 import React from "react";
-import { Header } from '@my/ui/src/components/HeaderComp';
+import { HeaderComp } from '@my/ui/src/components/HeaderComp';
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ButtonPay } from "@my/ui/src/components/ButtonPay";
@@ -30,7 +30,7 @@ export function courseScreen() {
   
   return (
     <YStack>
-      <Header />
+      <HeaderComp />
       <WelcomeCourse />
       <StructureCourse />
       <ProgramCourse />

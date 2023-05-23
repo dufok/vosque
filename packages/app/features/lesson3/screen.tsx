@@ -8,7 +8,7 @@ import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
-import { Header } from "@my/ui/src/components/HeaderComp";
+import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 
 import { ContentLesson3 } from './type_Lesson3';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
@@ -64,10 +64,9 @@ export function lesson3Screen() {
 
   return (
     <YStack>
-      <Header />
+      <HeaderComp />
       { isSignedIn && (
       <YStack f={1}>
-
         <YStack ai="center">
             <WelcomeBlock
               name={ThirdLesson?.name}
@@ -76,7 +75,6 @@ export function lesson3Screen() {
                 <VideoPlayer linkVideo={content?.video}/>
               </YStack>
             <ImageCircle img={content?.image}/>
-          </YStack>
 
         {/* Теоритический Блок */}
 
@@ -108,9 +106,9 @@ export function lesson3Screen() {
         <HeaderBlock header={content?.header3}/>
         <SquareText text={content?.squaretext4}/>
         <LangTest tests={tests1} example={example1}/>
-
+      </YStack> 
         <NavigationBlock  lessonLinkPageDOWNname={"Урок 2"} lessonLinkPageUPname={"Урок 4"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
-        </YStack>
+      </YStack>
       )}
         <SubMenu userpageLinkProps={userpageLinkProps}/>
       </YStack>

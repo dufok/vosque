@@ -18,7 +18,7 @@ import { useLink } from "solito/link";
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ImageBackground } from "react-native"
-import { Header } from "@my/ui/src/components/HeaderComp";
+import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import React, { useState, useEffect } from 'react';
 import { trpc } from "../../utils/trpc";
 
@@ -63,7 +63,7 @@ export function HomeScreen() {
 
   return (
     <YStack>
-        <Header />
+        <HeaderComp />
         <Welcome imageSource={imageSource} userpageLinkProps={userpageLinkProps} />
         <AboutAutor imageSource1={imageSource1}/>
         <AboutCourse courseLinkProps={courseLinkProps}/>
