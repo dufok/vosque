@@ -73,7 +73,7 @@ export function lesson1Screen() {
       <HeaderComp />
       { isSignedIn && (
         <YStack f={1}>
-        <YStack ai="center">
+        <YStack ai="center" mt="$10">
           <WelcomeBlock
             name={firstLesson?.name}
             description={content?.description}/>

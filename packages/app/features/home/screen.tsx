@@ -79,7 +79,7 @@ function Welcome({ imageSource, userpageLinkProps }){
   return(
     <YStack>
         <ImageBackground source={imageSource} style={{ flex: 1, width: '100%', height: '100%' }}>
-          <YStack space="$4" ai="center" h={600}>
+          <YStack space="$4" ai="center" h={600} mt="$10">
               <H1 mt="$15" ta="center" mb="$5" col="$background">
                 Курсы аргентинского<br/>испанского языка
               </H1>

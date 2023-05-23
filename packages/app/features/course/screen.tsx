@@ -29,7 +29,7 @@ export function courseScreen() {
   
   
   return (
-    <YStack>
+    <YStack mt="$10">
       <HeaderComp />
       <WelcomeCourse />
       <StructureCourse />
