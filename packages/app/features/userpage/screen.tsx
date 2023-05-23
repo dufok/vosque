@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { YStack, XStack, H3, H5, Paragraph, Button, Input, Image, Spinner, Avatar, Anchor, Stack } from "@my/ui";
 import { useLink } from "solito/link";
-import { Header } from "@my/ui/src/components/HeaderComp";
+import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { trpc } from "../../utils/trpc";
 import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
 import { SubMenu } from '@my/ui/src/components/SubMenu';
@@ -26,7 +26,7 @@ export function userpageScreen() {
 
   return (
     <YStack>
-      <Header />
+      <HeaderComp />
       <Welcome />
       <Login />
       <Lessons />
@@ -94,6 +94,11 @@ function Welcome() {
           </XStack>
         </YStack>
         )}
+        {!isSignedIn && (
+          <YStack>
+            <Paragraph mb={20} ta="center" col="$background">!!! Пройдите регистрацию !!! </Paragraph>
+          </YStack>
+        )}
     </YStack>
   );
 }
@@ -104,6 +109,7 @@ function Lessons() {
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
+  const isLessons = !!userLessons;
 
   type ContentLesson = {
     image: string;
@@ -113,11 +119,14 @@ function Lessons() {
 
   const contentLessons = userLessons?.map((lesson) => lesson.content) as ContentLesson[];
 
+  const courseLinkProps = useLink({href: "/course"});
+
   return (
+    
     <YStack>
       {isSignedIn && (
         <YStack pb="$6" pt="$6" ai="center" f={1}>
-        <Paragraph pb="$4" ta="center">Список Уроков</Paragraph>
+        <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
         <Stack p="$2" fd="column" $gtSm={{ fd: "row", fw: "wrap" }}>
             <YStack jc="flex-start" m="$1">
               {userLessons?.slice(0, userLessons.length/2)?.map((lesson, index) =>
@@ -169,6 +178,16 @@ function Lessons() {
             </YStack>
         </Stack>
       </YStack>
+      )};
+      {!isLessons && ( 
+        <YStack>
+          <YStack pb="$6" pt="$6" ai="center" f={1}>
+            <Paragraph pb="$4" ta="center" > Спасибо за Регистрацию ! Посмотрите наши курсы и выберите программу  </Paragraph>
+            <Button color="$background" bc="$backgroundFocus" {...courseLinkProps}>
+              Базовый курс аргентинского испанского
+            </Button>
+          </YStack>
+        </YStack>
       )}
     </YStack>
   );

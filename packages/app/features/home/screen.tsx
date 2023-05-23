@@ -179,7 +179,7 @@ function AboutCourse ({courseLinkProps}) {
             <Paragraph ai="center" mt={40} >Для вас, чтобы выучить родной<br/>испанский язык наилучшим образом</Paragraph>
             <XStack mt={53} jc={"center"} fw="wrap">
               <YStack p="$5">
-                <Button bc="$backgroundFocus" {...courseLinkProps}>
+                <Button color="$background" bc="$backgroundFocus" {...courseLinkProps}>
                     Базовый курс аргентинского испанского
                 </Button>
               </YStack> 
