@@ -41,7 +41,7 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
         };
 
         return (
-          <XStack fw="wrap" key={index} ai="center" >
+          <XStack fw="wrap" key={index} ai="flex-start" >
             <Paragraph mr="$2" >{question}</Paragraph>
             <YStack jc="center" f={1}>
                 <Input 
