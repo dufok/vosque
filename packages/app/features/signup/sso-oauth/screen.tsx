@@ -5,6 +5,7 @@ import { createParam } from "solito";
 import { OAuthStrategy } from "@clerk/types";
 import { useRouter } from "solito/router";
 import { trpc } from "app/utils/trpc";
+import '@my/ui/src/styles.css'; // import css
 
 const { useParam } = createParam<{ strategy: OAuthStrategy }>();
 

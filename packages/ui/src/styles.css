@@ -1,5 +1,8 @@
 @font-face {
-    font-family: 'VosqueStyle';
-    src: url('./fonts/Montserrat-Bold.ttf') format('truetype');
+    font-family: 'VosqueStyleH';
+    src: url('./fonts/Montserrat-Regular.ttf') format('truetype');
   }
-  
+@font-face {
+  font-family: 'VosqueStyleB';
+  src: url('./fonts/NotoSans-Light.ttf') format('truetype');
+}

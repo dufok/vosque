@@ -5,6 +5,7 @@ import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { trpc } from "../../utils/trpc";
 import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
 import { SubMenu } from '@my/ui/src/components/SubMenu';
+import '@my/ui/src/styles.css'; // import css
 
 export function userpageScreen() {
 

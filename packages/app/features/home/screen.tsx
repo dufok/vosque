@@ -3,6 +3,7 @@ import {
   H1,
   H2,
   H3,
+  H4,
   H5,
   Paragraph,
   Separator,
@@ -14,6 +15,7 @@ import {
   Image,
   Circle
 } from "@my/ui";
+import '@my/ui/src/styles.css'; // import css
 import { useLink } from "solito/link";
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
@@ -154,10 +156,10 @@ function AboutAutor({imageSource1}){
             />
             <Avatar.Fallback backgroundColor="$backgroundFocus" />
           </Avatar>
-          <H1 ta="center" col="$background">Анастасия Лукьянова</H1>
+          <H2 mt="$5" ta="center" col="$background">Анастасия Лукьянова</H2>
           <YStack>
             <YStack/>
-              <Paragraph ta="left" col="$background" p="$8">
+              <Paragraph ta="left" col="$background" paddingHorizontal="$8" paddingBottom="$8" mt="$2">
                 Я - билингв, носитель русского и испанских языков. Родившись в Эквадоре, в 5 лет я переехала в Россию, в 16 поступила в МГУ на филологический факультет, в 19 отправилась на стажировку в Мексику, а в 23, закончив университет с красным дипломом по специальности "Преподаватель и переводчик испанского языка", переехала в Аргентину. Уже 10 лет я преподаю язык и рада делиться своими знаниями и опытом.
               </Paragraph>
           </YStack>
