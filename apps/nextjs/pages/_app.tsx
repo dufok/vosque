@@ -1,6 +1,7 @@
 import "@tamagui/core/reset.css";
 import "@tamagui/font-inter/css/400.css";
 import "@tamagui/font-inter/css/700.css";
+import '@my/ui/src/styles.css'; // import css
 
 import { NextThemeProvider, useRootTheme } from "@tamagui/next-theme";
 import { Provider } from "app/provider";

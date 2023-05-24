@@ -51,60 +51,47 @@ const bodyFont = createInterFont(
   }
 )
 
-const headingViosqueFont = createFont({
+const headingVosqueFont = createFont({
   family: 'VosqueStyleH',
   size: {
-    1: 40,
-    2: 14,
-    3: 16,
-    4: 18,
-    5: 20,
-    6: 24,
+    6: 15,
   },
   lineHeight: {
-    1: 45,
-    2: 40,
-    3: 35,
-    4: 30,
-    5: 25,
     6: 20,
   },
   weight: {
-    1: '700',
-    2: '700',
-    3: '700',
-    4: '700',
-    5: '700',
     6: '700',
   },
   letterSpacing: {
-    1: -0.5,
-    2: 2,
-    3: 2,
-    4: 2,
-    5: 2,
-    6: 1
+    6: 1,
   },
   face: {
     700: { normal: 'Montserrat-Bold' },
   },
-})
+});
 
 const bodyVosqueFont = createFont({
   family: 'VosqueStyleB',
+  sizeSize: (size) => Math.round(size * 1.1),
+  sizeLineHeight: (size) => Math.round(size * 1.1 + (size > 20 ? 10 : 10)),
   size: {
     1: 40,
-  },
-  weight: {
-    1: '400',
   },
   lineHeight: {
     1: 45,
   },
+  weight: {
+    1: '400',
+  },
   letterSpacing: {
     1: -0.5,
   },
-})
+  face: {
+    400: { normal: 'NotoSans-Medium' },
+  },
+});
+
+
 
 
 
@@ -115,7 +102,7 @@ export const config = createTamagui({
   themeClassNameOnRoot: true,
   shorthands,
   fonts: {
-    heading: headingViosqueFont,
+    heading: headingVosqueFont,
     body: bodyVosqueFont,
   },
   themes,

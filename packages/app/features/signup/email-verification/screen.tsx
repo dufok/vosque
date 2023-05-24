@@ -4,7 +4,6 @@ import { Button, Input, YStack } from "@my/ui";
 import { useAuth, useSignUp } from "app/utils/clerk";
 import { useRouter } from "solito/router";
 import { trpc } from "app/utils/trpc";
-import '@my/ui/src/styles.css'; // import css
 
 export function EmailVerificationScreen() {
   const { push } = useRouter();

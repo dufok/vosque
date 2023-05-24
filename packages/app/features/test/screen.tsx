@@ -3,7 +3,6 @@ import {
  } from "@my/ui";
 
 import React,{useEffect} from "react";
-import '@my/ui/src/styles.css'; // import css
 
 
   export function testScreen() {

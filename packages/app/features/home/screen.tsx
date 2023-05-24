@@ -15,7 +15,8 @@ import {
   Image,
   Circle
 } from "@my/ui";
-import '@my/ui/src/styles.css'; // import css
+
+
 import { useLink } from "solito/link";
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";

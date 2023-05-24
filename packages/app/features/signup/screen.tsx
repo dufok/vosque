@@ -3,7 +3,6 @@ import { useSignUp } from "app/utils/clerk";
 import { OAuthStrategy } from "@clerk/types";
 import { useRouter } from "solito/router";
 import { SignUpSignInComponent } from "@my/ui/src/components/SignUpSignIn";
-import '@my/ui/src/styles.css'; // import css
 
 export function SignUpScreen() {
   const { push } = useRouter();

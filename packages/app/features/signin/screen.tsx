@@ -4,7 +4,6 @@ import { OAuthStrategy } from "@clerk/types";
 import { useRouter } from "solito/router";
 import { SignUpSignInComponent } from "@my/ui/src/components/SignUpSignIn";
 import { handleOAuthSignIn } from "app/utils/auth";
-import '@my/ui/src/styles.css'; // import css
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return ""; // browser should use relative url

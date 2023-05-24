@@ -7,7 +7,6 @@ import {
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect} from "react";
-import '@my/ui/src/styles.css'; // import css
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 
