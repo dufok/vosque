@@ -4,6 +4,8 @@ import { shorthands } from '@tamagui/shorthands'
 import { tokens } from '@tamagui/theme-base'
 import { createMedia } from '@tamagui/react-native-media-driver'
 import { themes } from './mytheme'
+import './styles.css'
+
 
 import { animations } from './animations'
 
@@ -50,22 +52,23 @@ const bodyFont = createInterFont(
     sizeLineHeight: (size) => Math.round(size * 1.1 + (size > 20 ? 10 : 10)),
   }
 )
-
-const headingFont1 = createInterFont({
+const headingViosqueFont = createFont({
+  family: 'VosqueStyle',
   size: {
-    6: 15,
+    1: 12,
+    2: 14,
+    3: 16,
+    4: 18,
+    5: 20,
+    6: 24,
   },
-  transform: {
-    6: 'uppercase',
-    7: 'none',
+  lineHeight: {
+    1: 16,
+    6: 20,
   },
   weight: {
+    1: '400',
     6: '400',
-    7: '700',
-  },
-  color: {
-    6: '$colorFocus',
-    7: '$color',
   },
   letterSpacing: {
     5: 2,
@@ -79,7 +82,7 @@ const headingFont1 = createInterFont({
     15: -6,
   },
   face: {
-    700: { normal: 'Montserrat' },
+    700: { normal: 'Montserrat-Bold' },
   },
 })
 
@@ -92,7 +95,7 @@ export const config = createTamagui({
   themeClassNameOnRoot: true,
   shorthands,
   fonts: {
-    heading: headingFont,
+    heading: headingViosqueFont,
     body: bodyFont,
   },
   themes,
