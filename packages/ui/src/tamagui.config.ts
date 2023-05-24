@@ -75,21 +75,42 @@ const bodyVosqueFont = createFont({
   sizeSize: (size) => Math.round(size * 1.1),
   sizeLineHeight: (size) => Math.round(size * 1.1 + (size > 20 ? 10 : 10)),
   size: {
-    1: 40,
+    1: 16,
+    2: 14,
+    3: 12,
+    4: 10,
+    5: 8,
+    6: 6,
   },
   lineHeight: {
-    1: 45,
+    1: 18,
+    2: 16,
+    3: 14,
+    4: 12,
+    5: 10,
+    6: 8,
   },
   weight: {
     1: '400',
+    2: '400',
+    3: '400',
+    4: '400',
+    5: '400',
+    6: '400',
   },
   letterSpacing: {
     1: -0.5,
+    2: -0.5,
+    3: -0.5,
+    4: -0.5,
+    5: -0.5,
+    6: -0.5,
   },
   face: {
     400: { normal: 'NotoSans-Medium' },
   },
 });
+
 
 
 

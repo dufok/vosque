@@ -21,6 +21,7 @@ export function SSOOAuthScreen() {
     await createUserMutation.mutate({
       id: userId,
       email: emailAddress,
+      userName: "No Name",
     });
   };
 
