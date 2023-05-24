@@ -25,14 +25,12 @@ import { useToastController } from '@tamagui/toast';
 
 
 export function ButtonPay(props: {
-  title: string
   description: string
   course: string
   coupon: string
   pricerub: number
   priceusdt: number
   size: SizeTokens
-  backgroundColor: string
 }){
   //this is for switch 
   const id = `switch-${props.size.toString().slice(1)}`
@@ -98,7 +96,14 @@ export function ButtonPay(props: {
   return (
     <Dialog modal>
       <Dialog.Trigger asChild>
-       <Button als="center" bc={props.backgroundColor}> {props.title} </Button>
+       <Button
+        backgroundColor="$backgroundPress"
+        elevation="$0.5"
+        br="$2"
+        bw="$1"
+        boc="$backgroundPress" h={80} w={270}>
+        <Paragraph color="$background" ta="center">
+          Тариф <br/> Online </Paragraph></Button>
       </Dialog.Trigger>
 
       <Adapt when="sm" platform="touch">
@@ -135,7 +140,7 @@ export function ButtonPay(props: {
           exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
           space
         >
-          <Dialog.Title>{props.title}</Dialog.Title>
+          <Dialog.Title>Тариф Online</Dialog.Title>
           <Dialog.Description>
             {props.description}
           </Dialog.Description>
@@ -200,7 +205,9 @@ export function ButtonPay(props: {
               {!isSignedIn && (
                 <YStack ai="center" space="$2">
                   <H3>Для покупки курса необходимо авторизоваться</H3>
-                  <Button size={props.size} {...userpageLinkProps}>Авторизоваться</Button>
+                  <Button {...userpageLinkProps} elevation="$0.5" br="$2" bw="$1" boc="$backgroundPress" >
+                    <Paragraph ta="center" color="$backgroundPress">Авторизоваться</Paragraph>
+                  </Button>
                 </YStack>
               )}
               

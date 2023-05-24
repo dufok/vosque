@@ -1,16 +1,14 @@
 import {
-  Paragraph,
-  YStack,
-  XStack,
-  Spinner,
+  Button, XStack, YStack
  } from "@my/ui";
-import { useLink } from "solito/link";
+
 import React,{useEffect} from "react";
 
-  export function testScreen() {
 
+  export function testScreen() {
+    
   return (
-    <YStack>
-      </YStack>
-    );
+        <YStack space alignItems="center">
+        </YStack>
+    )
   }

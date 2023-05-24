@@ -65,7 +65,7 @@ function Welcome() {
   const lessonCount = userLessons ? userLessons.length : 0;
 
   return (
-    <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6">
+    <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6" mt="$10">
             <YStack space="$4" ai="center" p="$4">
               <H3 col="$background">Привет {currentUser?.userName} !</H3>
             </YStack>
@@ -95,7 +95,7 @@ function Welcome() {
         </YStack>
         )}
         {!isSignedIn && (
-          <YStack>
+          <YStack mt="$5">
             <Paragraph mb={20} ta="center" col="$background">!!! Пройдите регистрацию !!! </Paragraph>
           </YStack>
         )}
@@ -178,17 +178,17 @@ function Lessons() {
             </YStack>
         </Stack>
       </YStack>
-      )};
-      {!isLessons && ( 
-        <YStack>
-          <YStack pb="$6" pt="$6" ai="center" f={1}>
-            <Paragraph pb="$4" ta="center" > Спасибо за Регистрацию ! Посмотрите наши курсы и выберите программу  </Paragraph>
-            <Button color="$background" bc="$backgroundFocus" {...courseLinkProps}>
-              Базовый курс аргентинского испанского
-            </Button>
-          </YStack>
-        </YStack>
       )}
+      {isSignedIn && !isLessons && (
+          <YStack>
+            <YStack pb="$6" pt="$6" ai="center" f={1}>
+              <Paragraph pb="$4" ta="center" > Спасибо за Регистрацию ! Посмотрите наши курсы и выберите программу  </Paragraph>
+              <Button color="$background" bc="$backgroundFocus" {...courseLinkProps}>
+                Базовый курс аргентинского испанского
+              </Button>
+            </YStack>
+          </YStack>
+        )}
     </YStack>
   );
 }

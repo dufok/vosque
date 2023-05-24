@@ -1,7 +1,7 @@
 import React from 'react';
 import { Paragraph, XStack, Button, YStack, isClient } from 'tamagui';
 import { TextLink } from 'solito/link';
-import { trpc } from "../../utils/trpc";
+import { trpc } from "app/utils/trpc";
 
 
 export function HeaderComp() {

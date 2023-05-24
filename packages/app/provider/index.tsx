@@ -7,9 +7,9 @@ export function Provider({ children, ...rest }: Omit<TamaguiProviderProps, 'conf
   return (
     <AuthProvider>
       <TamaguiProvider config={config} disableInjectCSS defaultTheme="light" {...rest}>
-          <TRPCProvider>
+        <TRPCProvider>
           {children}
-          </TRPCProvider>
+        </TRPCProvider>
       </TamaguiProvider>
     </AuthProvider>
   )

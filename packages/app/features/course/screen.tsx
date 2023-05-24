@@ -58,17 +58,18 @@ function WelcomeCourse() {
           <XStack jc='space-around' ai='stretch' fw='wrap' p='$6'>
             <YStack p='$6'>
               <ButtonPay
-                title="Тариф Online"
                 description="Тестовое описание"
                 course="Lesson Pack 0"
                 coupon="MYARGENTINA"
                 pricerub={24000}
                 priceusdt={200}
                 size="$2"
-                backgroundColor="$backgroundFocus"/>
+                />
             </YStack>
             <YStack p='$6'>
-              <Button>Тариф с преподователем</Button>
+              <Button elevation="$0.5" br="$2" bw="$1" boc="$backgroundPress" h={80} w={270} >
+                <Paragraph ta="center" color="$backgroundPress">Тариф <br /> с преподователем</Paragraph>
+              </Button>
             </YStack>
           </XStack>
         </YStack>
@@ -166,7 +167,7 @@ function ProgramCourse() {
 function OtherProducts() {
   return (
     <YStack space="$4" ai="center" p="$4" mt="$8" mb="$8">
-      <Button bg="$backgroundFocus" color="$background" w={200} h={50} br="$2" >ДРУГИЕ ПРОДУКТЫ</Button>
+      <Button bg="$backgroundPress" color="$background" w={200} h={50} br="$2" >ДРУГИЕ ПРОДУКТЫ</Button>
     </YStack>
   )
 }

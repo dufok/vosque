@@ -15,6 +15,7 @@ export function PhraseBooks({phasebookLinkProps: {href}}){
           <YStack p={35}>
               <Button
                 mt={50} href={href}
+                color="$background"
                 br={9} bw="$1" boc="$background"
                 bc="$backgroundFocus">
                   СМОТРЕТЬ ВСЕ
