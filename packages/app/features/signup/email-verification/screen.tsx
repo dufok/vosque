@@ -26,7 +26,6 @@ export function EmailVerificationScreen() {
       createUserMutation.mutate({
         id: signUp.createdUserId!,
         email: signUp.emailAddress!,
-        userName: "No Name"
       });
       push("/");
     } else alert("Invalid verification code");
