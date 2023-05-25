@@ -43,16 +43,17 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
         return (
           <XStack fw="wrap" key={index} ai="flex-start" >
             <Paragraph mr="$2" >{question}</Paragraph>
-            <YStack jc="center" f={1}>
+            <YStack jc="center" f={1} m="$2">
                 <Input 
                   size="$3" 
                   m="$2"
                   opacity={0.7}
+                  br="$2"
                   placeholder={"Ваш ответ ..."}
                   onChangeText={handleAnswerChange}
-                  backgroundColor={isCorrect === true ? 'green' : 'initial'}
-                  borderColor={isCorrect === false ? 'red' : 'initial'}
-                  borderWidth={isCorrect === false ? '$1' : '$0.5'}
+                  backgroundColor={isCorrect === true ? 'green' : '$background'}
+                  borderColor={isCorrect === false ? 'red' : '$backgroundFocus'}
+                  borderWidth={isCorrect === false ? '$1.5' : '$1'}
                 />
             </YStack>
           </XStack>
