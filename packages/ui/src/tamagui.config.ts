@@ -54,7 +54,7 @@ const bodyFont = createInterFont(
 const headingVosqueFont = createFont({
   family: 'VosqueStyleH',
   size: {
-    6: 15,
+    6: 13,
   },
   lineHeight: {
     6: 20,
