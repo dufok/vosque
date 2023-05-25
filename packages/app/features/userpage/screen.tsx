@@ -66,17 +66,17 @@ function Welcome() {
 
   return (
     <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6" mt="$10">
-            <YStack space="$4" ai="center" p="$4">
-              <H3 col="$background">Привет {currentUser?.userName} !</H3>
-            </YStack>
-            <YStack>
-              <Image src={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
-                height="100%"
-                width="100%"
-                />
-            </YStack>
+        <YStack space="$4" ai="center" p="$4">
+          <H3 col="$background">Привет {currentUser?.userName} !</H3>
+        </YStack>
+        <YStack>
+          <Image src={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
+            height="100%"
+            width="100%"
+            />
+        </YStack>
         {isSignedIn && (
-          <YStack>
+        <YStack space="$2" >
           <Paragraph mb={20} ta="center" col="$background"> добро пожаловать на наш курс</Paragraph>
           <Paragraph col="$background"> Сколько уроков доступно: {lessonCount}</Paragraph>
           <Paragraph col="$background"> Сколько уроков пройдено: {lessonCount}</Paragraph>
@@ -210,15 +210,15 @@ function Login() {
       <SignedOut>
         <XStack space>
           <Button {...signInLinkProps} size="$2">
-            Зарегестрироваться
+            Войти
           </Button>
           <Button {...signUpLinkProps} size="$2">
-            Войти
+            Зарегестрироваться
           </Button>
         </XStack>
       </SignedOut>
       <SignedIn>
-        <Button onPress={() => signOut()} size="$2">
+        <Button onPress={() => { signOut(); window.location.reload(); }} size="$2">
           Выйти
         </Button>
       </SignedIn>

@@ -38,10 +38,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.9",
-    "@tamagui/animations-css": "^1.22.7",
+    "@tamagui/animations-css": "^1.30.0",
     "@tamagui/collection": "^1.21.0",
-    "@tamagui/toast": "^1.22.7",
-    "burnt": "^0.10.0",
+    "@tamagui/toast": "^1.30.0",
+    "burnt": "^0.11.4",
     "dotenv": "^16.0.3",
     "dotenv-cli": "^6.0.0"
   },
