@@ -20,7 +20,8 @@ import { X } from '@tamagui/lucide-icons'
 import React, { useState , useEffect } from "react";
 import { useLink } from "solito/link";
 import { trpc } from "app/utils/trpc";
-import { useToastController } from '@tamagui/toast';
+import { DollarSign } from '@tamagui/lucide-icons';
+import { ToastComp } from "@my/ui/src/components/ToastComp";
 
 
 
@@ -86,7 +87,31 @@ export function ButtonPay(props: {
   const isSignedIn = !!currentUser;
 
   // this is for toast message
-  const toast = useToastController();
+  const [list, setList] = useState<any[]>([]);
+
+  const showToast = (type) => {
+
+    let toastProperties;
+
+    switch (type) {
+      case "success":
+        toastProperties = {
+          id: 1,
+          title: "Мы проверяем перевод",
+          description: "Три урока вам уже открыто !",
+          backgroundColor: "#5cb85c",
+          icon: DollarSign,
+        };
+        break;
+      
+      default:
+        setList([]);
+        break
+    }
+
+    setList([...list, toastProperties]);
+
+  };
 
 
   useEffect(() => {
@@ -94,7 +119,14 @@ export function ButtonPay(props: {
   }, [price]);
 
   return (
+    
     <Dialog modal>
+      <ToastComp 
+        toastList={list}
+        position="bottom-left"
+        autoDelete={true}
+        autoDeleteTime={3000}
+      />
       <Dialog.Trigger asChild>
        <Button
         backgroundColor="$backgroundPress"
@@ -194,9 +226,7 @@ export function ButtonPay(props: {
                     <Dialog.Close displayWhenAdapted asChild>
                       <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                           await handleTransferCompleted();
-                          toast.show('Нам нужно проверить ваш перевод!', {
-                              message: "Пока мы это делаем, вы уже можете начать изучать Испанский язык!"
-                          })
+                          showToast("success");
                       }}> Перевод выполнен ! </Button>
                     </Dialog.Close>
                   </YStack>
