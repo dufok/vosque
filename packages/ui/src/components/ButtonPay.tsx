@@ -123,9 +123,9 @@ export function ButtonPay(props: {
     <Dialog modal>
       <ToastComp 
         toastList={list}
-        position="bottom-left"
+        position="bottom-right"
         autoDelete={true}
-        autoDeleteTime={3000}
+        autoDeleteTime={9000}
       />
       <Dialog.Trigger asChild>
        <Button
