@@ -22,12 +22,12 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
   const firstHalf = tests.slice(0, midIndex);
   const secondHalf = tests.slice(midIndex);
 
-  const [list, setList] = useState([])
+  const [list, setList] = useState<any[]>([]);
 
   const showToast = (type, unswer) => {
 
-    let toastProperties = {};
-  
+    let toastProperties;
+
     switch (type) {
       case "success":
         toastProperties = {
@@ -49,8 +49,11 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
         break;
       default:
         setList([]);
+        break
     }
+
     setList([...list, toastProperties]);
+
   };
   
   return (
