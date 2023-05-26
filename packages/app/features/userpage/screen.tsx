@@ -127,6 +127,7 @@ function Lessons() {
       {isSignedIn && (
         <YStack pb="$6" pt="$6" ai="center" f={1}>
         <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
+        { isLessons && (
         <Stack p="$2" fd="column" $gtSm={{ fd: "row", fw: "wrap" }}>
             <YStack jc="flex-start" m="$1">
               {userLessons?.slice(0, userLessons.length/2)?.map((lesson, index) =>
@@ -177,9 +178,8 @@ function Lessons() {
                 )}
             </YStack>
         </Stack>
-      </YStack>
-      )}
-      {isSignedIn && !isLessons && (
+        )}
+        {!isLessons && (
           <YStack>
             <YStack pb="$6" pt="$6" ai="center" f={1}>
               <Paragraph pb="$4" ta="center" > Спасибо за Регистрацию ! Посмотрите наши курсы и выберите программу  </Paragraph>
@@ -189,6 +189,8 @@ function Lessons() {
             </YStack>
           </YStack>
         )}
+      </YStack>
+      )}
     </YStack>
   );
 }

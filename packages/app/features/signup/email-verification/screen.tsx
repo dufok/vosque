@@ -13,6 +13,8 @@ export function EmailVerificationScreen() {
   const { signUp, setSession } = useSignUp();
   if (!signUp) return null;
 
+  const { data: currentUser } = trpc.user.current.useQuery();
+
   const handleEmailVerificationOnPress = async () => {
     /* verify the email */
     await signUp.attemptEmailAddressVerification({ code: verificationCode });
@@ -28,6 +30,16 @@ export function EmailVerificationScreen() {
         email: signUp.emailAddress!,
         userName: signUp.emailAddress!,
       });
+
+      /* redirect to userpage */
+      
+      if (!currentUser) {
+        return (
+          <YStack f={1} jc="center" ai="center" space>
+            <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />
+          </YStack>
+        );
+      }
 
       push("/userpage");
 
