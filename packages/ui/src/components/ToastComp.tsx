@@ -1,4 +1,4 @@
-import { Paragraph, YStack, XStack, Square, H5, Button, Image} from "@my/ui";
+import { Paragraph, YStack, XStack, Square, H5, Button, Image} from "tamagui";
 import React, { useState, useEffect } from "react";
 import { X } from '@tamagui/lucide-icons'
 
