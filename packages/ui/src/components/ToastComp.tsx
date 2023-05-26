@@ -52,7 +52,7 @@ export function ToastComp(props) {
 
     return (
             <YStack
-            //ts-ignore
+            //@ts-ignore
             pos="fixed"
             className={`notification-container ${position}`}
             >
