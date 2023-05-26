@@ -109,7 +109,7 @@ function Lessons() {
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const isLessons = !!userLessons;
+  const lessonCount = userLessons ? userLessons.length : 0;
 
   type ContentLesson = {
     image: string;
@@ -177,7 +177,7 @@ function Lessons() {
                 )}
             </YStack>
         </Stack>
-        {!isLessons && (
+        {lessonCount === 0 && (
           <YStack>
             <YStack pb="$6" pt="$6" ai="center" f={1}>
               <Paragraph pb="$4" ta="center" > Спасибо за Регистрацию ! Посмотрите наши курсы и выберите программу  </Paragraph>
