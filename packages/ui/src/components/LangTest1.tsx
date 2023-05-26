@@ -1,6 +1,10 @@
-import { Paragraph, YStack, XStack, Input, Square, Separator } from 'tamagui';
+import { Paragraph, YStack, XStack, Input, Square, Separator, listItemStaticConfig } from 'tamagui';
 import React, { useState, useEffect } from "react";
-import { ParagraphCustom } from "./CustomText"; 
+import { ParagraphCustom } from "./CustomText";
+import { IceCream, Triangle } from '@tamagui/lucide-icons';
+
+import { ToastComp } from "@my/ui/src/components/ToastComp";
+
 
 export type Test = {
   question: string;
@@ -18,8 +22,48 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
   const firstHalf = tests.slice(0, midIndex);
   const secondHalf = tests.slice(midIndex);
 
+  const [list, setList] = useState([])
+
+  const showToast = (type, unswer) => {
+
+    let toastProperties = {};
+  
+    switch (type) {
+      case "success":
+        toastProperties = {
+          id: 1,
+          title: "Отлично",
+          description: "Это правильный ответ",
+          backgroundColor: "#5cb85c",
+          icon: IceCream,
+        };
+        break;
+      case "error":
+        toastProperties = {
+          id: 2,
+          title: "Упс",
+          description: `Ответ должен быть таким "${unswer[0]}"`,
+          backgroundColor: "#d9534f",
+          icon: Triangle,
+        };
+        break;
+      default:
+        setList([]);
+    }
+    setList([...list, toastProperties]);
+  };
+  
   return (
+
     <YStack w="100%" f={1} p="$6" maw={1000} ai="center">
+
+      <ToastComp 
+        toastList={list}
+        position="bottom-right"
+        autoDelete={true}
+        autoDeleteTime={3000}
+      />
+      
       {example && (
         <YStack ai="center" mb="$4">
           <XStack space={4} fw="wrap">
@@ -42,7 +86,7 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
       
                 const [answer, setAnswer] = useState("");
                 const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-            
+                const [inputFocus, setInputFocus] = useState(false);
 
                 useEffect(() => {
                   if (answer !== "") {
@@ -52,8 +96,26 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
                   }
                 }, [answer, unswer]);
 
-                const handleAnswerChange = (text: string) => {
+                const handleAnswerChange = (text, unswer) => {
                   setAnswer(text);
+
+                  if (text !== "") {
+                    setIsCorrect(unswer.includes(text.toLowerCase()));
+                  } else {
+                    setIsCorrect(null);
+                  }
+                };
+
+                const handleInputFocus = () => {
+                  setInputFocus(true);
+                };
+
+                const handleInputBlur = () => {
+                  setInputFocus(false);
+                
+                  if (isCorrect !== null && answer !== "") {
+                    showToast(isCorrect ? "success" : "error", unswer);
+                  }
                 };
 
                 return (
@@ -69,10 +131,12 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
                             opacity={0.7}
                             br="$3"
                             placeholder={"Ваш ответ ..."}
-                            onChangeText={handleAnswerChange}
+                            onChangeText={(text) => handleAnswerChange(text, unswer)}
                             backgroundColor={isCorrect === true ? 'green' : '$background'}
                             borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
                             borderWidth={isCorrect === false ? '$2' : '$1'}
+                            onFocus={handleInputFocus}
+                            onBlur={handleInputBlur}
                           />
                       </YStack>
                     </XStack>
@@ -84,6 +148,7 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
               {secondHalf.map(({ question, unswer }, index) => {
                 const [answer, setAnswer] = useState("");
                 const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+                const [inputFocus, setInputFocus] = useState(false);
             
 
                 useEffect(() => {
@@ -94,8 +159,26 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
                   }
                 }, [answer, unswer]);
 
-                const handleAnswerChange = (text: string) => {
+                const handleAnswerChange = (text, unswer) => {
                   setAnswer(text);
+
+                  if (text !== "") {
+                    setIsCorrect(unswer.includes(text.toLowerCase()));
+                  } else {
+                    setIsCorrect(null);
+                  }
+                };
+
+                const handleInputFocus = () => {
+                  setInputFocus(true);
+                };
+
+                const handleInputBlur = () => {
+                  setInputFocus(false);
+                
+                  if (isCorrect !== null && answer !== "") {
+                    showToast(isCorrect ? "success" : "error", unswer);
+                  }
                 };
 
                 return (
@@ -110,10 +193,12 @@ export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
                             opacity={0.7}
                             br="$3"
                             placeholder={"Ваш ответ ..."}
-                            onChangeText={handleAnswerChange}
+                            onChangeText={(text) => handleAnswerChange(text, unswer)}
                             backgroundColor={isCorrect === true ? 'green' : '$background'}
                             borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
                             borderWidth={isCorrect === false ? '$2' : '$1'}
+                            onFocus={handleInputFocus}
+                            onBlur={handleInputBlur}
                           />
                       </YStack>
                     </XStack>

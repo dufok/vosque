@@ -79,18 +79,18 @@ export function testScreen() {
           <HeaderBlock header={content?.header1}/>
           <TableBlock tables={tables1}/>
 
-          {/* Важные Исключения */}
+            {/* Важные Исключения */}
 
           <SquareText text={content?.squaretext1}/>
           <ExercisesBlockText exercises={blockText1}/>
 
-          {/*  Множественное число */}
+            {/*  Множественное число */}
 
           <SquareText text={content?.squaretext2}/>
           <ExercisesBlockText exercises={blockText2}/>
           <SquareText text={content?.squaretext3}/>
 
-          {/*  Неопределенный Артикль */}
+            {/*  Неопределенный Артикль */}
 
           <HeaderBlock header={content?.header2}/>
           <XStack fw="wrap">
@@ -109,7 +109,7 @@ export function testScreen() {
               />
             </XStack>
 
-          {/* Определенный Артикль */}
+            {/* Определенный Артикль */}
 
           <HeaderBlock header={content?.header3}/>
           <TableBlock tables={tables3}/>
@@ -141,16 +141,25 @@ export function testScreen() {
                 />
             </XStack>
           </YStack>
+
+            {/* ТЕОРЕТИЧЕСКИЙ БЛОК */}
+
           <HeaderBlock header={content?.header4}/>
           <DescriptionBlock description={content?.description4}/>
           <LangTest tests={tests1} example={example1}/>
+
           <DescriptionBlock description={content?.description5}/>
           <LangTest tests={tests2} example={example2}/>
+
           <DescriptionBlock description={content?.description6}/>
           <LangTest tests={tests3} example={example3}/>
+
+            {/* БЛОК ЛЕКСИКИ */}
+
           <HeaderBlock header={content?.header5}/>
           <ExercisesBlockText exercises={blockText3}/>
           <WordToTranslateBlock words={wordToTranlateBlock1}/>
+          
           <SquareText text={content?.squaretext5}/>
           <DescriptionBlock description={content?.description7}/>
           <ExercisesBlockText exercises={blockText4}/>

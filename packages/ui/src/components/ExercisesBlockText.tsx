@@ -1,5 +1,6 @@
 import { Paragraph, YStack, H3, H4 } from "tamagui";
 import React from "react";
+import { ParagraphCustom } from "./CustomText";
 
 export type Exercise = {
   text: string;
@@ -16,7 +17,7 @@ export const ExercisesBlockText: React.FC<ExercisesBlockTextProps> = ({ exercise
         {exercises.map(({ text, example }, index) => (
           <YStack mt="$2" key={index}>
             <H4 ta="left">{text}</H4>
-            <Paragraph ta="left">{example}</Paragraph>
+            <ParagraphCustom text={example} />
           </YStack>
         ))}
       </YStack>
