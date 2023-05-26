@@ -1,4 +1,4 @@
-import { Paragraph, YStack, XStack, Input, Square } from 'tamagui';
+import { Paragraph, YStack, XStack, Input, Square, Separator } from 'tamagui';
 import React, { useState, useEffect } from "react";
 import { ParagraphCustom } from "./CustomText"; 
 
@@ -13,52 +13,116 @@ interface LangTestProps {
 }
 
 export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
+
+  const midIndex = Math.ceil(tests.length / 2);
+  const firstHalf = tests.slice(0, midIndex);
+  const secondHalf = tests.slice(midIndex);
+
   return (
-    <YStack ai="flex-start" m="$6">
-    {example && (
-      <XStack space={4} fw="wrap">
-          <ParagraphCustom text={example.question}/>
-        <YStack m="$1"/>
-        <YStack f={1} borderWidth="$0.5" br="$3" p="$1" paddingHorizontal="$4">
-          <ParagraphCustom text={example.unswer}/>
-        </YStack>
-      </XStack>
-      )}
-      {tests && tests.map(({ question, unswer }, index) => {
-        const [answer, setAnswer] = useState("");
-        const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-
-        useEffect(() => {
-          if (answer !== "") {
-            setIsCorrect(unswer.includes(answer.toLowerCase()));
-          } else {
-            setIsCorrect(null);
-          }
-        }, [answer, unswer]);
-
-        const handleAnswerChange = (text: string) => {
-          setAnswer(text);
-        };
-
-        return (
-          <XStack fw="wrap" key={index} ai="flex-start" >
-            <Paragraph mr="$2" >{question}</Paragraph>
-            <YStack jc="center" f={1} m="$2">
-                <Input 
-                  size="$3" 
-                  m="$2"
-                  opacity={0.7}
-                  br="$2"
-                  placeholder={"Ваш ответ ..."}
-                  onChangeText={handleAnswerChange}
-                  backgroundColor={isCorrect === true ? 'green' : '$background'}
-                  borderColor={isCorrect === false ? 'red' : '$backgroundFocus'}
-                  borderWidth={isCorrect === false ? '$1.5' : '$1'}
-                />
+    <YStack w="100%" f={1} p="$6" maw={1000} ai="center">
+      {example && (
+        <YStack ai="center" mb="$4">
+          <XStack space={4} fw="wrap">
+              <ParagraphCustom text={example.question}/>
+            <YStack m="$1"/>
+            <YStack f={1} boc="$backgroundHover"  borderWidth="$1" br="$3" p="$1.5" paddingHorizontal="$7" >
+              <ParagraphCustom text={example.unswer}/>
             </YStack>
           </XStack>
-        );
-      })}
+        </YStack>
+      )}
+
+      <Separator w="60%" borderColor="$backgroundFocus" $sm={{width: "90%"}}/>    
+
+      {tests && (
+        <YStack ai="center" f={1} mt="$4">
+          <XStack fw="wrap" jc="space-between">
+            <YStack m="$2" f={0.5}>
+              {firstHalf.map(({ question, unswer }, index) => {
+      
+                const [answer, setAnswer] = useState("");
+                const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+            
+
+                useEffect(() => {
+                  if (answer !== "") {
+                    setIsCorrect(unswer.includes(answer.toLowerCase()));
+                  } else {
+                    setIsCorrect(null);
+                  }
+                }, [answer, unswer]);
+
+                const handleAnswerChange = (text: string) => {
+                  setAnswer(text);
+                };
+
+                return (
+                  <YStack>
+                    <XStack fw="wrap" key={index} ai="center">
+                      <YStack ai="flex-end">
+                        <Paragraph mr="$2" >{question}</Paragraph>
+                      </YStack>
+                      <Separator />
+                      <YStack jc="center" m="$2"  f={1}>
+                          <Input 
+                            size="$3" 
+                            opacity={0.7}
+                            br="$3"
+                            placeholder={"Ваш ответ ..."}
+                            onChangeText={handleAnswerChange}
+                            backgroundColor={isCorrect === true ? 'green' : '$background'}
+                            borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
+                            borderWidth={isCorrect === false ? '$2' : '$1'}
+                          />
+                      </YStack>
+                    </XStack>
+                  </YStack>
+                );
+              })}
+            </YStack>
+            <YStack m="$2" f={0.5}>
+              {secondHalf.map(({ question, unswer }, index) => {
+                const [answer, setAnswer] = useState("");
+                const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+            
+
+                useEffect(() => {
+                  if (answer !== "") {
+                    setIsCorrect(unswer.includes(answer.toLowerCase()));
+                  } else {
+                    setIsCorrect(null);
+                  }
+                }, [answer, unswer]);
+
+                const handleAnswerChange = (text: string) => {
+                  setAnswer(text);
+                };
+
+                return (
+                  <XStack fw="wrap" key={index} ai="center">
+                      <YStack ai="flex-end">
+                        <Paragraph mr="$2" >{question}</Paragraph>
+                      </YStack>
+                      <Separator />
+                      <YStack jc="center" m="$2" f={1}>
+                          <Input 
+                            size="$3" 
+                            opacity={0.7}
+                            br="$3"
+                            placeholder={"Ваш ответ ..."}
+                            onChangeText={handleAnswerChange}
+                            backgroundColor={isCorrect === true ? 'green' : '$background'}
+                            borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
+                            borderWidth={isCorrect === false ? '$2' : '$1'}
+                          />
+                      </YStack>
+                    </XStack>
+                );
+              })}
+            </YStack>
+          </XStack>
+        </YStack>
+      )}
     </YStack>
   );
 }
