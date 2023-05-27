@@ -21,7 +21,7 @@ export function SignInScreen() {
 
   const redirectIfSignedIn = async () => {
     if (signIn.status == "complete") {
-      push("/");
+      push("/userpage");
     }
   };
 
