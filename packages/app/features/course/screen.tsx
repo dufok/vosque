@@ -5,7 +5,7 @@ import {
   H3,
   H1,
   H2,
-  H5,
+  H4,
   Avatar,
   Circle,
   Square,
@@ -29,7 +29,7 @@ export function courseScreen() {
   
   
   return (
-    <YStack mt="$10">
+    <YStack>
       <HeaderComp />
       <WelcomeCourse />
       <StructureCourse />
@@ -45,13 +45,14 @@ export function courseScreen() {
 
 function WelcomeCourse() {
   return (
-        <YStack space="$4" ai="center">
-          <YStack maw={600}>  
+        <YStack space="$4" f={1}>
+          <YStack ai="center" mt="$10">
             <H1 ta="center" mt={50} mb={50}>
               Базовый курс аргентинского испанского
             </H1>
-            <VideoPlayer linkVideo="https://cdn.vosque.education/images/welcome.mp4?raw"/>
-          </YStack>
+            <YStack  w="100%" $gtSm={{ width: "70%" }}>
+              <VideoPlayer linkVideo="https://cdn.vosque.education/images/welcome.mp4?raw"/>
+            </YStack>
           <H2 tt="uppercase" ta="center" mt={50} >
             Тарифы
           </H2>
@@ -73,6 +74,7 @@ function WelcomeCourse() {
             </YStack>
           </XStack>
         </YStack>
+      </YStack>
   );
 }
 
@@ -84,19 +86,19 @@ function StructureCourse() {
       </H2>
       <XStack mt="$4" jc='space-around'  ai='stretch' fw='wrap' maw={1100}>
         <YStack  p="$6" maw={380}>
-          <H5 fontWeight="bold" col="$background">Видео с профессиональным<br/>преподавателем-билингвом</H5>
+          <H4 fontWeight="bold" col="$background">Видео с профессиональным<br/>преподавателем-билингвом</H4>
           <Paragraph mt="$2"   ta="left" col="$background">Видео, которые приятно и интересно смотреть. Анастасия - носитель испанского и русского языков - доступно ведет уроки, объясняя все правила, давая примеры и рассказывая про разные жизненные ситуации, с которыми Вы можете столкнуться</Paragraph>
         </YStack>
         <YStack  p="$6" maw={380}> 
-          <H5 fontWeight="bold" col="$background">Доступная теория</H5>
+          <H4 fontWeight="bold" col="$background">Доступная теория</H4>
           <Paragraph mt="$4"  ta="left" col="$background">После каждого видео Вы увидите теоретический блок, в котором вся теория разложена по полочкам в таблицы для удобства визуального восприятия.</Paragraph>
         </YStack>
         <YStack  p="$6" maw={380}>
-          <H5 fontWeight="bold" col="$background">Большое количество упражнений</H5>
+          <H4 fontWeight="bold" col="$background">Большое количество упражнений</H4>
           <Paragraph mt="$4"  ta="left" col="$background">После прочтения теоретического блока и закрепления правил, Вам предстоит сделать большое количество разнообразных упражнений. Фразы в упражнениях - именно те, которые Вам понадобятся в ежедневном общении и по ходу выполнения заданий Вы сможете узнать еще много полезного об аргентинском испанском!</Paragraph>
         </YStack>
         <YStack  p="$6" maw={380}>
-          <H5 fontWeight="bold" col="$background">Диалоги между носителями<br/>на каждую пройденную тему</H5>
+          <H4 fontWeight="bold" col="$background">Диалоги между носителями<br/>на каждую пройденную тему</H4>
           <Paragraph mt="$4"  ta="left" col="$background">Это уникально! В конце каждого грамматического урока Вас ждут видео, записаные специально для этого курса носителями языка: Вы не просто учите материал, Вы сразу видите, как использовать его в живую!</Paragraph>
         </YStack>
       </XStack>
@@ -106,56 +108,56 @@ function StructureCourse() {
 
 function ProgramCourse() {
   return (
-    <YStack space="$4" ai="center" p="$4">
+    <YStack space="$4" ai="center" p="$4" f={1}>
       <H2 tt="uppercase" ta="center" >
         Программа курса
       </H2>
       <XStack mt="$4" jc='space-around'  ai='stretch' fw='wrap' maw={1100}>
-        <YStack  p="$6" maw={380}>
-          <XStack>
-            <Image src={{uri: 'https://cdn.vosque.education/images/course-fonetica.png?raw', width: 35, height: '100%'}}
+        <YStack  p="$6" w="50%" $sm={{width: "100%"}}>
+          <XStack $sm={{flexWrap: "wrap"}}>
+            <Image src={{uri: 'https://cdn.vosque.education/images/course-fonetica.png?raw', width: 50, height: 50}}
               height="100%"
               width="100%"
               />
-            <YStack ml="$2">
-              <H5 fontWeight="bold" >Фонетика</H5>
-              <Paragraph mt="$2"   ta="left" >Здесь идет текст с описанием товара</Paragraph>
+            <YStack ml="$2" f={1}>
+              <H4 fontWeight="bold" >Фонетика</H4>
+              <Paragraph mt="$2" ta="left" >В первом уроке мы изучим фонетику испанского языка в Аргентине. Это не самый интересный, но очень важный материал, который позволит Вам дальше читать слова и выражения правильно, а так же интонировать так, как это делают носители!</Paragraph>
             </YStack>
           </XStack>
         </YStack>
-        <YStack  p="$6" maw={380}>
-          <XStack>
-            <Image src={{uri: 'https://cdn.vosque.education/images/course-gramma.png?raw', width: 35, height: '100%'}}
+        <YStack  p="$6" w="50%" $sm={{width: "100%"}}>
+          <XStack $sm={{flexWrap: "wrap"}}>
+            <Image src={{uri: 'https://cdn.vosque.education/images/course-gramma.png?raw', width: 50, height: 50}}
               height="100%"
               width="100%"
               />
-            <YStack ml="$2">
-              <H5 fontWeight="bold" >Грамматика</H5>
-              <Paragraph mt="$4"  ta="left" >Здесь идет текст с описанием товара</Paragraph>
+            <YStack ml="$2" f={1}>
+              <H4 fontWeight="bold" >Грамматика</H4>
+              <Paragraph mt="$4"  ta="left" >Структура и грамматика языка являются его основой. Это — скелет, на который впоследствии нанизываются лексика, произношение и многие другие элементы. Наш курс построен на последовательном изучении разных типов глаголов и конструкций, понимание которых поможет вам понять любые другие правила испанского языка. Мы уверены, что после прохождения нашего курса вы сможете говорить на испанском языке с легкостью и уверенностью, благодаря тщательно изученной грамматике.</Paragraph>
             </YStack>
           </XStack>
         </YStack>
-        <YStack  p="$6" maw={380}>
-          <XStack>
-            <Image src={{uri: 'https://cdn.vosque.education/images/course-lecsica.png?raw', width: 40, height: '100%'}}
+        <YStack  p="$6" w="50%" $sm={{width: "100%"}}>
+          <XStack $sm={{flexWrap: "wrap"}}>
+            <Image src={{uri: 'https://cdn.vosque.education/images/course-lecsica.png?raw', width: 50, height: 50}}
               height="100%"
               width="100%"
               />
-            <YStack ml="$2">
-              <H5 fontWeight="bold" >Лексика</H5>
-              <Paragraph mt="$4"  ta="left" >Здесь идет текст с описанием товара</Paragraph>
+            <YStack ml="$2" f={1}>
+              <H4 fontWeight="bold" >Лексика</H4>
+              <Paragraph mt="$4"  ta="left" >Лексика - это необходимый ингредиент для успешного общения на испанском языке. В нашем курсе вы не будете мучительно запоминать лексические блоки, вместо этого мы предлагаем только те слова и выражения, которые вам действительно пригодятся в повседневной жизни. Вы изучите множество полезных разговорных фраз и сокращений, которыми часто пользуются аргентинцы, а также многое другое. Мы хотим, чтобы вы овладели живым испанским языком, а не сухими предложениями из учебника.</Paragraph>
             </YStack>
           </XStack>
         </YStack>
-        <YStack  p="$6" maw={380}>
-          <XStack>
-            <Image  src={{uri: 'https://cdn.vosque.education/images/course-speac.png?raw', width: 35, height: '100%' }}
+        <YStack  p="$6" w="50%" $sm={{width: "100%"}}>
+          <XStack $sm={{flexWrap: "wrap"}}>
+            <Image  src={{uri: 'https://cdn.vosque.education/images/course-speac.png?raw', width: 50, height: 50 }}
               height="100%"
               width="100%"
               />
-            <YStack ml="$2">
-              <H5 fontWeight="bold" >Разговорная речь</H5>
-              <Paragraph mt="$4"  ta="left" >Здесь идет текст с описанием товара</Paragraph>
+            <YStack ml="$2" f={1}>
+              <H4 fontWeight="bold" >Разговорная речь</H4>
+              <Paragraph mt="$4"  ta="left" >Испанский язык, изучаемый в пособиях, и испанский язык, который вы можете услышать на улице, существенно различаются друг от друга. В нашем курсе мы слушаем носителей языка для изучения различных разговорных форм и живых диалогов. Некоторые фразы в них могут показаться Вам даже слишком неформальными, но именно так говорят настоящие аргентинцы! Наша задача - научить вас понимать и поддерживать разговор на испанском языке в реальной жизни.</Paragraph>
             </YStack>
           </XStack>
         </YStack>
