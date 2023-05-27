@@ -6,7 +6,7 @@ export function ImageCircle({img}) {
     <YStack ai="center" mt="$6" >
       <Avatar circular size="$4" backgroundColor="$backgroundFocus">
         <Avatar.Image src={img} scale="50%" />
-        <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
+        <Avatar.Fallback backgroundColor="$backgroundFocus" />
       </Avatar>
     </YStack>
   );
