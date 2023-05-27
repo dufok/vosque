@@ -10,14 +10,20 @@ export function userpageScreen() {
 
   const userpageLinkProps = useLink({ href: "/userpage"});
 
+  const { data: currentUser, isLoading: isCurrentUserLoading } = trpc.user.current.useQuery();
+  const isSignedIn = !!currentUser;
+
   const { data, isLoading, error } = trpc.entry.all.useQuery();
+
+  const { data: userLessons } = trpc.user.userLessons.useQuery();
+  const lessonCount = userLessons ? userLessons.length : 0;
 
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
 
-  if (isLoading) {
-    return <Spinner size="large"  color="$backgroundFocus" ai="center" jc="center" f={1} />;
+  if (isLoading || isCurrentUserLoading) {
+    return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
   }
 
   if (error) {
@@ -27,18 +33,15 @@ export function userpageScreen() {
   return (
     <YStack>
       <HeaderComp />
-      <Welcome />
+      <Welcome isSignedIn={isSignedIn} currentUser={currentUser} lessonCount={lessonCount}/>
       <Login />
-      <Lessons />
+      <Lessons isSignedIn={isSignedIn} lessonCount={lessonCount} userLessons={userLessons} />
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
 }
 
-function Welcome() {
-
-  const { data: currentUser } = trpc.user.current.useQuery();
-  const isSignedIn = !!currentUser;
+function Welcome({ isSignedIn, currentUser, lessonCount}) {
 
   const [newUserName, setNewUserName] = useState("");
 
@@ -60,9 +63,6 @@ function Welcome() {
     await updateUserName.mutateAsync({ id: currentUser.id, userName: newUserName });
     setNewUserName("");
   };
-
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const lessonCount = userLessons ? userLessons.length : 0;
 
   return (
     <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6" mt="$10">
@@ -103,13 +103,7 @@ function Welcome() {
   );
 }
 
-function Lessons() {
-
-  const { data: currentUser } = trpc.user.current.useQuery();
-  const isSignedIn = !!currentUser;
-
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const lessonCount = userLessons ? userLessons.length : 0;
+function Lessons({ isSignedIn, lessonCount, userLessons }) {
 
   type ContentLesson = {
     image: string;
