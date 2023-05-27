@@ -18,13 +18,20 @@ export function userpageScreen() {
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   const lessonCount = userLessons ? userLessons.length : 0;
 
+  const ClerckSignIned = !!SignedIn ;
+
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
 
+  if ( ClerckSignIned ) {
   if (isLoading || isCurrentUserLoading) {
     return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-  }
+  }}
+  else {
+    if (isLoading) {
+      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
+  }}
 
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
