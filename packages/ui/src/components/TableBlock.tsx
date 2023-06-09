@@ -18,7 +18,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ tables }) => {
     <YStack m="$6">
       <table style={{ border: "1px solid #0E171A", borderCollapse: "collapse" }}>
           <tbody>
-              {["name", "row1", "row2", "row3", "row4", "row5"].map((rowKey, index) => (
+              {["name", "row1", "row2", "row3", "row4", "row5", "row6", "row7", "row8"].map((rowKey, index) => (
                 <tr key={index}>
                   {tables.map((table, index) => (
                     table[rowKey] && (
