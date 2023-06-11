@@ -8,12 +8,14 @@ export function AudioPlayer({src}) {
   const [audio, setAudio] = useState(new Audio(src));
 
   const togglePlay = () => {
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
+    if (audio) {
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      setIsPlaying(!isPlaying);
     }
-    setIsPlaying(!isPlaying);
   }
 
 

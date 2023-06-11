@@ -38,7 +38,7 @@ export const LifeHackerBlock: React.FC<LifeHackerBlockProps> = ({
       {descriptions.map((description, i) => (
         <React.Fragment key={i}>
           <Paragraph ta="center">{description}</Paragraph>
-          {Object.values(contents[i]).map((content, j) => (
+          {contents[i] && Object.values(contents[i]).map((content, j) => (
             <ParagraphCustom key={j} text={content.text} />
           ))}
         </React.Fragment>
