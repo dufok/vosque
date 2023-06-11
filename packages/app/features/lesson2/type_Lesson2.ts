@@ -26,6 +26,18 @@ export type ContentLesson2 = {
           1: { text: string };
           2: { text: string };
           3: { text: string }
+        },
+        description3: string;
+        content3: {
+          1: { text: string };
+          2: { text: string };
+          3: { text: string }
+        },
+        description4: string;
+        content4: {
+          1: { text: string };
+          2: { text: string };
+          3: { text: string }
         }
     },
     header3: string;
@@ -41,6 +53,18 @@ export type ContentLesson2 = {
         },
         description2: string;
         content2: {
+          1: { text: string };
+          2: { text: string };
+          3: { text: string }
+        },
+        description3: string;
+        content3: {
+          1: { text: string };
+          2: { text: string };
+          3: { text: string }
+        },
+        description4: string;
+        content4: {
           1: { text: string };
           2: { text: string };
           3: { text: string }
@@ -60,6 +84,18 @@ export type ContentLesson2 = {
           1: { text: string };
           2: { text: string };
           3: { text: string }
+        },
+        description3: string;
+        content3: {
+          1: { text: string };
+          2: { text: string };
+          3: { text: string }
+        },
+        description4: string;
+        content4: {
+          1: { text: string };
+          2: { text: string };
+          3: { text: string }
         }
     },
     header4: string;
@@ -74,7 +110,7 @@ export type ContentLesson2 = {
              testContent: {[key: string]: Tests}};
     header5: string;
     blockText3: { [key: string]: Exercise };
-    wordToTranlateBlock1: { [key: string]: Words };
+    wordToTranslateBlock1: { [key: string]: Words };
     squaretext5: string;
     description7: string;
     blockText4: { [key: string]: Exercise };
@@ -91,6 +127,18 @@ export type ContentLesson2 = {
         },
         description2: string;
         content2: {
+          1: { text: string };
+          2: { text: string };
+          3: { text: string }
+        },
+        description3: string;
+        content3: {
+          1: { text: string };
+          2: { text: string };
+          3: { text: string }
+        },
+        description4: string;
+        content4: {
           1: { text: string };
           2: { text: string };
           3: { text: string }

@@ -110,17 +110,21 @@ export function lesson2Screen() {
        <XStack fw="wrap">
          <TableBlock tables={tables2}/>
          <LifeHackerBlock
-             lifehackimage={content?.lifehack1.image}
-             lifehacktitle={content?.lifehack1.title}
-             lifehackdescription1={content?.lifehack1.description1}
-             lifehackcontent1_1text={content?.lifehack1.content1[1].text}
-             lifehackcontent1_2text={content?.lifehack1.content1[2].text}
-             lifehackcontent1_3text={content?.lifehack1.content1[3].text}
-             lifehackdescription2={content?.lifehack1.description2}
-             lifehackcontent2_1text={content?.lifehack1.content2[1].text}
-             lifehackcontent2_2text={content?.lifehack1.content2[2].text}
-             lifehackcontent2_3text={content?.lifehack1.content2[3].text}
-           />
+            lifehackimage={content?.lifehack1.image}
+            lifehacktitle={content?.lifehack1.title}
+            descriptions={[
+              content?.lifehack1.description1,
+              content?.lifehack1.description2,
+              content?.lifehack1.description3,
+              content?.lifehack1.description4,
+            ]}
+            contents={[
+              content?.lifehack1.content1,
+              content?.lifehack1.content2,
+              content?.lifehack1.content3,
+              content?.lifehack1.content4,
+            ]}
+          />
          </XStack>
 
        {/* Определенный Артикль */}
@@ -129,30 +133,38 @@ export function lesson2Screen() {
        <TableBlock tables={tables3}/>
        <YStack ai="center">
          <XStack fw="wrap" jc="space-around" >
+            <LifeHackerBlock
+              lifehackimage={content?.lifehack2.image}
+              lifehacktitle={content?.lifehack2.title}
+              descriptions={[
+                content?.lifehack2.description1,
+                content?.lifehack2.description2,
+                content?.lifehack2.description3,
+                content?.lifehack2.description4,
+              ]}
+              contents={[
+                content?.lifehack2.content1,
+                content?.lifehack2.content2,
+                content?.lifehack2.content3,
+                content?.lifehack2.content4,
+              ]}
+            />
            <LifeHackerBlock
-               lifehackimage={content?.lifehack2.image}
-               lifehacktitle={content?.lifehack2.title}
-               lifehackdescription1={content?.lifehack2.description1}
-               lifehackcontent1_1text={content?.lifehack2.content1[1].text}
-               lifehackcontent1_2text={content?.lifehack2.content1[2].text}
-               lifehackcontent1_3text={content?.lifehack2.content1[3].text}
-               lifehackdescription2={content?.lifehack2.description2}
-               lifehackcontent2_1text={content?.lifehack2.content2[1].text}
-               lifehackcontent2_2text={content?.lifehack2.content2[2].text}
-               lifehackcontent2_3text={content?.lifehack2.content2[3].text}
-             />
-           <LifeHackerBlock
-               lifehackimage={content?.lifehack3.image}
-               lifehacktitle={content?.lifehack3.title}
-               lifehackdescription1={content?.lifehack3.description1}
-               lifehackcontent1_1text={content?.lifehack3.content1[1].text}
-               lifehackcontent1_2text={content?.lifehack3.content1[2].text}
-               lifehackcontent1_3text={content?.lifehack3.content1[3].text}
-               lifehackdescription2={content?.lifehack3.description2}
-               lifehackcontent2_1text={content?.lifehack3.content2[1].text}
-               lifehackcontent2_2text={content?.lifehack3.content2[2].text}
-               lifehackcontent2_3text={content?.lifehack3.content2[3].text}
-             />
+            lifehackimage={content?.lifehack3.image}
+            lifehacktitle={content?.lifehack3.title}
+            descriptions={[
+              content?.lifehack3.description1,
+              content?.lifehack3.description2,
+              content?.lifehack3.description3,
+              content?.lifehack3.description4,
+            ]}
+            contents={[
+              content?.lifehack3.content1,
+              content?.lifehack3.content2,
+              content?.lifehack3.content3,
+              content?.lifehack3.content4,
+            ]}
+          />
          </XStack>
        </YStack>
        <HeaderBlock header={content?.header4}/>
@@ -171,17 +183,21 @@ export function lesson2Screen() {
        <DescriptionBlock description={content?.description8}/>
        <TableBlock tables={tables4}/>
        <LifeHackerBlock
-           lifehackimage={content?.lifehack4.image}
-           lifehacktitle={content?.lifehack4.title}
-           lifehackdescription1={content?.lifehack4.description1}
-           lifehackcontent1_1text={content?.lifehack4.content1[1].text}
-           lifehackcontent1_2text={content?.lifehack4.content1[2].text}
-           lifehackcontent1_3text={content?.lifehack4.content1[3].text}
-           lifehackdescription2={content?.lifehack4.description2}
-           lifehackcontent2_1text={content?.lifehack4.content2[1].text}
-           lifehackcontent2_2text={content?.lifehack4.content2[2].text}
-           lifehackcontent2_3text={content?.lifehack4.content2[3].text}
-         />
+            lifehackimage={content?.lifehack4.image}
+            lifehacktitle={content?.lifehack4.title}
+            descriptions={[
+              content?.lifehack4.description1,
+              content?.lifehack4.description2,
+              content?.lifehack4.description3,
+              content?.lifehack4.description4,
+            ]}
+            contents={[
+              content?.lifehack4.content1,
+              content?.lifehack4.content2,
+              content?.lifehack4.content3,
+              content?.lifehack4.content4,
+            ]}
+        />
        <SquareText text={content?.squaretext8}/>
        <ExercisesBlockText exercises={blockText8}/>
        </YStack>

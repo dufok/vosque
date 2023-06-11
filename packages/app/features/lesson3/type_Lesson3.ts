@@ -33,7 +33,16 @@ export type Tables = {
 
 export type Exercise = {
     text: string;
-    example: string;
+    example1: string;
+    example2: string;
+    example3: string;
+    example4: string;
+    example5: string;
+    example6: string;
+    example7: string;
+    example8: string;
+    example9: string;
+    example10: string;
 }
 
 export type Tests = {

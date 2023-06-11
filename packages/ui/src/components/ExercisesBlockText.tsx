@@ -4,7 +4,16 @@ import { ParagraphCustom } from "./CustomText";
 
 export type Exercise = {
   text: string;
-  example: string;
+  example1: string;
+  example2: string;
+  example3: string;
+  example4: string;
+  example5: string;
+  example6: string;
+  example7: string;
+  example8: string;
+  example9: string;
+  example10: string;
 };
 
 interface ExercisesBlockTextProps {
@@ -13,13 +22,22 @@ interface ExercisesBlockTextProps {
 
 export const ExercisesBlockText: React.FC<ExercisesBlockTextProps> = ({ exercises }) => {
   return (
-      <YStack m="$6" ai="flex-start" maw={800}>
-        {exercises.map(({ text, example }, index) => (
-          <YStack mt="$2" key={index}>
-            <H4 ta="left">{text}</H4>
-            <ParagraphCustom text={example} />
-          </YStack>
-        ))}
-      </YStack>
+    <YStack m="$6" ai="flex-start" maw={800}>
+      {exercises.map((exercise, index) => (
+        <YStack mt="$2" key={index}>
+          <H4 ta="left">{exercise.text}</H4>
+          <ParagraphCustom text={exercise.example1} />
+          <ParagraphCustom text={exercise.example2} />
+          <ParagraphCustom text={exercise.example3} />
+          <ParagraphCustom text={exercise.example4} />
+          <ParagraphCustom text={exercise.example5} />
+          <ParagraphCustom text={exercise.example6} />
+          <ParagraphCustom text={exercise.example7} />
+          <ParagraphCustom text={exercise.example8} />
+          <ParagraphCustom text={exercise.example9} />
+          <ParagraphCustom text={exercise.example10} />
+        </YStack>
+      ))}
+    </YStack>
   )
 }

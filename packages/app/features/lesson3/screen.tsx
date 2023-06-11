@@ -21,13 +21,13 @@ import { DescriptionBlock } from "@my/ui/src/components/DescriptionBlock";
 import { ExercisesBlockText } from "@my/ui/src/components/ExercisesBlockText";
 import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
 import { TableBlock } from "@my/ui/src/components/TableBlock";
-import { LangTest } from "@my/ui/src/components/LangTest1";
+import { LangTest1 } from "@my/ui/src/components/LangTest1";
 
 //* CHANCHE testScreen *///
 export function lesson3Screen() {
   //hrefs
   const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson4"});
+  const lessonLinkPageUP = useLink({ href: "/lesson3_2"});
   const lessonLinkPageDown = useLink({ href: "/lesson2"});
 
   //user check for lesson
@@ -105,9 +105,13 @@ export function lesson3Screen() {
 
         <HeaderBlock header={content?.header3}/>
         <SquareText text={content?.squaretext4}/>
-        <LangTest tests={tests1} example={example1}/>
+        <LangTest1 tests={tests1} example={example1}/>
       </YStack> 
-        <NavigationBlock  lessonLinkPageDOWNname={"Урок 2"} lessonLinkPageUPname={"Урок 4"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
+        <NavigationBlock
+          lessonLinkPageDOWNname={"Урок 2"}
+          lessonLinkPageUPname={"Урок 3"}
+          lessonLinkPageUP={lessonLinkPageUP}
+          lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>
       )}
         <SubMenu userpageLinkProps={userpageLinkProps}/>

@@ -102,14 +102,18 @@ export function lesson1Screen() {
             <LifeHackerBlock
               lifehackimage={lifehack1.image}
               lifehacktitle={lifehack1.title}
-              lifehackdescription1={lifehack1.description1}
-              lifehackcontent1_1text={lifehack1.content1[1].text}
-              lifehackcontent1_2text={lifehack1.content1[2].text}
-              lifehackcontent1_3text={lifehack1.content1[3].text}
-              lifehackdescription2={lifehack1.description2}
-              lifehackcontent2_1text={lifehack1.content2[1].text}
-              lifehackcontent2_2text={lifehack1.content2[2].text}
-              lifehackcontent2_3text={lifehack1.content2[3].text}
+              descriptions={[
+                lifehack1.description1,
+                lifehack1.description2,
+                lifehack1.description3,
+                lifehack1.description4,
+              ]}
+              contents={[
+                lifehack1.content1,
+                lifehack1.content2,
+                lifehack1.content3,
+                lifehack1.content4,
+              ]}
             />
           </XStack>
         </YStack>
@@ -128,29 +132,37 @@ export function lesson1Screen() {
         <ExercisesBlockAudio exercises={linesAdditional}/>
         <YStack ai="center">
           <XStack fw="wrap" jc="space-around" >
-          <LifeHackerBlock
+            <LifeHackerBlock
               lifehackimage={lifehack2.image}
               lifehacktitle={lifehack2.title}
-              lifehackdescription1={lifehack2.description1}
-              lifehackcontent1_1text={""}
-              lifehackcontent1_2text={""}
-              lifehackcontent1_3text={""}
-              lifehackdescription2={""}
-              lifehackcontent2_1text={""}
-              lifehackcontent2_2text={""}
-              lifehackcontent2_3text={""}
+              descriptions={[
+                lifehack2.description1,
+                lifehack2.description2,
+                lifehack2.description3,
+                lifehack2.description4,
+              ]}
+              contents={[
+                lifehack2.content1,
+                lifehack2.content2,
+                lifehack2.content3,
+                lifehack2.content4,
+              ]}
             />
             <LifeHackerBlock
               lifehackimage={lifehack3.image}
               lifehacktitle={lifehack3.title}
-              lifehackdescription1={lifehack3.description1}
-              lifehackcontent1_1text={""}
-              lifehackcontent1_2text={""}
-              lifehackcontent1_3text={""}
-              lifehackdescription2={""}
-              lifehackcontent2_1text={""}
-              lifehackcontent2_2text={""}
-              lifehackcontent2_3text={""}
+              descriptions={[
+                lifehack3.description1,
+                lifehack3.description2,
+                lifehack3.description3,
+                lifehack3.description4,
+              ]}
+              contents={[
+                lifehack3.content1,
+                lifehack3.content2,
+                lifehack3.content3,
+                lifehack3.content4,
+              ]}
             />
           </XStack>
         </YStack>

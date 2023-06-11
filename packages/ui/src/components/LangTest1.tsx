@@ -16,7 +16,7 @@ interface LangTestProps {
   example: Test;
 }
 
-export const LangTest: React.FC<LangTestProps> = ({ tests, example }) => {
+export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
 
   const midIndex = Math.ceil(tests.length / 2);
   const firstHalf = tests.slice(0, midIndex);
