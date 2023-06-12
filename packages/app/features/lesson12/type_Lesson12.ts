@@ -1,4 +1,4 @@
-export type ContentLesson11_3 = {
+export type ContentLesson12 = {
     description: string;
     poster: string;
     video: string;
