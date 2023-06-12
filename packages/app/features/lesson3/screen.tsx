@@ -79,7 +79,7 @@ export function lesson3Screen() {
         {/* Теоритический Блок */}
 
         <HeaderBlock header={content?.header1}/>
-        <SquareText text={content?.squaretext1}/>
+        <SquareText text={content?.squareText1}/>
         <TableBlock tables={tables1}/>
 
         {/* Формы на “Usted” - “Ustedes”: */}
@@ -93,18 +93,18 @@ export function lesson3Screen() {
 
         {/*  Построение простого вопроса: */}
 
-        <SquareText text={content?.squaretext2}/>
+        <SquareText text={content?.squareText2}/>
         <ExercisesBlockText exercises={blockText1}/>
 
         {/*  ППостроение Отрицания: */}
 
-        <SquareText text={content?.squaretext3}/>
+        <SquareText text={content?.squareText3}/>
         <ExercisesBlockText exercises={blockText2}/>
 
         {/*  Блок Упражнений */}
 
         <HeaderBlock header={content?.header3}/>
-        <SquareText text={content?.squaretext4}/>
+        <SquareText text={content?.squareText4}/>
         <LangTest1 tests={tests1} example={example1}/>
       </YStack> 
         <NavigationBlock

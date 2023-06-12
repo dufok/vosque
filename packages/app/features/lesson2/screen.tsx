@@ -95,14 +95,14 @@ export function lesson2Screen() {
 
        {/* Важные Исключения */}
 
-       <SquareText text={content?.squaretext1}/>
+       <SquareText text={content?.squareText1}/>
        <ExercisesBlockText exercises={blockText1}/>
 
        {/*  Множественное число */}
 
-       <SquareText text={content?.squaretext2}/>
+       <SquareText text={content?.squareText2}/>
        <ExercisesBlockText exercises={blockText2}/>
-       <SquareText text={content?.squaretext3}/>
+       <SquareText text={content?.squareText3}/>
 
        {/*  Неопределенный Артикль */}
 
@@ -177,7 +177,7 @@ export function lesson2Screen() {
        <HeaderBlock header={content?.header5}/>
        <ExercisesBlockText exercises={blockText3}/>
        <WordToTranslateBlock words={wordToTranslateBlock1}/>
-       <SquareText text={content?.squaretext5}/>
+       <SquareText text={content?.squareText5}/>
        <DescriptionBlock description={content?.description7}/>
        <ExercisesBlockText exercises={blockText4}/>
        <DescriptionBlock description={content?.description8}/>
@@ -198,7 +198,7 @@ export function lesson2Screen() {
               content?.lifehack4.content4,
             ]}
         />
-       <SquareText text={content?.squaretext8}/>
+       <SquareText text={content?.squareText8}/>
        <ExercisesBlockText exercises={blockText8}/>
        </YStack>
        <NavigationBlock  lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 3"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>

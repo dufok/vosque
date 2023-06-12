@@ -4,7 +4,7 @@ export type ContentLesson3 = {
     video: string;
     image: string;
     header1: string;
-    squaretext1: string;
+    squareText1: string;
     table1: { [key: string]: Tables };
     header2: string;
     description2: string;
@@ -12,12 +12,12 @@ export type ContentLesson3 = {
     description4: string;
     description5: string;
     description6: string;
-    squaretext2: string;
+    squareText2: string;
     blockText1: { [key: string]: Exercise };
-    squaretext3: string;
+    squareText3: string;
     blockText2: { [key: string]: Exercise };
     header3: string;
-    squaretext4: string;
+    squareText4: string;
     test1: { example: { question: string, unswer: string[]};
              testContent: {[key: string]: Tests}};
 }

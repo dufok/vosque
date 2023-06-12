@@ -5,11 +5,11 @@ export type ContentLesson2 = {
     image: string;
     header1: string;
     table1: { [key: string]: Tables };
-    squaretext1: string;
+    squareText1: string;
     blockText1: { [key: string]: Exercise };
-    squaretext2: string;
+    squareText2: string;
     blockText2: { [key: string]: Exercise };
-    squaretext3: string;
+    squareText3: string;
     header2: string;
     table2: { [key: string]: Tables };
     lifehack1: {
@@ -111,7 +111,7 @@ export type ContentLesson2 = {
     header5: string;
     blockText3: { [key: string]: Exercise };
     wordToTranslateBlock1: { [key: string]: Words };
-    squaretext5: string;
+    squareText5: string;
     description7: string;
     blockText4: { [key: string]: Exercise };
     description8: string;
@@ -144,7 +144,7 @@ export type ContentLesson2 = {
           3: { text: string }
         }
     },
-    squaretext8: string;
+    squareText8: string;
     blockText8: { [key: string]: Exercise };
 }
 
