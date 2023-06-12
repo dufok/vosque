@@ -33,15 +33,15 @@ export function lesson9Screen() {
   // Part Config
 
   const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson7"});
-  const lessonLinkPageDown = useLink({ href: "/lesson5_2"});
+  const lessonLinkPageUP = useLink({ href: "/lesson9_2"});
+  const lessonLinkPageDown = useLink({ href: "/lesson8"});
 
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const NinthLesson = userLessons?.[12];
+  const NinthLesson = userLessons?.[11];
   
   const content = NinthLesson?.content as ContentLesson9;
 

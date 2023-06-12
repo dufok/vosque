@@ -133,7 +133,7 @@ export function lesson3_2Screen() {
           <LangTest1 example={example1_5} tests={tests1_5} />
         </YStack>
         <NavigationBlock
-          lessonLinkPageDOWNname={"Урок 3"}
+          lessonLinkPageDOWNname={"Урок 3 (часть 1)"}
           lessonLinkPageUPname={"Урок 4"}
           lessonLinkPageUP={lessonLinkPageUP} 
           lessonLinkPageDOWN={lessonLinkPageDown}/>

@@ -40,7 +40,7 @@ export function lesson6Screen() {
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const SixthLesson = userLessons?.[8];
+  const SixthLesson = userLessons?.[7];
   
   const content = SixthLesson?.content as ContentLesson6;
 

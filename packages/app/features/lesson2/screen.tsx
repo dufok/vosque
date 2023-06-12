@@ -26,7 +26,7 @@ import { ExercisesBlockText } from "@my/ui/src/components/ExercisesBlockText";
 import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 import { TableBlock } from "@my/ui/src/components/TableBlock";
-import { LangTest } from "@my/ui/src/components/LangTest1";
+import { LangTest1 } from "@my/ui/src/components/LangTest1";
 
 export function lesson2Screen() {
   //hrefs
@@ -41,7 +41,7 @@ export function lesson2Screen() {
 
   //lesson content
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const SecondLesson = userLessons?.[1];
+  const SecondLesson = userLessons?.[1]; 
 
   const content = SecondLesson?.content as ContentLesson2;
   const tables1 = Object.values(content?.table1 || {});
@@ -56,7 +56,7 @@ export function lesson2Screen() {
   const tests3 = Object.values(content?.test3.testContent || {});
   const example3 = content?.test3.example;
   const blockText3 = Object.values(content?.blockText3 || {});
-  const wordToTranlateBlock1 = Object.values(content?.wordToTranlateBlock1 || {});
+  const wordToTranslateBlock1 = Object.values(content?.wordToTranslateBlock1 || {});
   const blockText4 = Object.values(content?.blockText4 || {});
   const tables4 = Object.values(content?.table4 || {});
   const blockText8 = Object.values(content?.blockText8 || {});
@@ -169,14 +169,14 @@ export function lesson2Screen() {
        </YStack>
        <HeaderBlock header={content?.header4}/>
        <DescriptionBlock description={content?.description4}/>
-       <LangTest tests={tests1} example={example1}/>
+       <LangTest1 tests={tests1} example={example1}/>
        <DescriptionBlock description={content?.description5}/>
-       <LangTest tests={tests2} example={example2}/>
+       <LangTest1 tests={tests2} example={example2}/>
        <DescriptionBlock description={content?.description6}/>
-       <LangTest tests={tests3} example={example3}/>
+       <LangTest1 tests={tests3} example={example3}/>
        <HeaderBlock header={content?.header5}/>
        <ExercisesBlockText exercises={blockText3}/>
-       <WordToTranslateBlock words={wordToTranlateBlock1}/>
+       <WordToTranslateBlock words={wordToTranslateBlock1}/>
        <SquareText text={content?.squaretext5}/>
        <DescriptionBlock description={content?.description7}/>
        <ExercisesBlockText exercises={blockText4}/>

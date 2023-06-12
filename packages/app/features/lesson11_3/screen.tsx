@@ -42,7 +42,7 @@ export function lesson11_3Screen() {
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const EleventPartThrihLesson = userLessons?.[18];
+  const EleventPartThrihLesson = userLessons?.[17];
   
   const content = EleventPartThrihLesson?.content as ContentLesson11_3;
 

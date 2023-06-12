@@ -109,7 +109,7 @@ export function lesson3Screen() {
       </YStack> 
         <NavigationBlock
           lessonLinkPageDOWNname={"Урок 2"}
-          lessonLinkPageUPname={"Урок 3"}
+          lessonLinkPageUPname={"Урок 3 (Часть 2)"}
           lessonLinkPageUP={lessonLinkPageUP}
           lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>

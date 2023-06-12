@@ -39,7 +39,7 @@ export function lesson7Screen() {
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const SeventhLesson = userLessons?.[9];
+  const SeventhLesson = userLessons?.[8];
   
   const content = SeventhLesson?.content as ContentLesson7;
 
@@ -143,8 +143,8 @@ export function lesson7Screen() {
 
         </YStack>
         <NavigationBlock
-          lessonLinkPageDOWNname={"Урок 3"}
-          lessonLinkPageUPname={"Урок 5 часть 2"}
+          lessonLinkPageDOWNname={"Урок 6"}
+          lessonLinkPageUPname={"Урок 7 (часть 2)"}
           lessonLinkPageUP={lessonLinkPageUP} 
           lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>

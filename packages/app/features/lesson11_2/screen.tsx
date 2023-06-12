@@ -33,15 +33,15 @@ export function lesson11_2Screen() {
   // Part Config
 
   const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson11"});
-  const lessonLinkPageDown = useLink({ href: "/lesson10"});
+  const lessonLinkPageUP = useLink({ href: "/lesson11_3"});
+  const lessonLinkPageDown = useLink({ href: "/lesson11"});
 
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const EleventPartTwohLesson = userLessons?.[17];
+  const EleventPartTwohLesson = userLessons?.[16];
   
   const content = EleventPartTwohLesson?.content as ContentLesson11_2;
 
@@ -113,8 +113,8 @@ export function lesson11_2Screen() {
 
           </YStack>
         <NavigationBlock
-          lessonLinkPageDOWNname={"Урок 10"}
-          lessonLinkPageUPname={"Урок 11 (часть 2)"}
+          lessonLinkPageDOWNname={"Урок 11 (часть 1)"}
+          lessonLinkPageUPname={"Урок 11 (часть 3)"}
           lessonLinkPageUP={lessonLinkPageUP} 
           lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>
