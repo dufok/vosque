@@ -37,7 +37,7 @@ export const LifeHackerBlock: React.FC<LifeHackerBlockProps> = ({
         <Avatar.Image src={lifehackimage} scale="50%" />
         <Avatar.Fallback backgroundColor="$backgroundFocus" />
       </Avatar>
-      <H5 fontSize={18} ta="center" mt="$3" col="$backgroundPress" style={{ textDecoration: 'underline', fontStyle: 'italic' }} >{lifehacktitle}</H5>
+      <H5 fontSize={18} ta="center" mt="$3" col="$backgroundPress" style={{ fontStyle: 'italic' }} >{lifehacktitle}</H5>
       {descriptions.map((description, i) => (
         <React.Fragment key={i}>
           <Paragraph mt="$3" ta="left">{description}</Paragraph>
