@@ -7,6 +7,10 @@ export type Tables = {
   row2?: string;
   row3?: string;
   row4?: string;
+  row5?: string;
+  row6?: string;
+  row7?: string;
+  row8?: string;
 };
 
 interface TableBlockProps {
@@ -22,7 +26,9 @@ export const TableBlock: React.FC<TableBlockProps> = ({ tables }) => {
                 <tr key={index}>
                   {tables.map((table, index) => (
                     table[rowKey] && (
-                      <td key={index} style={{ border: "1px solid #0E171A", padding: "10px" }}>{table[rowKey]}</td>
+                      <td key={index} style={{ border: "1px solid #0E171A", padding: "10px" }}>
+                        <div dangerouslySetInnerHTML={{ __html: table[rowKey].replace(/\n/g, "<br />") }} />
+                      </td>
                     )
                   ))}
                 </tr>
@@ -32,11 +38,3 @@ export const TableBlock: React.FC<TableBlockProps> = ({ tables }) => {
     </YStack>
   );
 };
-
-
-
-
-
-
-
-

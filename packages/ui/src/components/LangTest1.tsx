@@ -67,15 +67,13 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
         autoDeleteTime={3000}
       />
       
-      {example && (
-        <YStack ai="center" mb="$4">
-          <XStack space={4} fw="wrap">
+      {example.question && (
+        <YStack ai="center" mb="$4" space={4}>
               <ParagraphCustom text={example.question}/>
             <YStack m="$1"/>
             <YStack f={1} boc="$backgroundHover"  borderWidth="$1" br="$3" p="$1.5" paddingHorizontal="$7" >
               <ParagraphCustom text={example.unswer}/>
             </YStack>
-          </XStack>
         </YStack>
       )}
 
@@ -84,7 +82,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
       {tests && (
         <YStack ai="center" f={1} mt="$4">
           <XStack fw="wrap" jc="space-between">
-            <YStack m="$2" f={0.5}>
+            <YStack m="$2" w="90%" $gtSm={{ width: "50%" }}>
               {firstHalf.map(({ question, unswer }, index) => {
       
                 const [answer, setAnswer] = useState("");
@@ -119,35 +117,33 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
                   if (isCorrect !== null && answer !== "") {
                     showToast(isCorrect ? "success" : "error", unswer);
                   }
-                };
+                }; 
 
                 return (
-                  <YStack>
-                    <XStack fw="wrap" key={index} ai="center">
-                      <YStack ai="flex-end">
-                        <Paragraph mr="$2" >{question}</Paragraph>
-                      </YStack>
-                      <Separator />
-                      <YStack jc="center" m="$2"  f={1}>
-                          <Input 
-                            size="$3" 
-                            opacity={0.7}
-                            br="$3"
-                            placeholder={"Ваш ответ ..."}
-                            onChangeText={(text) => handleAnswerChange(text, unswer)}
-                            backgroundColor={isCorrect === true ? 'green' : '$background'}
-                            borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
-                            borderWidth={isCorrect === false ? '$2' : '$1'}
-                            onFocus={handleInputFocus}
-                            onBlur={handleInputBlur}
-                          />
-                      </YStack>
-                    </XStack>
+                  <YStack key={index} ai="flex-start" w="100%" >
+                    <YStack>
+                      <Paragraph mr="$2">{question}</Paragraph>
+                    </YStack>
+                    <YStack jc="center" m="$2" w="100%" >
+                        <Input 
+                          size="$3" 
+                          opacity={0.7}
+                          br="$3"
+                          placeholder={"Ваш ответ ..."}
+                          onChangeText={(text) => handleAnswerChange(text, unswer)}
+                          backgroundColor={isCorrect === true ? 'green' : '$background'}
+                          borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
+                          borderWidth={isCorrect === false ? '$2' : '$1'}
+                          onFocus={handleInputFocus}
+                          onBlur={handleInputBlur}
+                        />
+                    </YStack>
                   </YStack>
                 );
               })}
             </YStack>
-            <YStack m="$2" f={0.5}>
+
+            <YStack m="$2" w="90%" $gtSm={{ width: "50%" }} >  
               {secondHalf.map(({ question, unswer }, index) => {
                 const [answer, setAnswer] = useState("");
                 const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -185,26 +181,25 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
                 };
 
                 return (
-                  <XStack fw="wrap" key={index} ai="center">
-                      <YStack ai="flex-end">
-                        <Paragraph mr="$2" >{question}</Paragraph>
-                      </YStack>
-                      <Separator />
-                      <YStack jc="center" m="$2" f={1}>
-                          <Input 
-                            size="$3" 
-                            opacity={0.7}
-                            br="$3"
-                            placeholder={"Ваш ответ ..."}
-                            onChangeText={(text) => handleAnswerChange(text, unswer)}
-                            backgroundColor={isCorrect === true ? 'green' : '$background'}
-                            borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
-                            borderWidth={isCorrect === false ? '$2' : '$1'}
-                            onFocus={handleInputFocus}
-                            onBlur={handleInputBlur}
-                          />
-                      </YStack>
-                    </XStack>
+                  <YStack key={index} ai="flex-start" w="100%">
+                    <YStack>
+                      <Paragraph mr="$2" >{question}</Paragraph>
+                    </YStack>
+                    <YStack jc="center" m="$2" w="100%">
+                        <Input 
+                          size="$3" 
+                          opacity={0.7}
+                          br="$3"
+                          placeholder={"Ваш ответ ..."}
+                          onChangeText={(text) => handleAnswerChange(text, unswer)}
+                          backgroundColor={isCorrect === true ? 'green' : '$background'}
+                          borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
+                          borderWidth={isCorrect === false ? '$2' : '$1'}
+                          onFocus={handleInputFocus}
+                          onBlur={handleInputBlur}
+                        />
+                    </YStack>
+                  </YStack>
                 );
               })}
             </YStack>

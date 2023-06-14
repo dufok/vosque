@@ -17,7 +17,7 @@ export function LangTest4({ tests, example }) {
       <Paragraph ta="center" fow="800">
         LangTest4
       </Paragraph>
-      <Square w={400} h={400} bg="red" />
+      <Square w={300} h={400} bg="red" />
     </YStack>
   );
 } 

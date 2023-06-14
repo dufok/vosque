@@ -4,7 +4,6 @@ import React from "react";
 function parseAndRenderText(text) {
 
   if (typeof text !== 'string') {
-    console.error('text must be a string, but got', typeof text);
     return null; // Or return a default value or throw an error, as appropriate for your use case
   }
   
@@ -31,7 +30,7 @@ function parseAndRenderText(text) {
 
 export const ParagraphCustom = ({ text }) => {
   return (
-    <Paragraph ta="left">
+    <Paragraph col="$backgroundPress" ta="left">
       {parseAndRenderText(text)}
     </Paragraph>
   );

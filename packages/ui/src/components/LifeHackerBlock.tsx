@@ -1,4 +1,4 @@
-import { Paragraph, YStack, Image, H3 } from "tamagui";
+import { Paragraph, YStack, Image, Avatar, H3, H5, H4 } from "tamagui";
 import React from "react";
 import { ParagraphCustom } from "./CustomText";
 
@@ -33,13 +33,18 @@ export const LifeHackerBlock: React.FC<LifeHackerBlockProps> = ({
       shadowRadius={15}
       shadowOffset={{ width: 0, height: 4 }}
     >
-      <Image src={lifehackimage} width={50} height={50} />
-      <H3>{lifehacktitle}</H3>
+      <Avatar circular size="$4" backgroundColor="$backgroundFocus">
+        <Avatar.Image src={lifehackimage} scale="50%" />
+        <Avatar.Fallback backgroundColor="$backgroundFocus" />
+      </Avatar>
+      <H5 fontSize={18} ta="center" mt="$3" col="$backgroundPress" style={{ textDecoration: 'underline', fontStyle: 'italic' }} >{lifehacktitle}</H5>
       {descriptions.map((description, i) => (
         <React.Fragment key={i}>
-          <Paragraph ta="center">{description}</Paragraph>
+          <Paragraph mt="$3" ta="left">{description}</Paragraph>
           {contents[i] && Object.values(contents[i]).map((content, j) => (
-            <ParagraphCustom key={j} text={content.text} />
+            <YStack mt="$3" ml="$3">
+              <ParagraphCustom key={j} text={content.text} />
+            </YStack>
           ))}
         </React.Fragment>
       ))}

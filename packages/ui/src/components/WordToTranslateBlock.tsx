@@ -1,5 +1,9 @@
-import { H4, Paragraph, YStack, XStack, Separator } from "tamagui";
+import { H4, H5, Paragraph, YStack, XStack, Separator } from "tamagui";
 import React from "react";
+
+import { HelpComp } from "@my/ui/src/components/HelpComp";
+
+
 
 export function WordToTranslateBlock({ words }) {
 
@@ -13,31 +17,56 @@ export function WordToTranslateBlock({ words }) {
   const secondHalf = words.slice(midIndex);
 
   return (
-    <YStack m="$6" f={1} w="100%">
-      <XStack fw="wrap" jc="space-around">
-        <YStack f={0.5} maw={400}>
-          {firstHalf.map((word, index) => (
-            <YStack f={0.5} key={index} m="$2">
-              <XStack>
-                <H4 ta="left">{word.text1}</H4>
-                <Separator m="$2" alignSelf="center"/>
-                <H4 ta="right">{word.text2}</H4>
-              </XStack>
-              <Paragraph f={0.7} ta="center">{word.description ?? []}</Paragraph>
+    <YStack m="$6" p="$6" f={1} w="100%" maw={1000}>
+      <XStack fw="wrap" jc="space-around" >
+        <YStack maw={350} w="100%" $gtSm={{ width: "40%" }}>
+          <XStack ai="center" fw="wrap" >
+            <YStack m="$2" >
+              {firstHalf.map((word, index) => (
+                <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index}>{word.text1}</Paragraph>
+              ))}
             </YStack>
-          ))}
+            <YStack m="$2" f={1}>
+              {firstHalf.map((word, index) => (
+                <YStack h={22} mt="$1.5" mb="$1.5" key={index} jc="center">
+                  <Separator w="50%" borderColor="$backgroundFocus" key={index} alignSelf="center"/>
+                </YStack>
+              ))}
+            </YStack>
+            <YStack m="$2" > 
+              {firstHalf.map((word, index) => (
+                <XStack >
+                    <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index} >{word.text2}</Paragraph>
+                    {word.description && <HelpComp texts={word.description} html={index} />}
+                </XStack>
+              ))}
+            </YStack>
+          </XStack>
         </YStack>
-        <YStack f={0.5} maw={400}>
-          {secondHalf.map((word, index) => (
-            <YStack key={index} f={0.5} m="$2">
-              <XStack>
-                <H4 ta="left">{word.text1}</H4>
-                <Separator m="$2" alignSelf="center"/>
-                <H4 ta="right">{word.text2}</H4>
-              </XStack>
-              <Paragraph f={0.7} ta="center">{word.description ?? []}</Paragraph>
+        <Separator vertical borderColor="$backgroundFocus"  marginHorizontal="$10"  $sm={{display: "none"}}/>
+        <YStack maw={350}  w="100%" $gtSm={{ width: "40%" }}>
+        <XStack ai="center" fw="wrap" >
+            <YStack m="$2" >
+              {secondHalf.map((word, index) => (
+                <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index}>{word.text1}</Paragraph>
+              ))}
             </YStack>
-          ))}
+            <YStack m="$2" f={1}>
+              {secondHalf.map((word, index) => (
+                <YStack h={22} mt="$1.5" mb="$1.5" key={index} jc="center">
+                  <Separator w="50%" borderColor="$backgroundFocus" key={index} alignSelf="center"/>
+                </YStack>
+              ))}
+            </YStack>
+            <YStack m="$2">
+              {secondHalf.map((word, index) => (
+                <XStack >
+                  <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index} >{word.text2}</Paragraph>
+                  {word.description && <HelpComp texts={word.description} html={index} />}
+                </XStack>
+              ))}
+            </YStack>
+          </XStack>
         </YStack>
       </XStack>
     </YStack>
