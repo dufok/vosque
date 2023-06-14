@@ -4,19 +4,17 @@ import {
   XStack,
   Spinner,
  } from "@my/ui";
-
-import React from "react";
-
+import { useLink } from "solito/link";
+import React,{useEffect} from "react";
 
 export function testScreen() {
-
   
-
-
+  
 
   return (
     <YStack>
-        
-    </YStack>
+
+      </YStack>
+ 
   );
 } 

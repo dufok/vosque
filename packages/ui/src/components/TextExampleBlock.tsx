@@ -1,5 +1,6 @@
-import { Paragraph, YStack, XStack, H3, Separator } from "tamagui";
+import { Paragraph, YStack, XStack, H3, H4, H5,  Separator } from "tamagui";
 import React from "react";
+import { ParagraphCustom } from "./CustomText";
 
 export type Example = {
   description: string;
@@ -117,21 +118,22 @@ const extractExampleAndPrononce = (exampleObj: Example, count: number): ExampleP
 
 export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples }) => {
   return (
-    <YStack ai="flex-start" m="$6" f={1} maw={800}>
+    <YStack p="$2" pl="$6" w="100%" f={1} maw={1000}>
       {textExamples.map((example, index) => (
-        <YStack  key={index} >
-          <H3 ta="left" >{example.description}</H3>
-            <YStack ml="$6" f={1}>
+        <YStack key={index} w="100%" >
+            <YStack mt="$2" >
+              <H5 ta="left">{example.description}</H5>
+            </YStack>
+            <YStack mt="$2" f={1} w="100%">
               {extractExampleAndPrononce(example, 30).map(({example, prononce}, index) => (
                 example && prononce ?
                 <React.Fragment key={index}>
                 <XStack>
-                  <YStack f={0.5} mr="$1">
-                    <Paragraph ta="left" >{example}</Paragraph>
+                  <YStack mr="$8">
+                    <Paragraph col="$backgroundPress" ta="left" >{example}</Paragraph>
                   </YStack>
-                  <Separator m="$2" alignSelf="center"/>
-                  <YStack f={0.5} mr="$1">
-                    <Paragraph ta="right" >{prononce}</Paragraph>
+                  <YStack ai="flex-start">
+                    <ParagraphCustom text={prononce}/>
                   </YStack>
                 </XStack>
                 </React.Fragment>

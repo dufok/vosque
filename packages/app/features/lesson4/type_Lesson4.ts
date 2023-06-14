@@ -86,6 +86,13 @@ export type ContentLesson4 = {
         content4: { [key: string]: Texts };
     };
     textExampleBlock13: { [key: string]: ExampleAndAnswer };
+    squareText12: string;
+    squareText13: string;
+    squareText14: string;
+    wordToTranslateBlock1: { [key: string]: Words };
+    wordToTranslateBlock2: { [key: string]: Words };
+    wordToTranslateBlock3: { [key: string]: Words };
+    wordToTranslateBlock4: { [key: string]: Words };
 }
 
 export type Tables = {

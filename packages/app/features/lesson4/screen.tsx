@@ -62,6 +62,10 @@ export function lesson4Screen() {
   const tests1_4 = Object.values(content?.langTest1_4.testContent || {});
   const example1_4 = content?.langTest1_4.example;
   const exercises3 = Object.values(content?.exercisesBlockText3 || {});
+  const wordToTranslate1 = Object.values(content?.wordToTranslateBlock1 || {});
+  const wordToTranslate2 = Object.values(content?.wordToTranslateBlock2 || {});
+  const wordToTranslate3 = Object.values(content?.wordToTranslateBlock3 || {});
+  const wordToTranslate4 = Object.values(content?.wordToTranslateBlock4 || {});
 
 
   useEffect(() => {
@@ -81,79 +85,85 @@ export function lesson4Screen() {
       <HeaderComp />
       { isSignedIn && (
       <YStack f={1}>
-        <YStack ai="center" mt="$10">
-          <WelcomeBlock
-            name={FourthLesson?.name}
-            description={content?.description}/>
-            <YStack  w="100%" $gtSm={{ width: "70%" }}>
-              <VideoPlayer linkVideo={content?.video}/>
-            </YStack>
-          <ImageCircle img={content?.image}/>
+      <YStack ai="center" mt="$10">
+        <WelcomeBlock
+          name={FourthLesson?.name}
+          description={content?.description}/>
+          <YStack  w="100%" $gtSm={{ width: "70%" }}>
+            <VideoPlayer linkVideo={content?.video}/>
+          </YStack>
+        <ImageCircle img={content?.image}/>
 
-          <HeaderBlock header={content?.headerBlock1}/>
-          <DescriptionBlock description={content?.descriptionBlock1} />
-          <TableBlock tables={tables1} />
-          <SquareText text={content?.squareText1} />
-          <TextExampleBlock textExamples={textExample1}/>
-          <DescriptionBlock description={content?.descriptionBlock2} />
-          <SquareText text={content?.squareText2} />
-          <TextExampleBlock textExamples={textExample2}/>
+        <HeaderBlock header={content?.headerBlock1}/>
+        <DescriptionBlock description={content?.descriptionBlock1} />
+        <TableBlock tables={tables1} />
+        <SquareText text={content?.squareText1} />
+        <TextExampleBlock textExamples={textExample1}/>
+        <DescriptionBlock description={content?.descriptionBlock2} />
+        <SquareText text={content?.squareText2} />
+        <TextExampleBlock textExamples={textExample2}/>
 
-          <HeaderBlock header={content?.headerBlock3} />
-          <SquareText text={content?.squareText3} />
-          <LangTest1 example={example1_1} tests={tests1_1} />
-          <LifeHackerBlock
-            lifehackimage={content?.lifeHackerBlock1.image}
-            lifehacktitle={content?.lifeHackerBlock1.title}
-            descriptions={[
-              content?.lifeHackerBlock1.description1,
-              content?.lifeHackerBlock1.description2,
-              content?.lifeHackerBlock1.description3,
-              content?.lifeHackerBlock1.description4,
-            ]}
-            contents={[
-              content?.lifeHackerBlock1.content1,
-              content?.lifeHackerBlock1.content2,
-              content?.lifeHackerBlock1.content3,
-              content?.lifeHackerBlock1.content4,
-            ]}
-          />
+        <HeaderBlock header={content?.headerBlock3} />
+        <SquareText text={content?.squareText3} />
+        <LangTest1 example={example1_1} tests={tests1_1} />
+        <LifeHackerBlock
+          lifehackimage={content?.lifeHackerBlock1.image}
+          lifehacktitle={content?.lifeHackerBlock1.title}
+          descriptions={[
+            content?.lifeHackerBlock1.description1,
+            content?.lifeHackerBlock1.description2,
+            content?.lifeHackerBlock1.description3,
+            content?.lifeHackerBlock1.description4,
+          ]}
+          contents={[
+            content?.lifeHackerBlock1.content1,
+            content?.lifeHackerBlock1.content2,
+            content?.lifeHackerBlock1.content3,
+            content?.lifeHackerBlock1.content4,
+          ]}
+        />
 
-          <HeaderBlock header={content?.headerBlock2} />
-          <SquareText text={content?.squareText2} />
-          <DescriptionBlock description={content?.descriptionBlock3} />
-          <ExercisesBlockText exercises={exercises3} />
-          <TextExampleBlock textExamples={textExample3}/>
-          <DescriptionBlock description={content?.descriptionBlock4} />
-          <TextExampleBlock textExamples={textExample4}/>
-          <DescriptionBlock description={content?.descriptionBlock5} />
-          <TextExampleBlock textExamples={textExample5}/>
-          <DescriptionBlock description={content?.descriptionBlock6} />
-          <SquareText text={content?.squareText5} />
-          <LangTest1 example={example1_2} tests={tests1_2} />
+        {/* ВСПОМНИМ ПРИЛАГАТЕЛЬНЫЕ */}
 
-          <HeaderBlock header={content?.headerBlock4} />
-          <DescriptionBlock description={content?.descriptionBlock7} />
-          <SquareText text={content?.squareText8} />
-          <TextExampleBlock textExamples={textExample8}/>
-          <SquareText text={content?.squareText9} />
-          <TextExampleBlock textExamples={textExample9}/>
-          <SquareText text={content?.squareText10} />
-          <LangTest1 example={example1_3} tests={tests1_3} />
+        <HeaderBlock header={content?.headerBlock2} />
+        <SquareText text={content?.squareText2} />
+        <DescriptionBlock description={content?.descriptionBlock3} />
+        <TextExampleBlock textExamples={textExample3}/>
+        <DescriptionBlock description={content?.descriptionBlock4} />
+        <TextExampleBlock textExamples={textExample4}/>
+        <DescriptionBlock description={content?.descriptionBlock5} />
+        <TextExampleBlock textExamples={textExample5}/>
+        <DescriptionBlock description={content?.descriptionBlock6} />
+        <SquareText text={content?.squareText5} />
+        <LangTest1 example={example1_2} tests={tests1_2} />
 
-          <HeaderBlock header={content?.headerBlock5} />
-          <DescriptionBlock description={content?.descriptionBlock8} />
-          <DescriptionBlock description={content?.descriptionBlock9} />
-          <TextExampleBlock textExamples={textExample10}/>
-          <DescriptionBlock description={content?.descriptionBlock10} />
-          <TextExampleBlock textExamples={textExample11}/>
-          <DescriptionBlock description={content?.descriptionBlock11} />
+        <HeaderBlock header={content?.headerBlock4} />
+        <DescriptionBlock description={content?.descriptionBlock7} />
+        <SquareText text={content?.squareText8} />
+        <TextExampleBlock textExamples={textExample8}/>
+        <SquareText text={content?.squareText9} />
+        <TextExampleBlock textExamples={textExample9}/>
+        <SquareText text={content?.squareText10} />
+        <LangTest1 example={example1_3} tests={tests1_3} />
 
-          <SquareText text={content?.squareText11} />
-          <LangTest1 example={example1_4} tests={tests1_4} />
+        <HeaderBlock header={content?.headerBlock5} />
+        <DescriptionBlock description={content?.descriptionBlock8} />
+        <DescriptionBlock description={content?.descriptionBlock9} />
+        <TextExampleBlock textExamples={textExample10}/>
+        <DescriptionBlock description={content?.descriptionBlock10} />
+        <TextExampleBlock textExamples={textExample11}/>
+        <DescriptionBlock description={content?.descriptionBlock11} />
 
-          <HeaderBlock header={content?.headerBlock12} />
-          <TextExampleBlock textExamples={textExample12}/>
+        <SquareText text={content?.squareText11} />
+        <LangTest1 example={example1_4} tests={tests1_4} />
+
+            {/* БЛОК ЛЕКСИКИ */}
+
+        <HeaderBlock header={content?.headerBlock12} />
+        <WordToTranslateBlock words={wordToTranslate1} />
+        <SquareText text={content?.squareText12} />
+        <WordToTranslateBlock words={wordToTranslate2} />
+        <XStack fw="wrap" jc="center"  >
           <LifeHackerBlock
             lifehackimage={content?.lifeHackerBlock2.image}
             lifehacktitle={content?.lifeHackerBlock2.title}
@@ -186,14 +196,19 @@ export function lesson4Screen() {
               content?.lifeHackerBlock3.content4,
             ]}
           />
-          <TextExampleBlock textExamples={textExample13}/>
-        </YStack>
-        <NavigationBlock
-          lessonLinkPageDOWNname={"Урок 3"}
-          lessonLinkPageUPname={"Урок 5"}
-          lessonLinkPageUP={lessonLinkPageUP} 
-          lessonLinkPageDOWN={lessonLinkPageDown}/>
+        </XStack>
+        <SquareText text={content?.squareText13} />
+        <WordToTranslateBlock words={wordToTranslate3} />
+        <SquareText text={content?.squareText14} />
+        <WordToTranslateBlock words={wordToTranslate4} />
+        
       </YStack>
+      <NavigationBlock
+        lessonLinkPageDOWNname={"Урок 3"}
+        lessonLinkPageUPname={"Урок 5"}
+        lessonLinkPageUP={lessonLinkPageUP} 
+        lessonLinkPageDOWN={lessonLinkPageDown}/>
+    </YStack>
       )}
         <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>

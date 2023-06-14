@@ -6,7 +6,8 @@ export function PhraseBooks({phasebookLinkProps: {href}}){
       <YStack ai="center" bc="$backgroundFocus" >
           <Image mt={30} src={{uri: 'https://cdn.vosque.education/images/img-home-phrasebook.png?raw', width: 50, height: 50}}
           height="$8"
-          width="$6"
+          width="$8"
+          scale="50%"
           />
           <H2 tt="uppercase" col="$background">разговорники</H2>
           {/*<H5 fontWeight="bold" mt={50}>что это такое ?</H5>*/}

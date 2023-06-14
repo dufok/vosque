@@ -32,7 +32,7 @@ export function lesson2Screen() {
   //hrefs
   const userpageLinkProps = useLink({ href: "/userpage"});
   const lessonLinkPageUP = useLink({ href: "/lesson3"});
-  const lessonLinkPageDown = useLink({ href: "/lesson2"});
+  const lessonLinkPageDown = useLink({ href: "/lesson1"});
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();

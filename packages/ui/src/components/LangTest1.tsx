@@ -67,7 +67,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
         autoDeleteTime={3000}
       />
       
-      {example.question && (
+      {example && (
         <YStack ai="center" mb="$4" space={4}>
               <ParagraphCustom text={example.question}/>
             <YStack m="$1"/>
@@ -82,7 +82,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
       {tests && (
         <YStack ai="center" f={1} mt="$4">
           <XStack fw="wrap" jc="space-between">
-            <YStack m="$2" w="90%" $gtSm={{ width: "50%" }}>
+            <YStack m="$2" w="90%" $gtSm={{ width: "40%" }}>
               {firstHalf.map(({ question, unswer }, index) => {
       
                 const [answer, setAnswer] = useState("");
@@ -143,7 +143,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
               })}
             </YStack>
 
-            <YStack m="$2" w="90%" $gtSm={{ width: "50%" }} >  
+            <YStack m="$2" w="90%" $gtSm={{ width: "40%" }} >  
               {secondHalf.map(({ question, unswer }, index) => {
                 const [answer, setAnswer] = useState("");
                 const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
