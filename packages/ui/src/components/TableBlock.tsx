@@ -1,39 +1,64 @@
-import { Paragraph, YStack, XStack } from "tamagui";
+import { Paragraph, H5, YStack, XStack } from "tamagui";
 import React from "react";
 
-export type Tables = {
-  name: string;
-  row1?: string;
-  row2?: string;
-  row3?: string;
-  row4?: string;
-  row5?: string;
-  row6?: string;
-  row7?: string;
-  row8?: string;
+export type Row = {
+  name?: string;
+  data: string[];
+  spanAllColumns?: boolean;
+};
+
+export type Table = {
+  header: string;
+  rows: Row[];
 };
 
 interface TableBlockProps {
-  tables: Tables[];
+  table: Table;
 }
 
-export const TableBlock: React.FC<TableBlockProps> = ({ tables }) => {
+export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
   return (
-    <YStack m="$6">
-      <table style={{ border: "1px solid #0E171A", borderCollapse: "collapse" }}>
-          <tbody>
-              {["name", "row1", "row2", "row3", "row4", "row5", "row6", "row7", "row8"].map((rowKey, index) => (
-                <tr key={index}>
-                  {tables.map((table, index) => (
-                    table[rowKey] && (
-                      <td key={index} style={{ border: "1px solid #0E171A", padding: "10px" }}>
-                        <div dangerouslySetInnerHTML={{ __html: table[rowKey].replace(/\n/g, "<br />") }} />
-                      </td>
-                    )
+    <YStack m="$6" w="100%" f={1} maw={800}>
+      <table style={{ border: "2px solid #83503C", borderCollapse: "collapse" }}>
+        <tbody>
+          <tr>
+            <td colSpan={table.rows.length} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
+              <H5 tt="uppercase" ta="center">{table.header}</H5>
+            </td>
+          </tr>
+          {table.rows.map((row, index) => (
+            <tr key={index}>
+              {row.spanAllColumns ? (
+                <td colSpan={table.rows.length} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
+                  <Paragraph p="$6"  tt="uppercase" dangerouslySetInnerHTML={{ __html: row.data[0].replace(/\n/g, "<br />") }} />
+                </td>
+              ) : (
+                <>
+                  <td style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
+                    <Paragraph p="$6">
+                      {row.name?.split("\n").map((line, i) => (
+                        <div key={i} style={{ textAlign: "center" }}>
+                          {line}
+                        </div>
+                      ))}
+                    </Paragraph>
+                  </td>
+                  {row.data.map((cell, index) => (
+                    <td key={index} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
+                      <Paragraph p="$6">
+                        { cell.split("\n").map((line, i) => (
+                          <div key={i} style={{ textAlign: "center" }}>
+                            {line}
+                          </div>
+                        ))}
+                      </Paragraph>
+                    </td>
                   ))}
-                </tr>
-              ))}
-          </tbody>
+                </>
+              )}
+            </tr>
+          ))}
+        </tbody>
       </table>
     </YStack>
   );

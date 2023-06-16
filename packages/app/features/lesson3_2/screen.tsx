@@ -29,7 +29,7 @@ import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock
 export function lesson3_2Screen() {
   const userpageLinkProps = useLink({ href: "/userpage"});
   const lessonLinkPageUP = useLink({ href: "/lesson4"});
-  const lessonLinkPageDown = useLink({ href: "/lesson3_1"});
+  const lessonLinkPageDown = useLink({ href: "/lesson3"});
 
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
@@ -40,10 +40,7 @@ export function lesson3_2Screen() {
   
 
   const content = ThirdPartTwoLesson?.content as ContentLesson3_2;
-  const tables1 = Object.values(content?.tableBlock1 || {});
   const exercises2 = Object.values(content?.exercisesBlockText2 || {});
-  const exercises3 = Object.values(content?.exercisesBlockText3 || {});
-  const exercises4 = Object.values(content?.exercisesBlockText4 || {});
   const tests2_1 = Object.values(content?.langTest2_1.testContent || {});
   const tests1_2 = Object.values(content?.langTest1_2.testContent || {});
   const tests1_3 = Object.values(content?.langTest1_3.testContent || {});
@@ -55,6 +52,8 @@ export function lesson3_2Screen() {
   const example1_4 = content?.langTest1_4.example;
   const example1_5 = content?.langTest1_5.example;
   const wordToTranslate1 = Object.values(content?.wordToTranslateBlock1 || {});
+  const wordToTranslate2 = Object.values(content?.wordToTranslateBlock2 || {});
+  const wordToTranslate3 = Object.values(content?.wordToTranslateBlock3 || {});
   
   useEffect(() => {
     console.log(data);
@@ -83,34 +82,41 @@ export function lesson3_2Screen() {
           <ImageCircle img={content?.image}/>
 
           <HeaderBlock header={content?.headerBlock1}/>
-          <SquareText text={content?.squareText1} />
-          <TableBlock tables={tables1} />
+          <TableBlock table={content?.tableBlock1} />
 
           <HeaderBlock header={content?.headerBlock2} />
           <DescriptionBlock description={content?.descriptionBlock1} />
           <LangTest2 example={example2_1} tests={tests2_1}/>
 
-          <SquareText text={content?.squeareText2} />
-          <DescriptionBlock description={content?.descriptionBlock2} />
-          <DescriptionBlock description={content?.descriptionBlock3} />
-          <DescriptionBlock description={content?.descriptionBlock4} />
-          <ExercisesBlockText exercises={exercises2} />
-          <LifeHackerBlock
-            lifehackimage={content?.lifeHackerBlock1.image}
-            lifehacktitle={content?.lifeHackerBlock1.title}
-            descriptions={[
-              content?.lifeHackerBlock1.description1,
-              content?.lifeHackerBlock1.description2,
-              content?.lifeHackerBlock1.description3,
-              content?.lifeHackerBlock1.description4,
-            ]}
-            contents={[
-              content?.lifeHackerBlock1.content1,
-              content?.lifeHackerBlock1.content2,
-              content?.lifeHackerBlock1.content3,
-              content?.lifeHackerBlock1.content4,
-            ]}
-          />
+          <SquareText text={content?.squareText2} />
+          <YStack ai="center" f={1}>
+            <XStack fw="wrap" jc="center">
+              <YStack maw={600} $sm={{ width: "100%" }} >
+                <DescriptionBlock description={content?.descriptionBlock2} />
+                <DescriptionBlock description={content?.descriptionBlock3} />
+                <DescriptionBlock description={content?.descriptionBlock4} />
+                <ExercisesBlockText exercises={exercises2} />
+              </YStack>
+              <YStack $sm={{ width: "100%" }} ai="center">
+                <LifeHackerBlock
+                  lifehackimage={content?.lifeHackerBlock1.image}
+                  lifehacktitle={content?.lifeHackerBlock1.title}
+                  descriptions={[
+                    content?.lifeHackerBlock1.description1,
+                    content?.lifeHackerBlock1.description2,
+                    content?.lifeHackerBlock1.description3,
+                    content?.lifeHackerBlock1.description4,
+                  ]}
+                  contents={[
+                    content?.lifeHackerBlock1.content1,
+                    content?.lifeHackerBlock1.content2,
+                    content?.lifeHackerBlock1.content3,
+                    content?.lifeHackerBlock1.content4,
+                  ]}
+                />
+              </YStack>
+            </XStack>
+          </YStack>
 
           <SquareText text={content?.squaeText3} />
           <LangTest1 example={example1_2} tests={tests1_2} />
@@ -119,12 +125,12 @@ export function lesson3_2Screen() {
 
           <HeaderBlock header={content?.headerBlock3} />
           <SquareText text={content?.squareText5} />
-          <ExercisesBlockText exercises={exercises3} />
+          <WordToTranslateBlock words={wordToTranslate1} />
           <DescriptionBlock description={content?.descriptionBlock5} />
-          <ExercisesBlockText exercises={exercises4} />
+          <WordToTranslateBlock words={wordToTranslate2} />
           <SquareText text={content?.squareText8} />
           <DescriptionBlock description={content?.descriptionBlock6} />
-          <WordToTranslateBlock words={wordToTranslate1} />
+          <WordToTranslateBlock words={wordToTranslate3} />
 
           <HeaderBlock header={content?.headerBlock4} />
           <DescriptionBlock description={content?.descriptionBlock7} />

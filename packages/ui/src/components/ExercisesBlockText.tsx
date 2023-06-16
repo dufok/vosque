@@ -22,10 +22,10 @@ interface ExercisesBlockTextProps {
 
 export const ExercisesBlockText: React.FC<ExercisesBlockTextProps> = ({ exercises }) => {
   return (
-    <YStack m="$6" ai="flex-start" maw={800}>
+    <YStack ai="flex-start" w="100%" paddingHorizontal="$6" paddingVertical="$4" maw={1000}>
       {exercises.map((exercise, index) => (
         <YStack mt="$3" key={index}>
-          <H5 ta="left">{exercise.text}</H5>
+          <Paragraph fontSize={20} marginBottom="$2" ta="left">{exercise.text}</Paragraph>
           <YStack ml="$2">
             <ParagraphCustom text={exercise.example1} />
             <ParagraphCustom text={exercise.example2} />

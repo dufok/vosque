@@ -4,8 +4,9 @@ export type ContentLesson3 = {
     video: string;
     image: string;
     header1: string;
+    exercisesBlockText1: { [key: string]: Exercise };
     squareText1: string;
-    table1: { [key: string]: Tables };
+    tableBlock1: Table;
     header2: string;
     description2: string;
     description3: string;
@@ -22,14 +23,16 @@ export type ContentLesson3 = {
              testContent: {[key: string]: Tests}};
 }
 
-export type Tables = {
-    name: string;
-    row1: string;
-    row2: string;
-    row3: string;
-    row4: string;
-    row5: string;
-};
+export type Table = {
+    header: string;
+    rows: Row[];
+  };
+
+export type Row = {
+    name?: string;
+    data: string[];
+    spanAllColumns?: boolean;
+  };
 
 export type Exercise = {
     text: string;

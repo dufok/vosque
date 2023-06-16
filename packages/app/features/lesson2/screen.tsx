@@ -44,22 +44,18 @@ export function lesson2Screen() {
   const SecondLesson = userLessons?.[1]; 
 
   const content = SecondLesson?.content as ContentLesson2;
-  const tables1 = Object.values(content?.table1 || {});
   const blockText1 = Object.values(content?.blockText1 || {});
   const blockText2 = Object.values(content?.blockText2 || {});
-  const tables2 = Object.values(content?.table2 || {});
-  const tables3 = Object.values(content?.table3 || {});
   const tests1 = Object.values(content?.test1.testContent || {});
   const example1 = content?.test1.example;
   const tests2 = Object.values(content?.test2.testContent || {});
   const example2 = content?.test2.example;
   const tests3 = Object.values(content?.test3.testContent || {});
   const example3 = content?.test3.example;
-  const blockText3 = Object.values(content?.blockText3 || {});
   const wordToTranslateBlock1 = Object.values(content?.wordToTranslateBlock1 || {});
-  const blockText4 = Object.values(content?.blockText4 || {});
-  const tables4 = Object.values(content?.table4 || {});
-  const blockText8 = Object.values(content?.blockText8 || {});
+  const wordToTranslateBlock2 = Object.values(content?.wordToTranslateBlock2 || {});
+  const wordToTranslateBlock3 = Object.values(content?.wordToTranslateBlock3 || {});
+  const wordToTranslateBlock4 = Object.values(content?.wordToTranslateBlock4 || {});
 
 
   useEffect(() => {
@@ -91,7 +87,7 @@ export function lesson2Screen() {
        {/* Теоритический Блок */}
 
        <HeaderBlock header={content?.header1}/>
-       <TableBlock tables={tables1}/>
+       <TableBlock table={content?.tableBlock1}/>
 
        {/* Важные Исключения */}
 
@@ -107,8 +103,8 @@ export function lesson2Screen() {
        {/*  Неопределенный Артикль */}
 
        <HeaderBlock header={content?.header2}/>
-       <XStack fw="wrap">
-         <TableBlock tables={tables2}/>
+       <XStack fw="wrap" jc="center">
+         <TableBlock table={content?.tableBlock2}/>
          <LifeHackerBlock
             lifehackimage={content?.lifehack1.image}
             lifehacktitle={content?.lifehack1.title}
@@ -130,7 +126,7 @@ export function lesson2Screen() {
        {/* Определенный Артикль */}
 
        <HeaderBlock header={content?.header3}/>
-       <TableBlock tables={tables3}/>
+       <TableBlock table={content?.tableBlock3}/>
        <YStack ai="center">
          <XStack fw="wrap" jc="space-around" >
             <LifeHackerBlock
@@ -167,21 +163,34 @@ export function lesson2Screen() {
           />
          </XStack>
        </YStack>
+
+        {/*  Теоретический блок Упражнений */}
+
        <HeaderBlock header={content?.header4}/>
+       <SquareText text={content?.squareText4}/>
        <DescriptionBlock description={content?.description4}/>
        <LangTest1 tests={tests1} example={example1}/>
+       <SquareText text={content?.squareText6}/>
        <DescriptionBlock description={content?.description5}/>
        <LangTest1 tests={tests2} example={example2}/>
+       <SquareText text={content?.squareText7}/>
        <DescriptionBlock description={content?.description6}/>
        <LangTest1 tests={tests3} example={example3}/>
+
+        {/*  Блок Лексики */}
+       
        <HeaderBlock header={content?.header5}/>
-       <ExercisesBlockText exercises={blockText3}/>
+
        <WordToTranslateBlock words={wordToTranslateBlock1}/>
+
+       <WordToTranslateBlock words={wordToTranslateBlock2}/>
        <SquareText text={content?.squareText5}/>
        <DescriptionBlock description={content?.description7}/>
-       <ExercisesBlockText exercises={blockText4}/>
+
+       <WordToTranslateBlock words={wordToTranslateBlock3}/>
+
        <DescriptionBlock description={content?.description8}/>
-       <TableBlock tables={tables4}/>
+       <TableBlock table={content?.tableBlock4}/>
        <LifeHackerBlock
             lifehackimage={content?.lifehack4.image}
             lifehacktitle={content?.lifehack4.title}
@@ -199,9 +208,15 @@ export function lesson2Screen() {
             ]}
         />
        <SquareText text={content?.squareText8}/>
-       <ExercisesBlockText exercises={blockText8}/>
+
+       <WordToTranslateBlock words={wordToTranslateBlock4}/>
+
        </YStack>
-       <NavigationBlock  lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 3"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
+       <NavigationBlock
+        lessonLinkPageDOWNname={"Урок 1"}
+        lessonLinkPageUPname={"Урок 3"}
+        lessonLinkPageUP={lessonLinkPageUP}
+        lessonLinkPageDOWN={lessonLinkPageDown}/>
        </YStack>
       )}
       <SubMenu userpageLinkProps={userpageLinkProps}/>

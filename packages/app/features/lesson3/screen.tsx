@@ -23,7 +23,7 @@ import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
 import { TableBlock } from "@my/ui/src/components/TableBlock";
 import { LangTest1 } from "@my/ui/src/components/LangTest1";
 
-//* CHANCHE testScreen *///
+
 export function lesson3Screen() {
   //hrefs
   const userpageLinkProps = useLink({ href: "/userpage"});
@@ -42,11 +42,11 @@ export function lesson3Screen() {
 
   //part with types from file json full
   const content = ThirdLesson?.content as ContentLesson3;
-  const tables1 = Object.values(content?.table1 || {});
   const blockText1 = Object.values(content?.blockText1 || {});
   const blockText2 = Object.values(content?.blockText2 || {});
   const tests1 = Object.values(content?.test1.testContent || {});
   const example1 = content?.test1.example;
+  const exercises1 = Object.values(content?.exercisesBlockText1 || {});
 
 
   
@@ -66,47 +66,43 @@ export function lesson3Screen() {
     <YStack>
       <HeaderComp />
       { isSignedIn && (
-      <YStack f={1}>
-        <YStack ai="center" mt="$10">
-            <WelcomeBlock
-              name={ThirdLesson?.name}
-              description={content?.description}/>
-              <YStack  w="100%" $gtSm={{ width: "70%" }}>
-                <VideoPlayer linkVideo={content?.video}/>
-              </YStack>
-            <ImageCircle img={content?.image}/>
+        <YStack f={1}>
+          <YStack ai="center" mt="$10">
+              <WelcomeBlock
+                name={ThirdLesson?.name}
+                description={content?.description}/>
+                <YStack  w="100%" $gtSm={{ width: "70%" }}>
+                  <VideoPlayer linkVideo={content?.video}/>
+                </YStack>
+              <ImageCircle img={content?.image}/>
 
-        {/* Теоритический Блок */}
+          {/* Теоритический Блок */}
 
-        <HeaderBlock header={content?.header1}/>
-        <SquareText text={content?.squareText1}/>
-        <TableBlock tables={tables1}/>
+          <HeaderBlock header={content?.header1}/>
+          <SquareText text={content?.squareText1}/>
+          <TableBlock table={content?.tableBlock1}/>
 
-        {/* Формы на “Usted” - “Ustedes”: */}
+          {/* Формы на “Usted” - “Ustedes”: */}
 
-        <HeaderBlock header={content?.header2}/>
-        <DescriptionBlock description={content?.description2}/>
-        <DescriptionBlock description={content?.description3}/>
-        <DescriptionBlock description={content?.description4}/>
-        <DescriptionBlock description={content?.description5}/>
-        <DescriptionBlock description={content?.description6}/>
+          <HeaderBlock header={content?.header2}/>
+          <ExercisesBlockText exercises={exercises1} />
 
-        {/*  Построение простого вопроса: */}
+          {/*  Построение простого вопроса: */}
 
-        <SquareText text={content?.squareText2}/>
-        <ExercisesBlockText exercises={blockText1}/>
+          <SquareText text={content?.squareText2}/>
+          <ExercisesBlockText exercises={blockText1}/>
 
-        {/*  ППостроение Отрицания: */}
+          {/*  ППостроение Отрицания: */}
 
-        <SquareText text={content?.squareText3}/>
-        <ExercisesBlockText exercises={blockText2}/>
+          <SquareText text={content?.squareText3}/>
+          <ExercisesBlockText exercises={blockText2}/>
 
-        {/*  Блок Упражнений */}
+          {/*  Блок Упражнений */}
 
-        <HeaderBlock header={content?.header3}/>
-        <SquareText text={content?.squareText4}/>
-        <LangTest1 tests={tests1} example={example1}/>
-      </YStack> 
+          <HeaderBlock header={content?.header3}/>
+          <SquareText text={content?.squareText4}/>
+          <LangTest1 tests={tests1} example={example1}/>
+        </YStack> 
         <NavigationBlock
           lessonLinkPageDOWNname={"Урок 2"}
           lessonLinkPageUPname={"Урок 3 (Часть 2)"}

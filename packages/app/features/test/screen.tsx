@@ -7,14 +7,13 @@ import {
 import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
-export function testScreen() {
-  
-  
 
+
+export function testScreen() {
+ 
   return (
     <YStack>
-
-      </YStack>
- 
+      
+    </YStack>
   );
-} 
+}
