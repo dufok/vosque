@@ -33,6 +33,13 @@
 	animation: toast-in-left .7s;
 }
 
+.bottom-center {
+	bottom: 12px;
+	left: 50%;
+	transform: transform .6s ease-in;
+	animation: toast-in-left .7s;
+}
+
 .notification {
 	background: #fff;
 	transition: .3s ease;
