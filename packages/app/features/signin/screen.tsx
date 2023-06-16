@@ -5,6 +5,11 @@ import { useRouter } from "solito/router";
 import { SignUpSignInComponent } from "@my/ui/src/components/SignUpSignIn";
 import { handleOAuthSignIn } from "app/utils/auth";
 
+import React, { useState } from "react";
+
+import { ToastComp } from "@my/ui/src/components/ToastComp";
+import { Banana } from '@tamagui/lucide-icons';
+
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return ""; // browser should use relative url
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`; // SSR should use vercel url
@@ -12,7 +17,39 @@ const getBaseUrl = () => {
   return `http://localhost:${process.env.PORT ?? 3000}`; // dev SSR should use localhost
 };
 
+
+
 export function SignInScreen() {
+
+  // this is for toast message
+  const [list, setList] = useState<any[]>([]);
+
+  const showToast = (type) => {
+
+    let toastProperties;
+
+    switch (type) {
+      case "error":
+        toastProperties = {
+          id: 2,
+          title: "Упс",
+          description: `Неверный Логин или Пароль`,
+          backgroundColor: "#d9534f",
+          icon: Banana,
+        };
+        break;
+      
+      default:
+        setList([]);
+        break
+    }
+
+    setList([...list, toastProperties]);
+
+  };
+
+  // this is for user check
+
   const { push } = useRouter();
 
   const { isLoaded, signIn, setSession } = useSignIn();
@@ -31,15 +68,28 @@ export function SignInScreen() {
   };
 
   const handleEmailSignInWithPress = async (emailAddress, password) => {
-    await signIn.create({
-      identifier: emailAddress,
-      password,
-    });
-    await redirectIfSignedIn();
+    try {
+      await signIn.create({
+        identifier: emailAddress,
+        password,
+      });
+      await redirectIfSignedIn();
+      } catch (error) {
+      showToast("error");
+      // Handle error
+      console.error(error); // You might want to replace this with your own error handling logic.
+      // For example, you could show a toast notification, change some state to show an error message on the screen, etc.
+    }
   };
 
   return (
     <YStack f={1} jc="center" ai="center" space>
+      <ToastComp 
+        toastList={list}
+        position="bottom-right"
+        autoDelete={true}
+        autoDeleteTime={3000}
+      />
       <SignUpSignInComponent
         type="sign-in"
         handleOAuthWithPress={handleOAuthSignInWithPress}
