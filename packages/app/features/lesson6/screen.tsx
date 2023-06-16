@@ -31,9 +31,6 @@ import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock
 export function lesson6Screen() {
 
   // Part Config
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson7"});
-  const lessonLinkPageDown = useLink({ href: "/lesson5_2"});
 
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
@@ -41,8 +38,6 @@ export function lesson6Screen() {
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   const SixthLesson = userLessons?.[7];
-  
-  const content = SixthLesson?.content as ContentLesson6;
 
   useEffect(() => {
     console.log(data);
@@ -58,9 +53,12 @@ export function lesson6Screen() {
 
   // Part Content
 
-  const tables1 = Object.values(content?.tableBlock1 || {});
-  const tables2 = Object.values(content?.tableBlock2 || {});
-  const tables3 = Object.values(content?.tableBlock3 || {});
+  const content = SixthLesson?.content as ContentLesson6;
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson7"});
+  const lessonLinkPageDown = useLink({ href: "/lesson5_2"});
+
   const exercises1 = Object.values(content?.exercisesBlockText1 || {});
   const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
   const example4_1 = content?.langTest4_1.example;
@@ -74,58 +72,58 @@ export function lesson6Screen() {
     <YStack>
       <HeaderComp />
       { isSignedIn && (
-      <YStack f={1}>
-        <YStack ai="center" mt="$10">
-          <WelcomeBlock
-            name={SixthLesson?.name}
-            description={content?.description}/>
-            <YStack  w="100%" $gtSm={{ width: "70%" }}>
-              <VideoPlayer linkVideo={content?.video}/>
-            </YStack>
-          <ImageCircle img={content?.image}/>
+       <YStack f={1}>
+       <YStack ai="center" mt="$10">
+         <WelcomeBlock
+           name={SixthLesson?.name}
+           description={content?.description}/>
+           <YStack  w="100%" $gtSm={{ width: "70%" }}>
+             <VideoPlayer linkVideo={content?.video}/>
+           </YStack>
+         <ImageCircle img={content?.image}/>
 
-          <HeaderBlock header={content?.headerBlock1}/>
-          <TableBlock tables={tables1} />
-          <TableBlock tables={tables2} />
-          <DescriptionBlock description={content?.descriptionBlock1} />
-          <TableBlock tables={tables3} />
-          <ExercisesBlockText exercises={exercises1} />
-          <SquareText text={content?.squareText1} />
-          <LangTest4 example={example4_1} tests={tests4_1} />
-          <SquareText text={content?.squareText2} />
-          <LangTest1 example={example1_1} tests={tests1_1} />
+         <HeaderBlock header={content?.headerBlock1}/>
+         <TableBlock table={content?.tableBlock1} />
+         <TableBlock table={content?.tableBlock2} />
+         <DescriptionBlock description={content?.descriptionBlock1} />
+         <TableBlock table={content?.tableBlock3} />
+         <ExercisesBlockText exercises={exercises1} />
+         <SquareText text={content?.squareText1} />
+         <LangTest4 example={example4_1} tests={tests4_1} />
+         <SquareText text={content?.squareText2} />
+         <LangTest1 example={example1_1} tests={tests1_1} />
 
-          <HeaderBlock header={content?.headerBlock5} />
-          <WordToTranslateBlock words={wordToTranslate1} />
-          <LifeHackerBlock
-            lifehackimage={content?.lifeHackerBlock1.image}
-            lifehacktitle={content?.lifeHackerBlock1.title}
-            descriptions={[
-              content?.lifeHackerBlock1.description1,
-              content?.lifeHackerBlock1.description2,
-              content?.lifeHackerBlock1.description3,
-              content?.lifeHackerBlock1.description4,
-            ]}
-            contents={[
-              content?.lifeHackerBlock1.content1,
-              content?.lifeHackerBlock1.content2,
-              content?.lifeHackerBlock1.content3,
-              content?.lifeHackerBlock1.content4,
-            ]}
-          />
+         <HeaderBlock header={content?.headerBlock5} />
+         <WordToTranslateBlock words={wordToTranslate1} />
+         <LifeHackerBlock
+           lifehackimage={content?.lifeHackerBlock1.image}
+           lifehacktitle={content?.lifeHackerBlock1.title}
+           descriptions={[
+             content?.lifeHackerBlock1.description1,
+             content?.lifeHackerBlock1.description2,
+             content?.lifeHackerBlock1.description3,
+             content?.lifeHackerBlock1.description4,
+           ]}
+           contents={[
+             content?.lifeHackerBlock1.content1,
+             content?.lifeHackerBlock1.content2,
+             content?.lifeHackerBlock1.content3,
+             content?.lifeHackerBlock1.content4,
+           ]}
+         />
 
-            {/* Домашнее задание */}
+           {/* Домашнее задание */}
 
-          <HeaderBlock header={content?.headerBlock6} />
-          <LangTest1 example={example1_2} tests={tests1_2} />
+         <HeaderBlock header={content?.headerBlock6} />
+         <LangTest1 example={example1_2} tests={tests1_2} />
 
-        </YStack>
-        <NavigationBlock
-          lessonLinkPageDOWNname={"Урок 5 (часть 2)"}
-          lessonLinkPageUPname={"Урок 7"}
-          lessonLinkPageUP={lessonLinkPageUP} 
-          lessonLinkPageDOWN={lessonLinkPageDown}/>
-      </YStack>
+       </YStack>
+       <NavigationBlock
+         lessonLinkPageDOWNname={"Урок 5 (часть 2)"}
+         lessonLinkPageUPname={"Урок 7"}
+         lessonLinkPageUP={lessonLinkPageUP} 
+         lessonLinkPageDOWN={lessonLinkPageDown}/>
+     </YStack>
       )}
         <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
