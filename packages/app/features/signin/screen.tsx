@@ -86,7 +86,7 @@ export function SignInScreen() {
     <YStack f={1} jc="center" ai="center" space>
       <ToastComp 
         toastList={list}
-        position="bottom-right"
+        position="bottom-center"
         autoDelete={true}
         autoDeleteTime={3000}
       />

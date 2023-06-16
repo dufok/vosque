@@ -47,9 +47,9 @@ export type ContentLesson5_2 = {
     };
     squareText5: string;
     wordToTranslateBlock2: { [key: string]: Words };
-    descriptionBlock4: string;
+    squareText6: string;
     wordToTranslateBlock3: { [key: string]: Words };
-    descriptionBlock5: string;
+    squareText7: string;
     wordToTranslateBlock4: { [key: string]: Words };
     headerBlock4: string;
     langTest1_2: { example: { question: string, unswer: string[]};

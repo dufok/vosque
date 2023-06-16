@@ -4,8 +4,7 @@ export type ContentLesson4 = {
     video: string;
     image: string;
     headerBlock1: string;
-    descriptionBlock1: string;
-    tableBlock1: { [key: string]: Tables };
+    tableBlock1: Table;
     squareText1: string;
     textExampleBlock1: { [key: string]: ExampleAndAnswer };
     descriptionBlock2: string;
@@ -95,22 +94,16 @@ export type ContentLesson4 = {
     wordToTranslateBlock4: { [key: string]: Words };
 }
 
-export type Tables = {
-    name: string;
-    row1: string;
-    row2: string;
-    row3: string;
-    row4: string;
-    row5: string;
-    row6: string;
-    row7: string;
-    row8: string;
-    row9: string;
-    row10: string;
-    row11: string;
-    row12: string;
-    row13: string;
-};
+export type Table = {
+    header: string;
+    rows: Row[];
+  };
+
+export type Row = {
+    name?: string;
+    data: string[];
+    spanAllColumns?: boolean;
+  };
 
 export type Exercise = {
     text: string;

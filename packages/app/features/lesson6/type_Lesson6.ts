@@ -4,10 +4,10 @@ export type ContentLesson6 = {
     video: string;
     image: string;
     headerBlock1: string;
-    tableBlock1: { [key: string]: Tables };
-    tableBlock2: { [key: string]: Tables };
+    tableBlock1: Table;
+    tableBlock2: Table;
     descriptionBlock1: string;
-    tableBlock3: { [key: string]: Tables };
+    tableBlock3: Table;
     headerBlock2: string;
     descriptionBlock2: string;
     textExampleBlock1: { [key: string]: ExampleAndAnswer };
@@ -39,22 +39,16 @@ export type ContentLesson6 = {
         testContent: {[key: string]: Tests1 }};
 }
 
-export type Tables = {
-    name: string;
-    row1: string;
-    row2: string;
-    row3: string;
-    row4: string;
-    row5: string;
-    row6: string;
-    row7: string;
-    row8: string;
-    row9: string;
-    row10: string;
-    row11: string;
-    row12: string;
-    row13: string;
-};
+export type Table = {
+    header: string;
+    rows: Row[];
+  };
+
+export type Row = {
+    name?: string;
+    data: string[];
+    spanAllColumns?: boolean;
+  };
 
 export type Exercise = {
     text: string;

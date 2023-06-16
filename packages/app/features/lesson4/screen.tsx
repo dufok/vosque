@@ -41,7 +41,6 @@ export function lesson4Screen() {
   
 
   const content = FourthLesson?.content as ContentLesson4;
-  const tables1 = Object.values(content?.tableBlock1 || {});
   const textExample1 = Object.values(content?.textExampleBlock1 || {});
   const textExample2 = Object.values(content?.textExampleBlock2 || {});
   const textExample3 = Object.values(content?.textExampleBlock3 || {});
@@ -51,8 +50,6 @@ export function lesson4Screen() {
   const textExample9 = Object.values(content?.textExampleBlock9 || {});
   const textExample10 = Object.values(content?.textExampleBlock10 || {});
   const textExample11 = Object.values(content?.textExampleBlock11 || {});
-  const textExample12 = Object.values(content?.textExampleBlock12 || {});
-  const textExample13 = Object.values(content?.textExampleBlock13 || {});
   const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
   const example1_1 = content?.langTest1_1.example;
   const tests1_2 = Object.values(content?.langTest1_2.testContent || {});
@@ -61,7 +58,6 @@ export function lesson4Screen() {
   const example1_3 = content?.langTest1_3.example;
   const tests1_4 = Object.values(content?.langTest1_4.testContent || {});
   const example1_4 = content?.langTest1_4.example;
-  const exercises3 = Object.values(content?.exercisesBlockText3 || {});
   const wordToTranslate1 = Object.values(content?.wordToTranslateBlock1 || {});
   const wordToTranslate2 = Object.values(content?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content?.wordToTranslateBlock3 || {});
@@ -95,8 +91,7 @@ export function lesson4Screen() {
         <ImageCircle img={content?.image}/>
 
         <HeaderBlock header={content?.headerBlock1}/>
-        <DescriptionBlock description={content?.descriptionBlock1} />
-        <TableBlock tables={tables1} />
+        <TableBlock table={content?.tableBlock1} />
         <SquareText text={content?.squareText1} />
         <TextExampleBlock textExamples={textExample1}/>
         <DescriptionBlock description={content?.descriptionBlock2} />
