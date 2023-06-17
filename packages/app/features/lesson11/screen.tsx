@@ -32,18 +32,12 @@ export function lesson11Screen() {
 
   // Part Config
 
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson11_2"});
-  const lessonLinkPageDown = useLink({ href: "/lesson10_2"});
-
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   const EleventhLesson = userLessons?.[15];
-  
-  const content = EleventhLesson?.content as ContentLesson11;
 
   useEffect(() => {
     console.log(data);
@@ -59,9 +53,12 @@ export function lesson11Screen() {
 
   // Part Content
 
-  const tables1 = Object.values(content?.tableBlock1 || {});
-  const tables2 = Object.values(content?.tableBlock2 || {});
-  const tables3 = Object.values(content?.tableBlock3 || {});
+  const content = EleventhLesson?.content as ContentLesson11;
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson11_2"});
+  const lessonLinkPageDown = useLink({ href: "/lesson10_2"});
+
   const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
   const example1_1 = content?.langTest1_1.example;
 
@@ -81,14 +78,11 @@ export function lesson11Screen() {
             <ImageCircle img={content?.image}/>
 
             <HeaderBlock header={content?.headerBlock1}/>
-            <DescriptionBlock description={content?.descriptionBlock1} />
             <DescriptionBlock description={content?.descriptionBlock2} />
             <SquareText text={content?.squareText1} />
-            <TableBlock tables={tables1} />
-            <SquareText text={content?.squareText2} />
-            <TableBlock tables={tables2} />
-            <SquareText text={content?.squareText3} />
-            <TableBlock tables={tables3} />
+            <TableBlock table={content?.tableBlock1} />
+            <TableBlock table={content?.tableBlock2} />
+            <TableBlock table={content?.tableBlock3} />
             <LifeHackerBlock
               lifehackimage={content?.lifeHackerBlock1.image}
               lifehacktitle={content?.lifeHackerBlock1.title}

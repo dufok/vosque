@@ -6,9 +6,9 @@ export type ContentLesson12 = {
     headerBlock1: string;
     descriptionBlock1: string;
     descriptionBlock2: string;
-    tableBlock1: { [key: string]: Tables };
-    tableBlock2: { [key: string]: Tables };
-    tableBlock3: { [key: string]: Tables };
+    tableBlock1: Table;
+    tableBlock2: Table;
+    tableBlock3: Table;
     lifeHackerBlock1: {
         image: string;
         title: string;
@@ -28,10 +28,8 @@ export type ContentLesson12 = {
         testContent: {[key: string]: Tests1 }};
     headerBlock3: string;
     descriptionBlock3: string;
-    squareText1: string;
-    tableBlock4: { [key: string]: Tables };
-    squareText2: string;
-    tableBlock5: { [key: string]: Tables };
+    tableBlock4: Table;
+    tableBlock5: Table;
     exercisesBlockText1: { [key: string]: Exercise };
     squareText3: string;
     descriptionBlock4: string;
@@ -54,22 +52,16 @@ export type ContentLesson12 = {
         testContent: {[key: string]: Tests1 }};
 }
 
-export type Tables = {
-    name: string;
-    row1: string;
-    row2: string;
-    row3: string;
-    row4: string;
-    row5: string;
-    row6: string;
-    row7: string;
-    row8: string;
-    row9: string;
-    row10: string;
-    row11: string;
-    row12: string;
-    row13: string;
-};
+export type Table = {
+    header: string;
+    rows: Row[];
+  };
+
+export type Row = {
+    name?: string;
+    data: string[];
+    spanAllColumns?: boolean;
+  };
 
 export type Exercise = {
     text: string;

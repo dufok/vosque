@@ -31,10 +31,6 @@ import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock
 export function lesson9_2Screen() {
 
    // Part Config
-
-   const userpageLinkProps = useLink({ href: "/userpage"});
-   const lessonLinkPageUP = useLink({ href: "/lesson10"});
-   const lessonLinkPageDown = useLink({ href: "/lesson9"});
  
    const { data: currentUser } = trpc.user.current.useQuery();
    const { data, isLoading, error } = trpc.entry.all.useQuery();
@@ -43,8 +39,6 @@ export function lesson9_2Screen() {
    const { data: userLessons } = trpc.user.userLessons.useQuery();
    const NinthPartTwoLesson = userLessons?.[12];
    
-   const content = NinthPartTwoLesson?.content as ContentLesson9_2;
- 
    useEffect(() => {
      console.log(data);
    }, [isLoading]);
@@ -59,24 +53,25 @@ export function lesson9_2Screen() {
  
    // Part Content
 
-   const tables1 = Object.values(content?.tableBlock1 || {});
-   const tables2 = Object.values(content?.tableBlock2 || {});
-   const tables3 = Object.values(content?.tableBlock3 || {});
-   const tables4 = Object.values(content?.tableBlock4 || {});
-   const tables5 = Object.values(content?.tableBlock5 || {});
-   const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
-   const example4_1 = content?.langTest4_1.example;
-   const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
-   const example1_1 = content?.langTest1_1.example;
-   const exercises1 = Object.values(content?.exercisesBlockText1 || {});
-   const tests1_2 = Object.values(content?.langTest1_2.testContent || {});
-   const example1_2 = content?.langTest1_2.example;
+  const content = NinthPartTwoLesson?.content as ContentLesson9_2;
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson10"});
+  const lessonLinkPageDown = useLink({ href: "/lesson9"});
+
+  const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
+  const example4_1 = content?.langTest4_1.example;
+  const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
+  const example1_1 = content?.langTest1_1.example;
+  const exercises1 = Object.values(content?.exercisesBlockText1 || {});
+  const tests1_2 = Object.values(content?.langTest1_2.testContent || {});
+  const example1_2 = content?.langTest1_2.example;
 
   return (
       <YStack>
         <HeaderComp />
         { isSignedIn && (
-        <YStack f={1}>
+      <YStack f={1}>
           <YStack ai="center" mt="$10">
             <WelcomeBlock
               name={NinthPartTwoLesson?.name}
@@ -87,17 +82,12 @@ export function lesson9_2Screen() {
             <ImageCircle img={content?.image}/>
 
             <HeaderBlock header={content?.headerBlock1}/>
-            <DescriptionBlock description={content?.descriptionBlock1} />
-            <DescriptionBlock description={content?.descriptionBlock2} />
             <SquareText text={content?.squareText1} />
-            <TableBlock tables={tables1} />
-            <SquareText text={content?.squareText2} />
-            <TableBlock tables={tables2} />
-            <SquareText text={content?.squareText3} />
-            <DescriptionBlock description={content?.descriptionBlock3} />
-            <TableBlock tables={tables3} />
-            <SquareText text={content?.squareText4} />
-            <TableBlock tables={tables4} />
+            <DescriptionBlock description={content?.descriptionBlock2} />
+            <TableBlock table={content?.tableBlock1} />
+            <TableBlock table={content?.tableBlock2} />
+            <TableBlock table={content?.tableBlock3} />
+            <TableBlock table={content?.tableBlock4} />
             <LifeHackerBlock
               lifehackimage={content?.lifeHackerBlock1.image}
               lifehacktitle={content?.lifeHackerBlock1.title}
@@ -114,8 +104,7 @@ export function lesson9_2Screen() {
                 content?.lifeHackerBlock1.content4,
               ]}
             />
-            <SquareText text={content?.squareText5} />
-            <TableBlock tables={tables5} />
+            <TableBlock table={content?.tableBlock5} />
 
             {/* Домашнее задание */}
 
@@ -124,7 +113,7 @@ export function lesson9_2Screen() {
             <LangTest1 example={example1_1} tests={tests1_1} />
 
             <HeaderBlock header={content?.headerBlock3} />
-            <YStack  w="100%" $gtSm={{ width: "70%" }}>
+            <YStack  mt="$4" w="100%" $gtSm={{ width: "70%" }}>
               <VideoPlayer linkVideo={content?.video3}/>
             </YStack>
             <HeaderBlock header={content?.headerBlock4} />

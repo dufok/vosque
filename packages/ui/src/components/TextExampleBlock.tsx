@@ -128,7 +128,7 @@ export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples
               {extractExampleAndPrononce(example, 30).map(({example, prononce}, index) => (
                 example && prononce ?
                 <React.Fragment key={index}>
-                <XStack>
+                <XStack fw="wrap">
                   <YStack mr="$8">
                     <Paragraph col="$backgroundPress" ta="left" >{example}</Paragraph>
                   </YStack>

@@ -27,47 +27,34 @@ import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 
-import { ContentLesson7 } from "../lesson7/type_Lesson7";
+import { ContentLesson12 } from "../lesson12/type_Lesson12";
 
 export function testScreen() {
 
-  { /* THIS IS LESSONS SECTIOn
+  { /* THIS IS LESSONS SECTIOn 
 
   // TEST NEEDED SYNC TO SEED //
   type Lesson = {
     id: number;
     name: string;
-    content: ContentLesson7;
+    content: ContentLesson12;
   }
   type LessonData = {
     lessons: Lesson[];
   }
   const data: LessonData = require('../../../db/seed/seed.json');
-  const SeventhLesson = data.lessons[8];
+  const TwelfthLesson = data.lessons[18];*/}
 
   //CONSTS
 
-  const content = SeventhLesson?.content as ContentLesson7;
 
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson7_2"});
-  const lessonLinkPageDown = useLink({ href: "/lesson6"});
-
-  const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
-  const example4_1 = content?.langTest4_1.example;
-  const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
-  const example1_1 = content?.langTest1_1.example;
-
-   */}
-
- 
   return (
     <YStack>
       <HeaderComp />
       { /* THIS IS LESSONS SECTIOn */}
 
       { /* THIS IS LESSONS SECTIOn 
-      <SubMenu userpageLinkProps={userpageLinkProps}/>*/}
+      <SubMenu userpageLinkProps={userpageLinkProps}/> */}
     </YStack>
   );
 }
