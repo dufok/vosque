@@ -143,7 +143,6 @@ function Lessons({ isSignedIn, lessonCount, userLessons }) {
                         <H5 key={lesson.id}>
                           <Anchor
                             href={contentLessons[index]?.href}
-                            target="_blank"
                           >{lesson.name}</Anchor></H5>
                         <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
                       </YStack>
@@ -167,7 +166,6 @@ function Lessons({ isSignedIn, lessonCount, userLessons }) {
                           <H5 key={lesson.id}>
                             <Anchor
                               href={contentLessons[index + Math.floor(userLessons.length/2)]?.href}
-                              target="_blank"
                             >{lesson.name}</Anchor></H5>
                           <Paragraph ww="initial" key={lesson.id}>{contentLessons[index + Math.floor(userLessons.length/2)]?.description}</Paragraph>
                         </YStack>
