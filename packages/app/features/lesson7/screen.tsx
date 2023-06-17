@@ -38,18 +38,6 @@ export function lesson7Screen() {
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   const SeventhLesson = userLessons?.[8];
-  
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
-  if (isLoading) {
-      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-  }
-
-  if (error) {
-    return <Paragraph>{error.message}</Paragraph>;
-  }
 
   // Part Content
 
@@ -63,6 +51,18 @@ export function lesson7Screen() {
   const example4_1 = content?.langTest4_1.example;
   const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
   const example1_1 = content?.langTest1_1.example;
+
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
+
+  if (isLoading) {
+      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
+  }
+
+  if (error) {
+    return <Paragraph>{error.message}</Paragraph>;
+  }
 
   return (
     <YStack>

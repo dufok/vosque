@@ -44,18 +44,6 @@ export function lesson8Screen() {
     
     const content = EightLesson?.content as ContentLesson8;
   
-    useEffect(() => {
-      console.log(data);
-    }, [isLoading]);
-  
-    if (isLoading) {
-        return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-    }
-  
-    if (error) {
-      return <Paragraph>{error.message}</Paragraph>;
-    }
-  
     // Part Content
 
     const exercises1 = Object.values(content?.exercisesBlockText1 || {});
@@ -71,6 +59,18 @@ export function lesson8Screen() {
     const tests1_2 = Object.values(content?.langTest1_2.testContent || {});
     const example1_2 = content?.langTest1_2.example;
 
+    useEffect(() => {
+      console.log(data);
+    }, [isLoading]);
+  
+    if (isLoading) {
+        return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
+    }
+  
+    if (error) {
+      return <Paragraph>{error.message}</Paragraph>;
+    }
+  
   return (
     <YStack>
     <HeaderComp />

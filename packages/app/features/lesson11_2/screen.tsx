@@ -39,6 +39,17 @@ export function lesson11_2Screen() {
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   const EleventPartTwohLesson = userLessons?.[16];
   
+  // Part Content\
+
+  const content = EleventPartTwohLesson?.content as ContentLesson11_2;
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson11_3"});
+  const lessonLinkPageDown = useLink({ href: "/lesson11"});
+
+  const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
+  const example1_1 = content?.langTest1_1.example;
+
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
@@ -50,17 +61,6 @@ export function lesson11_2Screen() {
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
-
-  // Part Content\
-
-  const content = EleventPartTwohLesson?.content as ContentLesson11_2;
-
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson11_3"});
-  const lessonLinkPageDown = useLink({ href: "/lesson11"});
-
-  const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
-  const example1_1 = content?.langTest1_1.example;
 
   return (
     <YStack>

@@ -43,6 +43,14 @@ export function lesson7_2Screen() {
   
   const content = SeventhPartTwoLesson?.content as ContentLesson7_2;
 
+  // Part Content
+
+  const textExample1 = Object.values(content?.textExampleBlock1 || {});
+  const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
+  const example1_1 = content?.langTest1_1.example;
+  const tests1_2 = Object.values(content?.langTest1_2.testContent || {});
+  const example1_2 = content?.langTest1_2.example;
+
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
@@ -54,14 +62,6 @@ export function lesson7_2Screen() {
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
-
-  // Part Content
-
-  const textExample1 = Object.values(content?.textExampleBlock1 || {});
-  const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
-  const example1_1 = content?.langTest1_1.example;
-  const tests1_2 = Object.values(content?.langTest1_2.testContent || {});
-  const example1_2 = content?.langTest1_2.example;
 
   return (
     <YStack>

@@ -39,18 +39,6 @@ export function lesson12Screen() {
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   const TwelfthLesson = userLessons?.[18];
-  
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
-  if (isLoading) {
-      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-  }
-
-  if (error) {
-    return <Paragraph>{error.message}</Paragraph>;
-  }
 
   // Part Content
 
@@ -78,7 +66,17 @@ export function lesson12Screen() {
   const wordToTranslate1 = Object.values(content?.wordToTranslateBlock1 || {});
   const wordToTranslate2 = Object.values(content?.wordToTranslateBlock2 || {});
 
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
 
+  if (isLoading) {
+      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
+  }
+
+  if (error) {
+    return <Paragraph>{error.message}</Paragraph>;
+  }
 
   return (
     <YStack>
