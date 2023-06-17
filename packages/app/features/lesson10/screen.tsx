@@ -32,10 +32,6 @@ export function lesson10Screen() {
 
   // Part Config
 
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson10_2"});
-  const lessonLinkPageDown = useLink({ href: "/lesson9_2"});
-
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
@@ -43,8 +39,6 @@ export function lesson10Screen() {
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   const TenthLesson = userLessons?.[13];
   
-  const content = TenthLesson?.content as ContentLesson10;
-
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
@@ -59,7 +53,12 @@ export function lesson10Screen() {
 
   // Part Content
 
-  const tables1 = Object.values(content?.tableBlock1 || {});
+  const content = TenthLesson?.content as ContentLesson10;
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson10_2"});
+  const lessonLinkPageDown = useLink({ href: "/lesson9_2"});
+
   const exercises1 = Object.values(content?.exercisesBlockText1 || {});
   const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
   const example4_1 = content?.langTest4_1.example;
@@ -71,7 +70,7 @@ export function lesson10Screen() {
       <YStack>
         <HeaderComp />
         { isSignedIn && (
-        <YStack f={1}>
+      <YStack f={1}>
           <YStack ai="center" mt="$10">
             <WelcomeBlock
               name={TenthLesson?.name}
@@ -82,25 +81,28 @@ export function lesson10Screen() {
             <ImageCircle img={content?.image}/>
 
             <HeaderBlock header={content?.headerBlock1}/>
-            <SquareText text={content?.squareText1} />
-            <TableBlock tables={tables1} />
-            <ExercisesBlockText exercises={exercises1} />
-            <LifeHackerBlock
-              lifehackimage={content?.lifeHackerBlock1.image}
-              lifehacktitle={content?.lifeHackerBlock1.title}
-              descriptions={[
-                content?.lifeHackerBlock1.description1,
-                content?.lifeHackerBlock1.description2,
-                content?.lifeHackerBlock1.description3,
-                content?.lifeHackerBlock1.description4,
-              ]}
-              contents={[
-                content?.lifeHackerBlock1.content1,
-                content?.lifeHackerBlock1.content2,
-                content?.lifeHackerBlock1.content3,
-                content?.lifeHackerBlock1.content4,
-              ]}
-            />
+            <TableBlock table={content?.tableBlock1} />
+            <XStack fw="wrap" jc="center">
+              <YStack w="50%" $sm={{width: "100%"}}>
+                <ExercisesBlockText exercises={exercises1} />
+              </YStack>
+              <LifeHackerBlock
+                lifehackimage={content?.lifeHackerBlock1.image}
+                lifehacktitle={content?.lifeHackerBlock1.title}
+                descriptions={[
+                  content?.lifeHackerBlock1.description1,
+                  content?.lifeHackerBlock1.description2,
+                  content?.lifeHackerBlock1.description3,
+                  content?.lifeHackerBlock1.description4,
+                ]}
+                contents={[
+                  content?.lifeHackerBlock1.content1,
+                  content?.lifeHackerBlock1.content2,
+                  content?.lifeHackerBlock1.content3,
+                  content?.lifeHackerBlock1.content4,
+                ]}
+              />
+            </XStack>
                         {/* Домашнее задание */}
 
             <HeaderBlock header={content?.headerBlock2} />

@@ -4,21 +4,17 @@ export type ContentLesson11_3 = {
     video: string;
     image: string;
     headerBlock1: string;
-    descriptionBlock1: string;
-    descriptionBlock2: string;
     squareText1: string;
-    tableBlock1: { [key: string]: Tables };
-    squareText2: string;
-    tableBlock2: { [key: string]: Tables };
+    descriptionBlock2: string;
+    tableBlock1: Table;
+    tableBlock2: Table;
     exercisesBlockText1: { [key: string]: Exercise };
     headerBlock2: string;
     langTest1_1: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
     headerBlock3: string;
     descriptionBlock3: string;
-    tableBlock3: { [key: string]: Tables };
-    descriptionBlock4: string;
-    tableBlock4: { [key: string]: Tables };
+    tableBlock3: Table;
     headerBlock4: string;
     squareText3: string;
     wordToTranslateBlock1: { [key: string]: Words };
@@ -54,27 +50,21 @@ export type ContentLesson11_3 = {
         description4: string;
         content4: { [key: string]: Texts };
     };
-    descriptionBlock5: string;
+    headerBlock5: string;
     langTest3_1: { example: { header: string, question: string, unswer: string[]};
         testContent: {[key: string]: Tests3 }};
 }
 
-export type Tables = {
-    name: string;
-    row1: string;
-    row2: string;
-    row3: string;
-    row4: string;
-    row5: string;
-    row6: string;
-    row7: string;
-    row8: string;
-    row9: string;
-    row10: string;
-    row11: string;
-    row12: string;
-    row13: string;
-};
+export type Table = {
+    header: string;
+    rows: Row[];
+  };
+
+export type Row = {
+    name?: string;
+    data: string[];
+    spanAllColumns?: boolean;
+  };
 
 export type Exercise = {
     text: string;
