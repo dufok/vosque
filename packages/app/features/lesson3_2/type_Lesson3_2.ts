@@ -8,7 +8,7 @@ export type ContentLesson3_2 = {
     tableBlock1: Table;
     headerBlock2: string;
     descriptionBlock1: string;
-    langTest2_1: { example: { question1: string, question2: string, unswer: string[]};
+    langTest2_1: { example: { question1: string, question2: string, unswer: string[], help: string};
          testContent: {[key: string]: Tests2 }};
     squareText2: string;
     descriptionBlock2: string;

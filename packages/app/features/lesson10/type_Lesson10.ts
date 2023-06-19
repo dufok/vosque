@@ -19,7 +19,7 @@ export type ContentLesson10 = {
         content4: { [key: string]: Texts };
     };
     headerBlock2: string;
-    langTest4_1: { example: { header: string, question: string, unswer: string[]};
+    langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
     langTest1_1: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};

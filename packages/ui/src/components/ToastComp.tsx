@@ -7,7 +7,7 @@ import "../toast.css";
 import PropTypes from "prop-types";
 
 ToastComp.defaultProps = {
-  position: 'bottom-right'
+  position: 'bottom-center'
 }
 
 ToastComp.propTypes = {

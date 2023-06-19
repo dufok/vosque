@@ -35,9 +35,8 @@
 
 .bottom-center {
 	bottom: 12px;
-	left: 50%;
 	transition: transform .6s ease-in;
-	animation: toast-in-left .7s;
+	animation: toast-in-right .7s;
 }
 
 .notification {

@@ -27,9 +27,6 @@ import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 
 export function lesson3_2Screen() {
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson4"});
-  const lessonLinkPageDown = useLink({ href: "/lesson3"});
 
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
@@ -40,6 +37,11 @@ export function lesson3_2Screen() {
   
 
   const content = ThirdPartTwoLesson?.content as ContentLesson3_2;
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson4"});
+  const lessonLinkPageDown = useLink({ href: "/lesson3"});
+
   const exercises2 = Object.values(content?.exercisesBlockText2 || {});
   const tests2_1 = Object.values(content?.langTest2_1.testContent || {});
   const tests1_2 = Object.values(content?.langTest1_2.testContent || {});
