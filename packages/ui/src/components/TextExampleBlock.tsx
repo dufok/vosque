@@ -118,13 +118,13 @@ const extractExampleAndPrononce = (exampleObj: Example, count: number): ExampleP
 
 export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples }) => {
   return (
-    <YStack m="$6" ai="flex-start"  f={1} maw={1000}>
+    <YStack m="$6" ai="flex-start" f={1} w="90%" maw={900}>
       {textExamples.map((example, index) => {
         const examplePronouncePairs = extractExampleAndPrononce(example, 30);
         return (
           <YStack key={index} w="100%" >
-            <H5 ta="left" mt="$2">{example.description}</H5>
-            <div style={{display: 'grid', gridTemplateColumns: 'auto auto'}}>
+            <H3 ta="left" mt="$2">{example.description}</H3>
+            <div style={{display: 'grid', gridTemplateColumns: '50% auto'}}>
               {examplePronouncePairs.map(({example, prononce}, index) =>
                 example && prononce ? (
                   <React.Fragment key={index}>
@@ -134,7 +134,7 @@ export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples
                         </YStack>
                       </div>
                       <div>
-                        <YStack p="$2">
+                        <YStack p="$2" >
                           <ParagraphCustom text={prononce}/>
                         </YStack>
                       </div>

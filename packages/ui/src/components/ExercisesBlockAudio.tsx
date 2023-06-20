@@ -15,11 +15,11 @@ interface ExercisesBlockAudioProps {
 
 export const ExercisesBlockAudio: React.FC<ExercisesBlockAudioProps> = ({ exercises }) => {
   return (
-    <YStack m="$6" ai="flex-start" w="100%" maw={800}>
+    <YStack m="$6" ai="flex-start" w="90%" maw={900}>
       <YStack>
         {exercises.map(({text, audio}, index) => (
             <XStack key={index} style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-              <YStack m="$4" style={{flex: 1}}>
+              <YStack marginVertical="$4" style={{flex: 1}}>
                 <H3Custom text={text} />
               </YStack>
               <YStack ai="flex-start" jc="center">
