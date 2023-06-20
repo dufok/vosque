@@ -40,22 +40,21 @@ export function lesson1Screen() {
   const firstLesson = userLessons?.[0];
 
   //part with types from file json full
+
   const content = firstLesson?.content as ContentLesson1;
 
   const userpageLinkProps = useLink({ href: "/userpage"});
   const lessonLinkPageUP = useLink({ href: "/lesson2"});
   const lessonLinkPageDown = useLink({ href: "/lesson1"});
 
-  const letters = Object.values(content?.theoreticalBlock.complex.letters || {});
-  const atentionBlocks = Object.values(content?.theoreticalBlock.attention.atentionBlocks || {});
-  const exercises = Object.values(content?.exercisesBlock.training1.exercises || {});
-  const linesAdditional = Object.values(content?.exercisesBlock.additional.materials.readingPhrase.linesAdditional || {});
-  const exercises2 = Object.values(content?.exercisesBlock.training2.exercises2  || {});
-  const ContentAccents = Object.values(content?.exercisesBlock.accent.contentAccents || {});
-  const lifehack1 = content?.lifehacks.lifehack1;
-  const lifehack2 = content?.lifehacks.lifehack2;
-  const lifehack3 = content?.lifehacks.lifehack3;
-  const contentVocabularys = Object.values(content?.vocabulary.contentVocabularys || {});
+  const letters = Object.values(content?.buttonWithSheetBlock1 || {});
+  const textExampleBlock1 = Object.values(content?.textExampleBlock1 || {});
+  const textExampleBlock2 = Object.values(content?.textExampleBlock2 || {});
+  const exercisesBlockAudioWithDisc1 = Object.values(content?.exercisesBlockAudioWithDisc1 || {});
+  const exercisesBlockAudio1 = Object.values(content?.exercisesBlockAudio1 || {});
+  const exercisesBlockAudio2 = Object.values(content?.exercisesBlockAudio2 || {});
+  const exercises1 = Object.values(content?.exercisesBlockText1 || {});
+  const wordToTranslateBlock1 = Object.values(content?.wordToTranslateBlock1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -73,7 +72,7 @@ export function lesson1Screen() {
     <YStack>
       <HeaderComp />
       { isSignedIn && (
-        <YStack f={1}>
+      <YStack f={1}>
         <YStack ai="center" mt="$10">
           <WelcomeBlock
             name={firstLesson?.name}
@@ -83,107 +82,94 @@ export function lesson1Screen() {
             </YStack>
           <ImageCircle img={content?.image}/>
 
-        {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
+          {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
 
-        <HeaderBlock header={content?.theoreticalBlock.header}/>
-        <SquareText text={content?.theoreticalBlock.alfabet.header}/>
-        <HeaderBlock header={content?.theoreticalBlock.alfabet.text}/>
-        <SquareText text={content?.theoreticalBlock.complex.header}/>
-        <YStack ai="center">
-          <DescriptionBlock description={content?.theoreticalBlock.complex.description}/>
+          <HeaderBlock header={content?.headerBlock1}/>
+          <SquareText text={content?.squareText1}/>
+          <DescriptionBlock description={content?.descriptionBlock1}/>
           <ButtonSquereSheet letters={letters} />
-        </YStack>
 
-        {/* Обратите внимание: */}
+          {/* Обратите внимание: */}
 
-        <SquareText text={content?.theoreticalBlock.attention.title}/>
-        <YStack>
-          <XStack fw="wrap">
-            <TextExampleBlock textExamples={atentionBlocks}/>
-            <LifeHackerBlock
-              lifehackimage={lifehack1.image}
-              lifehacktitle={lifehack1.title}
+          <SquareText text={content?.squareText2}/>
+          <TextExampleBlock textExamples={textExampleBlock1}/>
+          <LifeHackerBlock
+              lifehackimage={content?.lifeHackerBlock1.image}
+              lifehacktitle={content?.lifeHackerBlock1.title}
               descriptions={[
-                lifehack1.description1,
-                lifehack1.description2,
-                lifehack1.description3,
-                lifehack1.description4,
+                content?.lifeHackerBlock1.description1,
+                content?.lifeHackerBlock1.description2,
+                content?.lifeHackerBlock1.description3,
+                content?.lifeHackerBlock1.description4,
               ]}
               contents={[
-                lifehack1.content1,
-                lifehack1.content2,
-                lifehack1.content3,
-                lifehack1.content4,
+                content?.lifeHackerBlock1.content1,
+                content?.lifeHackerBlock1.content2,
+                content?.lifeHackerBlock1.content3,
+                content?.lifeHackerBlock1.content4,
               ]}
             />
-          </XStack>
-        </YStack>
+          <TextExampleBlock textExamples={textExampleBlock2}/>
 
-        {/* БЛОК УПРАЖНЕНИЙ */}
+          {/* БЛОК УПРАЖНЕНИЙ */}
 
-        <HeaderBlock header={content?.exercisesBlock.header}/>
-        <SquareText text={content?.exercisesBlock.training1.header}/>
-        <ExercisesBlockAudioWithDisc exercises={exercises} />
+          <HeaderBlock header={content?.headerBlock2}/>
+          <SquareText text={content?.squareText3}/>
+          <ExercisesBlockAudioWithDisc exercises={exercisesBlockAudioWithDisc1} />
 
-        {/* Дополнительные Материалы */}
+          {/* Чтение Фраз */}
 
-        <HeaderBlock header={content?.exercisesBlock.additional.header}/>
-        <SquareText text={content?.exercisesBlock.additional.materials.readingPhrase.description}/>
-        <DescriptionBlock description={content?.exercisesBlock.additional.materials.readingPhrase.text}/>
-        <ExercisesBlockAudio exercises={linesAdditional}/>
-        <YStack ai="center">
-          <XStack fw="wrap" jc="space-around" >
-            <LifeHackerBlock
-              lifehackimage={lifehack2.image}
-              lifehacktitle={lifehack2.title}
+          <HeaderBlock header={content?.headerBlock3}/>
+          <DescriptionBlock description={content?.descriptionBlock2}/>
+          <SquareText text={content?.squareText4}/>
+          <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+          <LifeHackerBlock
+              lifehackimage={content?.lifeHackerBlock2.image}
+              lifehacktitle={content?.lifeHackerBlock2.title}
               descriptions={[
-                lifehack2.description1,
-                lifehack2.description2,
-                lifehack2.description3,
-                lifehack2.description4,
+                content?.lifeHackerBlock2.description1,
+                content?.lifeHackerBlock2.description2,
+                content?.lifeHackerBlock2.description3,
+                content?.lifeHackerBlock2.description4,
               ]}
               contents={[
-                lifehack2.content1,
-                lifehack2.content2,
-                lifehack2.content3,
-                lifehack2.content4,
+                content?.lifeHackerBlock2.content1,
+                content?.lifeHackerBlock2.content2,
+                content?.lifeHackerBlock2.content3,
+                content?.lifeHackerBlock2.content4,
               ]}
             />
-            <LifeHackerBlock
-              lifehackimage={lifehack3.image}
-              lifehacktitle={lifehack3.title}
+          
+
+          {/* БЛОК УДАРЕНИЕ */}
+
+          <HeaderBlock header={content?.headerBlock4}/>
+          <ExercisesBlockText exercises={exercises1}/>
+          <SquareText text={content?.squareText5}/>
+          <ExercisesBlockAudio exercises={exercisesBlockAudio2}/>
+          <LifeHackerBlock
+              lifehackimage={content?.lifeHackerBlock3.image}
+              lifehacktitle={content?.lifeHackerBlock3.title}
               descriptions={[
-                lifehack3.description1,
-                lifehack3.description2,
-                lifehack3.description3,
-                lifehack3.description4,
+                content?.lifeHackerBlock3.description1,
+                content?.lifeHackerBlock3.description2,
+                content?.lifeHackerBlock3.description3,
+                content?.lifeHackerBlock3.description4,
               ]}
               contents={[
-                lifehack3.content1,
-                lifehack3.content2,
-                lifehack3.content3,
-                lifehack3.content4,
+                content?.lifeHackerBlock3.content1,
+                content?.lifeHackerBlock3.content2,
+                content?.lifeHackerBlock3.content3,
+                content?.lifeHackerBlock3.content4,
               ]}
             />
-          </XStack>
+
+          {/* БЛОК  ЛЕКСИКИ */}
+
+          <HeaderBlock header={content?.headerBlock5}/>
+          <DescriptionBlock description={content?.descriptionBlock3}/>
+          <WordToTranslateBlock words={wordToTranslateBlock1}/>
         </YStack>
-        {/* БЛОК УДАРЕНИЕ */}
-
-        <SquareText text={content?.exercisesBlock.accent.header}/>
-        <ExercisesBlockText exercises={ContentAccents}/>
-
-        {/* БЛОК ТРЕНИРОВКА */}
-
-        <SquareText text={content?.exercisesBlock.training2.header}/>
-        <DescriptionBlock description={content?.exercisesBlock.training2.description}/>
-        <ExercisesBlockAudio exercises={exercises2}/>
-
-        {/* БЛОК  ЛЕКСИКИ */}
-
-        <SquareText text={content?.vocabulary.header}/>
-        <DescriptionBlock description={content?.vocabulary.description}/>
-        <WordToTranslateBlock words={contentVocabularys}/>
-      </YStack>
         <NavigationBlock lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 2"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>
       )}
