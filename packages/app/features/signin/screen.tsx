@@ -77,8 +77,7 @@ export function SignInScreen() {
       } catch (error) {
       showToast("error");
       // Handle error
-      console.error(error); // You might want to replace this with your own error handling logic.
-      // For example, you could show a toast notification, change some state to show an error message on the screen, etc.
+      console.error(error);
     }
   };
 

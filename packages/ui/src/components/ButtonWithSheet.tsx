@@ -22,16 +22,13 @@ export function ButtonWithSheet(Props) {
           <Square
             bc="$background"
             animation="bouncy"
-            elevation="$4"
+            boc="$backgroundFocus"
+            bw={Props.Description ? 3 : 1}
             size="$7"
             br="$5"
             m="$1.5"
-            hoverStyle={{
-              scale: 1.2,
-            }}
-            pressStyle={{
-              scale: 0.9,
-            }}
+            hoverStyle={Props.Description ? { scale: 1.1 } : {}}
+            pressStyle={Props.Description ? { scale: 0.9 } : {}}
             >
             <H3>{Props.Title}</H3>
           </Square>

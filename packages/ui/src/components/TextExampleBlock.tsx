@@ -118,30 +118,33 @@ const extractExampleAndPrononce = (exampleObj: Example, count: number): ExampleP
 
 export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples }) => {
   return (
-    <YStack p="$2" pl="$6" w="100%" f={1} maw={1000}>
-      {textExamples.map((example, index) => (
-        <YStack key={index} w="100%" >
-            <YStack mt="$2" >
-              <H5 ta="left">{example.description}</H5>
-            </YStack>
-            <YStack mt="$2" f={1} w="100%">
-              {extractExampleAndPrononce(example, 30).map(({example, prononce}, index) => (
-                example && prononce ?
-                <React.Fragment key={index}>
-                <XStack fw="wrap">
-                  <YStack mr="$8">
-                    <Paragraph col="$backgroundPress" ta="left" >{example}</Paragraph>
-                  </YStack>
-                  <YStack ai="flex-start">
-                    <ParagraphCustom text={prononce}/>
-                  </YStack>
-                </XStack>
-                </React.Fragment>
-                : null
-              ))}
-            </YStack>
-        </YStack>
-      ))}
+    <YStack m="$6" ai="flex-start"  f={1} maw={1000}>
+      {textExamples.map((example, index) => {
+        const examplePronouncePairs = extractExampleAndPrononce(example, 30);
+        return (
+          <YStack key={index} w="100%" >
+            <H5 ta="left" mt="$2">{example.description}</H5>
+            <div style={{display: 'grid', gridTemplateColumns: 'auto auto'}}>
+              {examplePronouncePairs.map(({example, prononce}, index) =>
+                example && prononce ? (
+                  <React.Fragment key={index}>
+                      <div style={{textAlign: 'left'}}>
+                        <YStack p="$2">
+                          <Paragraph col="$backgroundPress">{example}</Paragraph>
+                        </YStack>
+                      </div>
+                      <div>
+                        <YStack p="$2">
+                          <ParagraphCustom text={prononce}/>
+                        </YStack>
+                      </div>
+                  </React.Fragment>
+                ) : null
+              )}
+            </div>
+          </YStack>
+        );
+      })}
     </YStack>
   );
 };

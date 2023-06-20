@@ -20,7 +20,7 @@ import { X } from '@tamagui/lucide-icons'
 import React, { useState , useEffect } from "react";
 import { useLink } from "solito/link";
 import { trpc } from "app/utils/trpc";
-import { DollarSign } from '@tamagui/lucide-icons';
+import { DollarSign, Banknote } from '@tamagui/lucide-icons';
 import { ToastComp } from "@my/ui/src/components/ToastComp";
 
 
@@ -100,7 +100,7 @@ export function ButtonPay(props: {
           title: "Мы проверяем перевод",
           description: "Три урока вам уже открыто !",
           backgroundColor: "#5cb85c",
-          icon: DollarSign,
+          icon: Banknote,
         };
         break;
       
@@ -123,7 +123,7 @@ export function ButtonPay(props: {
     <Dialog modal>
       <ToastComp 
         toastList={list}
-        position="bottom-right"
+        position="bottom-center"
         autoDelete={true}
         autoDeleteTime={9000}
       />

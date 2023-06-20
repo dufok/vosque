@@ -29,10 +29,6 @@ import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock
 
 
 export function lesson1Screen() {
-  //hrefs
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson2"});
-  const lessonLinkPageDown = useLink({ href: "/lesson1"});
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
@@ -45,6 +41,11 @@ export function lesson1Screen() {
 
   //part with types from file json full
   const content = firstLesson?.content as ContentLesson1;
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson2"});
+  const lessonLinkPageDown = useLink({ href: "/lesson1"});
+
   const letters = Object.values(content?.theoreticalBlock.complex.letters || {});
   const atentionBlocks = Object.values(content?.theoreticalBlock.attention.atentionBlocks || {});
   const exercises = Object.values(content?.exercisesBlock.training1.exercises || {});

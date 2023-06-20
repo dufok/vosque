@@ -5,7 +5,7 @@ export type ContentLesson5 = {
     image: string;
     headerBlock1: string;
     descriptionBlock1: string;
-    tableBlock1: Tables;
+    tableBlock1: Table;
     lifeHackerBlock1: {
         image: string;
         title: string;

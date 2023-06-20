@@ -6,3 +6,7 @@
   font-family: 'VosqueStyleB';
   src: url('./fonts/NotoSans-Light.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'VosqueStyleHack';
+  src: url('./fonts/Montserrat-MediumItalic.ttf') format('truetype');
+}
