@@ -34,7 +34,7 @@ import { ContentLesson1 } from "../lesson1/type_Lesson1";
 
 export function testScreen() {
 
-  { /* THIS IS LESSONS SECTIOn 
+  { /* THIS IS LESSONS SECTIOn */}
 
   // TEST NEEDED SYNC TO SEED //
   type Lesson = {
@@ -46,21 +46,177 @@ export function testScreen() {
     lessons: Lesson[];
   }
   const data: LessonData = require('../../../db/seed/seed.json');
-  const firstLesson = data.lessons[0]; */}
+  const firstLesson = data.lessons[0]; 
 
   //CONSTS
   
+  const content = firstLesson?.content as ContentLesson1;
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson2"});
+  const lessonLinkPageDown = useLink({ href: "/lesson1"});
+
+  const letters = Object.values(content?.buttonWithSheetBlock1 || {});
+  const textExampleBlock1 = Object.values(content?.textExampleBlock1 || {});
+  const textExampleBlock2 = Object.values(content?.textExampleBlock2 || {});
+  const exercisesBlockAudioWithDisc1 = Object.values(content?.exercisesBlockAudioWithDisc1 || {});
+  const exercisesBlockAudio1 = Object.values(content?.exercisesBlockAudio1 || {});
+  const exercisesBlockAudio2 = Object.values(content?.exercisesBlockAudio2 || {});
+  const exercises1 = Object.values(content?.exercisesBlockText1 || {});
+  const wordToTranslateBlock1 = Object.values(content?.wordToTranslateBlock1 || {});
 
   return (
     <YStack>
       <HeaderComp />
       { /* THIS IS LESSONS SECTIOn */}
- 
-      { /* THIS IS LESSONS SECTIOn 
-      <SubMenu userpageLinkProps={userpageLinkProps}/> */}
+      <YStack f={1}>
+        <YStack ai="center" mt="$10">
+          <WelcomeBlock
+            name={firstLesson?.name}
+            description={content?.description}/>
+            <YStack  w="100%" $gtSm={{ width: "70%" }}>
+              <VideoPlayer linkVideo={content?.video}/>
+            </YStack>
+          <ImageCircle img={content?.image}/>
+
+          {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
+
+          <HeaderBlock header={content?.headerBlock1}/>
+          <SquareText text={content?.squareText1}/>
+          <DescriptionBlock description={content?.descriptionBlock1}/>
+          <ButtonSquereSheet letters={letters} />
+
+          {/* Обратите внимание: */}
+
+          <SquareText text={content?.squareText2}/>
+          <TextExampleBlock textExamples={textExampleBlock1}/>
+          <LifeHackerBlock
+              lifehackimage={content?.lifeHackerBlock1.image}
+              lifehacktitle={content?.lifeHackerBlock1.title}
+              descriptions={[
+                content?.lifeHackerBlock1.description1,
+                content?.lifeHackerBlock1.description2,
+                content?.lifeHackerBlock1.description3,
+                content?.lifeHackerBlock1.description4,
+              ]}
+              contents={[
+                content?.lifeHackerBlock1.content1,
+                content?.lifeHackerBlock1.content2,
+                content?.lifeHackerBlock1.content3,
+                content?.lifeHackerBlock1.content4,
+              ]}
+            />
+          <TextExampleBlock textExamples={textExampleBlock2}/>
+
+          {/* БЛОК УПРАЖНЕНИЙ */}
+
+          <HeaderBlock header={content?.headerBlock2}/>
+          <SquareText text={content?.squareText3}/>
+          <ExercisesBlockAudioWithDisc exercises={exercisesBlockAudioWithDisc1} />
+
+          {/* Чтение Фраз */}
+
+          <HeaderBlock header={content?.headerBlock3}/>
+          <DescriptionBlock description={content?.descriptionBlock2}/>
+          <SquareText text={content?.squareText4}/>
+          <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+          <LifeHackerBlock
+              lifehackimage={content?.lifeHackerBlock2.image}
+              lifehacktitle={content?.lifeHackerBlock2.title}
+              descriptions={[
+                content?.lifeHackerBlock2.description1,
+                content?.lifeHackerBlock2.description2,
+                content?.lifeHackerBlock2.description3,
+                content?.lifeHackerBlock2.description4,
+              ]}
+              contents={[
+                content?.lifeHackerBlock2.content1,
+                content?.lifeHackerBlock2.content2,
+                content?.lifeHackerBlock2.content3,
+                content?.lifeHackerBlock2.content4,
+              ]}
+            />
+          
+
+          {/* БЛОК УДАРЕНИЕ */}
+
+          <HeaderBlock header={content?.headerBlock4}/>
+          <ExercisesBlockText exercises={exercises1}/>
+          <SquareText text={content?.squareText5}/>
+          <ExercisesBlockAudio exercises={exercisesBlockAudio2}/>
+          <LifeHackerBlock
+              lifehackimage={content?.lifeHackerBlock3.image}
+              lifehacktitle={content?.lifeHackerBlock3.title}
+              descriptions={[
+                content?.lifeHackerBlock3.description1,
+                content?.lifeHackerBlock3.description2,
+                content?.lifeHackerBlock3.description3,
+                content?.lifeHackerBlock3.description4,
+              ]}
+              contents={[
+                content?.lifeHackerBlock3.content1,
+                content?.lifeHackerBlock3.content2,
+                content?.lifeHackerBlock3.content3,
+                content?.lifeHackerBlock3.content4,
+              ]}
+            />
+
+          {/* БЛОК  ЛЕКСИКИ */}
+
+          <HeaderBlock header={content?.headerBlock5}/>
+          <DescriptionBlock description={content?.descriptionBlock3}/>
+          <WordToTranslateBlock words={wordToTranslateBlock1}/>
+        </YStack>
+        <NavigationBlock lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 2"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
+      </YStack>
+      { /* THIS IS LESSONS SECTIOn */}
+      <SubMenu userpageLinkProps={userpageLinkProps}/> 
     </YStack>
   );
 }
+
+  //ButtonSquereSheet block
+
+  export type Letter = {
+    name: string;
+    description: string;
+    Colum1_1: string;
+    Colum2_1: string;
+    Colum3_1: string;
+    Colum4_1: string;
+    Colum1_2: string;
+    Colum2_2: string;
+    Colum3_2: string;
+    Colum4_2: string;
+  };
+
+  interface ButtonSquereSheetProps {
+    letters: Letter[];
+  }
+
+  const ButtonSquereSheet: React.FC<ButtonSquereSheetProps> = ({ letters }) => {
+    return (
+      <YStack mt="$4" ai="center" f={1} maw={800}>
+        <XStack jc="center" m="$4" fw='wrap' ai="center">
+          {letters.map(({name, description, Colum1_1, Colum2_1, Colum3_1, Colum4_1, Colum1_2, Colum2_2, Colum3_2, Colum4_2}) => (
+           <ButtonWithSheet
+           key={name}
+           Title={name}
+           Description={description}
+           Colum1_1={Colum1_1}
+           Colum2_1={Colum2_1}
+           Colum3_1={Colum3_1}
+           Colum4_1={Colum4_1}
+           Colum1_2={Colum1_2}
+           Colum2_2={Colum2_2}
+           Colum3_2={Colum3_2}
+           Colum4_2={Colum4_2}
+         />
+          ))}
+        </XStack>
+      </YStack>
+    )
+  }
 
  
  

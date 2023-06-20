@@ -54,7 +54,7 @@ export const H2Custom = ({ text }) => {
 
 export const H3Custom = ({ text }) => {
   return (
-    <Paragraph ta="left">
+    <Paragraph fontFamily="$bodyBold" ta="left">
       {parseAndRenderText(text)}
     </Paragraph>
   );
