@@ -30,7 +30,7 @@ import { ExercisesBlockAudioWithDisc } from "@my/ui/src/components/ExercisesBloc
 import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 
-import { ContentLesson1 } from "../lesson1/type_Lesson1";
+import { ContentLesson2 } from "../lesson2/type_Lesson2";
 
 export function testScreen() {
 
@@ -40,16 +40,15 @@ export function testScreen() {
   type Lesson = {
     id: number;
     name: string;
-    content: ContentLesson1;
+    content: ContentLesson2;
   }
   type LessonData = {
     lessons: Lesson[];
   }
   const data: LessonData = require('../../../db/seed/seed.json');
-  const firstLesson = data.lessons[0]; */}
+  const SecondLesson = data.lessons[1]; */}
 
   //CONSTS
-  
 
 
   return (

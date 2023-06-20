@@ -10,10 +10,9 @@ export type ContentLesson2 = {
     tableBlock4: Table;
     squareText1: string;
     blockText1: { [key: string]: Exercise };
-    squareText2: string;
+    headerBlock2: string;
     blockText2: { [key: string]: Exercise };
-    squareText3: string;
-    header2: string;
+    headerBlock3: string;
     table2: Table;
     lifehack1: {
         image: string;
@@ -43,7 +42,6 @@ export type ContentLesson2 = {
           3: { text: string }
         }
     },
-    header3: string;
     table3: Table;
     lifehack2: {
         image: string;

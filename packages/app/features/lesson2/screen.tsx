@@ -29,21 +29,24 @@ import { TableBlock } from "@my/ui/src/components/TableBlock";
 import { LangTest1 } from "@my/ui/src/components/LangTest1";
 
 export function lesson2Screen() {
-  //hrefs
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson3"});
-  const lessonLinkPageDown = useLink({ href: "/lesson1"});
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
-  //lesson content
+  
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   const SecondLesson = userLessons?.[1]; 
 
+  //lesson content
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson3"});
+  const lessonLinkPageDown = useLink({ href: "/lesson1"});
+
   const content = SecondLesson?.content as ContentLesson2;
+
   const blockText1 = Object.values(content?.blockText1 || {});
   const blockText2 = Object.values(content?.blockText2 || {});
   const tests1 = Object.values(content?.test1.testContent || {});
@@ -74,7 +77,7 @@ export function lesson2Screen() {
     <YStack>
       <HeaderComp />
       { isSignedIn && (
-       <YStack f={1}>
+      <YStack f={1}>
        <YStack ai="center" mt="$10">
            <WelcomeBlock
              name={SecondLesson?.name}
@@ -96,36 +99,32 @@ export function lesson2Screen() {
 
        {/*  Множественное число */}
 
-       <SquareText text={content?.squareText2}/>
+       <HeaderBlock header={content?.headerBlock2}/>
        <ExercisesBlockText exercises={blockText2}/>
-       <SquareText text={content?.squareText3}/>
 
        {/*  Неопределенный Артикль */}
 
-       <HeaderBlock header={content?.header2}/>
-       <XStack fw="wrap" jc="center">
-         <TableBlock table={content?.tableBlock2}/>
-         <LifeHackerBlock
-            lifehackimage={content?.lifehack1.image}
-            lifehacktitle={content?.lifehack1.title}
-            descriptions={[
-              content?.lifehack1.description1,
-              content?.lifehack1.description2,
-              content?.lifehack1.description3,
-              content?.lifehack1.description4,
-            ]}
-            contents={[
-              content?.lifehack1.content1,
-              content?.lifehack1.content2,
-              content?.lifehack1.content3,
-              content?.lifehack1.content4,
-            ]}
-          />
-         </XStack>
+       <HeaderBlock header={content?.headerBlock3}/>
+        <TableBlock table={content?.tableBlock2}/>
+        <LifeHackerBlock
+          lifehackimage={content?.lifehack1.image}
+          lifehacktitle={content?.lifehack1.title}
+          descriptions={[
+            content?.lifehack1.description1,
+            content?.lifehack1.description2,
+            content?.lifehack1.description3,
+            content?.lifehack1.description4,
+          ]}
+          contents={[
+            content?.lifehack1.content1,
+            content?.lifehack1.content2,
+            content?.lifehack1.content3,
+            content?.lifehack1.content4,
+          ]}
+        />
 
        {/* Определенный Артикль */}
 
-       <HeaderBlock header={content?.header3}/>
        <TableBlock table={content?.tableBlock3}/>
        <YStack ai="center">
          <XStack fw="wrap" jc="space-around" >
