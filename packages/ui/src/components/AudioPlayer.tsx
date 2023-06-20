@@ -5,11 +5,8 @@ import { Play, Pause } from '@tamagui/lucide-icons';
 export function AudioPlayer({src}) {
 
   const [isPlaying, setIsPlaying] = React.useState(false);
-  {/*
   const [audio, setAudio] = useState(new Audio(src));
-  */}
 
-  const [audio, setAudio] = useState();
 
   const togglePlay = () => {
     if (audio) {
