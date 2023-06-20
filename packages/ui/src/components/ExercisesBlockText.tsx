@@ -25,7 +25,7 @@ export const ExercisesBlockText: React.FC<ExercisesBlockTextProps> = ({ exercise
     <YStack m="$6" ai="flex-start" w="90%" maw={900}>
       {exercises.map((exercise, index) => (
         <YStack mt="$3" key={index}>
-          <H3 marginBottom="$2" ta="left">{exercise.text}</H3>
+          <Paragraph marginBottom="$2" ta="left">{exercise.text}</Paragraph>
           <YStack ml="$2">
             <ParagraphCustom text={exercise.example1} />
             <ParagraphCustom text={exercise.example2} />

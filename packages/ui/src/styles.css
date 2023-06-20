@@ -10,3 +10,7 @@
   font-family: 'VosqueStyleHack';
   src: url('./fonts/Montserrat-MediumItalic.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'VosqueStyleBBold';
+  src: url('./fonts/Montserrat-Bold.ttf') format('truetype');
+}

@@ -54,8 +54,8 @@ export const H2Custom = ({ text }) => {
 
 export const H3Custom = ({ text }) => {
   return (
-    <H3 ta="left">
+    <Paragraph ta="left">
       {parseAndRenderText(text)}
-    </H3>
+    </Paragraph>
   );
 }

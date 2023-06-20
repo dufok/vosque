@@ -123,7 +123,7 @@ export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples
         const examplePronouncePairs = extractExampleAndPrononce(example, 30);
         return (
           <YStack key={index} w="100%" >
-            <H3 ta="left" mt="$2">{example.description}</H3>
+            <Paragraph fontFamily="$bodyBold" ta="left" mt="$2">{example.description}</Paragraph>
             <div style={{display: 'grid', gridTemplateColumns: '50% auto'}}>
               {examplePronouncePairs.map(({example, prononce}, index) =>
                 example && prononce ? (
