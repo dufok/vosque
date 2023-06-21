@@ -102,7 +102,6 @@ export function lesson4Screen() {
         <SquareText text={content?.squareText3} />
         <LangTest1 example={example1_1} tests={tests1_1} />
         <LifeHackerBlock
-          lifehackimage={content?.lifeHackerBlock1.image}
           lifehacktitle={content?.lifeHackerBlock1.title}
           descriptions={[
             content?.lifeHackerBlock1.description1,
@@ -160,7 +159,6 @@ export function lesson4Screen() {
         <WordToTranslateBlock words={wordToTranslate2} />
         <XStack fw="wrap" jc="center"  >
           <LifeHackerBlock
-            lifehackimage={content?.lifeHackerBlock2.image}
             lifehacktitle={content?.lifeHackerBlock2.title}
             descriptions={[
               content?.lifeHackerBlock2.description1,
@@ -176,7 +174,6 @@ export function lesson4Screen() {
             ]}
           />
           <LifeHackerBlock
-            lifehackimage={content?.lifeHackerBlock3.image}
             lifehacktitle={content?.lifeHackerBlock3.title}
             descriptions={[
               content?.lifeHackerBlock3.description1,

@@ -94,7 +94,6 @@ export function lesson1Screen() {
           <SquareText text={content?.squareText2}/>
           <TextExampleBlock textExamples={textExampleBlock1}/>
           <LifeHackerBlock
-              lifehackimage={content?.lifeHackerBlock1.image}
               lifehacktitle={content?.lifeHackerBlock1.title}
               descriptions={[
                 content?.lifeHackerBlock1.description1,
@@ -124,7 +123,6 @@ export function lesson1Screen() {
           <SquareText text={content?.squareText4}/>
           <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
           <LifeHackerBlock
-              lifehackimage={content?.lifeHackerBlock2.image}
               lifehacktitle={content?.lifeHackerBlock2.title}
               descriptions={[
                 content?.lifeHackerBlock2.description1,
@@ -148,7 +146,6 @@ export function lesson1Screen() {
           <SquareText text={content?.squareText5}/>
           <ExercisesBlockAudio exercises={exercisesBlockAudio2}/>
           <LifeHackerBlock
-              lifehackimage={content?.lifeHackerBlock3.image}
               lifehacktitle={content?.lifeHackerBlock3.title}
               descriptions={[
                 content?.lifeHackerBlock3.description1,

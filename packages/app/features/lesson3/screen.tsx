@@ -10,7 +10,7 @@ import React,{useEffect} from "react";
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 
-import { ContentLesson3 } from './type_Lesson3';
+import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
 import { SquareText } from '@my/ui/src/components/SquareText';
 import { SubMenu } from "@my/ui/src/components/SubMenu";
@@ -18,17 +18,23 @@ import { WelcomeBlock } from "@my/ui/src/components/WelcomeBlock";
 import { ImageCircle } from "@my/ui/src/components/ImageCircle";
 import { HeaderBlock } from "@my/ui/src/components/HeaderBlock";
 import { DescriptionBlock } from "@my/ui/src/components/DescriptionBlock";
+import { TextExampleBlock } from "@my/ui/src/components/TextExampleBlock";
 import { ExercisesBlockText } from "@my/ui/src/components/ExercisesBlockText";
 import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
 import { TableBlock } from "@my/ui/src/components/TableBlock";
 import { LangTest1 } from "@my/ui/src/components/LangTest1";
+import { LangTest2 } from "@my/ui/src/components/LangTest2";
+import { LangTest3 } from "@my/ui/src/components/LangTest3";
+import { LangTest4 } from "@my/ui/src/components/LangTest4";
+import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
+import { ExercisesBlockAudioWithDisc } from "@my/ui/src/components/ExercisesBlockAudioWithDisc";
+import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
+import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 
+import { ContentLesson3 } from "../lesson3/type_Lesson3";
+import { ContentLesson3_2 } from "../lesson3/type_Lesson3";
 
 export function lesson3Screen() {
-  //hrefs
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson3_2"});
-  const lessonLinkPageDown = useLink({ href: "/lesson2"});
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
@@ -37,18 +43,43 @@ export function lesson3Screen() {
 
   //lesson content
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const ThirdLesson = userLessons?.[2];
-  
+
+  // Find the required lesson by its id
+  const lessonId = 3; // change this to your required lesson id
+  const ThirdLesson = userLessons?.find(lesson => lesson.id === lessonId);
 
   //part with types from file json full
+
   const content = ThirdLesson?.content as ContentLesson3;
+  const content2 = content.part2 as ContentLesson3_2;
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson4"});
+  const lessonLinkPageDown = useLink({ href: "/lesson2"});
+
   const blockText1 = Object.values(content?.blockText1 || {});
   const blockText2 = Object.values(content?.blockText2 || {});
-  const tests1 = Object.values(content?.test1.testContent || {});
-  const example1 = content?.test1.example;
+  const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
+  const example4_1 = content?.langTest4_1.example;
   const exercises1 = Object.values(content?.exercisesBlockText1 || {});
 
+  //Part 2
 
+  const exercises2 = Object.values(content2?.exercisesBlockText2 || {});
+  const tests2_1 = Object.values(content2?.langTest2_1.testContent || {});
+  const tests1_2 = Object.values(content2?.langTest1_2.testContent || {});
+  const tests1_3 = Object.values(content2?.langTest1_3.testContent || {});
+  const tests1_4 = Object.values(content2?.langTest1_4.testContent || {});
+  const tests1_5 = Object.values(content2?.langTest1_5.testContent || {});
+  const example2_1 = content2?.langTest2_1.example;
+  const example1_2 = content2?.langTest1_2.example;
+  const example1_3 = content2?.langTest1_3.example;
+  const example1_4 = content2?.langTest1_4.example;
+  const example1_5 = content2?.langTest1_5.example;
+  const wordToTranslate1 = Object.values(content2?.wordToTranslateBlock1 || {});
+  const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
+  const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
+  const exercisesBlockAudio1 = Object.values(content2?.exercisesBlockAudio1 || {});
   
   useEffect(() => {
     console.log(data);
@@ -89,23 +120,96 @@ export function lesson3Screen() {
 
           {/*  Построение простого вопроса: */}
 
-          <SquareText text={content?.squareText2}/>
+          <HeaderBlock header={content?.headerBlock3}/>
           <ExercisesBlockText exercises={blockText1}/>
 
           {/*  ППостроение Отрицания: */}
 
-          <SquareText text={content?.squareText3}/>
+          <HeaderBlock header={content?.headerBlock4}/>
           <ExercisesBlockText exercises={blockText2}/>
 
           {/*  Блок Упражнений */}
 
           <HeaderBlock header={content?.header3}/>
           <SquareText text={content?.squareText4}/>
-          <LangTest1 tests={tests1} example={example1}/>
+          <LangTest4 example={example4_1} tests={tests4_1} />
+
+          {/* Часть 2 */}
+
+          <WelcomeBlock
+            name={content2?.name}
+            description={content2?.description}/>
+            <YStack  w="100%" $gtSm={{ width: "70%" }}>
+              <VideoPlayer linkVideo={content?.video}/>
+            </YStack>
+
+          <HeaderBlock header={content2?.headerBlock1}/>
+          <TableBlock table={content2?.tableBlock1} />
+
+          <HeaderBlock header={content2?.headerBlock2} />
+          <SquareText text={content2?.squareText2} />
+          <LangTest2 example={example2_1} tests={tests2_1}/>
+
+          <HeaderBlock header={content2?.headerBlock5}/>
+          <YStack ai="center" f={1}>
+            <XStack fw="wrap" jc="center">
+              <YStack maw={600} $sm={{ width: "100%" }} >
+                <DescriptionBlock description={content2?.descriptionBlock2} />
+                <DescriptionBlock description={content2?.descriptionBlock3} />
+                <DescriptionBlock description={content2?.descriptionBlock4} />
+                <ExercisesBlockText exercises={exercises2} />
+              </YStack>
+              <YStack $sm={{ width: "100%" }} ai="center">
+                <LifeHackerBlock
+                  lifehacktitle={content2?.lifeHackerBlock1.title}
+                  descriptions={[
+                    content2?.lifeHackerBlock1.description1,
+                    content2?.lifeHackerBlock1.description2,
+                    content2?.lifeHackerBlock1.description3,
+                    content2?.lifeHackerBlock1.description4,
+                  ]}
+                  contents={[
+                    content2?.lifeHackerBlock1.content1,
+                    content2?.lifeHackerBlock1.content2,
+                    content2?.lifeHackerBlock1.content3,
+                    content2?.lifeHackerBlock1.content4,
+                  ]}
+                />
+              </YStack>
+            </XStack>
+          </YStack>
+
+          <SquareText text={content2?.squareText3} />
+          <LangTest1 example={example1_2} tests={tests1_2} />
+          <SquareText text={content2?.squareText4} />
+
+          <YStack>
+            <LangTest1 example={example1_3} tests={tests1_3} />
+          </YStack>
+
+          <HeaderBlock header={content2?.headerBlock3} />
+          <SquareText text={content2?.squareText5} />
+          <WordToTranslateBlock words={wordToTranslate1} />
+          <DescriptionBlock description={content2?.descriptionBlock5} />
+          <WordToTranslateBlock words={wordToTranslate2} />
+          <SquareText text={content2?.squareText8} />
+          <DescriptionBlock description={content2?.descriptionBlock6} />
+          <WordToTranslateBlock words={wordToTranslate3} />
+
+          <HeaderBlock header={content2?.headerBlock6} />
+          <DescriptionBlock description={content2?.descriptionBlock10} />
+          <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+
+          <HeaderBlock header={content2?.headerBlock4} />\
+          <SquareText text={content2?.squareText6} />
+          <LangTest1 example={example1_4} tests={tests1_4} />
+          <SquareText text={content2?.squareText7} />
+          <LangTest1 example={example1_5} tests={tests1_5} />
+
         </YStack> 
         <NavigationBlock
           lessonLinkPageDOWNname={"Урок 2"}
-          lessonLinkPageUPname={"Урок 3 (Часть 2)"}
+          lessonLinkPageUPname={"Урок 4"}
           lessonLinkPageUP={lessonLinkPageUP}
           lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>

@@ -118,11 +118,9 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example }) => {
                             space
                           >
                           <Dialog.Title>Перевод</Dialog.Title>
-                          <Dialog.Description>
                             <YStack ai="center" m="$4" maw={400}>
-                              <ParagraphCustom text={unswer} />
+                              <Paragraph>{unswer}</Paragraph>
                             </YStack>
-                          </Dialog.Description>
                           <Unspaced>
                             <Dialog.Close asChild>
                               <Button pos="absolute" t="$3" r="$3" size="$2" circular icon={X} />
@@ -202,11 +200,7 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example }) => {
                             space
                           >
                           <Dialog.Title>Перевод</Dialog.Title>
-                          <Dialog.Description>
-                            <YStack ai="center" m="$4" maw={400}>
-                              <ParagraphCustom text={unswer} />
-                            </YStack>
-                          </Dialog.Description>
+                              <Paragraph>{unswer}</Paragraph>
                           <Unspaced>
                             <Dialog.Close asChild>
                               <Button pos="absolute" t="$3" r="$3" size="$2" circular icon={X} />

@@ -96,7 +96,6 @@ export function lesson8Screen() {
         <LangTest4 example={example4_1} tests={tests4_1} />
         <LangTest1 example={example1_1} tests={tests1_1} />
         <LifeHackerBlock
-          lifehackimage={content?.lifeHackerBlock1.image}
           lifehacktitle={content?.lifeHackerBlock1.title}
           descriptions={[
             content?.lifeHackerBlock1.description1,

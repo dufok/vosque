@@ -107,7 +107,6 @@ export function lesson2Screen() {
        <HeaderBlock header={content?.headerBlock3}/>
         <TableBlock table={content?.tableBlock2}/>
         <LifeHackerBlock
-          lifehackimage={content?.lifehack1.image}
           lifehacktitle={content?.lifehack1.title}
           descriptions={[
             content?.lifehack1.description1,
@@ -129,7 +128,6 @@ export function lesson2Screen() {
        <YStack ai="center">
          <XStack fw="wrap" jc="space-around" >
             <LifeHackerBlock
-              lifehackimage={content?.lifehack2.image}
               lifehacktitle={content?.lifehack2.title}
               descriptions={[
                 content?.lifehack2.description1,
@@ -145,7 +143,6 @@ export function lesson2Screen() {
               ]}
             />
            <LifeHackerBlock
-            lifehackimage={content?.lifehack3.image}
             lifehacktitle={content?.lifehack3.title}
             descriptions={[
               content?.lifehack3.description1,
@@ -191,7 +188,6 @@ export function lesson2Screen() {
        <DescriptionBlock description={content?.description8}/>
        <TableBlock table={content?.tableBlock4}/>
        <LifeHackerBlock
-            lifehackimage={content?.lifehack4.image}
             lifehacktitle={content?.lifehack4.title}
             descriptions={[
               content?.lifehack4.description1,

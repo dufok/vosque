@@ -87,7 +87,6 @@ export function lesson10Screen() {
                 <ExercisesBlockText exercises={exercises1} />
               </YStack>
               <LifeHackerBlock
-                lifehackimage={content?.lifeHackerBlock1.image}
                 lifehacktitle={content?.lifeHackerBlock1.title}
                 descriptions={[
                   content?.lifeHackerBlock1.description1,

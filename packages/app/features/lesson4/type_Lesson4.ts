@@ -15,7 +15,6 @@ export type ContentLesson4 = {
     langTest1_1: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
     lifeHackerBlock1: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };
@@ -61,7 +60,6 @@ export type ContentLesson4 = {
     headerBlock12: string;
     textExampleBlock12: { [key: string]: ExampleAndAnswer };
     lifeHackerBlock2: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };
@@ -73,7 +71,6 @@ export type ContentLesson4 = {
         content4: { [key: string]: Texts };
     };
     lifeHackerBlock3: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };

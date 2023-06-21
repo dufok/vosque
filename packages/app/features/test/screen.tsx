@@ -30,34 +30,37 @@ import { ExercisesBlockAudioWithDisc } from "@my/ui/src/components/ExercisesBloc
 import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 
-import { ContentLesson2 } from "../lesson2/type_Lesson2";
+import { ContentLesson3 } from "../lesson3/type_Lesson3";
+import { ContentLesson3_2 } from "../lesson3/type_Lesson3";
 
 export function testScreen() {
 
-  { /* THIS IS LESSONS SECTIOn 
+  { /* THIS IS LESSONS SECTIOn
 
   // TEST NEEDED SYNC TO SEED //
   type Lesson = {
     id: number;
     name: string;
-    content: ContentLesson2;
+    content: ContentLesson3;
   }
   type LessonData = {
     lessons: Lesson[];
   }
   const data: LessonData = require('../../../db/seed/seed.json');
-  const SecondLesson = data.lessons[1]; */}
+  const ThirdLesson = data.lessons[2];   */}
 
   //CONSTS
 
+
+ 
 
   return (
     <YStack>
       <HeaderComp />
       { /* THIS IS LESSONS SECTIOn */}
 
-      { /* THIS IS LESSONS SECTIOn 
-      <SubMenu userpageLinkProps={userpageLinkProps}/> */}
+      { /* THIS IS LESSONS SECTIOn  
+      <SubMenu userpageLinkProps={userpageLinkProps}/>*/}
     </YStack>
   );
 }

@@ -39,7 +39,6 @@ export type ContentLesson11_3 = {
     squareText13: string;
     wordToTranslateBlock11: { [key: string]: Words };
     lifeHackerBlock1: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };
@@ -51,7 +50,7 @@ export type ContentLesson11_3 = {
         content4: { [key: string]: Texts };
     };
     headerBlock5: string;
-    langTest3_1: { example: { header: string, question: string, unswer: string[]};
+    langTest3_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests3 }};
 }
 

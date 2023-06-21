@@ -112,7 +112,6 @@ export function lesson10_2Screen() {
                 <TextExampleBlock textExamples={textExample1}/>
               </YStack>
               <LifeHackerBlock
-                lifehackimage={content?.lifeHackerBlock1.image}
                 lifehacktitle={content?.lifeHackerBlock1.title}
                 descriptions={[
                   content?.lifeHackerBlock1.description1,

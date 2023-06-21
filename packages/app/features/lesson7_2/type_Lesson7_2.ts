@@ -10,7 +10,6 @@ export type ContentLesson7_2 = {
     langTest1_1: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
     lifeHackerBlock1: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };

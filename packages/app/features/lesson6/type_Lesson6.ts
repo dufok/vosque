@@ -15,7 +15,7 @@ export type ContentLesson6 = {
     headerBlock3: string;
     exercisesBlockText1: { [key: string]: Exercise };
     squareText1: string;
-    langTest4_1: { example: { header: string, question: string, unswer: string[]};
+    langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
     squareText2: string;
     langTest1_1: { example: { question: string, unswer: string[]};
@@ -23,7 +23,6 @@ export type ContentLesson6 = {
     headerBlock5: string;
     wordToTranslateBlock1: { [key: string]: Words };
     lifeHackerBlock1: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };

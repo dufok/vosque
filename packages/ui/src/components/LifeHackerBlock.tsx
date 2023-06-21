@@ -7,14 +7,12 @@ type Texts = {
 }
 
 interface LifeHackerBlockProps {
-  lifehackimage: string;
   lifehacktitle: string;
   descriptions: string[];
   contents: { [key: string]: Texts }[];
 }
 
 export const LifeHackerBlock: React.FC<LifeHackerBlockProps> = ({
-  lifehackimage,
   lifehacktitle,
   descriptions,
   contents,

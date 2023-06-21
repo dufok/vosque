@@ -96,7 +96,6 @@ export function lesson6Screen() {
          <HeaderBlock header={content?.headerBlock5} />
          <WordToTranslateBlock words={wordToTranslate1} />
          <LifeHackerBlock
-           lifehackimage={content?.lifeHackerBlock1.image}
            lifehacktitle={content?.lifeHackerBlock1.title}
            descriptions={[
              content?.lifeHackerBlock1.description1,

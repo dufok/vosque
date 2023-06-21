@@ -128,9 +128,9 @@ export const LangTest2: React.FC<LangTestProps> = ({ tests, example }) => {
                 }; 
 
                 return (
-                  <YStack key={index} ai="center" w="100%">
+                  <YStack key={index} ai="flex-start" w="100%">
                     <XStack jc="space-between" ai="center">
-                      <YStack>
+                      <YStack ai="flex-start">
                         <Paragraph mr="$2">{question1}</Paragraph>
                       </YStack>
                       <YStack jc="center" m="$2" w={80}>
@@ -194,9 +194,9 @@ export const LangTest2: React.FC<LangTestProps> = ({ tests, example }) => {
                 };
 
                 return (
-                  <YStack key={index} ai="center" w="100%">
+                  <YStack key={index} ai="flex-start" w="100%">
                     <XStack jc="space-between" ai="center">
-                      <YStack>
+                      <YStack  ai="flex-start">
                         <Paragraph mr="$2">{question1}</Paragraph>
                       </YStack>
                       <YStack jc="center" m="$2" w={80}>

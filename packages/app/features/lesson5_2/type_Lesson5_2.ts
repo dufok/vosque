@@ -22,7 +22,6 @@ export type ContentLesson5_2 = {
     descriptionBlock3: string;
     wordToTranslateBlock1: { [key: string]: Words };
     lifeHackerBlock1: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };
@@ -34,7 +33,6 @@ export type ContentLesson5_2 = {
         content4: { [key: string]: Texts };
     };
     lifeHackerBlock2: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };

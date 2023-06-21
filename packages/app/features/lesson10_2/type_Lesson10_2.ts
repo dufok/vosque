@@ -29,7 +29,6 @@ export type ContentLesson10_2 = {
     squareText12: string;
     textExampleBlock1: { [key: string]: ExampleAndAnswer };
     lifeHackerBlock1: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };

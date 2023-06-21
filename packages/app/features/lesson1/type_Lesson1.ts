@@ -11,7 +11,6 @@ export type ContentLesson1 = {
     squareText2: string;
     textExampleBlock1: { [key: string]: ExampleAndAnswer };
     lifeHackerBlock1: {
-      image: string;
       title: string;
       description1: string;
       content1: { [key: string]: Texts };
@@ -31,7 +30,6 @@ export type ContentLesson1 = {
     squareText4: string;
     exercisesBlockAudio1: { [key: string]: Line };
     lifeHackerBlock2: {
-      image: string;
       title: string;
       description1: string;
       content1: { [key: string]: Texts };
@@ -43,7 +41,6 @@ export type ContentLesson1 = {
       content4: { [key: string]: Texts };
     };
     lifeHackerBlock3: {
-      image: string;
       title: string;
       description1: string;
       content1: { [key: string]: Texts };

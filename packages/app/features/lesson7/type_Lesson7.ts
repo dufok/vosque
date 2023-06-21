@@ -8,7 +8,6 @@ export type ContentLesson7 = {
     squareText1: string;
     tableBlock1: Table;
     lifeHackerBlock1: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };
@@ -22,7 +21,6 @@ export type ContentLesson7 = {
     squareText2: string;
     tableBlock2: Table;
     lifeHackerBlock2: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };
@@ -34,7 +32,6 @@ export type ContentLesson7 = {
         content4: { [key: string]: Texts };
     };
     lifeHackerBlock3: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };
@@ -47,7 +44,7 @@ export type ContentLesson7 = {
     };
     headerBlock2: string;
     squareText3: string;
-    langTest4_1: { example: { header: string, question: string, unswer: string[]};
+    langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
     squareText4: string;
     langTest1_1: { example: { question: string, unswer: string[]};

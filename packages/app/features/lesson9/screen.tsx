@@ -86,7 +86,6 @@ export function lesson9Screen() {
             <TableBlock table={content?.tableBlock3} />
             <DescriptionBlock description={content?.descriptionBlock3} />
             <LifeHackerBlock
-              lifehackimage={content?.lifeHackerBlock1.image}
               lifehacktitle={content?.lifeHackerBlock1.title}
               descriptions={[
                 content?.lifeHackerBlock1.description1,

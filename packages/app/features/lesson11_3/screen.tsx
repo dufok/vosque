@@ -129,7 +129,6 @@ export function lesson11_3Screen() {
         <SquareText text={content?.squareText13} />
         <WordToTranslateBlock words={wordToTranslate11} />
         <LifeHackerBlock
-          lifehackimage={content?.lifeHackerBlock1.image}
           lifehacktitle={content?.lifeHackerBlock1.title}
           descriptions={[
             content?.lifeHackerBlock1.description1,

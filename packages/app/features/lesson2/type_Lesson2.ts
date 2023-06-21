@@ -15,7 +15,6 @@ export type ContentLesson2 = {
     headerBlock3: string;
     table2: Table;
     lifehack1: {
-        image: string;
         title: string;
         description1: string;
         content1: {
@@ -44,7 +43,6 @@ export type ContentLesson2 = {
     },
     table3: Table;
     lifehack2: {
-        image: string;
         title: string;
         description1: string;
         content1: {
@@ -72,7 +70,6 @@ export type ContentLesson2 = {
         }
     },
     lifehack3: {
-        image: string;
         title: string;
         description1: string;
         content1: {
@@ -124,7 +121,6 @@ export type ContentLesson2 = {
     description8: string;
     table4: Table;
     lifehack4: {
-        image: string;
         title: string;
         description1: string;
         content1: {

@@ -89,7 +89,6 @@ export function lesson9_2Screen() {
             <TableBlock table={content?.tableBlock3} />
             <TableBlock table={content?.tableBlock4} />
             <LifeHackerBlock
-              lifehackimage={content?.lifeHackerBlock1.image}
               lifehacktitle={content?.lifeHackerBlock1.title}
               descriptions={[
                 content?.lifeHackerBlock1.description1,
@@ -122,7 +121,6 @@ export function lesson9_2Screen() {
             <HeaderBlock header={content?.headerBlock5} />
             <LangTest1 example={example1_2} tests={tests1_2} />
             <LifeHackerBlock
-              lifehackimage={content?.lifeHackerBlock2.image}
               lifehacktitle={content?.lifeHackerBlock2.title}
               descriptions={[
                 content?.lifeHackerBlock2.description1,

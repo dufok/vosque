@@ -84,8 +84,7 @@ export function lesson7_2Screen() {
           <HeaderBlock header={content?.headerBlock2}/>
           <LangTest1 example={example1_1} tests={tests1_1} />
           <LifeHackerBlock
-            lifehackimage={content?.lifeHackerBlock1.image}
-            lifehacktitle={content?.lifeHackerBlock1.title}
+\            lifehacktitle={content?.lifeHackerBlock1.title}
             descriptions={[
               content?.lifeHackerBlock1.description1,
               content?.lifeHackerBlock1.description2,

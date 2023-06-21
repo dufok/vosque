@@ -81,7 +81,6 @@ export function lesson5Screen() {
         <HeaderBlock header={content?.headerBlock1}/>
         <TableBlock table={content?.tableBlock1} />
         <LifeHackerBlock
-          lifehackimage={content?.lifeHackerBlock1.image}
           lifehacktitle={content?.lifeHackerBlock1.title}
           descriptions={[
             content?.lifeHackerBlock1.description1,

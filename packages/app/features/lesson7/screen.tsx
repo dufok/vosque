@@ -83,7 +83,6 @@ export function lesson7Screen() {
         <SquareText text={content?.squareText1} />
         <TableBlock table={content?.tableBlock1} />
         <LifeHackerBlock
-          lifehackimage={content?.lifeHackerBlock1.image}
           lifehacktitle={content?.lifeHackerBlock1.title}
           descriptions={[
             content?.lifeHackerBlock1.description1,
@@ -102,7 +101,6 @@ export function lesson7Screen() {
         <TableBlock table={content?.tableBlock2} />
         <XStack fw="wrap" jc="center">
           <LifeHackerBlock
-            lifehackimage={content?.lifeHackerBlock2.image}
             lifehacktitle={content?.lifeHackerBlock2.title}
             descriptions={[
               content?.lifeHackerBlock2.description1,
@@ -118,7 +116,6 @@ export function lesson7Screen() {
             ]}
           />
           <LifeHackerBlock
-            lifehackimage={content?.lifeHackerBlock3.image}
             lifehacktitle={content?.lifeHackerBlock3.title}
             descriptions={[
               content?.lifeHackerBlock3.description1,
