@@ -44,11 +44,12 @@ export function lesson3Screen() {
   //lesson content
   const { data: userLessons } = trpc.user.userLessons.useQuery();
 
-  // Find the required lesson by its id
-   const lessonId = 3; // change this to your required lesson id
-   const ThirdLesson = userLessons?.find(lesson => lesson.id === lessonId);
-   const partId = 302;
-   const ThirdLessonPartTwo = userLessons?.find(lesson => lesson.id === partId);
+  // Find the required lesson by its name
+   const lessonName = "Урок 3. Глаголы \"быть\"";
+   const ThirdLesson = userLessons?.find(lesson => lesson.name === lessonName);
+
+   const partName =  "Part2 lesson3";
+   const ThirdLessonPartTwo = userLessons?.find(lesson => lesson.name === partName);
    console.log('ThirdLesson: ', ThirdLesson);
 
   //part with types from file json full
