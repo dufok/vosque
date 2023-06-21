@@ -45,8 +45,11 @@ export function lesson3Screen() {
   const { data: userLessons } = trpc.user.userLessons.useQuery();
 
   // Find the required lesson by its id
-  const lessonId = 3; // change this to your required lesson id
-  const ThirdLesson = userLessons?.find(lesson => lesson.id === lessonId);
+  // const lessonId = 3; // change this to your required lesson id
+  // const ThirdLesson = userLessons?.find(lesson => lesson.id === lessonId);
+
+  
+  const ThirdLesson = userLessons?.[2]; 
 
   //part with types from file json full
 
