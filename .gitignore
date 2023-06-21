@@ -60,3 +60,4 @@ thumbs.db
 packages/db/seed/seed.json
 EXAMPLE_TEST_SCREEN_FROM_JSON
 EXAMPLE_TEST_SCREEN_USERPAGE
+packages/db/seed/seed_backup.json
