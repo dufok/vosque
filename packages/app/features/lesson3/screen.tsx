@@ -46,9 +46,12 @@ export function lesson3Screen() {
 
   // Find the required lesson by its id
    const lessonId = 3; // change this to your required lesson id
-   const ThirdLesson = userLessons?.find(lesson => lesson.id === lessonId);
+   const TestFindLesson = userLessons?.find(lesson => lesson.id === lessonId);
+   console.log('TestFindLesson: ', TestFindLesson);
 
   //part with types from file json full
+
+  const ThirdLesson = userLessons?.[2];
 
   console.log('ThirdLesson: ', ThirdLesson);
   const content = ThirdLesson?.content as ContentLesson3;
