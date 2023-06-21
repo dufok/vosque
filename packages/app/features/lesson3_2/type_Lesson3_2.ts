@@ -1,4 +1,5 @@
 export type ContentLesson3_2 = {
+    name: string;
     description: string;
     poster: string;
     video: string;
@@ -7,16 +8,15 @@ export type ContentLesson3_2 = {
     squareText1: string;
     tableBlock1: Table;
     headerBlock2: string;
-    descriptionBlock1: string;
+    squareText2: string;
     langTest2_1: { example: { question1: string, question2: string, unswer: string[], help: string};
          testContent: {[key: string]: Tests2 }};
-    squareText2: string;
+    headerBlock5: string;
     descriptionBlock2: string;
     descriptionBlock3: string;
     descriptionBlock4: string;
     exercisesBlockText2: { [key: string]: Exercise };
     lifeHackerBlock1: {
-        image: string;
         title: string;
         description1: string;
         content1: { [key: string]: Texts };
@@ -27,7 +27,7 @@ export type ContentLesson3_2 = {
         description4: string;
         content4: { [key: string]: Texts };
     };
-    squaeText3: string;
+    squareText3: string;
     langTest1_2: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
     squareText4: string;
@@ -41,14 +41,17 @@ export type ContentLesson3_2 = {
     squareText8: string;
     descriptionBlock6: string;
     wordToTranslateBlock3: { [key: string]: Words };
+    headerBlock6: string;
+    descriptionBlock10: string;
+    exercisesBlockAudio1: { [key: string]: Line };
     headerBlock4: string;
-    descriptionBlock7: string;
+    squareText6: string;
     langTest1_4: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
-    descriptionBlock8: string;
+    squareText7: string;
     langTest1_5: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
-}
+  }
 
 export type Table = {
     header: string;
@@ -97,3 +100,8 @@ export type Words = {
     text2: string;
     description: string;
 }
+
+export type Line = {
+    text: string;
+    audio: string;
+  };
