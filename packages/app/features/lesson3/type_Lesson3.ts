@@ -72,8 +72,8 @@ export type ContentLesson3_2 = {
   exercisesBlockAudio1: { [key: string]: Line };
   headerBlock4: string;
   squareText6: string;
-  langTest1_4: { example: { question: string, unswer: string[]};
-      testContent: {[key: string]: Tests1 }};
+  langTest4_1: { example: { header: string, question: string, unswer: string};
+      testContent: {[key: string]: Tests4 }};
   squareText7: string;
   langTest1_5: { example: { question: string, unswer: string[]};
       testContent: {[key: string]: Tests1 }};

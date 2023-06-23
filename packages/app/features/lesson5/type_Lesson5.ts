@@ -19,10 +19,67 @@ export type ContentLesson5 = {
     };
     headerBlock2: string;
     squareText1: string;
-    langTest1_1: { example: { question: string, unswer: string[]};
-        testContent: {[key: string]: Tests1 }};
+    langTest4_1: { example: { header: string, question: string, unswer: string};
+        testContent: {[key: string]: Tests4 }};
     squareText2: string;
     langTest1_2: { example: { question: string, unswer: string[]};
+        testContent: {[key: string]: Tests1 }};
+}
+
+export type ContentLesson5_2 = {
+    name: string;
+    description: string;
+    poster: string;
+    video: string;
+    image: string;
+    headerBlock1: string;
+    squareText1: string;
+    descriptionBlock1: string;
+    exercisesBlockText1: { [key: string]: Exercise };
+    descriptionBlock2: string;
+    exercisesBlockText2: { [key: string]: Exercise };
+    squareText2: string;
+    textExampleBlock1: { [key: string]: ExampleAndAnswer };
+    headerBlock2: string;
+    squareText3: string;
+    langTest1_3: { example: { question: string, unswer: string[]};
+        testContent: {[key: string]: Tests1 }};
+    squareText4: string;
+    langTest4_2: { example: { header: string, question: string, unswer: string};
+        testContent: {[key: string]: Tests4 }};
+    headerBlock3: string;
+    descriptionBlock3: string;
+    wordToTranslateBlock1: { [key: string]: Words };
+    lifeHackerBlock1: {
+        title: string;
+        description1: string;
+        content1: { [key: string]: Texts };
+        description2: string;
+        content2: { [key: string]: Texts };
+        description3: string;
+        content3: { [key: string]: Texts };
+        description4: string;
+        content4: { [key: string]: Texts };
+    };
+    lifeHackerBlock2: {
+        title: string;
+        description1: string;
+        content1: { [key: string]: Texts };
+        description2: string;
+        content2: { [key: string]: Texts };
+        description3: string;
+        content3: { [key: string]: Texts };
+        description4: string;
+        content4: { [key: string]: Texts };
+    };
+    headerBlock5: string;
+    wordToTranslateBlock2: { [key: string]: Words };
+    squareText6: string;
+    wordToTranslateBlock3: { [key: string]: Words };
+    squareText7: string;
+    wordToTranslateBlock4: { [key: string]: Words };
+    headerBlock4: string;
+    langTest1_4: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
 }
 
@@ -62,6 +119,12 @@ export type Tests2 = {
     question2: string;
     unswer: string[];
     help: string;
+}
+
+export type Tests4 = {
+    description: string;
+    question: string;
+    unswer: string[];
 }
 
 export type Texts = {

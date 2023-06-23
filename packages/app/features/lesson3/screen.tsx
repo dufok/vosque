@@ -48,7 +48,7 @@ export function lesson3Screen() {
    const lessonName = "Урок 3. Глаголы \"быть\"";
    const ThirdLesson = userLessons?.find(lesson => lesson.name === lessonName);
 
-   const partName =  "Part2 lesson3";
+   const partName =  "l3p2";
    const ThirdLessonPartTwo = userLessons?.find(lesson => lesson.name === partName);
 
   //part with types from file json full
@@ -72,12 +72,12 @@ export function lesson3Screen() {
   const tests2_1 = Object.values(content2?.langTest2_1.testContent || {});
   const tests1_2 = Object.values(content2?.langTest1_2.testContent || {});
   const tests1_3 = Object.values(content2?.langTest1_3.testContent || {});
-  const tests1_4 = Object.values(content2?.langTest1_4.testContent || {});
+  const tests4_2 = Object.values(content2?.langTest4_1.testContent || {});
   const tests1_5 = Object.values(content2?.langTest1_5.testContent || {});
   const example2_1 = content2?.langTest2_1.example;
   const example1_2 = content2?.langTest1_2.example;
   const example1_3 = content2?.langTest1_3.example;
-  const example1_4 = content2?.langTest1_4.example;
+  const example4_2 = content2?.langTest4_1.example;
   const example1_5 = content2?.langTest1_5.example;
   const wordToTranslate1 = Object.values(content2?.wordToTranslateBlock1 || {});
   const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
@@ -205,7 +205,7 @@ export function lesson3Screen() {
 
           <HeaderBlock header={content2?.headerBlock4} />\
           <SquareText text={content2?.squareText6} />
-          <LangTest1 example={example1_4} tests={tests1_4} />
+          <LangTest4 example={example4_2} tests={tests4_2} />
           <SquareText text={content2?.squareText7} />
           <LangTest1 example={example1_5} tests={tests1_5} />
 
