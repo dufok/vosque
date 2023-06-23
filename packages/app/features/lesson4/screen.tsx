@@ -26,6 +26,7 @@ import { LangTest1 } from "@my/ui/src/components/LangTest1";
 import { LangTest2 } from "@my/ui/src/components/LangTest2";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
+import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 
 export function lesson4Screen() {
 
@@ -34,8 +35,8 @@ export function lesson4Screen() {
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const lessonName = "Урок 4. Предлоги";
-  const FourthLesson = userLessons?.find(lesson => lesson.name === lessonName);
+  const lessonName = "урок 4";
+  const FourthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
   
   //CONSTS
 
