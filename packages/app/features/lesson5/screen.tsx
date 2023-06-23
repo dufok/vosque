@@ -27,6 +27,7 @@ import { LangTest3 } from "@my/ui/src/components/LangTest3";
 import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
+import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 
 import { ContentLesson5 } from './type_Lesson5';
 import { ContentLesson5_2 } from './type_Lesson5';
@@ -64,7 +65,6 @@ export function lesson5Screen() {
 
   const textExample1 = Object.values(content2?.textExampleBlock1 || {});
   const textExample2 = Object.values(content2?.textExampleBlock2 || {});
-  const textExample3 = Object.values(content2?.textExampleBlock3 || {});
   const tests1_3 = Object.values(content2?.langTest1_3.testContent || {});
   const example1_3 = content2?.langTest1_3.example;
   const tests1_4 = Object.values(content2?.langTest1_4.testContent || {});
@@ -75,6 +75,8 @@ export function lesson5Screen() {
   const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
   const wordToTranslate4 = Object.values(content2?.wordToTranslateBlock4 || {});
+  const exercisesBlockAudio1 = Object.values(content2?.exercisesBlockAudio1 || {});
+  
 
 
   useEffect(() => {
@@ -137,9 +139,8 @@ export function lesson5Screen() {
           <HeaderBlock header={content2?.headerBlock1}/>
           <SquareText text={content2?.squareText1} />
           <TextExampleBlock textExamples={textExample1}/>
-          <TextExampleBlock textExamples={textExample2}/>
           <SquareText text={content2?.squareText2} />
-          <TextExampleBlock textExamples={textExample3}/>
+          <TextExampleBlock textExamples={textExample2}/>
 
           <HeaderBlock header={content2?.headerBlock2} />
           <SquareText text={content2?.squareText3} />
@@ -193,7 +194,12 @@ export function lesson5Screen() {
 
           <HeaderBlock header={content2?.headerBlock4} />
           <LangTest1 example={example1_4} tests={tests1_4} />
-      
+
+            {/* Дополнительные материалы */}
+
+          <HeaderBlock header={content2?.headerBlock6} />
+          <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+
         </YStack>
         <NavigationBlock
           lessonLinkPageDOWNname={"Урок 4"}

@@ -79,6 +79,8 @@ export type ContentLesson5_2 = {
     headerBlock4: string;
     langTest1_4: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
+    headerBlock6: string;
+    exercisesBlockAudio1: { [key: string]: Line };
 }
 
 export type Table = {
@@ -228,3 +230,8 @@ export type ExampleAndAnswer = {
     prononce30: string;
     help30: string;
 }
+
+export type Line = {
+    text: string;
+    audio: string;
+  };
