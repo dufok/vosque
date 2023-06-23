@@ -45,11 +45,11 @@ export function lesson3Screen() {
   const { data: userLessons } = trpc.user.userLessons.useQuery();
 
   // Find the required lesson by its name
-   const lessonName = "урок 3";
-   const ThirdLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
+   const lessonName = "Урок 3. Глаголы \"быть\"";
+   const ThirdLesson = userLessons?.find(lesson => lesson.name === lessonName);
 
    const partName =  "Part2 lesson3";
-   const ThirdLessonPartTwo = userLessons?.find(lesson => lesson.name.toLowerCase().includes(partName.toLowerCase()));
+   const ThirdLessonPartTwo = userLessons?.find(lesson => lesson.name === partName);
 
   //part with types from file json full
 

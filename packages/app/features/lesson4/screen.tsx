@@ -34,8 +34,8 @@ export function lesson4Screen() {
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const lessonName = "урок 4";
-  const FourthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
+  const lessonName = "Урок 4. Предлоги";
+  const FourthLesson = userLessons?.find(lesson => lesson.name === lessonName);
   
   //CONSTS
 

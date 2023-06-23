@@ -37,8 +37,8 @@ export function lesson2Screen() {
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
 
-  const lessonName = "урок 2";
-  const SecondLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
+  const lessonName = "Урок 2. Существительные и Артикили";
+  const SecondLesson = userLessons?.find(lesson => lesson.name === lessonName);
 
   //lesson content
 

@@ -38,8 +38,8 @@ export function lesson1Screen() {
   //lesson content
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   
-  const lessonName = "урок 1";
-  const firstLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
+  const lessonName = "Урок 1. Фонетика";
+  const firstLesson = userLessons?.find(lesson => lesson.name === lessonName);
 
   //part with types from file json full
 
