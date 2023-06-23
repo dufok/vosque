@@ -34,12 +34,10 @@ export type ContentLesson5_2 = {
     image: string;
     headerBlock1: string;
     squareText1: string;
-    descriptionBlock1: string;
-    exercisesBlockText1: { [key: string]: Exercise };
-    descriptionBlock2: string;
-    exercisesBlockText2: { [key: string]: Exercise };
-    squareText2: string;
     textExampleBlock1: { [key: string]: ExampleAndAnswer };
+    textExampleBlock2: { [key: string]: ExampleAndAnswer };
+    squareText2: string;
+    textExampleBlock3: { [key: string]: ExampleAndAnswer };
     headerBlock2: string;
     squareText3: string;
     langTest1_3: { example: { question: string, unswer: string[]};

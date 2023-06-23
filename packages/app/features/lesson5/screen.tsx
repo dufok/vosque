@@ -52,7 +52,7 @@ export function lesson5Screen() {
   const content2 = FifthPartTwoLesson?.content as ContentLesson5_2;
 
   const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson5_2"});
+  const lessonLinkPageUP = useLink({ href: "/lesson6"});
   const lessonLinkPageDown = useLink({ href: "/lesson4"});
 
   const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
@@ -62,9 +62,9 @@ export function lesson5Screen() {
 
   // Part 2 Content
 
-  const exercises1 = Object.values(content2?.exercisesBlockText1 || {});
-  const exercises2 = Object.values(content2?.exercisesBlockText2 || {});
   const textExample1 = Object.values(content2?.textExampleBlock1 || {});
+  const textExample2 = Object.values(content2?.textExampleBlock2 || {});
+  const textExample3 = Object.values(content2?.textExampleBlock3 || {});
   const tests1_3 = Object.values(content2?.langTest1_3.testContent || {});
   const example1_3 = content2?.langTest1_3.example;
   const tests1_4 = Object.values(content2?.langTest1_4.testContent || {});
@@ -94,115 +94,113 @@ export function lesson5Screen() {
       <HeaderComp />
       { isSignedIn && (
       <YStack f={1}>
-      <YStack ai="center" mt="$10">
-        <WelcomeBlock
-          name={FifthLesson?.name}
-          description={content?.description}/>
-          <YStack  w="100%" $gtSm={{ width: "70%" }}>
-            <VideoPlayer linkVideo={content?.video}/>
-          </YStack>
-        <ImageCircle img={content?.image}/>
+        <YStack ai="center" mt="$10">
+          <WelcomeBlock
+            name={FifthLesson?.name}
+            description={content?.description}/>
+            <YStack  w="100%" $gtSm={{ width: "70%" }}>
+              <VideoPlayer linkVideo={content?.video}/>
+            </YStack>
+          <ImageCircle img={content?.image}/>
 
-        <HeaderBlock header={content?.headerBlock1}/>
-        <TableBlock table={content?.tableBlock1} />
-        <LifeHackerBlock
-          lifehacktitle={content?.lifeHackerBlock1.title}
-          descriptions={[
-            content?.lifeHackerBlock1.description1,
-            content?.lifeHackerBlock1.description2,
-            content?.lifeHackerBlock1.description3,
-            content?.lifeHackerBlock1.description4,
-          ]}
-          contents={[
-            content?.lifeHackerBlock1.content1,
-            content?.lifeHackerBlock1.content2,
-            content?.lifeHackerBlock1.content3,
-            content?.lifeHackerBlock1.content4,
-          ]}
-        />
+          <HeaderBlock header={content?.headerBlock1}/>
+          <TableBlock table={content?.tableBlock1} />
+          <LifeHackerBlock
+            lifehacktitle={content?.lifeHackerBlock1.title}
+            descriptions={[
+              content?.lifeHackerBlock1.description1,
+              content?.lifeHackerBlock1.description2,
+              content?.lifeHackerBlock1.description3,
+              content?.lifeHackerBlock1.description4,
+            ]}
+            contents={[
+              content?.lifeHackerBlock1.content1,
+              content?.lifeHackerBlock1.content2,
+              content?.lifeHackerBlock1.content3,
+              content?.lifeHackerBlock1.content4,
+            ]}
+          />
 
-        <HeaderBlock header={content?.headerBlock2}/>
-        <SquareText text={content?.squareText1} />
-        <LangTest4 example={example4_1} tests={tests4_1} />
-        <SquareText text={content?.squareText2} />
-        <LangTest1 example={example1_2} tests={tests1_2} />
-      </YStack>
+          <HeaderBlock header={content?.headerBlock2}/>
+          <SquareText text={content?.squareText1} />
+          <LangTest4 example={example4_1} tests={tests4_1} />
+          <SquareText text={content?.squareText2} />
+          <LangTest1 example={example1_2} tests={tests1_2} />
 
-      <WelcomeBlock
-        name={content2?.name}
-        description={content2?.description}/>
-        <YStack  w="100%" $gtSm={{ width: "70%" }}>
-          <VideoPlayer linkVideo={content2?.video}/>
+          <WelcomeBlock
+            name={content2?.name}
+            description={content2?.description}/>
+            <YStack  w="100%" $gtSm={{ width: "70%" }}>
+              <VideoPlayer linkVideo={content2?.video}/>
+            </YStack>
+
+          <HeaderBlock header={content2?.headerBlock1}/>
+          <SquareText text={content2?.squareText1} />
+          <TextExampleBlock textExamples={textExample1}/>
+          <TextExampleBlock textExamples={textExample2}/>
+          <SquareText text={content2?.squareText2} />
+          <TextExampleBlock textExamples={textExample3}/>
+
+          <HeaderBlock header={content2?.headerBlock2} />
+          <SquareText text={content2?.squareText3} />
+          <LangTest1 example={example1_3} tests={tests1_3} />
+          <SquareText text={content2?.squareText4} />
+          <LangTest4 example={example4_2} tests={tests4_2} />
+
+          <HeaderBlock header={content2?.headerBlock3} />
+          <DescriptionBlock description={content2?.descriptionBlock3} />
+          <WordToTranslateBlock words={wordToTranslate1} />
+          <XStack fw="wrap" jc="center">
+            <LifeHackerBlock
+              lifehacktitle={content2?.lifeHackerBlock1.title}
+              descriptions={[
+                content2?.lifeHackerBlock1.description1,
+                content2?.lifeHackerBlock1.description2,
+                content2?.lifeHackerBlock1.description3,
+                content2?.lifeHackerBlock1.description4,
+              ]}
+              contents={[
+                content2?.lifeHackerBlock1.content1,
+                content2?.lifeHackerBlock1.content2,
+                content2?.lifeHackerBlock1.content3,
+                content2?.lifeHackerBlock1.content4,
+              ]}
+            />
+            <LifeHackerBlock
+              lifehacktitle={content2?.lifeHackerBlock2.title}
+              descriptions={[
+                content2?.lifeHackerBlock2.description1,
+                content2?.lifeHackerBlock2.description2,
+                content2?.lifeHackerBlock2.description3,
+                content2?.lifeHackerBlock2.description4,
+              ]}
+              contents={[
+                content2?.lifeHackerBlock2.content1,
+                content2?.lifeHackerBlock2.content2,
+                content2?.lifeHackerBlock2.content3,
+                content2?.lifeHackerBlock2.content4,
+              ]}
+            />
+          </XStack>
+          <HeaderBlock header={content2?.headerBlock5} />
+          <WordToTranslateBlock words={wordToTranslate2} />
+          <SquareText text={content2?.squareText6} />
+          <WordToTranslateBlock words={wordToTranslate3} />
+          <SquareText text={content2?.squareText7} />
+          <WordToTranslateBlock words={wordToTranslate4} />
+
+            {/* Домашнее Задание */}
+
+          <HeaderBlock header={content2?.headerBlock4} />
+          <LangTest1 example={example1_4} tests={tests1_4} />
+      
         </YStack>
-
-      <HeaderBlock header={content2?.headerBlock1}/>
-      <SquareText text={content2?.squareText1} />
-      <DescriptionBlock description={content2?.descriptionBlock1} />
-      <ExercisesBlockText exercises={exercises1} />
-      <DescriptionBlock description={content2?.descriptionBlock2} />
-      <ExercisesBlockText exercises={exercises2} />
-      <SquareText text={content2?.squareText2} />
-      <TextExampleBlock textExamples={textExample1}/>
-
-      <HeaderBlock header={content2?.headerBlock2} />
-      <SquareText text={content2?.squareText3} />
-      <LangTest1 example={example1_3} tests={tests1_3} />
-      <SquareText text={content2?.squareText4} />
-      <LangTest4 example={example4_2} tests={tests4_2} />
-
-      <HeaderBlock header={content2?.headerBlock3} />
-      <DescriptionBlock description={content2?.descriptionBlock3} />
-      <WordToTranslateBlock words={wordToTranslate1} />
-      <XStack fw="wrap" jc="center">
-        <LifeHackerBlock
-          lifehacktitle={content2?.lifeHackerBlock1.title}
-          descriptions={[
-            content2?.lifeHackerBlock1.description1,
-            content2?.lifeHackerBlock1.description2,
-            content2?.lifeHackerBlock1.description3,
-            content2?.lifeHackerBlock1.description4,
-          ]}
-          contents={[
-            content2?.lifeHackerBlock1.content1,
-            content2?.lifeHackerBlock1.content2,
-            content2?.lifeHackerBlock1.content3,
-            content2?.lifeHackerBlock1.content4,
-          ]}
-        />
-        <LifeHackerBlock
-          lifehacktitle={content2?.lifeHackerBlock2.title}
-          descriptions={[
-            content2?.lifeHackerBlock2.description1,
-            content2?.lifeHackerBlock2.description2,
-            content2?.lifeHackerBlock2.description3,
-            content2?.lifeHackerBlock2.description4,
-          ]}
-          contents={[
-            content2?.lifeHackerBlock2.content1,
-            content2?.lifeHackerBlock2.content2,
-            content2?.lifeHackerBlock2.content3,
-            content2?.lifeHackerBlock2.content4,
-          ]}
-        />
-      </XStack>
-      <HeaderBlock header={content2?.headerBlock5} />
-      <WordToTranslateBlock words={wordToTranslate2} />
-      <SquareText text={content2?.squareText6} />
-      <WordToTranslateBlock words={wordToTranslate3} />
-      <SquareText text={content2?.squareText7} />
-      <WordToTranslateBlock words={wordToTranslate4} />
-
-        {/* Домашнее Задание */}
-
-      <HeaderBlock header={content2?.headerBlock4} />
-      <LangTest1 example={example1_4} tests={tests1_4} />
-
-      <NavigationBlock
-        lessonLinkPageDOWNname={"Урок 4"}
-        lessonLinkPageUPname={"Урок 5 (часть 2)"}
-        lessonLinkPageUP={lessonLinkPageUP} 
-        lessonLinkPageDOWN={lessonLinkPageDown}/>
-    </YStack>
+        <NavigationBlock
+          lessonLinkPageDOWNname={"Урок 4"}
+          lessonLinkPageUPname={"Урок 6"}
+          lessonLinkPageUP={lessonLinkPageUP} 
+          lessonLinkPageDOWN={lessonLinkPageDown}/>
+      </YStack>
       )}
         <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
