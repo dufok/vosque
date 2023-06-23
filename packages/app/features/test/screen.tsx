@@ -30,29 +30,29 @@ import { ExercisesBlockAudioWithDisc } from "@my/ui/src/components/ExercisesBloc
 import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 
-import { ContentLesson3 } from "../lesson3/type_Lesson3";
-import { ContentLesson3_2 } from "../lesson3/type_Lesson3";
+import { ContentLesson4 } from "../lesson4/type_Lesson4";
 
 export function testScreen() {
 
-  { /* THIS IS LESSONS SECTIOn
+  { /* THIS IS LESSONS SECTIOn 
 
   // TEST NEEDED SYNC TO SEED //
   type Lesson = {
     id: number;
     name: string;
-    content: ContentLesson3;
+    content: ContentLesson4;
   }
   type LessonData = {
     lessons: Lesson[];
   }
   const data: LessonData = require('../../../db/seed/seed.json');
-  const ThirdLesson = data.lessons[2];   */}
+  const lessonName = "урок 4";
+  const FourthLesson = data.lessons.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));*/}
+
 
   //CONSTS
 
 
- 
 
   return (
     <YStack>

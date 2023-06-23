@@ -126,11 +126,11 @@ export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples
             <Paragraph fontFamily="$bodyBold" ta="left" mt="$2">{example.description}</Paragraph>
             <div style={{display: 'grid', gridTemplateColumns: '50% auto'}}>
               {examplePronouncePairs.map(({example, prononce}, index) =>
-                example && prononce ? (
+                example || prononce ? (
                   <React.Fragment key={index}>
                       <div style={{textAlign: 'left'}}>
                         <YStack p="$2">
-                          <Paragraph col="$backgroundPress">{example}</Paragraph>
+                        <ParagraphCustom text={example}/>
                         </YStack>
                       </div>
                       <div>

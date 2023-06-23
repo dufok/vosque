@@ -4,6 +4,7 @@ import { ParagraphCustom } from "./CustomText";
 import { IceCream, Triangle } from '@tamagui/lucide-icons';
 
 import { ToastComp } from "@my/ui/src/components/ToastComp";
+import { HelpComp } from "@my/ui/src/components/HelpComp";
 
 
 export type Test = {

@@ -89,6 +89,8 @@ export type ContentLesson4 = {
     wordToTranslateBlock2: { [key: string]: Words };
     wordToTranslateBlock3: { [key: string]: Words };
     wordToTranslateBlock4: { [key: string]: Words };
+    headerBlock6: string;
+    exercisesBlockAudio1: { [key: string]: Line };
 }
 
 export type Table = {
@@ -138,6 +140,11 @@ export type Words = {
     text2: string;
     description: string;
 }
+
+export type Line = {
+    text: string;
+    audio: string;
+  };
 
 export type ExampleAndAnswer = {
     description: string;

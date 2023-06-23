@@ -35,9 +35,10 @@ export function lesson2Screen() {
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
-  
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const SecondLesson = userLessons?.[1]; 
+
+  const lessonName = "урок 2";
+  const SecondLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
   //lesson content
 

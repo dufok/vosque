@@ -22,7 +22,7 @@ export const ExercisesBlockAudio: React.FC<ExercisesBlockAudioProps> = ({ exerci
               <YStack marginVertical="$4" style={{flex: 1}}>
                 <H3Custom text={text} />
               </YStack>
-              <YStack ai="flex-start" jc="center">
+              <YStack paddingHorizontal="$3" ai="flex-start" jc="center">
                 <AudioPlayer src={audio}/>
               </YStack>
             </XStack>

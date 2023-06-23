@@ -129,7 +129,7 @@ function Lessons({ isSignedIn, lessonCount, userLessons }) {
         <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
         <Stack p="$2" fd="column" $gtSm={{ fd: "row", fw: "wrap" }}>
             <YStack jc="flex-start" m="$1">
-              {userLessons?.slice(0, userLessons.length/2)?.map((lesson, index) =>
+              {userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).slice(0, userLessons.length/2)?.map((lesson, index) =>
                 lesson !== null ? [
                   <YStack p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
                     <XStack ai="center">
@@ -152,7 +152,7 @@ function Lessons({ isSignedIn, lessonCount, userLessons }) {
               )}
             </YStack>
             <YStack jc="flex-start" m="$1">
-              {userLessons?.slice(userLessons.length/2)?.map((lesson, index) =>
+              {userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).slice(userLessons.length/2)?.map((lesson, index) =>
                   lesson !== null ? [
                     <YStack p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
                       <XStack ai="center">

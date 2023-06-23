@@ -3,8 +3,8 @@ import React from "react";
 
 export function DescriptionBlock({description}) {
   return (
-    <YStack ai="flex-start" w="100%" paddingHorizontal="$6" paddingVertical="$4" maw={1000}>
-      <Paragraph ta="left" >{description}</Paragraph>
+    <YStack m="$6" ai="flex-start" w="90%" maw={900}>
+      <Paragraph ta="left" dangerouslySetInnerHTML={{ __html: description ? description.replace(/\n/g, "<br />") : '' }} />
     </YStack>
   );
 } 

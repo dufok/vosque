@@ -28,19 +28,23 @@ import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 
 export function lesson4Screen() {
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson5"});
-  const lessonLinkPageDown = useLink({ href: "/lesson3_2"});
 
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const FourthLesson = userLessons?.[4];
+  const lessonName = "урок 4";
+  const FourthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
   
+  //CONSTS
 
   const content = FourthLesson?.content as ContentLesson4;
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+  const lessonLinkPageUP = useLink({ href: "/lesson5"});
+  const lessonLinkPageDown = useLink({ href: "/lesson3"});
+
   const textExample1 = Object.values(content?.textExampleBlock1 || {});
   const textExample2 = Object.values(content?.textExampleBlock2 || {});
   const textExample3 = Object.values(content?.textExampleBlock3 || {});
@@ -62,6 +66,7 @@ export function lesson4Screen() {
   const wordToTranslate2 = Object.values(content?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content?.wordToTranslateBlock3 || {});
   const wordToTranslate4 = Object.values(content?.wordToTranslateBlock4 || {});
+  const exercisesBlockAudio1 = Object.values(content?.exercisesBlockAudio1 || {});
 
 
   useEffect(() => {
@@ -142,7 +147,6 @@ export function lesson4Screen() {
 
         <HeaderBlock header={content?.headerBlock5} />
         <DescriptionBlock description={content?.descriptionBlock8} />
-        <DescriptionBlock description={content?.descriptionBlock9} />
         <TextExampleBlock textExamples={textExample10}/>
         <DescriptionBlock description={content?.descriptionBlock10} />
         <TextExampleBlock textExamples={textExample11}/>
@@ -193,6 +197,11 @@ export function lesson4Screen() {
         <WordToTranslateBlock words={wordToTranslate3} />
         <SquareText text={content?.squareText14} />
         <WordToTranslateBlock words={wordToTranslate4} />
+
+                  {/* Дополнительные материалы */}
+
+        <HeaderBlock header={content?.headerBlock6} />
+        <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
         
       </YStack>
       <NavigationBlock

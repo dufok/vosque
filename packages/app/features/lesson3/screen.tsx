@@ -45,19 +45,15 @@ export function lesson3Screen() {
   const { data: userLessons } = trpc.user.userLessons.useQuery();
 
   // Find the required lesson by its name
-   const lessonName = "Урок 3. Глаголы \"быть\"";
-   const ThirdLesson = userLessons?.find(lesson => lesson.name === lessonName);
+   const lessonName = "урок 3";
+   const ThirdLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
    const partName =  "Part2 lesson3";
-   const ThirdLessonPartTwo = userLessons?.find(lesson => lesson.name === partName);
-   console.log('ThirdLesson: ', ThirdLesson);
+   const ThirdLessonPartTwo = userLessons?.find(lesson => lesson.name.toLowerCase().includes(partName.toLowerCase()));
 
   //part with types from file json full
 
-  console.log('ThirdLesson: ', ThirdLesson);
   const content = ThirdLesson?.content as ContentLesson3;
-  console.log('Content: ', content);
-  console.log('Content.part2: ', content?.part2);
   const content2 = ThirdLessonPartTwo?.content as ContentLesson3_2;
 
   const userpageLinkProps = useLink({ href: "/userpage"});

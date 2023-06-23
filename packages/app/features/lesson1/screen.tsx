@@ -37,7 +37,9 @@ export function lesson1Screen() {
 
   //lesson content
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const firstLesson = userLessons?.[0];
+  
+  const lessonName = "урок 1";
+  const firstLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
   //part with types from file json full
 
