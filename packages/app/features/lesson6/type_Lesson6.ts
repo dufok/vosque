@@ -14,6 +14,7 @@ export type ContentLesson6 = {
     descriptionBlock3: string;
     headerBlock3: string;
     exercisesBlockText1: { [key: string]: Exercise };
+    headerBlock4: string;
     squareText1: string;
     langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
@@ -34,8 +35,11 @@ export type ContentLesson6 = {
         content4: { [key: string]: Texts };
     };
     headerBlock6: string;
+    squareText3: string;
     langTest1_2: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
+    headerBlock7: string;
+    exercisesBlockAudio1: { [key: string]: Line };
 }
 
 export type Table = {
@@ -80,6 +84,7 @@ export type Tests4 = {
     description: string;
     question: string;
     unswer: string[];
+    help: string;
 }
 
 export type Texts = {
@@ -185,3 +190,8 @@ export type ExampleAndAnswer = {
     prononce30: string;
     help30: string;
 }
+
+export type Line = {
+    text: string;
+    audio: string;
+  };

@@ -27,6 +27,7 @@ import { LangTest2 } from "@my/ui/src/components/LangTest2";
 import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
+import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 
 export function lesson6Screen() {
 
@@ -37,7 +38,9 @@ export function lesson6Screen() {
   const isSignedIn = !!currentUser;
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const SixthLesson = userLessons?.[7];
+
+  const lessonName = "урок 6";
+  const SixthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
   // Part Content
 
@@ -45,7 +48,7 @@ export function lesson6Screen() {
 
   const userpageLinkProps = useLink({ href: "/userpage"});
   const lessonLinkPageUP = useLink({ href: "/lesson7"});
-  const lessonLinkPageDown = useLink({ href: "/lesson5_2"});
+  const lessonLinkPageDown = useLink({ href: "/lesson5"});
 
   const exercises1 = Object.values(content?.exercisesBlockText1 || {});
   const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
@@ -55,6 +58,9 @@ export function lesson6Screen() {
   const tests1_2 = Object.values(content?.langTest1_2.testContent || {});
   const example1_2 = content?.langTest1_2.example;
   const wordToTranslate1 = Object.values(content?.wordToTranslateBlock1 || {});
+
+  const textExample1 = Object.values(content?.textExampleBlock1 || {});
+  const exercisesBlockAudio1 = Object.values(content?.exercisesBlockAudio1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -87,7 +93,22 @@ export function lesson6Screen() {
          <TableBlock table={content?.tableBlock2} />
          <DescriptionBlock description={content?.descriptionBlock1} />
          <TableBlock table={content?.tableBlock3} />
+
+         {/* ВАЖНАЯ ИНФОРМАЦИЯ ПРО ПРЕДЛОГ “А”: */}
+
+         <HeaderBlock header={content?.headerBlock2}/>
+         <DescriptionBlock description={content?.descriptionBlock2} />
+         <TextExampleBlock textExamples={textExample1}/>
+
+         {/* УКАЗАТЕЛЬНЫЕ МЕСТОИМЕНИЯ */}
+
+         <DescriptionBlock description={content?.descriptionBlock3} />
+         <HeaderBlock header={content?.headerBlock3}/>
          <ExercisesBlockText exercises={exercises1} />
+
+         {/* БЛОК УПРАЖНЕНИЙ */}
+
+         <HeaderBlock header={content?.headerBlock4} />
          <SquareText text={content?.squareText1} />
          <LangTest4 example={example4_1} tests={tests4_1} />
          <SquareText text={content?.squareText2} />
@@ -116,9 +137,14 @@ export function lesson6Screen() {
          <HeaderBlock header={content?.headerBlock6} />
          <LangTest1 example={example1_2} tests={tests1_2} />
 
+            {/* Дополнительные материалы */}
+
+          <HeaderBlock header={content?.headerBlock7} />
+          <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+
        </YStack>
        <NavigationBlock
-         lessonLinkPageDOWNname={"Урок 5 (часть 2)"}
+         lessonLinkPageDOWNname={"Урок 5"}
          lessonLinkPageUPname={"Урок 7"}
          lessonLinkPageUP={lessonLinkPageUP} 
          lessonLinkPageDOWN={lessonLinkPageDown}/>

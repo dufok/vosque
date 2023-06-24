@@ -16,12 +16,14 @@ import {
         } from 'tamagui';
 import React, { useState, useEffect } from "react";
 import { ParagraphCustom } from "./CustomText";
+import { HelpComp } from "@my/ui/src/components/HelpComp";
 import { X } from '@tamagui/lucide-icons'
 
 export type Test = {
   description: string;
   question: string;
   unswer: string[];
+  help: string;
 }
 
 interface LangTestProps {
@@ -53,7 +55,7 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example }) => {
         <YStack ai="center" f={1} mt="$4">
           <XStack fw="wrap" jc="space-between">
             <YStack m="$2" w="100%" $gtSm={{ width: "45%" }}>
-              {firstHalf.map(({ question, unswer, description}, index) => {
+              {firstHalf.map(({ question, unswer, description, help }, index) => {
       
 
                 return (
@@ -64,7 +66,10 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example }) => {
                       </YStack>
                     )}
                     <YStack ai="flex-start" mb="$2">
-                      <Paragraph mr="$2">{question}</Paragraph>
+                      <XStack>
+                        <Paragraph mr="$2">{question}</Paragraph>
+                        {help && <HelpComp texts={help} html={index} />}
+                      </XStack>
                     </YStack>
                     <YStack ai="center">
                       <Separator mb="$2" w="40%" borderColor="$backgroundPress" /> 
@@ -136,7 +141,7 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example }) => {
             </YStack>
 
             <YStack m="$2" w="100%" $gtSm={{ width: "45%" }} >  
-              {secondHalf.map(({ question, unswer, description }, index) => {
+              {secondHalf.map(({ question, unswer, description, help }, index) => {
 
                 return (
                   <YStack key={index}  w="100%" mb="$4">
@@ -146,7 +151,10 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example }) => {
                       </YStack>
                     )}
                     <YStack ai="flex-start" mb="$2">
-                      <Paragraph mr="$2">{question}</Paragraph>
+                      <XStack>
+                        <Paragraph mr="$2">{question}</Paragraph>
+                        {help && <HelpComp texts={help} html={index} />}
+                      </XStack>
                     </YStack>
                     <YStack ai="center">
                       <Separator mb="$2" w="40%" borderColor="$backgroundPress" /> 

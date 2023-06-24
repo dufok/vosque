@@ -66,6 +66,7 @@ export type Tests4 = {
     description: string;
     question: string;
     unswer: string[];
+    help: string;
 }
 
 export type Texts = {
