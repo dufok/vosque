@@ -44,7 +44,7 @@ export function lesson7Screen() {
   const content = SeventhLesson?.content as ContentLesson7;
 
   const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson7_2"});
+  const lessonLinkPageUP = useLink({ href: "/lesson8"});
   const lessonLinkPageDown = useLink({ href: "/lesson6"});
 
   const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
@@ -143,7 +143,7 @@ export function lesson7Screen() {
       </YStack>
       <NavigationBlock
         lessonLinkPageDOWNname={"Урок 6"}
-        lessonLinkPageUPname={"Урок 7 (часть 2)"}
+        lessonLinkPageUPname={"Урок 8"}
         lessonLinkPageUP={lessonLinkPageUP} 
         lessonLinkPageDOWN={lessonLinkPageDown}/>
     </YStack>

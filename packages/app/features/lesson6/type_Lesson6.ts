@@ -13,7 +13,7 @@ export type ContentLesson6 = {
     textExampleBlock1: { [key: string]: ExampleAndAnswer };
     descriptionBlock3: string;
     headerBlock3: string;
-    exercisesBlockText1: { [key: string]: Exercise };
+    textExampleBlock2: { [key: string]: ExampleAndAnswer };
     headerBlock4: string;
     squareText1: string;
     langTest4_1: { example: { header: string, question: string, unswer: string};

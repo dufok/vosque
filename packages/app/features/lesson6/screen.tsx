@@ -50,7 +50,6 @@ export function lesson6Screen() {
   const lessonLinkPageUP = useLink({ href: "/lesson7"});
   const lessonLinkPageDown = useLink({ href: "/lesson5"});
 
-  const exercises1 = Object.values(content?.exercisesBlockText1 || {});
   const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
   const example4_1 = content?.langTest4_1.example;
   const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
@@ -60,6 +59,7 @@ export function lesson6Screen() {
   const wordToTranslate1 = Object.values(content?.wordToTranslateBlock1 || {});
 
   const textExample1 = Object.values(content?.textExampleBlock1 || {});
+  const textExample2 = Object.values(content?.textExampleBlock2 || {});
   const exercisesBlockAudio1 = Object.values(content?.exercisesBlockAudio1 || {});
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export function lesson6Screen() {
 
          <DescriptionBlock description={content?.descriptionBlock3} />
          <HeaderBlock header={content?.headerBlock3}/>
-         <ExercisesBlockText exercises={exercises1} />
+         <TextExampleBlock textExamples={textExample2}/>
 
          {/* БЛОК УПРАЖНЕНИЙ */}
 
