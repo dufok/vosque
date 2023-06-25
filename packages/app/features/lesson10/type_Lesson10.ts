@@ -24,6 +24,60 @@ export type ContentLesson10 = {
         testContent: {[key: string]: Tests1 }};
 }
 
+export type ContentLesson10_2 = {
+    name: string;
+    description: string;
+    poster: string;
+    video: string;
+    image: string;
+    headerBlock1: string;
+    tableBlock1: Table;
+    squareText2: string;
+    descriptionBlock1: string;
+    tableBlock2: Table;
+    tableBlock3: Table;
+    squareText4: string;
+    descriptionBlock2: string;
+    tableBlock4: Table;
+    squareText6: string;
+    descriptionBlock3: string;
+    tableBlock5: Table;
+    squareText8: string;
+    descriptionBlock4: string;
+    tableBlock6: Table;
+    squareText10: string;
+    descriptionBlock5: string;
+    headerBlock2: string;
+    langTest1_1: { example: { question: string, unswer: string[]};
+        testContent: {[key: string]: Tests1 }};
+    headerBlock3: string;
+    squareText11: string;
+    wordToTranslateBlock1: { [key: string]: Words };
+    squareText12: string;
+    textExampleBlock1: { [key: string]: ExampleAndAnswer };
+    lifeHackerBlock1: {
+        title: string;
+        description1: string;
+        content1: { [key: string]: Texts };
+        description2: string;
+        content2: { [key: string]: Texts };
+        description3: string;
+        content3: { [key: string]: Texts };
+        description4: string;
+        content4: { [key: string]: Texts };
+    };
+    squareText13: string;
+    wordToTranslateBlock2: { [key: string]: Words };
+    squareText14: string;
+    descriptionBlock6: string;
+    wordToTranslateBlock3: { [key: string]: Words };
+    headerBlock4: string;
+    langTest1_2: { example: { question: string, unswer: string[]};
+        testContent: {[key: string]: Tests1 }};
+    headerBlock5: string;
+    exercisesBlockAudio1: { [key: string]: Line };
+}
+
 export type Table = {
     header: string;
     rows: Row[];
@@ -172,3 +226,8 @@ export type ExampleAndAnswer = {
     prononce30: string;
     help30: string;
 }
+
+export type Line = {
+    text: string;
+    audio: string;
+  };

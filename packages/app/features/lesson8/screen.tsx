@@ -27,13 +27,14 @@ import { LangTest2 } from "@my/ui/src/components/LangTest2";
 import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
+import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 
 export function lesson8Screen() {
 
     // Part Config
     const userpageLinkProps = useLink({ href: "/userpage"});
     const lessonLinkPageUP = useLink({ href: "/lesson9"});
-    const lessonLinkPageDown = useLink({ href: "/lesson7_2"});
+    const lessonLinkPageDown = useLink({ href: "/lesson7"});
   
     const { data: currentUser } = trpc.user.current.useQuery();
     const { data, isLoading, error } = trpc.entry.all.useQuery();
@@ -46,8 +47,7 @@ export function lesson8Screen() {
   
     // Part Content
 
-    const exercises1 = Object.values(content?.exercisesBlockText1 || {});
-    const exercises2 = Object.values(content?.exercisesBlockText2 || {});
+    const textExample1 = Object.values(content?.textExampleBlock1 || {});
     const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
     const example4_1 = content?.langTest4_1.example;
     const tests1_1 = Object.values(content?.langTest1_1.testContent || {});
@@ -58,6 +58,7 @@ export function lesson8Screen() {
     const wordToTranslate4 = Object.values(content?.wordToTranslateBlock4 || {});
     const tests1_2 = Object.values(content?.langTest1_2.testContent || {});
     const example1_2 = content?.langTest1_2.example;
+    const exercisesBlockAudio1 = Object.values(content?.exercisesBlockAudio1 || {});
 
     useEffect(() => {
       console.log(data);
@@ -86,12 +87,7 @@ export function lesson8Screen() {
         <ImageCircle img={content?.image}/>
 
         <HeaderBlock header={content?.headerBlock1}/>
-        <DescriptionBlock description={content?.descriptionBlock1} />
-        <SquareText text={content?.squareText1} />
-        <ExercisesBlockText exercises={exercises1} />
-        <SquareText text={content?.squareText2} />
-        <ExercisesBlockText exercises={exercises2} />
-
+        <TextExampleBlock textExamples={textExample1}/>
         <HeaderBlock header={content?.headerBlock2} />
         <LangTest4 example={example4_1} tests={tests4_1} />
         <LangTest1 example={example1_1} tests={tests1_1} />
@@ -126,9 +122,14 @@ export function lesson8Screen() {
         <HeaderBlock header={content?.headerBlock4} />
         <LangTest1 example={example1_2} tests={tests1_2} />
 
+        {/* Дополнительные материалы */}
+
+        <HeaderBlock header={content?.headerBlock5} />
+        <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+
       </YStack>
       <NavigationBlock
-        lessonLinkPageDOWNname={"Урок 7 (часть 2)"}
+        lessonLinkPageDOWNname={"Урок 7"}
         lessonLinkPageUPname={"Урок 9"}
         lessonLinkPageUP={lessonLinkPageUP} 
         lessonLinkPageDOWN={lessonLinkPageDown}/>

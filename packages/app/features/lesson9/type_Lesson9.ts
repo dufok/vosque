@@ -4,8 +4,8 @@ export type ContentLesson9 = {
     video: string;
     image: string;
     headerBlock1: string;
-    squareText1: string;
-    descriptionBlock2: string;
+    headerBlock3: string;
+    textExampleBlock1: { [key: string]: ExampleAndAnswer };
     tableBlock1: Table;
     tableBlock2: Table;
     tableBlock3: Table;
@@ -24,10 +24,67 @@ export type ContentLesson9 = {
     tableBlock4: Table;
     tableBlock5: Table;
     headerBlock2: string;
+    squareText1: string;
     langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
+    squareText2: string;
     langTest1_1: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
+}
+
+export type ContentLesson9_2 = {
+    name: string;
+    description: string;
+    poster: string;
+    video: string;
+    headerBlock1: string;
+    headerBlock7: string;
+    textExampleBlock1: { [key: string]: ExampleAndAnswer };
+    tableBlock1: Table;
+    tableBlock2: Table;
+    tableBlock3: Table;
+    tableBlock4: Table;
+    lifeHackerBlock1: {
+        title: string;
+        description1: string;
+        content1: { [key: string]: Texts };
+        description2: string;
+        content2: { [key: string]: Texts };
+        description3: string;
+        content3: { [key: string]: Texts };
+        description4: string;
+        content4: { [key: string]: Texts };
+    };
+    tableBlock5: Table;
+    headerBlock2: string;
+    squareText1: string;
+    langTest4_1: { example: { header: string, question: string, unswer: string};
+        testContent: {[key: string]: Tests4 }};
+    squareText2: string;
+    langTest1_1: { example: { question: string, unswer: string[]};
+        testContent: {[key: string]: Tests1 }};
+    
+    headerBlock3: string;
+    video3: string;
+    headerBlock4: string;
+    exercisesBlockText1: { [key: string]: Exercise };
+    headerBlock5: string;
+    squareText3: string;
+    langTest1_2: { example: { question: string, unswer: string[]};
+        testContent: {[key: string]: Tests1 }};
+    lifeHackerBlock2: {
+        title: string;
+        description1: string;
+        content1: { [key: string]: Texts };
+        description2: string;
+        content2: { [key: string]: Texts };
+        description3: string;
+        content3: { [key: string]: Texts };
+        description4: string;
+        content4: { [key: string]: Texts };
+    };
+    headerBlock6: string;
+    exercisesBlockAudio1: { [key: string]: Line };
 }
 
 export type Table = {
@@ -178,3 +235,8 @@ export type ExampleAndAnswer = {
     prononce30: string;
     help30: string;
 }
+
+export type Line = {
+    text: string;
+    audio: string;
+  };

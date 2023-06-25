@@ -4,11 +4,7 @@ export type ContentLesson8 = {
     video: string;
     image: string;
     headerBlock1: string;
-    descriptionBlock1: string;
-    squareText1: string;
-    exercisesBlockText1: { [key: string]: Exercise };
-    squareText2: string;
-    exercisesBlockText2: { [key: string]: Exercise };
+    textExampleBlock1: { [key: string]: ExampleAndAnswer };
     headerBlock2: string;
     langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
@@ -37,6 +33,8 @@ export type ContentLesson8 = {
     headerBlock4: string;
     langTest1_2: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
+    headerBlock5: string;
+    exercisesBlockAudio1: { [key: string]: Line };
 }
 
 export type Tables = {
@@ -193,3 +191,8 @@ export type ExampleAndAnswer = {
     prononce30: string;
     help30: string;
 }
+
+export type Line = {
+    text: string;
+    audio: string;
+  };
