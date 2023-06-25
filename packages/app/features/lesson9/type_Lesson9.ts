@@ -28,7 +28,7 @@ export type ContentLesson9 = {
     langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
     squareText2: string;
-    langTest1_1: { example: { question: string, unswer: string[]};
+    langTest1_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
 }
 
@@ -61,7 +61,7 @@ export type ContentLesson9_2 = {
     langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
     squareText2: string;
-    langTest1_1: { example: { question: string, unswer: string[]};
+    langTest1_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     
     headerBlock3: string;
@@ -70,7 +70,7 @@ export type ContentLesson9_2 = {
     exercisesBlockText1: { [key: string]: Exercise };
     headerBlock5: string;
     squareText3: string;
-    langTest1_2: { example: { question: string, unswer: string[]};
+    langTest1_2: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     lifeHackerBlock2: {
         title: string;
@@ -98,19 +98,29 @@ export type Row = {
     spanAllColumns?: boolean;
   };
 
-export type Exercise = {
+  export type Exercise = {
     text: string;
     example1: string;
+    help1: string;
     example2: string;
+    help2: string;
     example3: string;
+    help3: string;
     example4: string;
+    help4: string;
     example5: string;
+    help5: string;
     example6: string;
+    help6: string;
     example7: string;
+    help7: string;
     example8: string;
+    help8: string;
     example9: string;
+    help9: string;
     example10: string;
-}
+    help10: string;
+  };
 
 export type Tests1 = {
     question: string;

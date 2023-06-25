@@ -208,10 +208,12 @@ export function lesson9Screen() {
               ]}
             />
 
-                    {/* Дополнительные материалы */}
+                    {/* Дополнительные материалы 
 
             <HeaderBlock header={content2?.headerBlock6} />
             <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+
+            */}
 
           </YStack>
         <NavigationBlock

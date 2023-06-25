@@ -137,10 +137,12 @@ export function lesson6Screen() {
          <HeaderBlock header={content?.headerBlock6} />
          <LangTest1 example={example1_2} tests={tests1_2} />
 
-            {/* Дополнительные материалы */}
+            {/* Дополнительные материалы 
 
           <HeaderBlock header={content?.headerBlock7} />
           <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+
+          */}
 
        </YStack>
        <NavigationBlock

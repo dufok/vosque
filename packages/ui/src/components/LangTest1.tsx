@@ -1,4 +1,4 @@
-import { Paragraph, YStack, XStack, Input, Square, Separator, listItemStaticConfig } from 'tamagui';
+import { H4,Paragraph, YStack, XStack, Input, Square, Separator, listItemStaticConfig } from 'tamagui';
 import React, { useState, useEffect } from "react";
 import { ParagraphCustom } from "./CustomText";
 import { IceCream, Triangle } from '@tamagui/lucide-icons';
@@ -10,11 +10,12 @@ import { HelpComp } from "@my/ui/src/components/HelpComp";
 export type Test = {
   question: string;
   unswer: string[];
+  help: string;
 }
 
 interface LangTestProps {
   tests: Test[];
-  example: Test;
+  example: { header: string, question: string, unswer: string };
 }
 
 export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
@@ -70,6 +71,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
       
       {example && (
         <YStack ai="center" mb="$4" space={4}>
+              <H4 ta="center" >{example.header}</H4>
               <ParagraphCustom text={example.question}/>
             <YStack m="$1"/>
             <YStack f={1} boc="$backgroundHover"  borderWidth="$1" br="$3" p="$1.5" paddingHorizontal="$7" >
@@ -84,7 +86,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
         <YStack ai="center" f={1} mt="$4">
           <XStack fw="wrap" jc="space-between">
             <YStack m="$2" w="90%" $gtSm={{ width: "40%" }}>
-              {firstHalf.map(({ question, unswer }, index) => {
+              {firstHalf.map(({ question, unswer, help }, index) => {
       
                 const [answer, setAnswer] = useState("");
                 const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -123,7 +125,10 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
                 return (
                   <YStack key={index} ai="flex-start" w="100%" >
                     <YStack>
-                      <Paragraph mr="$2">{question}</Paragraph>
+                      <XStack>
+                        <Paragraph mr="$2">{question}</Paragraph>
+                        {help && <HelpComp texts={help} html={index} />}
+                      </XStack>
                     </YStack>
                     <YStack jc="center" m="$2" w="100%" >
                         <Input 
@@ -145,7 +150,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
             </YStack>
 
             <YStack m="$2" w="90%" $gtSm={{ width: "40%" }} >  
-              {secondHalf.map(({ question, unswer }, index) => {
+              {secondHalf.map(({ question, unswer, help }, index) => {
                 const [answer, setAnswer] = useState("");
                 const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
                 const [inputFocus, setInputFocus] = useState(false);
@@ -184,7 +189,10 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
                 return (
                   <YStack key={index} ai="flex-start" w="100%">
                     <YStack>
-                      <Paragraph mr="$2" >{question}</Paragraph>
+                      <XStack>
+                        <Paragraph mr="$2">{question}</Paragraph>
+                        {help && <HelpComp texts={help} html={index} />}
+                      </XStack>
                     </YStack>
                     <YStack jc="center" m="$2" w="100%">
                         <Input 

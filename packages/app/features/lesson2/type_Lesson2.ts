@@ -99,15 +99,15 @@ export type ContentLesson2 = {
     header4: string;
     squareText4: string;
     description4: string;
-    test1: { example: { question: string, unswer: string[]};
+    test1: { example: { header: string, question: string, unswer: string};
              testContent: {[key: string]: Tests}};
     squareText6: string;
     description5: string;
-    test2: { example: { question: string, unswer: string[]};
+    test2: { example: { header: string, question: string, unswer: string};
              testContent: {[key: string]: Tests}};
     squareText7: string;
     description6: string;
-    test3: { example: { question: string, unswer: string[]};
+    test3: { example: { header: string, question: string, unswer: string};
              testContent: {[key: string]: Tests}};
     header5: string;
     blockText3: { [key: string]: Exercise };
@@ -165,16 +165,26 @@ export type Row = {
 export type Exercise = {
   text: string;
   example1: string;
+  help1: string;
   example2: string;
+  help2: string;
   example3: string;
+  help3: string;
   example4: string;
+  help4: string;
   example5: string;
+  help5: string;
   example6: string;
+  help6: string;
   example7: string;
+  help7: string;
   example8: string;
+  help8: string;
   example9: string;
+  help9: string;
   example10: string;
-}
+  help10: string;
+};
 
 export type Tests = {
     question: string;

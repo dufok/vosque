@@ -12,7 +12,7 @@ export type ContentLesson4 = {
     textExampleBlock2: { [key: string]: ExampleAndAnswer };
     headerBlock3: string;
     squareText3: string;
-    langTest1_1: { example: { question: string, unswer: string[]};
+    langTest1_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     lifeHackerBlock1: {
         title: string;
@@ -36,7 +36,7 @@ export type ContentLesson4 = {
     textExampleBlock5: { [key: string]: ExampleAndAnswer };
     descriptionBlock6: string;
     squareText5: string;
-    langTest1_2: { example: { question: string, unswer: string[]};
+    langTest1_2: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     headerBlock4: string;
     descriptionBlock7: string;
@@ -45,7 +45,7 @@ export type ContentLesson4 = {
     squareText9: string;
     textExampleBlock9: { [key: string]: ExampleAndAnswer };
     squareText10: string;
-    langTest1_3: { example: { question: string, unswer: string[]};
+    langTest1_3: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     headerBlock5: string;
     descriptionBlock8: string;
@@ -55,7 +55,7 @@ export type ContentLesson4 = {
     textExampleBlock11: { [key: string]: ExampleAndAnswer };
     descriptionBlock11: string;
     squareText11: string;
-    langTest1_4: { example: { question: string, unswer: string[]};
+    langTest1_4: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     headerBlock12: string;
     textExampleBlock12: { [key: string]: ExampleAndAnswer };
@@ -104,19 +104,29 @@ export type Row = {
     spanAllColumns?: boolean;
   };
 
-export type Exercise = {
+  export type Exercise = {
     text: string;
     example1: string;
+    help1: string;
     example2: string;
+    help2: string;
     example3: string;
+    help3: string;
     example4: string;
+    help4: string;
     example5: string;
+    help5: string;
     example6: string;
+    help6: string;
     example7: string;
+    help7: string;
     example8: string;
+    help8: string;
     example9: string;
+    help9: string;
     example10: string;
-}
+    help10: string;
+  };
 
 export type Tests1 = {
     question: string;

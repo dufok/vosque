@@ -66,6 +66,11 @@ export function lesson10Screen() {
 
   // Part 2 Content
 
+  const exercises2 = Object.values(content2?.exercisesBlockText1 || {});
+  const exercises3 = Object.values(content2?.exercisesBlockText2 || {});
+  const exercises4 = Object.values(content2?.exercisesBlockText3 || {});
+  const exercises5 = Object.values(content2?.exercisesBlockText4 || {});
+  const exercises6 = Object.values(content2?.exercisesBlockText5 || {});
   const tests1_2 = Object.values(content2?.langTest1_1.testContent || {});
   const example1_2 = content2?.langTest1_1.example;
   const tests1_3 = Object.values(content2?.langTest1_2.testContent || {});
@@ -126,10 +131,13 @@ export function lesson10Screen() {
                 ]}
               />
             </XStack>
-                        {/* Домашнее задание */}
+
+              {/* Блок Упражнений */}
 
             <HeaderBlock header={content?.headerBlock2} />
+            <SquareText text={content?.squareText1} />
             <LangTest4 example={example4_1} tests={tests4_1} />
+            <SquareText text={content?.squareText2} />
             <LangTest1 example={example1_1} tests={tests1_1} />
 
             <WelcomeBlock
@@ -138,27 +146,22 @@ export function lesson10Screen() {
               <YStack  w="100%" $gtSm={{ width: "70%" }}>
                 <VideoPlayer linkVideo={content2?.video}/>
               </YStack>
-            <ImageCircle img={content2?.image}/>
 
             <HeaderBlock header={content2?.headerBlock1}/>
             <TableBlock table={content2?.tableBlock1} />
-            <SquareText text={content2?.squareText2} />
-            <DescriptionBlock description={content2?.descriptionBlock1} />
+            <ExercisesBlockText exercises={exercises2} />
             <TableBlock table={content2?.tableBlock2} />
             <TableBlock table={content2?.tableBlock3} />
-            <SquareText text={content2?.squareText4} />
-            <DescriptionBlock description={content2?.descriptionBlock2} />
+            <ExercisesBlockText exercises={exercises3} />
             <TableBlock table={content2?.tableBlock4} />
-            <SquareText text={content2?.squareText6} />
-            <DescriptionBlock description={content2?.descriptionBlock3} />
+            <ExercisesBlockText exercises={exercises4} />
             <TableBlock table={content2?.tableBlock5} />
-            <SquareText text={content2?.squareText8} />
-            <DescriptionBlock description={content2?.descriptionBlock4} />
+            <ExercisesBlockText exercises={exercises5} />
             <TableBlock table={content2?.tableBlock6} />
-            <SquareText text={content2?.squareText10} />
-            <DescriptionBlock description={content2?.descriptionBlock5} />
+            <ExercisesBlockText exercises={exercises6} />
 
             <HeaderBlock header={content2?.headerBlock2} />
+            <SquareText text={content2?.squareText1} />
             <LangTest1 example={example1_2} tests={tests1_2} />
 
             <HeaderBlock header={content2?.headerBlock3} />
@@ -194,6 +197,7 @@ export function lesson10Screen() {
               {/* Домашнее задание */}
 
             <HeaderBlock header={content2?.headerBlock4} />
+            <SquareText text={content2?.squareText2} />
             <LangTest1 example={example1_3} tests={tests1_3} />
 
             {/* Дополнительные материалы */}

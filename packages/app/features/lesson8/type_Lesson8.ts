@@ -8,7 +8,7 @@ export type ContentLesson8 = {
     headerBlock2: string;
     langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
-    langTest1_1: { example: { question: string, unswer: string[]};
+    langTest1_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     lifeHackerBlock1: {
         title: string;
@@ -31,7 +31,7 @@ export type ContentLesson8 = {
     squareText6: string;
     wordToTranslateBlock4: { [key: string]: Words };
     headerBlock4: string;
-    langTest1_2: { example: { question: string, unswer: string[]};
+    langTest1_2: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     headerBlock5: string;
     exercisesBlockAudio1: { [key: string]: Line };
@@ -57,16 +57,26 @@ export type Tables = {
 export type Exercise = {
     text: string;
     example1: string;
+    help1: string;
     example2: string;
+    help2: string;
     example3: string;
+    help3: string;
     example4: string;
+    help4: string;
     example5: string;
+    help5: string;
     example6: string;
+    help6: string;
     example7: string;
+    help7: string;
     example8: string;
+    help8: string;
     example9: string;
+    help9: string;
     example10: string;
-}
+    help10: string;
+  };
 
 export type Tests1 = {
     question: string;

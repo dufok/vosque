@@ -18,8 +18,10 @@ export type ContentLesson10 = {
         content4: { [key: string]: Texts };
     };
     headerBlock2: string;
+    squareText1: string;
     langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
+    squareText2: string;
     langTest1_1: { example: { question: string, unswer: string[]};
         testContent: {[key: string]: Tests1 }};
 }
@@ -32,23 +34,19 @@ export type ContentLesson10_2 = {
     image: string;
     headerBlock1: string;
     tableBlock1: Table;
-    squareText2: string;
-    descriptionBlock1: string;
+    exercisesBlockText1: { [key: string]: Exercise };
     tableBlock2: Table;
     tableBlock3: Table;
-    squareText4: string;
-    descriptionBlock2: string;
+    exercisesBlockText2: { [key: string]: Exercise };
     tableBlock4: Table;
-    squareText6: string;
-    descriptionBlock3: string;
+    exercisesBlockText3: { [key: string]: Exercise };
     tableBlock5: Table;
-    squareText8: string;
-    descriptionBlock4: string;
+    exercisesBlockText4: { [key: string]: Exercise };
     tableBlock6: Table;
-    squareText10: string;
-    descriptionBlock5: string;
+    exercisesBlockText5: { [key: string]: Exercise };
     headerBlock2: string;
-    langTest1_1: { example: { question: string, unswer: string[]};
+    squareText1: string;
+    langTest1_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     headerBlock3: string;
     squareText11: string;
@@ -72,7 +70,8 @@ export type ContentLesson10_2 = {
     descriptionBlock6: string;
     wordToTranslateBlock3: { [key: string]: Words };
     headerBlock4: string;
-    langTest1_2: { example: { question: string, unswer: string[]};
+    squareText2: string;
+    langTest1_2: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     headerBlock5: string;
     exercisesBlockAudio1: { [key: string]: Line };
@@ -89,19 +88,29 @@ export type Row = {
     spanAllColumns?: boolean;
   };
 
-export type Exercise = {
+  export type Exercise = {
     text: string;
     example1: string;
+    help1: string;
     example2: string;
+    help2: string;
     example3: string;
+    help3: string;
     example4: string;
+    help4: string;
     example5: string;
+    help5: string;
     example6: string;
+    help6: string;
     example7: string;
+    help7: string;
     example8: string;
+    help8: string;
     example9: string;
+    help9: string;
     example10: string;
-}
+    help10: string;
+  };
 
 export type Tests1 = {
     question: string;
