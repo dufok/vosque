@@ -13,21 +13,21 @@ import {
   Square,
   Avatar,
   Image,
-  Circle,
-  Tooltip,
-  TooltipGroup,
-  TooltipProps
+  Circle
 } from "@my/ui";
 
+import { trpc } from "../../utils/trpc";
 
+import { Sheet } from '@tamagui/sheet'
+import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import { useLink } from "solito/link";
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ImageBackground, View} from "react-native"
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import React, { useState, useEffect } from 'react';
-import { trpc } from "../../utils/trpc";
 
+import texts from './rew.json';
 
 export function HomeScreen() {
 
@@ -168,8 +168,9 @@ function AboutAutor({imageSource1}){
           </YStack>
         </YStack>
       </YStack>
-
+      <Separator w='100%' />
     </XStack>
+
   )
 }
 
@@ -197,18 +198,18 @@ function AboutCourse ({courseLinkProps}) {
           pos="absolute"
           $sm={{ display: 'none' }}
         />
-          <YStack ai="center" mb={200}
-
-            $sm={{ mb: 50 }}
+          <YStack
+            mt={100}
+            ai="center"
+            mb={200}
+            $xs={{ marginTop : 50, mb: 50}}
             style={{
             zIndex: 1
           }}>
             <Image
-              mt={100}
-              $xs={{ marginTop : 50}}
-              src={{uri: 'https://cdn.vosque.education/images/img-home-course.png?raw', width: 50, height: 50}}
-              height='100%'
-              width='100%'
+              src={{uri: 'https://cdn.vosque.education/images/img-home-course.png', width: 50, height: 50}}
+              height={50}
+              width={50}
             />
             <H2 tt="uppercase">курсы</H2>
             <YStack mt={40} maw={800}>
@@ -248,253 +249,81 @@ function AboutCourse ({courseLinkProps}) {
 }
  
 function ReviewSection () {
-    return(
-        <YStack ai="center" w='100%'>
-            <H2 tt="uppercase" mt="$6" ta="center">Отзывы</H2>
-            <XStack p="$5" fw="wrap" jc="space-between">
-                <YStack space="$5" f={1} >
-                  <YStack f={0.7}>
-                    <Tooltip placement="top" >
-                      <Tooltip.Trigger>
-                        <Square
-                          br="$2"
-                          bc="$backgroundPress"
-                          m="$2"
-                          pressStyle={{ scale: 0.98 }}>
-                          <Paragraph ta="right" p="$3" >“Мы приехали с нулевым знанием..." Альфия</Paragraph>
-                        </Square>
-                      </Tooltip.Trigger>
-                      <Tooltip.Content
-                        enterStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        exitStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        scale={1}
-                        x={0}
-                        y={0}
-                        opacity={1}
-                        $sm={{ width: '90%' }}
-                        width="60%"
-                        alignSelf="center"
-                        animation={[
-                          'quick',
-                          {
-                            opacity: {
-                              overshootClamping: true,
-                            },
-                          },
-                        ]}
-                        >
-                        <Tooltip.Arrow />
-                        <YStack >
-                          <Paragraph  size="$2" lineHeight="$1">
-                            "Мы приехали с нулевым знанием языка - смотрели несколько видео уроков в ютубе, и то это был не “кастижано”. Первые дни ощущали себя беспомощными и абсолютно потерянными. А потом познакомились с курсом Анастасии. Очень этому рада. Методично, наглядно, от урока к уроку - и я уже не боюсь ходить в магазины, разговаривать с таксистами, заводить новые знакомства. Очень доступно подан материал, усваивается легко. Порядок тем подобран очень грамотно, после первых же уроков в твоём словарном запасе появляются фразы, которые помогут тебе в бытовых вопросах. Благодарю за эти уроки!"
-                          </Paragraph>
-                          <Paragraph mt="$1" fontFamily="$bodyBold" ta="right">Альфия</Paragraph>
-                        </YStack>
-                      </Tooltip.Content>
-                    </Tooltip>
-                  </YStack>
+  const [position, setPosition] = useState(0)
+  const [open, setOpen] = useState(false)
+  const [selectedText, setSelectedText] = useState<{name: string, text: string} | null>(null);
 
-                  <YStack f={0.7}>
-                    <Tooltip placement="top" >
-                      <Tooltip.Trigger>
-                        <Square
-                          br="$2"
-                          bc="$backgroundPress"
-                          m="$2"
-                          pressStyle={{ scale: 0.98 }}>
-                          <Paragraph ta="right" p="$3" >“Настя стала для меня третьим..."  Виталик</Paragraph>
-                        </Square>
-                      </Tooltip.Trigger>
-                      <Tooltip.Content
-                        enterStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        exitStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        scale={1}
-                        x={0}
-                        y={0}
-                        opacity={1}
-                        $sm={{ width: '90%' }}
-                        width="60%"
-                        alignSelf="center"
-                        animation={[
-                          'quick',
-                          {
-                            opacity: {
-                              overshootClamping: true,
-                            },
-                          },
-                        ]}
-                        >
-                        <Tooltip.Arrow />
-                        <YStack >
-                          <Paragraph  size="$2" lineHeight="$1">
-                            “Настя стала для меня третьим преподавателем после двух аргентинцев до этого. Могу с уверенностью сказать, что она лучший преподаватель иностранного языка в моей жизни. Подача информации, задания, внимание к моим слабым сторонам и работа с ними - всё это буквально за пару месяцев позволило значительно перегнать не такой большой успех с другими преподавателями. Благодаря занятиям с ней я быстро смог подготовиться к своему первому собеседованию на испанском и поступить в ВУЗ в Аргентине. И самое главное, благодаря ей, я могу общаться с аргентинцами, а это лучшее, что может дать язык. Искренне рекомендую Настю как лучшего преподавателя испанского!”
-                          </Paragraph>
-                          <Paragraph mt="$1" fontFamily="$bodyBold" ta="right">Виталик</Paragraph>
-                        </YStack>
-                      </Tooltip.Content>
-                    </Tooltip>
-                  </YStack>
+  const truncate = (str) => {
+      return str.length > 25 ? str.substring(0, 25) + "..." : str;
+  };
 
-                  <YStack f={0.7}>
-                    <Tooltip placement="top" >
-                      <Tooltip.Trigger>
-                        <Square 
-                          br="$2" 
-                          bc="$backgroundPress"
-                          m="$2"
-                          pressStyle={{ scale: 0.98 }}>
-                          <Paragraph ta="right" p="$3" >“Анастасия прекрасный учитель." Ольга</Paragraph>
-                        </Square>
-                      </Tooltip.Trigger>
-                      <Tooltip.Content
-                        enterStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        exitStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        scale={1}
-                        x={0}
-                        y={0}
-                        opacity={1}
-                        $sm={{ width: '90%' }}
-                        width="60%"
-                        alignSelf="center"
-                        animation={[
-                          'quick',
-                          {
-                            opacity: {
-                              overshootClamping: true,
-                            },
-                          },
-                        ]}
-                        >
-                      <Tooltip.Arrow />
-                        <YStack >
-                          <Paragraph  size="$2" lineHeight="$1">
-                            “Анастасия прекрасный учитель. Она занимается с двумя детьми 8 и 15 лет. Задачи разные, но Анастасия смогла прекрасно понять задачи, подстроиться под детей и это дало отличный результат! И младший и старший уверенно продвигаются в своих знаниях и что немаловажно полюбили сам язык и процесс! Анастасия применяет совершенно разные материалы и методы, что опять же положительно сказывается на восприятии детьми нового материала. Всем очень советуем этого преподавателя!”
-                          </Paragraph>
-                          <Paragraph mt="$1" fontFamily="$bodyBold" ta="right">Ольга</Paragraph>
-                      </YStack>
-                      </Tooltip.Content>
-                    </Tooltip>
-                  </YStack>
-                </YStack>
+  const renderTexts = (texts) => {
+      return texts.map((textObj, index) => (
+          <YStack key={index} w='100%'>
+              <Square
+                  br="$2"
+                  bc="$backgroundPress"
+                  m="$4"
+                  p="$3"
+                  pressStyle={{ scale: 0.98 }}
+                  onPress={() => {
+                    setOpen(true);
+                    setSelectedText(textObj);
+                  }}
+              >
+                <Paragraph ta="center" >{truncate(textObj.text)}" - {textObj.name}</Paragraph>
+              </Square>
+          </YStack>
+      ));
+  };
 
-                <YStack space="$5" f={1} >
-                  <YStack f={0.7}>
-                    <Tooltip placement="top" >
-                      <Tooltip.Trigger>
-                        <Square
-                          br="$2"
-                          bc="$backgroundPress"
-                          m="$2"
-                          pressStyle={{ scale: 0.98 }}>
-                          <Paragraph ta="right" p="$3" >“Большое спасибо, за такие..." Екатерина</Paragraph>
-                        </Square>
-                      </Tooltip.Trigger>
-                      <Tooltip.Content
-                        enterStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        exitStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        scale={1}
-                        x={0}
-                        y={0}
-                        opacity={1}
-                        $sm={{ width: '90%' }}
-                        width="60%"
-                        alignSelf="center"
-                        animation={[
-                          'quick',
-                          {
-                            opacity: {
-                              overshootClamping: true,
-                            },
-                          },
-                        ]}
-                        >
-                        <Tooltip.Arrow />
-                        <YStack >
-                          <Paragraph  size="$2" lineHeight="$1">
-                            “Большое спасибо, за такие интересные и продуктивные уроки! Все очень четко, структурно, все понятно и легко запоминается! Очень классно выстроена программа: во-первых, вся лексика - нужная, ничего лишнего! Все примеры фраз, упражнений - это именно то, с чем вы столкнетесь в бытовой жизни, когда приедете в испаноговорящую страну. Во-вторых, очень грамотно подобраны упражнения для отработки правил и домашнего задания. ВСЯ лексика постоянно повторяется, и ты не забываешь то, что было три урока назад. В-третьих, подача материала четко структурирована: все правила и исключения, ВСЕ понятно! Не нужно заучивать 100500 форм глаголов на разные случаи. Просто четко знаешь правило и действуешь по аналогии. Я с Настей занималась несколько месяцев до своего приезда в Аргентину, и этих знаний мне хватило, чтобы уверенно себя чувствовать. Я, конечно, не всегда понимала то, что мне говорят, но сама изъясниться всегда могла. Кстати, очень здорово, что Настя сама живет в Аргентине уже 5 лет, и знает все особенности местного диалекта. А также может помочь и с бытовыми вопросами: подсказать лучшие районы, посоветовать рестораны и блюда, проконсультировать по документам. Ещё хочу поделиться печальным опытом: по приезду в Аргентину я решила продолжить учить язык с местным учителем, и это был ужас! Никакой структуры! От слова СОВСЕМ! Мы сначала делали упражнение, а потом под упражнением увидели правило, по которому нужно делать это упражнение 🤷‍♀️🤦‍♀️. Я уже молчу о том, что на занятиях мы учили слова охотник, сапожник и вся лексика в таком духе… В общем, я просто уже дохаживала эти занятия и ждала с нетерпением, когда они закончатся…”
-                          </Paragraph>
-                          <Paragraph mt="$1" fontFamily="$bodyBold" ta="right">Екатерина</Paragraph>
-                        </YStack>
-                      </Tooltip.Content>
-                    </Tooltip>
-                  </YStack>
-{/*
-                  <YStack f={0.7}>
-                    <Tooltip placement="top" >
-                      <Tooltip.Trigger>
-                        <Square br="$2" bc="$backgroundPress"   m="$2" >
-                          <Paragraph ta="right" p="$3" >“Настя стала для меня третьим..."  Виталик</Paragraph>
-                        </Square>
-                      </Tooltip.Trigger>
-                      <Tooltip.Content
-                        enterStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        exitStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        scale={1}
-                        x={0}
-                        y={0}
-                        opacity={1}
-                        width="80%"
-                        alignSelf="center"
-                        animation={[
-                          'quick',
-                          {
-                            opacity: {
-                              overshootClamping: true,
-                            },
-                          },
-                        ]}
-                        >
-                        <Tooltip.Arrow />
-                        <YStack >
-                          <Paragraph  size="$2" lineHeight="$1">
-                            “Настя стала для меня третьим преподавателем после двух аргентинцев до этого. Могу с уверенностью сказать, что она лучший преподаватель иностранного языка в моей жизни. Подача информации, задания, внимание к моим слабым сторонам и работа с ними - всё это буквально за пару месяцев позволило значительно перегнать не такой большой успех с другими преподавателями. Благодаря занятиям с ней я быстро смог подготовиться к своему первому собеседованию на испанском и поступить в ВУЗ в Аргентине. И самое главное, благодаря ей, я могу общаться с аргентинцами, а это лучшее, что может дать язык. Искренне рекомендую Настю как лучшего преподавателя испанского!”
-                          </Paragraph>
-                          <Paragraph mt="$1" fontFamily="$bodyBold" ta="right">Виталик</Paragraph>
-                        </YStack>
-                      </Tooltip.Content>
-                    </Tooltip>
-                  </YStack>
+  const texts1 = texts.slice(0, Math.ceil(texts.length / 2));
+  const texts2 = texts.slice(Math.ceil(texts.length / 2));
 
-                  <YStack f={0.7}>
-                    <Tooltip placement="top" >
-                      <Tooltip.Trigger>
-                        <Square  br="$2"  bc="$backgroundPress" m="$2" >
-                          <Paragraph ta="right" p="$3" >“Анастасия прекрасный учитель." Ольга</Paragraph>
-                        </Square>
-                      </Tooltip.Trigger>
-                      <Tooltip.Content
-                        enterStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        exitStyle={{ x: 0, y: -5, opacity: 0, scale: 0.9 }}
-                        scale={1}
-                        x={0}
-                        y={0}
-                        opacity={1}
-                        width="80%"
-                        alignSelf="center"
-                        animation={[
-                          'quick',
-                          {
-                            opacity: {
-                              overshootClamping: true,
-                            },
-                          },
-                        ]}
-                        >
-                      <Tooltip.Arrow />
-                        <YStack >
-                          <Paragraph  size="$2" lineHeight="$1">
-                            “Анастасия прекрасный учитель. Она занимается с двумя детьми 8 и 15 лет. Задачи разные, но Анастасия смогла прекрасно понять задачи, подстроиться под детей и это дало отличный результат! И младший и старший уверенно продвигаются в своих знаниях и что немаловажно полюбили сам язык и процесс! Анастасия применяет совершенно разные материалы и методы, что опять же положительно сказывается на восприятии детьми нового материала. Всем очень советуем этого преподавателя!”
-                          </Paragraph>
-                          <Paragraph mt="$1" fontFamily="$bodyBold" ta="right">Ольга</Paragraph>
-                      </YStack>
-                      </Tooltip.Content>
-                    </Tooltip>
-                  </YStack>
-                  */}
-                </YStack>
-                      
+  return(
+        <YStack ai="center" marginVertical="$6">
+          <H2 tt="uppercase" marginVertical="$4" ta="center">Отзывы</H2>
+          <XStack fw="wrap" jc="center" w='100%'>
+              <YStack ai="center">
+                  {renderTexts(texts1)}
+              </YStack>
+              <YStack ai="center">
+                  {renderTexts(texts2)}
+              </YStack>
+          </XStack>
 
-            </XStack>
+          {selectedText &&  // Added this conditional rendering
+            <Sheet
+              forceRemoveScrollEnabled={open}
+              modal={true}
+              open={open}
+              onOpenChange={setOpen}
+              snapPoints={[85, 50, 25]}
+              dismissOnSnapToBottom
+              position={position}
+              onPositionChange={setPosition}
+              zIndex={100_000}
+              
+            >
+              <Sheet.Overlay />
+              <Sheet.Handle />
+              <Sheet.Frame
+                flex={1}
+                padding="$4"
+                justifyContent="center"
+                alignItems="center"
+                space="$5"
+              >
+                <Button size="$6" boc="$backgroundFocus" circular icon={ChevronDown} onPress={() => setOpen(false)} />
+                <Sheet.ScrollView padding="$4" space>
+                  <YStack>
+                    <H2 tt="uppercase" mb="$2">{selectedText.name}</H2> 
+                    <Paragraph >{selectedText.text}</Paragraph>
+                  </YStack>
+                </Sheet.ScrollView>
+              </Sheet.Frame>
+            </Sheet>
+          }
         </YStack>
-    )
+  )
 }

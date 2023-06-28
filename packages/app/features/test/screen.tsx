@@ -4,13 +4,10 @@ import {
 
 import React from 'react';
 
-
 export function testScreen() {
-
 
   return (
     <YStack>
-
     </YStack>
   );
 }
