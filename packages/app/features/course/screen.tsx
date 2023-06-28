@@ -113,54 +113,59 @@ function ProgramCourse() {
         Программа курса
       </H2>
       <XStack mt="$4" jc='space-around'  ai='stretch' fw='wrap' maw={1100}>
+
         <YStack  p="$6" w="50%" $sm={{width: "100%"}}>
           <XStack $sm={{flexWrap: "wrap"}}>
-            <Image src={{uri: 'https://cdn.vosque.education/images/course-fonetica.png?raw', width: 50, height: 50}}
+            <Image src={{uri: 'https://cdn.vosque.education/images/course-fonetica.png?raw', width: 54, height: 91}}
               height="100%"
               width="100%"
               />
             <YStack ml="$2" f={1}>
-              <H4 fontWeight="bold" >Фонетика</H4>
+              <H4 tt="uppercase" >Фонетика</H4>
               <Paragraph mt="$2" ta="left" >В первом уроке мы изучим фонетику испанского языка в Аргентине. Это не самый интересный, но очень важный материал, который позволит Вам дальше читать слова и выражения правильно, а так же интонировать так, как это делают носители!</Paragraph>
             </YStack>
           </XStack>
         </YStack>
+
         <YStack  p="$6" w="50%" $sm={{width: "100%"}}>
           <XStack $sm={{flexWrap: "wrap"}}>
-            <Image src={{uri: 'https://cdn.vosque.education/images/course-gramma.png?raw', width: 50, height: 50}}
+            <Image src={{uri: 'https://cdn.vosque.education/images/course-gramma.png?raw', width: 57, height: 97}}
               height="100%"
               width="100%"
               />
             <YStack ml="$2" f={1}>
-              <H4 fontWeight="bold" >Грамматика</H4>
+              <H4 tt="uppercase" >Грамматика</H4>
               <Paragraph mt="$4"  ta="left" >Структура и грамматика языка являются его основой. Это — скелет, на который впоследствии нанизываются лексика, произношение и многие другие элементы. Наш курс построен на последовательном изучении разных типов глаголов и конструкций, понимание которых поможет вам понять любые другие правила испанского языка. Мы уверены, что после прохождения нашего курса вы сможете говорить на испанском языке с легкостью и уверенностью, благодаря тщательно изученной грамматике.</Paragraph>
             </YStack>
           </XStack>
         </YStack>
+
         <YStack  p="$6" w="50%" $sm={{width: "100%"}}>
           <XStack $sm={{flexWrap: "wrap"}}>
-            <Image src={{uri: 'https://cdn.vosque.education/images/course-lecsica.png?raw', width: 50, height: 50}}
+            <Image src={{uri: 'https://cdn.vosque.education/images/course-lecsica.png?raw', width: 69, height: 97}}
               height="100%"
               width="100%"
               />
             <YStack ml="$2" f={1}>
-              <H4 fontWeight="bold" >Лексика</H4>
+              <H4 tt="uppercase" >Лексика</H4>
               <Paragraph mt="$4"  ta="left" >Лексика - это необходимый ингредиент для успешного общения на испанском языке. В нашем курсе вы не будете мучительно запоминать лексические блоки, вместо этого мы предлагаем только те слова и выражения, которые вам действительно пригодятся в повседневной жизни. Вы изучите множество полезных разговорных фраз и сокращений, которыми часто пользуются аргентинцы, а также многое другое. Мы хотим, чтобы вы овладели живым испанским языком, а не сухими предложениями из учебника.</Paragraph>
             </YStack>
           </XStack>
         </YStack>
+
         <YStack  p="$6" w="50%" $sm={{width: "100%"}}>
           <XStack $sm={{flexWrap: "wrap"}}>
-            <Image  src={{uri: 'https://cdn.vosque.education/images/course-speac.png?raw', width: 50, height: 50 }}
+            <Image  src={{uri: 'https://cdn.vosque.education/images/course-speac.png?raw', width: 52, height: 97 }}
               height="100%"
               width="100%"
               />
             <YStack ml="$2" f={1}>
-              <H4 fontWeight="bold" >Разговорная речь</H4>
+              <H4 tt="uppercase" >Разговорная речь</H4>
               <Paragraph mt="$4"  ta="left" >Испанский язык, изучаемый в пособиях, и испанский язык, который вы можете услышать на улице, существенно различаются друг от друга. В нашем курсе мы слушаем носителей языка для изучения различных разговорных форм и живых диалогов. Некоторые фразы в них могут показаться Вам даже слишком неформальными, но именно так говорят настоящие аргентинцы! Наша задача - научить вас понимать и поддерживать разговор на испанском языке в реальной жизни.</Paragraph>
             </YStack>
           </XStack>
         </YStack>
+
       </XStack>
     </YStack>
   )
