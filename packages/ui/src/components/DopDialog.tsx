@@ -46,7 +46,7 @@ export const DopDialog: React.FC<ContentsBlockAudioProps> = ({ contents }) => {
           <XStack key={index} style={{flexWrap: 'wrap'}}>
             <Button 
               onPress={() => togglePlay(src)}
-              boc={'$borderColor'}
+              bc={'$borderColor'}
               w={200} h={50}
               m="$2"
               >

@@ -1,5 +1,6 @@
 import { Paragraph, H5, YStack, XStack } from "tamagui";
 import React from "react";
+import { ParagraphCustom } from "./CustomText";
 
 export type Row = {
   name?: string;
@@ -31,7 +32,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
             <tr key={index}>
               {row.spanAllColumns ? (
                 <td colSpan={table.rows.length} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-                  <Paragraph p="$6" fontFamily="$bodyBold"  tt="uppercase" dangerouslySetInnerHTML={{ __html: row.data[0].replace(/\n/g, "<br />") }} />
+                  <H5 tt="uppercase" dangerouslySetInnerHTML={{ __html: row.data[0].replace(/\n/g, "<br />") }} />
                 </td>
               ) : (
                 <>
@@ -39,7 +40,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
                     <Paragraph p="$6">
                       {row.name?.split("\n").map((line, i) => (
                         <div key={i} style={{ textAlign: "center" }}>
-                          {line}
+                          <ParagraphCustom text={line}/>
                         </div>
                       ))}
                     </Paragraph>
@@ -49,7 +50,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
                       <Paragraph p="$6">
                         { cell.split("\n").map((line, i) => (
                           <div key={i} style={{ textAlign: "center" }}>
-                            {line}
+                            <ParagraphCustom text={line}/>
                           </div>
                         ))}
                       </Paragraph>

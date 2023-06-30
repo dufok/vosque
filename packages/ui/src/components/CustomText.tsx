@@ -7,23 +7,39 @@ function parseAndRenderText(text) {
     return null; // Or return a default value or throw an error, as appropriate for your use case
   }
   
-  const parts = text.split(/(\*\/|\/\*|~)/);
+  const parts = text.split(/(\*\/|\/\*|~|\^|_)/);
   let isBlue = false;
   let isStrikeThrough = false;
+  let isBold = false;
+  let isUnderline = false;
+
   return parts.map((part, index) => {
-    if (part === '*/' || part === '/*') {
-      isBlue = !isBlue;
-      return null;
-    } else if (part === '~') {
-      isStrikeThrough = !isStrikeThrough;
-      return null;
-    }
-    if (isBlue) {
-      return <Paragraph col='$blue8Light' >{part}</Paragraph>;
-    } else if (isStrikeThrough) {
-      return <span style={{ textDecoration: 'line-through' }}>{part}</span>;
-    } else {
-      return part;
+    switch(part) {
+      case '*/':
+      case '/*':
+        isBlue = !isBlue;
+        return null;
+      case '~':
+        isStrikeThrough = !isStrikeThrough;
+        return null;
+      case '^':
+        isBold = !isBold;
+        return null;
+      case '_':
+        isUnderline = !isUnderline;
+        return null;
+      default:
+        if (isBlue) {
+          return <Paragraph col='$blue8Light' >{part}</Paragraph>;
+        } else if (isStrikeThrough) {
+          return <span style={{ textDecoration: 'line-through' }}>{part}</span>;
+        } else if (isBold) {
+          return <Paragraph fontFamily="$bodyBold" >{part}</Paragraph>;
+        } else if (isUnderline) {
+          return <Paragraph textDecorationLine="underline" >{part}</Paragraph>;
+        } else {
+          return <Paragraph>{part}</Paragraph>;
+        }
     }
   });
 }
@@ -69,6 +85,7 @@ export const H2Custom = ({ text }) => {
   );
 }
 
+// This is not H3 actualy it is Paragraph Bold
 export const H3Custom = ({ text }) => {
   return (
     <Paragraph fontFamily="$bodyBold" ta="left">

@@ -100,7 +100,6 @@ export function lesson4Screen() {
         <TableBlock table={content?.tableBlock1} />
         <SquareText text={content?.squareText1} />
         <TextExampleBlock textExamples={textExample1}/>
-        <DescriptionBlock description={content?.descriptionBlock2} />
         <SquareText text={content?.squareText2} />
         <TextExampleBlock textExamples={textExample2}/>
 
@@ -133,7 +132,6 @@ export function lesson4Screen() {
         <TextExampleBlock textExamples={textExample4}/>
         <DescriptionBlock description={content?.descriptionBlock5} />
         <TextExampleBlock textExamples={textExample5}/>
-        <DescriptionBlock description={content?.descriptionBlock6} />
         <SquareText text={content?.squareText5} />
         <LangTest1 example={example1_2} tests={tests1_2} />
 
