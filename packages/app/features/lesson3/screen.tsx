@@ -28,11 +28,12 @@ import { LangTest3 } from "@my/ui/src/components/LangTest3";
 import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { ExercisesBlockAudioWithDisc } from "@my/ui/src/components/ExercisesBlockAudioWithDisc";
-import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
+import { DopDialog } from "@my/ui/src/components/DopDialog";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 
 import { ContentLesson3 } from "../lesson3/type_Lesson3";
 import { ContentLesson3_2 } from "../lesson3/type_Lesson3";
+
 
 export function lesson3Screen() {
 
@@ -82,7 +83,7 @@ export function lesson3Screen() {
   const wordToTranslate1 = Object.values(content2?.wordToTranslateBlock1 || {});
   const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
-  const exercisesBlockAudio1 = Object.values(content2?.exercisesBlockAudio1 || {});
+  const dopDialog1 = Object.values(content2?.dopDialog1 || {});
   
   useEffect(() => {
     console.log(data);
@@ -126,7 +127,7 @@ export function lesson3Screen() {
           <HeaderBlock header={content?.headerBlock3}/>
           <ExercisesBlockText exercises={blockText1}/>
 
-          {/*  ППостроение Отрицания: */}
+          {/*  Построение Отрицания: */}
 
           <HeaderBlock header={content?.headerBlock4}/>
           <ExercisesBlockText exercises={blockText2}/>
@@ -186,9 +187,7 @@ export function lesson3Screen() {
           <LangTest1 example={example1_2} tests={tests1_2} />
           <SquareText text={content2?.squareText4} />
 
-          <YStack>
-            <LangTest1 example={example1_3} tests={tests1_3} />
-          </YStack>
+          <LangTest1 example={example1_3} tests={tests1_3} isOneColumn/>
 
           <HeaderBlock header={content2?.headerBlock3} />
           <SquareText text={content2?.squareText5} />
@@ -199,9 +198,13 @@ export function lesson3Screen() {
           <DescriptionBlock description={content2?.descriptionBlock6} />
           <WordToTranslateBlock words={wordToTranslate3} />
 
+          {/* Блок дополнительных материалов */}
+
           <HeaderBlock header={content2?.headerBlock6} />
           <DescriptionBlock description={content2?.descriptionBlock10} />
-          <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+          <DopDialog contents={dopDialog1}/>
+
+          {/* Домашнее Задание */}
 
           <HeaderBlock header={content2?.headerBlock4} />\
           <SquareText text={content2?.squareText6} />

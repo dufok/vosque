@@ -30,11 +30,28 @@ function parseAndRenderText(text) {
 
 export const ParagraphCustom = ({ text }) => {
   return (
+    <Paragraph ta="left">
+      {parseAndRenderText(text)}
+    </Paragraph>
+  );
+}
+
+export const ParagraphCustomMorron = ({ text }) => {
+  return (
+    <Paragraph col="$borderColor" ta="left">
+      {parseAndRenderText(text)}
+    </Paragraph>
+  );
+}
+
+export const ParagraphCustomGreen = ({ text }) => {
+  return (
     <Paragraph col="$backgroundPress" ta="left">
       {parseAndRenderText(text)}
     </Paragraph>
   );
 }
+
 
 export const H1Custom = ({ text }) => {
   return (

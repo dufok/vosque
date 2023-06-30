@@ -189,6 +189,7 @@ export type Exercise = {
 export type Tests = {
     question: string;
     unswer: string[];
+    help: string;
 }
 
 export type Words = {

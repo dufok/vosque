@@ -20,7 +20,7 @@ interface ExercisesBlockAudioWithDiscProps {
       <YStack>
       {exercises.map(({description, text, audio}, index) => (
         <XStack  key={index} style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-          <YStack marginVertical="$4" style={{flex: 1}}> 
+          <YStack marginVertical="$4" mr="$2"  style={{flex: 1}}> 
             <Paragraph fontFamily="$bodyBold" mb="$2" ta="left" >{description}</Paragraph>
             <ParagraphCustom text={text}/>
           </YStack>

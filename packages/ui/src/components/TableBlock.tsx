@@ -31,7 +31,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
             <tr key={index}>
               {row.spanAllColumns ? (
                 <td colSpan={table.rows.length} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-                  <Paragraph p="$6"  tt="uppercase" dangerouslySetInnerHTML={{ __html: row.data[0].replace(/\n/g, "<br />") }} />
+                  <Paragraph p="$6" fontFamily="$bodyBold"  tt="uppercase" dangerouslySetInnerHTML={{ __html: row.data[0].replace(/\n/g, "<br />") }} />
                 </td>
               ) : (
                 <>

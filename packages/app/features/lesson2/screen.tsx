@@ -38,7 +38,7 @@ export function lesson2Screen() {
   const { data: userLessons } = trpc.user.userLessons.useQuery();
 
   const lessonName = "Урок 2. Существительные и Артикили";
-  const SecondLesson = userLessons?.find(lesson => lesson.name === lessonName);
+  const SecondLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
   //lesson content
 
@@ -165,13 +165,10 @@ export function lesson2Screen() {
 
        <HeaderBlock header={content?.header4}/>
        <SquareText text={content?.squareText4}/>
-       <DescriptionBlock description={content?.description4}/>
        <LangTest1 tests={tests1} example={example1}/>
        <SquareText text={content?.squareText6}/>
-       <DescriptionBlock description={content?.description5}/>
        <LangTest1 tests={tests2} example={example2}/>
        <SquareText text={content?.squareText7}/>
-       <DescriptionBlock description={content?.description6}/>
        <LangTest1 tests={tests3} example={example3}/>
 
         {/*  Блок Лексики */}
@@ -182,7 +179,6 @@ export function lesson2Screen() {
 
        <WordToTranslateBlock words={wordToTranslateBlock2}/>
        <SquareText text={content?.squareText5}/>
-       <DescriptionBlock description={content?.description7}/>
 
        <WordToTranslateBlock words={wordToTranslateBlock3}/>
 

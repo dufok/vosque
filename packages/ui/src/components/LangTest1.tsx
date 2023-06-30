@@ -16,9 +16,10 @@ export type Test = {
 interface LangTestProps {
   tests: Test[];
   example: { header: string, question: string, unswer: string };
+  isOneColumn?: boolean;
 }
 
-export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
+export const LangTest1: React.FC<LangTestProps> = ({ tests, example, isOneColumn = false }) => {
 
   const midIndex = Math.ceil(tests.length / 2);
   const firstHalf = tests.slice(0, midIndex);
@@ -57,6 +58,68 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
     setList([...list, toastProperties]);
 
   };
+
+  const renderTest = ({ question, unswer, help }, index) => {
+
+    const [answer, setAnswer] = useState("");
+    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+    const [inputFocus, setInputFocus] = useState(false);
+  
+    useEffect(() => {
+      if (answer !== "") {
+        setIsCorrect(unswer.includes(answer.toLowerCase()));
+      } else {
+        setIsCorrect(null);
+      }
+    }, [answer, unswer]);
+  
+    const handleAnswerChange = (text, unswer) => {
+      setAnswer(text);
+  
+      if (text !== "") {
+        setIsCorrect(unswer.includes(text.toLowerCase()));
+      } else {
+        setIsCorrect(null);
+      }
+    };
+  
+    const handleInputFocus = () => {
+      setInputFocus(true);
+    };
+  
+    const handleInputBlur = () => {
+      setInputFocus(false);
+    
+      if (isCorrect !== null && answer !== "") {
+        showToast(isCorrect ? "success" : "error", unswer);
+      }
+    }; 
+  
+    return (
+      <YStack key={index} ai="flex-start" w="100%" >
+        <YStack>
+          <XStack>
+            <Paragraph mr="$2">{question}</Paragraph>
+            {help && <HelpComp texts={help} html={index} />}
+          </XStack>
+        </YStack>
+        <YStack jc="center" m="$2" w="100%" >
+            <Input 
+              size="$3" 
+              opacity={0.7}
+              br="$3"
+              placeholder={"Ваш ответ ..."}
+              onChangeText={(text) => handleAnswerChange(text, unswer)}
+              backgroundColor={isCorrect === true ? 'green' : '$background'}
+              borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
+              borderWidth={isCorrect === false ? '$2' : '$1'}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+            />
+        </YStack>
+      </YStack>
+    );
+  }
   
   return (
 
@@ -83,137 +146,23 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example }) => {
       <Separator w="60%" borderColor="$backgroundFocus" $sm={{width: "90%"}}/>    
 
       {tests && (
-        <YStack ai="center" f={1} mt="$4">
-          <XStack fw="wrap" jc="space-between">
-            <YStack m="$2" w="90%" $gtSm={{ width: "40%" }}>
-              {firstHalf.map(({ question, unswer, help }, index) => {
-      
-                const [answer, setAnswer] = useState("");
-                const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-                const [inputFocus, setInputFocus] = useState(false);
-
-                useEffect(() => {
-                  if (answer !== "") {
-                    setIsCorrect(unswer.includes(answer.toLowerCase()));
-                  } else {
-                    setIsCorrect(null);
-                  }
-                }, [answer, unswer]);
-
-                const handleAnswerChange = (text, unswer) => {
-                  setAnswer(text);
-
-                  if (text !== "") {
-                    setIsCorrect(unswer.includes(text.toLowerCase()));
-                  } else {
-                    setIsCorrect(null);
-                  }
-                };
-
-                const handleInputFocus = () => {
-                  setInputFocus(true);
-                };
-
-                const handleInputBlur = () => {
-                  setInputFocus(false);
-                
-                  if (isCorrect !== null && answer !== "") {
-                    showToast(isCorrect ? "success" : "error", unswer);
-                  }
-                }; 
-
-                return (
-                  <YStack key={index} ai="flex-start" w="100%" >
-                    <YStack>
-                      <XStack>
-                        <Paragraph mr="$2">{question}</Paragraph>
-                        {help && <HelpComp texts={help} html={index} />}
-                      </XStack>
-                    </YStack>
-                    <YStack jc="center" m="$2" w="100%" >
-                        <Input 
-                          size="$3" 
-                          opacity={0.7}
-                          br="$3"
-                          placeholder={"Ваш ответ ..."}
-                          onChangeText={(text) => handleAnswerChange(text, unswer)}
-                          backgroundColor={isCorrect === true ? 'green' : '$background'}
-                          borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
-                          borderWidth={isCorrect === false ? '$2' : '$1'}
-                          onFocus={handleInputFocus}
-                          onBlur={handleInputBlur}
-                        />
-                    </YStack>
-                  </YStack>
-                );
-              })}
+      <YStack ai="center" f={1} mt="$4">
+        {isOneColumn 
+          ? <YStack fw="wrap" jc="space-between">
+              <YStack m="$2" w="90%" $gtSm={{ width: "80%" }}>
+                {[...firstHalf, ...secondHalf].map(renderTest)}
+              </YStack>
             </YStack>
-
-            <YStack m="$2" w="90%" $gtSm={{ width: "40%" }} >  
-              {secondHalf.map(({ question, unswer, help }, index) => {
-                const [answer, setAnswer] = useState("");
-                const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-                const [inputFocus, setInputFocus] = useState(false);
-            
-
-                useEffect(() => {
-                  if (answer !== "") {
-                    setIsCorrect(unswer.includes(answer.toLowerCase()));
-                  } else {
-                    setIsCorrect(null);
-                  }
-                }, [answer, unswer]);
-
-                const handleAnswerChange = (text, unswer) => {
-                  setAnswer(text);
-
-                  if (text !== "") {
-                    setIsCorrect(unswer.includes(text.toLowerCase()));
-                  } else {
-                    setIsCorrect(null);
-                  }
-                };
-
-                const handleInputFocus = () => {
-                  setInputFocus(true);
-                };
-
-                const handleInputBlur = () => {
-                  setInputFocus(false);
-                
-                  if (isCorrect !== null && answer !== "") {
-                    showToast(isCorrect ? "success" : "error", unswer);
-                  }
-                };
-
-                return (
-                  <YStack key={index} ai="flex-start" w="100%">
-                    <YStack>
-                      <XStack>
-                        <Paragraph mr="$2">{question}</Paragraph>
-                        {help && <HelpComp texts={help} html={index} />}
-                      </XStack>
-                    </YStack>
-                    <YStack jc="center" m="$2" w="100%">
-                        <Input 
-                          size="$3" 
-                          opacity={0.7}
-                          br="$3"
-                          placeholder={"Ваш ответ ..."}
-                          onChangeText={(text) => handleAnswerChange(text, unswer)}
-                          backgroundColor={isCorrect === true ? 'green' : '$background'}
-                          borderColor={isCorrect === false ? 'red' : '$backgroundHover'}
-                          borderWidth={isCorrect === false ? '$2' : '$1'}
-                          onFocus={handleInputFocus}
-                          onBlur={handleInputBlur}
-                        />
-                    </YStack>
-                  </YStack>
-                );
-              })}
-            </YStack>
-          </XStack>
-        </YStack>
+          : <XStack fw="wrap" jc="space-between">
+              <YStack m="$2" w="90%" $gtSm={{ width: "40%" }}>
+                {firstHalf.map(renderTest)}
+              </YStack>
+              <YStack m="$2" w="90%" $gtSm={{ width: "40%" }}>
+                {secondHalf.map(renderTest)}
+              </YStack>
+            </XStack>
+        }
+      </YStack>
       )}
     </YStack>
   );

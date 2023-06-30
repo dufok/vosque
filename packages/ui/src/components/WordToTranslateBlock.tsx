@@ -17,7 +17,7 @@ export function WordToTranslateBlock({ words }) {
   const secondHalf = words.slice(midIndex);
 
   return (
-    <YStack m="$6" p="$6" f={1} w="100%" maw={1000}>
+    <YStack p="$6"  f={1} w="100%" maw={900}>
       <XStack fw="wrap" jc="space-around" >
         <YStack maw={350} w="100%" $gtSm={{ width: "40%" }}>
           <XStack ai="center" fw="wrap" >
