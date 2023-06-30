@@ -2,7 +2,7 @@ import {
   Paragraph,
   YStack,
   XStack,
-  Button } from "@my/ui";
+  Button } from 'tamagui';
 import React, { useState, useEffect } from "react";
 
 export type Content = {
