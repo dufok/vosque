@@ -88,7 +88,8 @@ export type ContentLesson4 = {
     wordToTranslateBlock3: { [key: string]: Words };
     wordToTranslateBlock4: { [key: string]: Words };
     headerBlock6: string;
-    exercisesBlockAudio1: { [key: string]: Line };
+
+    dopDialog1: { [key: string]: Content };
 }
 
 export type Table = {
@@ -247,3 +248,8 @@ export type ExampleAndAnswer = {
     prononce30: string;
     help30: string;
 }
+
+export type Content = {
+    text: string;
+    src: string;
+  };

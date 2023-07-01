@@ -27,68 +27,60 @@ export type Test = {
 interface LangTestProps {
   tests: Test[];
   example: { header: string, question: string, unswer: string };
+  isOneColumn?: boolean;
 }
 
-export const LangTest3: React.FC<LangTestProps> = ({ tests, example }) => {
+export const LangTest3: React.FC<LangTestProps> = ({ tests, example, isOneColumn = false }) => {
 
   const midIndex = Math.ceil(tests.length / 2);
   const firstHalf = tests.slice(0, midIndex);
   const secondHalf = tests.slice(midIndex);
 
+  const renderTest = ({ question, description }, index) => {
+    return (
+      <YStack key={index}  w="100%" mb="$4">
+        { description && (
+          <YStack ai="flex-start" mb="$2">
+            <H5 mr="$2">{description}</H5>
+          </YStack>
+        )}
+        <YStack ai="flex-start" mb="$2">
+          <Paragraph mr="$2">{question}</Paragraph>
+        </YStack>
+      </YStack>
+    );
+  }
+
   return (
 
     <YStack w="100%" f={1} p="$6" maw={1000} ai="center">
-
       
       {example && (
         <YStack ai="center" mb="$4" space={4}>
           <H4 ta="center" >{example.header}</H4>
-        </YStack>
-              
+        </YStack>  
       )}
 
       <Separator w="60%" borderColor="$backgroundFocus" $sm={{width: "90%"}}/>    
 
       {tests && (
         <YStack ai="center" f={1} mt="$4">
-          <XStack fw="wrap" jc="space-between">
-            <YStack m="$2" w="100%" $gtSm={{ width: "45%" }}>
-              {firstHalf.map(({ question, unswer, description}, index) => {
-      
-
-                return (
-                  <YStack key={index}  w="100%" mb="$4">
-                    { description && (
-                      <YStack ai="flex-start" mb="$2">
-                        <H5 mr="$2">{description}</H5>
-                      </YStack>
-                    )}
-                    <YStack ai="flex-start" mb="$2">
-                      <Paragraph mr="$2">{question}</Paragraph>
-                    </YStack>
-                  </YStack>
-                );
-              })}
+          {isOneColumn
+            ?<YStack m="$2" w="100%">
+              <YStack>
+                {[...firstHalf, ...secondHalf].map(renderTest)}
+              </YStack>
             </YStack>
+            :<XStack fw="wrap" jc="space-between">
+              <YStack m="$2" w="100%" $gtSm={{ width: "45%" }}>
+                {firstHalf.map(renderTest)}
+              </YStack>
+              <YStack m="$2" w="100%" $gtSm={{ width: "45%" }} >  
+                {secondHalf.map(renderTest)}
+              </YStack>
+            </XStack>
+          }
 
-            <YStack m="$2" w="100%" $gtSm={{ width: "45%" }} >  
-              {secondHalf.map(({ question, unswer, description }, index) => {
-
-                return (
-                  <YStack key={index}  w="100%" mb="$4">
-                    { description && (
-                      <YStack ai="flex-start" mb="$2">
-                        <H5 mr="$2">{description}</H5>
-                      </YStack>
-                    )}
-                    <YStack ai="flex-start" mb="$2">
-                      <Paragraph mr="$2">{question}</Paragraph>
-                    </YStack>
-                  </YStack>
-                );
-              })}
-            </YStack>
-          </XStack>
           <Separator w="60%" mb="$4" borderColor="$backgroundFocus" $sm={{width: "90%"}}/>
           <YStack ai="center">
             
@@ -104,8 +96,10 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example }) => {
 
               <Adapt when="sm" platform="touch">
                 <Sheet zIndex={200000} modal dismissOnSnapToBottom>
-                  <Sheet.Frame padding="$4" space>
-                    <Adapt.Contents />
+                  <Sheet.Frame>
+                    <Sheet.ScrollView padding="$4" space>
+                      <Adapt.Contents />
+                    </Sheet.ScrollView>
                   </Sheet.Frame>
                   <Sheet.Overlay />
                 </Sheet>
@@ -138,10 +132,9 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example }) => {
                 >
                 <Dialog.Title>Перевод</Dialog.Title>
                 <Dialog.Description>
-                <YStack ai="center" maw={1000} mt="$4" p="$4">
-                  <XStack fw="wrap" jc="space-between">
+                <YStack ai="center" maw={800} mt="$4" p="$4">
                     <YStack m="$2" w="100%" $gtSm={{ width: "45%" }}>
-                      {firstHalf.map(({ question, unswer, description}, index) => {
+                      {firstHalf.map(({ unswer, description}, index) => {
               
 
                         return (
@@ -160,7 +153,7 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example }) => {
                     </YStack>
 
                     <YStack m="$2" w="100%" $gtSm={{ width: "45%" }} >  
-                      {secondHalf.map(({ question, unswer, description }, index) => {
+                      {secondHalf.map(({ unswer, description }, index) => {
 
                         return (
                           <YStack key={index}  w="100%" mb="$4">
@@ -176,7 +169,6 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example }) => {
                         );
                       })}
                     </YStack>
-                  </XStack>
                 </YStack>
                 </Dialog.Description>
                 <Unspaced>

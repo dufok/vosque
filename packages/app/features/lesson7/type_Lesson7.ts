@@ -79,7 +79,7 @@ export type ContentLesson7_2 = {
     langTest1_3: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     headerBlock4: string;
-    exercisesBlockAudio1: { [key: string]: Line };
+    dopDialog1: { [key: string]: Content };
 }
 
 export type Table = {
@@ -244,4 +244,9 @@ export type ExampleAndAnswer = {
 export type Line = {
     text: string;
     audio: string;
+  };
+
+export type Content = {
+    text: string;
+    src: string;
   };

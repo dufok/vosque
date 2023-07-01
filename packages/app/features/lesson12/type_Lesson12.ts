@@ -35,7 +35,7 @@ export type ContentLesson12 = {
     squareText3: string;
     descriptionBlock4: string;
     wordToTranslateBlock1: { [key: string]: Words };
-    exercisesBlockAudio1: { [key: string]: Line };
+    dopDialog1: { [key: string]: Content };
     descriptionBlock5: string;
     squareText4: string;
     langTest1_2: { example: { header: string, question: string, unswer: string};
@@ -222,4 +222,9 @@ export type ExampleAndAnswer = {
 export type Line = {
     text: string;
     audio: string;
+  };
+
+export type Content = {
+    text: string;
+    src: string;
   };

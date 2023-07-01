@@ -27,6 +27,8 @@ import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
+import { DopDialog } from "@my/ui/src/components/DopDialog";
+
 
 import { ContentLesson10 } from './type_Lesson10';
 import { ContentLesson10_2 } from './type_Lesson10';
@@ -79,8 +81,7 @@ export function lesson10Screen() {
   const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
   const textExample1 = Object.values(content2?.textExampleBlock1 || {});
-
-  const exercisesBlockAudio1 = Object.values(content2?.exercisesBlockAudio1 || {});
+  const dopDialog1 = Object.values(content2?.dopDialog1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -203,7 +204,7 @@ export function lesson10Screen() {
             {/* Дополнительные материалы */}
 
             <HeaderBlock header={content2?.headerBlock5} />
-            <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+            <DopDialog contents={dopDialog1}/>
 
           </YStack>
         <NavigationBlock

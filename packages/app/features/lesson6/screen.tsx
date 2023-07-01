@@ -104,13 +104,14 @@ export function lesson6Screen() {
 
          <DescriptionBlock description={content?.descriptionBlock3} />
          <HeaderBlock header={content?.headerBlock3}/>
+         <TableBlock table={content?.tableBlock4} />
          <TextExampleBlock textExamples={textExample2}/>
 
          {/* БЛОК УПРАЖНЕНИЙ */}
 
          <HeaderBlock header={content?.headerBlock4} />
          <SquareText text={content?.squareText1} />
-         <LangTest4 example={example4_1} tests={tests4_1} />
+         <LangTest4 example={example4_1} tests={tests4_1} isOneColumn/>
          <SquareText text={content?.squareText2} />
          <LangTest1 example={example1_1} tests={tests1_1} />
 
@@ -135,12 +136,13 @@ export function lesson6Screen() {
            {/* Домашнее задание */}
 
          <HeaderBlock header={content?.headerBlock6} />
+         <SquareText text={content?.squareText3} />
          <LangTest1 example={example1_2} tests={tests1_2} />
 
             {/* Дополнительные материалы 
 
           <HeaderBlock header={content?.headerBlock7} />
-          <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+          
 
           */}
 

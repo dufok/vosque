@@ -28,6 +28,7 @@ import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
+import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 import { ContentLesson12 } from './type_Lesson12';
 
@@ -68,8 +69,7 @@ export function lesson12Screen() {
   const textExample1 = Object.values(content?.textExampleBlock1 || {});
   const wordToTranslate1 = Object.values(content?.wordToTranslateBlock1 || {});
   const wordToTranslate2 = Object.values(content?.wordToTranslateBlock2 || {});
-
-  const exercisesBlockAudio1 = Object.values(content?.exercisesBlockAudio1 || {});
+  const dopDialog1 = Object.values(content?.dopDialog1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -121,7 +121,7 @@ export function lesson12Screen() {
 
         <HeaderBlock header={content?.headerBlock2} />
         <SquareText text={content?.squareText1} />
-        <LangTest3 example={example3_1} tests={tests3_1} />
+        <LangTest3 example={example3_1} tests={tests3_1} isOneColumn/>
         <SquareText text={content?.squareText2} />
         <LangTest1 example={example1_1} tests={tests1_1} />
 
@@ -133,7 +133,7 @@ export function lesson12Screen() {
         <SquareText text={content?.squareText3} />
         <DescriptionBlock description={content?.descriptionBlock4} />
         <WordToTranslateBlock words={wordToTranslate1} />
-        <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+        <DopDialog contents={dopDialog1}/>
         <YStack mt="$5" />
         <DescriptionBlock description={content?.descriptionBlock5} />
         <SquareText text={content?.squareText4} />

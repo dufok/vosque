@@ -148,8 +148,8 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example, isOneColumn
       {tests && (
       <YStack ai="center" f={1} mt="$4">
         {isOneColumn 
-          ? <YStack fw="wrap" jc="space-between">
-              <YStack m="$2" w="90%" $gtSm={{ width: "80%" }}>
+          ? <YStack m="$2" w="90%" $gtSm={{ width: "80%" }}>
+              <YStack>
                 {[...firstHalf, ...secondHalf].map(renderTest)}
               </YStack>
             </YStack>

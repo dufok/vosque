@@ -22,7 +22,7 @@ export type ContentLesson11 = {
     };
     headerBlock2: string;
     squareText1: string;
-    langTest1_1: { example: { question: string, unswer: string[]};
+    langTest1_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
 }
 
@@ -52,7 +52,7 @@ export type ContentLesson11_2 = {
     };
     headerBlock2: string;
     squareText1: string;
-    langTest1_1: { example: { question: string, unswer: string[]};
+    langTest1_1: { example: { header: string,question: string, unswer: string};
     testContent: {[key: string]: Tests1 }};
 }
 
@@ -114,7 +114,7 @@ export type ContentLesson11_3 = {
     langTest3_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests3 }};
     headerBlock7: string;
-    exercisesBlockAudio1: { [key: string]: Line };
+    dopDialog1: { [key: string]: Content };
 }
 
 export type Table = {
@@ -285,4 +285,9 @@ export type ExampleAndAnswer = {
 export type Line = {
     text: string;
     audio: string;
+  };
+
+export type Content = {
+    text: string;
+    src: string;
   };

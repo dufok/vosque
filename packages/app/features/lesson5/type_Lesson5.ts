@@ -45,9 +45,10 @@ export type ContentLesson5_2 = {
     squareText4: string;
     langTest4_2: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
+
     headerBlock3: string;
-    descriptionBlock3: string;
-    wordToTranslateBlock1: { [key: string]: Words };
+    exercisesBlockText1: { [key: string]: Exercise };
+
     lifeHackerBlock1: {
         title: string;
         description1: string;
@@ -77,10 +78,12 @@ export type ContentLesson5_2 = {
     squareText7: string;
     wordToTranslateBlock4: { [key: string]: Words };
     headerBlock4: string;
+    squareText5: string;
     langTest1_4: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     headerBlock6: string;
-    exercisesBlockAudio1: { [key: string]: Line };
+
+    dopDialog1: { [key: string]: Content };
 }
 
 export type Table = {
@@ -245,4 +248,9 @@ export type ExampleAndAnswer = {
 export type Line = {
     text: string;
     audio: string;
+  };
+
+export type Content = {
+    text: string;
+    src: string;
   };

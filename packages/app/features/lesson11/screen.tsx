@@ -28,6 +28,7 @@ import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
+import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 import { ContentLesson11 } from './type_Lesson11';
 import { ContentLesson11_2 } from './type_Lesson11';
@@ -91,8 +92,7 @@ export function lesson11Screen() {
   const wordToTranslate11 = Object.values(content3?.wordToTranslateBlock11 || {});
   const tests3_1 = Object.values(content3?.langTest3_1.testContent || {});
   const example3_1 = content3?.langTest3_1.example;
-
-  const exercisesBlockAudio1 = Object.values(content3?.exercisesBlockAudio1 || {});
+  const dopDialog1 = Object.values(content3?.dopDialog1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -249,12 +249,13 @@ export function lesson11Screen() {
             />
             <HeaderBlock header={content3?.headerBlock5} />
             <SquareText text={content3?.squareText2} />
-            <LangTest3 example={example3_1} tests={tests3_1} />
+            <LangTest3 example={example3_1} tests={tests3_1} isOneColumn/>
 
             {/* Дополнительные материалы */}
 
             <HeaderBlock header={content3?.headerBlock7} />
-            <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+            <DopDialog contents={dopDialog1}/>
+
 
           </YStack>
         <NavigationBlock

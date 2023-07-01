@@ -121,7 +121,7 @@ const extractExampleAndPrononce = (exampleObj: Example, count: number): ExampleP
 
 export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples }) => {
   return (
-    <YStack m="$6" ai="flex-start" f={1} w="90%" maw={900}>
+    <YStack marginHorizontal="$6" mb="$2" ai="flex-start" f={1} w="90%" maw={900}>
       {textExamples.map((example, index) => {
         const examplePronouncePairs = extractExampleAndPrononce(example, 30);
         return (

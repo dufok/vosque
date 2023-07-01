@@ -22,7 +22,7 @@ export type ContentLesson10 = {
     langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
     squareText2: string;
-    langTest1_1: { example: { question: string, unswer: string[]};
+    langTest1_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
 }
 
@@ -74,7 +74,7 @@ export type ContentLesson10_2 = {
     langTest1_2: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     headerBlock5: string;
-    exercisesBlockAudio1: { [key: string]: Line };
+    dopDialog1: { [key: string]: Content };
 }
 
 export type Table = {
@@ -239,4 +239,9 @@ export type ExampleAndAnswer = {
 export type Line = {
     text: string;
     audio: string;
+  };
+
+export type Content = {
+    text: string;
+    src: string;
   };

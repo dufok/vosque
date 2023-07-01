@@ -28,6 +28,7 @@ import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
+import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 import { ContentLesson5 } from './type_Lesson5';
 import { ContentLesson5_2 } from './type_Lesson5';
@@ -71,13 +72,12 @@ export function lesson5Screen() {
   const example1_4 = content2?.langTest1_4.example;
   const tests4_2 = Object.values(content2?.langTest4_2.testContent || {});
   const example4_2 = content2?.langTest4_2.example;
-  const wordToTranslate1 = Object.values(content2?.wordToTranslateBlock1 || {});
+  const exercises1 = Object.values(content2?.exercisesBlockText1 || {});
   const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
   const wordToTranslate4 = Object.values(content2?.wordToTranslateBlock4 || {});
-  const exercisesBlockAudio1 = Object.values(content2?.exercisesBlockAudio1 || {});
+  const dopDialog1 = Object.values(content2?.dopDialog1 || {});
   
-
 
   useEffect(() => {
     console.log(data);
@@ -146,11 +146,11 @@ export function lesson5Screen() {
           <SquareText text={content2?.squareText3} />
           <LangTest1 example={example1_3} tests={tests1_3} />
           <SquareText text={content2?.squareText4} />
-          <LangTest4 example={example4_2} tests={tests4_2} />
+          <LangTest4 example={example4_2} tests={tests4_2} isOneColumn/>
 
-          <HeaderBlock header={content2?.headerBlock3} />
-          <DescriptionBlock description={content2?.descriptionBlock3} />
-          <WordToTranslateBlock words={wordToTranslate1} />
+          <HeaderBlock header={content2?.headerBlock3} />  
+          <ExercisesBlockText exercises={exercises1} />
+
           <XStack fw="wrap" jc="center">
             <LifeHackerBlock
               lifehacktitle={content2?.lifeHackerBlock1.title}
@@ -193,12 +193,14 @@ export function lesson5Screen() {
             {/* Домашнее Задание */}
 
           <HeaderBlock header={content2?.headerBlock4} />
+          <SquareText text={content2?.squareText5} />
           <LangTest1 example={example1_4} tests={tests1_4} />
 
             {/* Дополнительные материалы */}
 
           <HeaderBlock header={content2?.headerBlock6} />
-          <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
+
+          <DopDialog contents={dopDialog1}/>
 
         </YStack>
         <NavigationBlock

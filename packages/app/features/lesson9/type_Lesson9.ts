@@ -84,7 +84,7 @@ export type ContentLesson9_2 = {
         content4: { [key: string]: Texts };
     };
     headerBlock6: string;
-    exercisesBlockAudio1: { [key: string]: Line };
+    dopDialog1: { [key: string]: Content };
 }
 
 export type Table = {
@@ -249,4 +249,9 @@ export type ExampleAndAnswer = {
 export type Line = {
     text: string;
     audio: string;
+  };
+
+  export type Content = {
+    text: string;
+    src: string;
   };
