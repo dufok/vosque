@@ -36,7 +36,6 @@ export type ContentLesson11_2 = {
     headerBlock3: string;
     textExampleBlock1: { [key: string]: ExampleAndAnswer };
     tableBlock1: Table;
-    descriptionBlock3: string;
     tableBlock2: Table;
     tableBlock3: Table;
     lifeHackerBlock1: {

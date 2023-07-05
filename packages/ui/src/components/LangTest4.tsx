@@ -2,10 +2,7 @@ import {
   Paragraph,
   YStack,
   XStack,
-  Input,
-  Square,
   Separator,
-  listItemStaticConfig,
   H4,
   H5,
   Button,
@@ -14,10 +11,43 @@ import {
   Sheet,
   Unspaced
         } from 'tamagui';
-import React, { useState, useEffect } from "react";
-import { ParagraphCustom } from "./CustomText";
+import React from "react";
 import { HelpComp } from "@my/ui/src/components/HelpComp";
 import { X } from '@tamagui/lucide-icons'
+
+/// dufok and gpt was here (^.^')
+
+/// This component is used to create a test for learning a language.
+/// It is used in the LangTest component.
+/// It takes an array of tests and an example.
+/// Input parameters:
+/// tests - array of tests
+/// example - example
+/// isOneColumn - if true, the tests are displayed in one column
+/// Example of use:
+/// <LangTest4
+///   tests={tests}
+///   example={example}
+///   isOneColumn={true}
+/// />
+///json example:
+/// "langTest4_1": {
+///  "example": {
+///      "header": "",
+///      "question": "",
+///      "unswer": ""
+///  },
+///  "testContent": {
+///      "1": {
+///          "description": "Монолог из видео:",
+///          "question": "Yo soy Anastasia.",
+///          "unswer": "Я - Анастасия."
+///      },
+///      "2": {
+///          "description": "",
+///          "question": "Yo soy de Rusia, pero vivo en Argentina.",
+///          "unswer": "Я из России, но живу в Аргентине."
+///      },
 
 export type Test = {
   description: string;
@@ -131,7 +161,7 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example, isOneColumn
         </YStack>
       )}
 
-      <Separator w="60%" borderColor="$backgroundFocus" $sm={{width: "90%"}}/>    
+      {/* <Separator w="60%" borderColor="$backgroundFocus" $sm={{width: "90%"}}/> */}   
 
       {tests && (
         <YStack ai="center" f={1} mt="$4">

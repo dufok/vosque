@@ -1,6 +1,6 @@
 import { Paragraph, YStack, XStack, H3, H4, H5 } from "tamagui";
 import React from "react";
-import { ParagraphCustom, ParagraphCustomGreen, ParagraphCustomMorron } from "./CustomText";
+import { ParagraphCustom } from "./CustomText";
 
 import { HelpComp } from "@my/ui/src/components/HelpComp";
 
@@ -36,7 +36,7 @@ const renderExample = (example: string, help: string, index: number) => {
   if (example) {
     return (
       <XStack key={index}>
-        <ParagraphCustomGreen text={example} />
+        <ParagraphCustom col="$backgroundPress" text={example} />
         {help && <HelpComp texts={help} html={index} />}
       </XStack>
     )

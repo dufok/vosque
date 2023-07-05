@@ -4,8 +4,7 @@ export type ContentLesson12 = {
     video: string;
     image: string;
     headerBlock1: string;
-    descriptionBlock1: string;
-    descriptionBlock2: string;
+    exercisesBlockText1: { [key: string]: Exercise };
     tableBlock1: Table;
     tableBlock2: Table;
     tableBlock3: Table;
@@ -28,7 +27,7 @@ export type ContentLesson12 = {
     langTest1_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     headerBlock3: string;
-    descriptionBlock3: string;
+    exercisesBlockText2: { [key: string]: Exercise };
     tableBlock4: Table;
     tableBlock5: Table;
     textExampleBlock1: { [key: string]: ExampleAndAnswer };

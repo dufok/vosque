@@ -112,26 +112,25 @@ export function lesson10Screen() {
 
             <HeaderBlock header={content?.headerBlock1}/>
             <TableBlock table={content?.tableBlock1} />
-            <XStack fw="wrap" jc="center">
-              <YStack w="50%" $sm={{width: "100%"}}>
-                <ExercisesBlockText exercises={exercises1} />
-              </YStack>
-              <LifeHackerBlock
-                lifehacktitle={content?.lifeHackerBlock1.title}
-                descriptions={[
-                  content?.lifeHackerBlock1.description1,
-                  content?.lifeHackerBlock1.description2,
-                  content?.lifeHackerBlock1.description3,
-                  content?.lifeHackerBlock1.description4,
-                ]}
-                contents={[
-                  content?.lifeHackerBlock1.content1,
-                  content?.lifeHackerBlock1.content2,
-                  content?.lifeHackerBlock1.content3,
-                  content?.lifeHackerBlock1.content4,
-                ]}
-              />
-            </XStack>
+            <SquareText text={content?.squareText3} />
+            <YStack ai="center">
+              <ExercisesBlockText exercises={exercises1} />
+            </YStack>
+            <LifeHackerBlock
+              lifehacktitle={content?.lifeHackerBlock1.title}
+              descriptions={[
+                content?.lifeHackerBlock1.description1,
+                content?.lifeHackerBlock1.description2,
+                content?.lifeHackerBlock1.description3,
+                content?.lifeHackerBlock1.description4,
+              ]}
+              contents={[
+                content?.lifeHackerBlock1.content1,
+                content?.lifeHackerBlock1.content2,
+                content?.lifeHackerBlock1.content3,
+                content?.lifeHackerBlock1.content4,
+              ]}
+            />
 
               {/* Блок Упражнений */}
 
@@ -150,16 +149,33 @@ export function lesson10Screen() {
 
             <HeaderBlock header={content2?.headerBlock1}/>
             <TableBlock table={content2?.tableBlock1} />
-            <ExercisesBlockText exercises={exercises2} />
+
+            <YStack ai="center">
+              <SquareText text={content2?.squareText3} />
+              <ExercisesBlockText exercises={exercises2} />
+            </YStack>
+
             <TableBlock table={content2?.tableBlock2} />
             <TableBlock table={content2?.tableBlock3} />
-            <ExercisesBlockText exercises={exercises3} />
+            <YStack ai="center">
+              <SquareText text={content2?.squareText4} />
+              <ExercisesBlockText exercises={exercises3} />
+            </YStack>
             <TableBlock table={content2?.tableBlock4} />
-            <ExercisesBlockText exercises={exercises4} />
+            <YStack ai="center">
+              <SquareText text={content2?.squareText5} />
+              <ExercisesBlockText exercises={exercises4} />
+            </YStack>
             <TableBlock table={content2?.tableBlock5} />
-            <ExercisesBlockText exercises={exercises5} />
+            <YStack ai="center">
+              <SquareText text={content2?.squareText6} />
+              <ExercisesBlockText exercises={exercises5} />
+            </YStack>
             <TableBlock table={content2?.tableBlock6} />
-            <ExercisesBlockText exercises={exercises6} />
+            <YStack ai="center">
+              <SquareText text={content2?.squareText7} />
+              <ExercisesBlockText exercises={exercises6} />
+            </YStack>
 
             <HeaderBlock header={content2?.headerBlock2} />
             <SquareText text={content2?.squareText1} />

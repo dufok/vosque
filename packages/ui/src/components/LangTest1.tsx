@@ -6,6 +6,41 @@ import { IceCream, Triangle } from '@tamagui/lucide-icons';
 import { ToastComp } from "@my/ui/src/components/ToastComp";
 import { HelpComp } from "@my/ui/src/components/HelpComp";
 
+/// dufok and gpt was here (^.^')
+///
+/// This component is used in the lesson3 screen
+/// It is a test with a list of questions and answers
+/// The user must enter the correct answer in the input field
+/// If the answer is correct, the green icon is displayed
+///
+/// Json example:
+///
+/// "langTest1": {
+///   "1": {
+///       "header": "Урок 1. Приветствие",
+///       "question": "Много русских людей сейчас в Аргентине. А вы откуда?",
+///       "unswer": "*/Muchas personas rusas ahora están en Argentina. ¿Y ustedes de dónde son?/*"
+///   },
+///   "testContent": {
+///       "1": {
+///           "question": "1) Много русских людей сейчас в Аргентине. А вы откуда?",
+///           "unswer": [
+///               "muchas personas rusas ahora están en argentina. ¿y ustedes de dónde son?",
+///               "muchas personas rusas ahora estan en argentina. ¿y ustedes de donde son?",
+///               "muchas personas rusas ahora están en argentina. y ustedes de dónde son?",
+///               "muchas personas rusas ahora estan en argentina. y ustedes de donde son?"
+///           ]
+///       },
+///       "2": {
+///           "question": "2) Люди из Аргентины очень веселые и спокойные.",
+///           "unswer": [
+///               "las personas de argentina son muy alegres y tranquilas.",
+///               "las personas de argentina son mucho alegres y tranquilas."
+///           ]
+///       },
+///       ...
+///   }
+/// }
 
 export type Test = {
   question: string;
@@ -134,12 +169,20 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example, isOneColumn
       
       {example && (
         <YStack ai="center" mb="$4" space={4}>
-              <H4 ta="center" >{example.header}</H4>
-              <ParagraphCustom text={example.question}/>
-            <YStack m="$1"/>
-            <YStack f={1} boc="$backgroundHover"  borderWidth="$1" br="$3" p="$1.5" paddingHorizontal="$7" >
+          <H4 ta="center" >{example.header}</H4>
+          <ParagraphCustom text={example.question}/>
+          <YStack m="$1"/>
+          {example.unswer && (
+            <YStack f={1}
+              boc="$backgroundHover"
+              borderWidth="$1"
+              br="$3"
+              p="$1.5"
+              paddingHorizontal="$7"
+              >
               <ParagraphCustom text={example.unswer}/>
             </YStack>
+          )}
         </YStack>
       )}
 

@@ -1,6 +1,29 @@
 import { Paragraph, H5, YStack, XStack } from "tamagui";
 import React from "react";
 import { ParagraphCustom } from "./CustomText";
+import { HelpComp } from "@my/ui/src/components/HelpComp";
+
+/// dufok and gpt was here (^.^')
+///
+/// Json structure:
+/// "tableBlock3": {
+///   "header": "Querer - хотеть",
+///   "help": "любить о человеке = te quiero mucho",
+///   "rows": [
+///     {
+///       "name": "yo",
+///       "data": [
+///         "quiero", "test1", "test2"
+///         ]
+///    },
+///    {
+///        "name": "vos",
+///        "data": [
+///          "querés", "test1", "test2"
+///         ]
+///     }
+///   ]
+/// }
 
 export type Row = {
   name?: string;
@@ -11,6 +34,7 @@ export type Row = {
 export type Table = {
   header: string;
   rows: Row[];
+  help?: string[];
 };
 
 interface TableBlockProps {
@@ -25,7 +49,10 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
         <tbody>
           <tr>
             <td colSpan={maxColumns} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-              <H5 tt="uppercase" ta="center">{table.header}</H5>
+              <XStack>
+                <H5 tt="uppercase" ta="center">{table.header}</H5>
+                {table.help && <HelpComp texts={table.help} html="help" />}
+              </XStack>
             </td>
           </tr>
           {table.rows.map((row, index) => (

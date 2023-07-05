@@ -5,6 +5,7 @@ export type ContentLesson10 = {
     image: string;
     headerBlock1: string;
     tableBlock1: Table;
+    squareText3: string;
     exercisesBlockText1: { [key: string]: Exercise };
     lifeHackerBlock1: {
         title: string;
@@ -34,15 +35,20 @@ export type ContentLesson10_2 = {
     image: string;
     headerBlock1: string;
     tableBlock1: Table;
+    squareText3: string;
     exercisesBlockText1: { [key: string]: Exercise };
     tableBlock2: Table;
     tableBlock3: Table;
+    squareText4: string;
     exercisesBlockText2: { [key: string]: Exercise };
     tableBlock4: Table;
+    squareText5: string;
     exercisesBlockText3: { [key: string]: Exercise };
     tableBlock5: Table;
+    squareText6: string;
     exercisesBlockText4: { [key: string]: Exercise };
     tableBlock6: Table;
+    squareText7: string;
     exercisesBlockText5: { [key: string]: Exercise };
     headerBlock2: string;
     squareText1: string;

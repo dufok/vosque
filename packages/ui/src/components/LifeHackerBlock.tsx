@@ -1,6 +1,6 @@
-import { Paragraph, YStack, Image, Avatar, H3, H5, H4, Separator } from "tamagui";
+import { Paragraph, YStack, Image, Separator } from "tamagui";
 import React from "react";
-import { ParagraphCustom, ParagraphCustomMorron } from "./CustomText";
+import { ParagraphCustom } from "./CustomText";
 
 type Texts = {
   text: string;
@@ -42,12 +42,11 @@ export const LifeHackerBlock: React.FC<LifeHackerBlockProps> = ({
       {descriptions.map((description, i) => (
         <React.Fragment key={i}>
           <YStack>
-          <Paragraph col="$borderColor" mt="$3" ta="center">{description}</Paragraph>
-          
+            <Paragraph col="$borderColor" mt="$3" ta="center">{description}</Paragraph>
           </YStack>
           {contents[i] && Object.values(contents[i]).map((content, j) => (
             <YStack mt="$3" ml="$3">
-              <ParagraphCustomMorron key={j} text={content.text} />
+              <ParagraphCustom col="$borderColor" key={j} text={content.text} />
             </YStack>
           ))}
         </React.Fragment>

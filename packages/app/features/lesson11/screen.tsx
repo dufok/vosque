@@ -160,7 +160,6 @@ export function lesson11Screen() {
             <HeaderBlock header={content2?.headerBlock3} />
             <TextExampleBlock textExamples={textExample2}/>
             <TableBlock table={content2?.tableBlock1} />
-            <DescriptionBlock description={content2?.descriptionBlock3} />
             <TableBlock table={content2?.tableBlock2} />
             <TableBlock table={content2?.tableBlock3} />
             <LifeHackerBlock

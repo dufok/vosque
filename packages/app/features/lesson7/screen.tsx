@@ -155,7 +155,7 @@ export function lesson7Screen() {
 
         <HeaderBlock header={content?.headerBlock2} />
         <SquareText text={content?.squareText3} />
-        <LangTest4 example={example4_1} tests={tests4_1} />
+        <LangTest4 example={example4_1} tests={tests4_1} isOneColumn/>
         <SquareText text={content?.squareText4} />
         <LangTest1 example={example1_1} tests={tests1_1} />
         

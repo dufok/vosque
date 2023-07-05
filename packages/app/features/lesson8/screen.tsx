@@ -90,6 +90,7 @@ export function lesson8Screen() {
         <HeaderBlock header={content?.headerBlock1}/>
         <TextExampleBlock textExamples={textExample1}/>
         <HeaderBlock header={content?.headerBlock2} />
+        <SquareText text={content?.squareText2} />
         <LangTest4 example={example4_1} tests={tests4_1} />
         <LangTest1 example={example1_1} tests={tests1_1} />
         <LifeHackerBlock
@@ -121,6 +122,7 @@ export function lesson8Screen() {
         {/* Домашнее задание */}
 
         <HeaderBlock header={content?.headerBlock4} />
+        <SquareText text={content?.squareText7} />
         <LangTest1 example={example1_2} tests={tests1_2} />
 
         {/* Дополнительные материалы */}

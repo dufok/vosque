@@ -157,7 +157,7 @@ export function lesson3Screen() {
           <HeaderBlock header={content2?.headerBlock5}/>
           <YStack ai="center" f={1}>
             <XStack fw="wrap" jc="center">
-              <YStack maw={600} $sm={{ width: "100%" }} >
+              <YStack maw={600} $sm={{ width: "100%" }} mt="$3">
                 <DescriptionBlock description={content2?.descriptionBlock2} />
                 <DescriptionBlock description={content2?.descriptionBlock3} />
                 <DescriptionBlock description={content2?.descriptionBlock4} />

@@ -60,7 +60,6 @@ export function lesson6Screen() {
 
   const textExample1 = Object.values(content?.textExampleBlock1 || {});
   const textExample2 = Object.values(content?.textExampleBlock2 || {});
-  const exercisesBlockAudio1 = Object.values(content?.exercisesBlockAudio1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -137,7 +136,7 @@ export function lesson6Screen() {
 
          <HeaderBlock header={content?.headerBlock6} />
          <SquareText text={content?.squareText3} />
-         <LangTest1 example={example1_2} tests={tests1_2} />
+         <LangTest1 example={example1_2} tests={tests1_2} isOneColumn/>
 
             {/* Дополнительные материалы 
 
