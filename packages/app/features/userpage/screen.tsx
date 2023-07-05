@@ -16,7 +16,7 @@ export function userpageScreen() {
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
   const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const lessonCount = userLessons ? userLessons.length : 0;
+  const lessonCount = userLessons ? userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).length : 0;
 
   useEffect(() => {
     console.log(data);
@@ -131,7 +131,7 @@ function Lessons({ isSignedIn, lessonCount, userLessons }) {
             <YStack jc="flex-start" m="$1">
               {userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).slice(0, userLessons.length/2)?.map((lesson, index) =>
                 lesson !== null ? [
-                  <YStack p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
+                  <YStack p="$2" hoverStyle={{ opacity: 0.9, scale: 1.01}}>
                     <XStack ai="center">
                       <Avatar circular size="$4"  backgroundColor="$backgroundFocus">
                         <Avatar.Image 
@@ -154,7 +154,7 @@ function Lessons({ isSignedIn, lessonCount, userLessons }) {
             <YStack jc="flex-start" m="$1">
               {userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).slice(userLessons.length/2)?.map((lesson, index) =>
                   lesson !== null ? [
-                    <YStack p="$2" hoverStyle={{ opacity: 0.8, scale: 1.05}}>
+                    <YStack p="$2" hoverStyle={{ opacity: 0.9, scale: 1.01}}>
                       <XStack ai="center">
                         <Avatar circular size="$4" backgroundColor="$backgroundFocus">
                           <Avatar.Image 
