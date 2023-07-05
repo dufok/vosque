@@ -129,22 +129,22 @@ function Lessons({ isSignedIn, lessonCount, userLessons }) {
         <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
         <Stack p="$2" fd="column" $gtSm={{ fd: "row", fw: "wrap" }}>
             <YStack jc="flex-start" m="$1">
-              {userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).slice(0, userLessons.length/2)?.map((lesson, index) =>
+              {userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).slice(0, userLessons.length/2)?.map((lesson) =>
                 lesson !== null ? [
                   <YStack p="$2" hoverStyle={{ opacity: 0.9, scale: 1.01}}>
                     <XStack ai="center">
                       <Avatar circular size="$4"  backgroundColor="$backgroundFocus">
                         <Avatar.Image 
-                          src={contentLessons[index]?.image} scale="50%"
+                          src={lesson.content?.image} scale="50%"
                         />
                         <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
                       </Avatar>
                       <YStack m="$2" f={1}>
                         <H5 key={lesson.id}>
                           <Anchor
-                            href={contentLessons[index]?.href}
+                            href={lesson.content?.href}
                           >{lesson.name}</Anchor></H5>
-                        <Paragraph ww="initial" key={lesson.id}>{contentLessons[index]?.description}</Paragraph>
+                        <Paragraph ww="initial" key={lesson.id}>{lesson.content?.description}</Paragraph>
                       </YStack>
                     </XStack>
                   </YStack>
@@ -152,25 +152,25 @@ function Lessons({ isSignedIn, lessonCount, userLessons }) {
               )}
             </YStack>
             <YStack jc="flex-start" m="$1">
-              {userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).slice(userLessons.length/2)?.map((lesson, index) =>
+              {userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).slice(userLessons.length/2)?.map((lesson) =>
                   lesson !== null ? [
                     <YStack p="$2" hoverStyle={{ opacity: 0.9, scale: 1.01}}>
-                      <XStack ai="center">
-                        <Avatar circular size="$4" backgroundColor="$backgroundFocus">
-                          <Avatar.Image 
-                            src={contentLessons[index + Math.floor(userLessons.length/2)]?.image} scale="50%"
-                          />
-                          <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
-                        </Avatar>
-                        <YStack m="$2" f={1}>
-                          <H5 key={lesson.id}>
-                            <Anchor
-                              href={contentLessons[index + Math.floor(userLessons.length/2)]?.href}
-                            >{lesson.name}</Anchor></H5>
-                          <Paragraph ww="initial" key={lesson.id}>{contentLessons[index + Math.floor(userLessons.length/2)]?.description}</Paragraph>
-                        </YStack>
-                      </XStack>
-                    </YStack>
+                    <XStack ai="center">
+                      <Avatar circular size="$4"  backgroundColor="$backgroundFocus">
+                        <Avatar.Image 
+                          src={lesson.content?.image} scale="50%"
+                        />
+                        <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
+                      </Avatar>
+                      <YStack m="$2" f={1}>
+                        <H5 key={lesson.id}>
+                          <Anchor
+                            href={lesson.content?.href}
+                          >{lesson.name}</Anchor></H5>
+                        <Paragraph ww="initial" key={lesson.id}>{lesson.content?.description}</Paragraph>
+                      </YStack>
+                    </XStack>
+                  </YStack>
                   ] : []
                 )}
             </YStack>
