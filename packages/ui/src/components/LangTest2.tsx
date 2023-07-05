@@ -15,7 +15,7 @@ export type Test = {
 
 interface LangTestProps {
   tests: Test[];
-  example: Test;
+  example: { question1: string, question2: string, unswer: string };
 }
 
 export const LangTest2: React.FC<LangTestProps> = ({ tests, example }) => {
