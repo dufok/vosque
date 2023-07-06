@@ -46,7 +46,7 @@ const renderExample = (example: string, help: string, index: number) => {
 
 export const ExercisesBlockText: React.FC<ExercisesBlockTextProps> = ({ exercises }) => {
   return (
-    <YStack marginHorizontal="$6" mb="$2"  ai="flex-start" w="90%" maw={900}>
+    <YStack marginHorizontal="$6" mb="$4"  ai="flex-start" w="90%" maw={900}>
       {exercises.map((exercise, index) => (
         <YStack mt="$3" key={index}>
           <Paragraph marginBottom="$2" ta="left">{exercise.text}</Paragraph>
