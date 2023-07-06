@@ -1,4 +1,4 @@
-import { Paragraph, H5, YStack, XStack } from "tamagui";
+import { Paragraph, H5, YStack, XStack, useWindowDimensions } from "tamagui";
 import React from "react";
 import { ParagraphCustom } from "./CustomText";
 import { HelpComp } from "@my/ui/src/components/HelpComp";
@@ -41,22 +41,25 @@ interface TableBlockProps {
   table: Table;
 }
 
-const FontSize = (maxColumns: number) => {
-  if (maxColumns > 3 && maxColumns < 5) {
-    return "60%";
-  }
-  return "100%"; // default font-size
-};
 
 export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
   const maxColumns = Math.max(...table.rows.map(row => row.data.length + (row.name ? 1 : 0)));
+  let scaleFactor = 1;
+  if (maxColumns > 3 && maxColumns < 6 && useWindowDimensions().width < 500) {
+    scaleFactor = 0.8;
+  }
   return (
     <YStack marginHorizontal="$6" mb="$4" w="100%" f={1} maw={800}>
-      <table style={{ border: "2px solid #83503C", borderCollapse: "collapse" }}>
+      <table style={{ 
+        border: "2px solid #83503C", 
+        borderCollapse: "collapse",
+        transform: `scale(${scaleFactor})`,
+        transformOrigin: '0 0'
+      }}>
         <tbody>
           <tr>
             <td colSpan={maxColumns} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-              <XStack>
+              <XStack jc="center">
                 <H5 allowFontScaling tt="uppercase" ta="center">{table.header}</H5>
                 {table.help && <HelpComp texts={table.help} html="help" />}
               </XStack>
