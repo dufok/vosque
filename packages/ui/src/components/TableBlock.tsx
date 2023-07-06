@@ -49,7 +49,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
         <tbody>
           <tr>
             <td colSpan={maxColumns} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-              <XStack>
+              <XStack jc="center">
                 <H5 tt="uppercase" ta="center">{table.header}</H5>
                 {table.help && <HelpComp texts={table.help} html="help" />}
               </XStack>
