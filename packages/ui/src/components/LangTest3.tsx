@@ -53,7 +53,7 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example, isOneColumn
 
   return (
 
-    <YStack w="100%" f={1} p="$6" maw={1000} ai="center">
+    <YStack w="100%" f={1} paddingHorizontal="$6" mb="$4" maw={1000} ai="center">
       
       {example && (
         <YStack ai="center" mb="$4" space={4}>
@@ -132,44 +132,46 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example, isOneColumn
                 >
                 <Dialog.Title>Перевод</Dialog.Title>
                 <Dialog.Description>
-                <YStack ai="center" maw={800} mt="$4" p="$4">
-                    <YStack m="$2" w="100%" $gtSm={{ width: "45%" }}>
-                      {firstHalf.map(({ unswer, description}, index) => {
-              
+                  <Sheet.ScrollView padding="$4" space>
+                    <YStack ai="center" maw={800} mt="$4" p="$4">
+                        <YStack m="$2" w="100%" $gtSm={{ width: "45%" }}>
+                          {firstHalf.map(({ unswer, description}, index) => {
+                  
 
-                        return (
-                          <YStack key={index}  w="100%" mb="$4">
-                            { description && (
-                              <YStack ai="flex-start" mb="$2">
-                                <H5 mr="$2">{description}</H5>
+                            return (
+                              <YStack key={index}  w="100%" mb="$4">
+                                { description && (
+                                  <YStack ai="flex-start" mb="$2">
+                                    <H5 mr="$2">{description}</H5>
+                                  </YStack>
+                                )}
+                                <YStack ai="flex-start" mb="$2">
+                                  <Paragraph mr="$2">{unswer}</Paragraph>
+                                </YStack>
                               </YStack>
-                            )}
-                            <YStack ai="flex-start" mb="$2">
-                              <Paragraph mr="$2">{unswer}</Paragraph>
-                            </YStack>
-                          </YStack>
-                        );
-                      })}
-                    </YStack>
+                            );
+                          })}
+                        </YStack>
 
-                    <YStack m="$2" w="100%" $gtSm={{ width: "45%" }} >  
-                      {secondHalf.map(({ unswer, description }, index) => {
+                        <YStack m="$2" w="100%" $gtSm={{ width: "45%" }} >  
+                          {secondHalf.map(({ unswer, description }, index) => {
 
-                        return (
-                          <YStack key={index}  w="100%" mb="$4">
-                            { description && (
-                              <YStack ai="flex-start" mb="$2">
-                                <H5 mr="$2">{description}</H5>
+                            return (
+                              <YStack key={index}  w="100%" mb="$4">
+                                { description && (
+                                  <YStack ai="flex-start" mb="$2">
+                                    <H5 mr="$2">{description}</H5>
+                                  </YStack>
+                                )}
+                                <YStack ai="flex-start" mb="$2">
+                                  <Paragraph mr="$2">{unswer}</Paragraph>
+                                </YStack>
                               </YStack>
-                            )}
-                            <YStack ai="flex-start" mb="$2">
-                              <Paragraph mr="$2">{unswer}</Paragraph>
-                            </YStack>
-                          </YStack>
-                        );
-                      })}
+                            );
+                          })}
+                        </YStack>
                     </YStack>
-                </YStack>
+                  </Sheet.ScrollView>
                 </Dialog.Description>
                 <Unspaced>
                   <Dialog.Close asChild>

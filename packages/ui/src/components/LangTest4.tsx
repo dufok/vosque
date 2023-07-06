@@ -76,16 +76,16 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example, isOneColumn
             <H5 ta="center" mr="$2">{description}</H5>
           </YStack>
         )}
+
+        <XStack fw="wrap">
           <YStack ai="flex-start" mb="$2">
             <XStack>
               <Paragraph mr="$2">{question}</Paragraph>
               {help && <HelpComp texts={help} html={index} />}
             </XStack>
           </YStack>
-          <YStack ai="center">
-            <Separator mb="$2" w="40%" borderColor="$backgroundPress" /> 
-          </YStack>
-          <YStack ai="center">
+          
+          <YStack ai="flex-end">
 
             <Dialog modal>
               <Dialog.Trigger asChild>
@@ -146,14 +146,15 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example, isOneColumn
               </Dialog.Portal>
             </Dialog>
           </YStack>
-        </YStack>
+        </XStack>
+      </YStack>
     );
   }
     
 
   return (
 
-    <YStack w="100%" f={1} p="$6" maw={1000} ai="center">
+    <YStack w="100%" f={1} paddingHorizontal="$6" mb="$4" maw={1000} ai="center">
 
       {example && (
         <YStack ai="center" mb="$4" space={4}>
@@ -161,7 +162,7 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example, isOneColumn
         </YStack>
       )}
 
-      {/* <Separator w="60%" borderColor="$backgroundFocus" $sm={{width: "90%"}}/> */}   
+      <Separator w="60%" borderColor="$backgroundFocus" $sm={{width: "90%"}}/>   
 
       {tests && (
         <YStack ai="center" f={1} mt="$4">

@@ -44,7 +44,7 @@ interface TableBlockProps {
 export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
   const maxColumns = Math.max(...table.rows.map(row => row.data.length + (row.name ? 1 : 0)));
   return (
-    <YStack m="$6" w="100%" f={1} maw={800}>
+    <YStack marginHorizontal="$6" mb="$4" w="100%" f={1} maw={800}>
       <table style={{ border: "2px solid #83503C", borderCollapse: "collapse" }}>
         <tbody>
           <tr>

@@ -16,7 +16,7 @@ interface ExercisesBlockAudioWithDiscProps {
 
  export const ExercisesBlockAudioWithDisc: React.FC<ExercisesBlockAudioWithDiscProps> = ({ exercises }) => {
   return (
-    <YStack m="$6" ai="flex-start" w="90%" maw={900}>
+    <YStack marginHorizontal="$6" ai="flex-start" w="90%" maw={900} mb="$4">
       <YStack>
       {exercises.map(({description, text, audio}, index) => (
         <XStack  key={index} style={{flexDirection: 'row', flexWrap: 'wrap'}}>

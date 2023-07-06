@@ -41,7 +41,7 @@ export const DopDialog: React.FC<ContentsBlockAudioProps> = ({ contents }) => {
   }, [audio]);
 
   return (
-    <YStack ai="center" w="90%" maw={900}>
+    <YStack ai="center" mb="$4" w="90%" maw={900}>
       {contents.map(({text, src}, index) => (
           <XStack key={index} style={{flexWrap: 'wrap'}}>
             <Button 

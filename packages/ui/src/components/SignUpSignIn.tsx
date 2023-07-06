@@ -94,8 +94,8 @@ export const SignUpSignInComponent: React.FC<Props> = ({
       <XStack>
         <Paragraph size="$2" mr="$2" opacity={0.4}>
           {type === "sign-up"
-            ? "Already have an account?"
-            : "Don’t have an account?"}
+            ? "Вы уже зарегистрированны?"
+            : "Нет регистрации?"}
         </Paragraph>
         <Link href={type === "sign-up" ? "/signin" : "/signup"}>
           <Paragraph

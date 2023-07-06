@@ -131,7 +131,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example, isOneColumn
     }; 
   
     return (
-      <YStack key={index} ai="flex-start" w="100%" >
+      <YStack key={index} ai="flex-start" w="100%">
         <YStack>
           <XStack>
             <Paragraph mr="$2">{question}</Paragraph>
@@ -158,7 +158,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example, isOneColumn
   
   return (
 
-    <YStack w="100%" f={1} p="$6" maw={1000} ai="center">
+    <YStack w="100%" f={1} paddingHorizontal="$6" mb="$4" maw={1000} ai="center">
 
       <ToastComp 
         toastList={list}

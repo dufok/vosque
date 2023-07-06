@@ -60,7 +60,7 @@ export const LangTest2: React.FC<LangTestProps> = ({ tests, example }) => {
   
   return (
 
-    <YStack w="100%" f={1} p="$6" maw={1000} ai="center">
+    <YStack w="100%" f={1} paddingHorizontal="$6" mb="$4" maw={1000} ai="center">
 
       <ToastComp 
         toastList={list}
