@@ -114,38 +114,21 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example, isOneColumn
                 <Button size="$6" boc="$backgroundFocus" circular icon={ChevronDown} onPress={() => setOpen(false)} />
                 <Sheet.ScrollView padding="$4" space>
                   <YStack ai="center" maw={800} mt="$4" p="$4">
-                    <YStack m="$2" w="100%" $gtSm={{ width: "45%" }}>
-                      {firstHalf.map(({ unswer, description}, index) => {
-                        return (
-                          <YStack key={index}  w="100%" mb="$4">
-                            { description && (
+                    <YStack w="100%">
+                        {[...firstHalf, ...secondHalf].map(({ unswer, description}, index) => {
+                          return (
+                            <YStack key={index}  w="100%" mb="$4">
+                              { description && (
+                                <YStack ai="flex-start" mb="$2">
+                                  <H5 mr="$2">{description}</H5>
+                                </YStack>
+                              )}
                               <YStack ai="flex-start" mb="$2">
-                                <H5 mr="$2">{description}</H5>
+                                <Paragraph mr="$2">{unswer}</Paragraph>
                               </YStack>
-                            )}
-                            <YStack ai="flex-start" mb="$2">
-                              <Paragraph mr="$2">{unswer}</Paragraph>
                             </YStack>
-                          </YStack>
-                        );
-                      })}
-                    </YStack>
-
-                    <YStack m="$2" w="100%" $gtSm={{ width: "45%" }} >  
-                      {secondHalf.map(({ unswer, description }, index) => {
-                        return (
-                          <YStack key={index}  w="100%" mb="$4">
-                            { description && (
-                              <YStack ai="flex-start" mb="$2">
-                                <H5 mr="$2">{description}</H5>
-                              </YStack>
-                            )}
-                            <YStack ai="flex-start" mb="$2">
-                              <Paragraph mr="$2">{unswer}</Paragraph>
-                            </YStack>
-                          </YStack>
-                        );
-                      })}
+                          );
+                        })}
                     </YStack>
                   </YStack>
                 </Sheet.ScrollView>
