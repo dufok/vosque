@@ -150,30 +150,30 @@ export function lesson10Screen() {
             <HeaderBlock header={content2?.headerBlock1}/>
             <TableBlock table={content2?.tableBlock1} />
 
+            <SquareText text={content2?.squareText3} />
             <YStack ai="center">
-              <SquareText text={content2?.squareText3} />
               <ExercisesBlockText exercises={exercises2} />
             </YStack>
 
             <TableBlock table={content2?.tableBlock2} />
             <TableBlock table={content2?.tableBlock3} />
+            <SquareText text={content2?.squareText4} />
             <YStack ai="center">
-              <SquareText text={content2?.squareText4} />
               <ExercisesBlockText exercises={exercises3} />
             </YStack>
             <TableBlock table={content2?.tableBlock4} />
+            <SquareText text={content2?.squareText5} />
             <YStack ai="center">
-              <SquareText text={content2?.squareText5} />
               <ExercisesBlockText exercises={exercises4} />
             </YStack>
             <TableBlock table={content2?.tableBlock5} />
+            <SquareText text={content2?.squareText6} />
             <YStack ai="center">
-              <SquareText text={content2?.squareText6} />
               <ExercisesBlockText exercises={exercises5} />
             </YStack>
             <TableBlock table={content2?.tableBlock6} />
+            <SquareText text={content2?.squareText7} />
             <YStack ai="center">
-              <SquareText text={content2?.squareText7} />
               <ExercisesBlockText exercises={exercises6} />
             </YStack>
 
@@ -186,7 +186,7 @@ export function lesson10Screen() {
             <WordToTranslateBlock words={wordToTranslate1} />
             <SquareText text={content2?.squareText12} />
             <XStack fw="wrap" jc="center">
-              <YStack w="100%" $gtSm={{ width: "60%" }}>
+              <YStack w="100%" $gtSm={{ width: "40%" }}>
                 <TextExampleBlock textExamples={textExample1}/>
               </YStack>
               <LifeHackerBlock

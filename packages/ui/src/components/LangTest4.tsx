@@ -77,7 +77,7 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example, isOneColumn
           </YStack>
         )}
 
-        <XStack fw="wrap">
+
           <YStack ai="flex-start" mb="$2">
             <XStack>
               <Paragraph mr="$2">{question}</Paragraph>
@@ -85,7 +85,7 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example, isOneColumn
             </XStack>
           </YStack>
           
-          <YStack ai="flex-end">
+          <YStack ml="$4" ai="flex-start">
 
             <Dialog modal>
               <Dialog.Trigger asChild>
@@ -146,7 +146,6 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example, isOneColumn
               </Dialog.Portal>
             </Dialog>
           </YStack>
-        </XStack>
       </YStack>
     );
   }

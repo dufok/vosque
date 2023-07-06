@@ -9,7 +9,6 @@ export type ContentLesson9 = {
     tableBlock1: Table;
     tableBlock2: Table;
     tableBlock3: Table;
-    descriptionBlock3: string;
     lifeHackerBlock1: {
         title: string;
         description1: string;
