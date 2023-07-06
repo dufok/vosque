@@ -6,9 +6,10 @@ export type ContentLesson8 = {
     headerBlock1: string;
     textExampleBlock1: { [key: string]: ExampleAndAnswer };
     headerBlock2: string;
-    squareText2: string;
+    squareText1: string;
     langTest4_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests4 }};
+    squareText2: string;
     langTest1_1: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};
     lifeHackerBlock1: {

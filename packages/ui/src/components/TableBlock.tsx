@@ -41,6 +41,13 @@ interface TableBlockProps {
   table: Table;
 }
 
+const FontSize = (maxColumns: number) => {
+  if (maxColumns > 3 && maxColumns < 5) {
+    return "60%";
+  }
+  return "100%"; // default font-size
+};
+
 export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
   const maxColumns = Math.max(...table.rows.map(row => row.data.length + (row.name ? 1 : 0)));
   return (
@@ -50,7 +57,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
           <tr>
             <td colSpan={maxColumns} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
               <XStack>
-                <H5 tt="uppercase" ta="center">{table.header}</H5>
+                <H5 allowFontScaling tt="uppercase" ta="center">{table.header}</H5>
                 {table.help && <HelpComp texts={table.help} html="help" />}
               </XStack>
             </td>
@@ -59,12 +66,12 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
             <tr key={index}>
               {row.spanAllColumns ? (
                 <td colSpan={table.rows.length} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-                  <H5 tt="uppercase" dangerouslySetInnerHTML={{ __html: row.data[0].replace(/\n/g, "<br />") }} />
+                  <H5 allowFontScaling tt="uppercase" dangerouslySetInnerHTML={{ __html: row.data[0].replace(/\n/g, "<br />") }} />
                 </td>
               ) : (
                 <>
                   <td style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-                    <Paragraph p="$6">
+                    <Paragraph allowFontScaling fontSize="$1" p="$6">
                       {row.name?.split("\n").map((line, i) => (
                         <div key={i} style={{ textAlign: "center" }}>
                           <ParagraphCustom text={line}/>
@@ -74,7 +81,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
                   </td>
                   {row.data.map((cell, index) => (
                     <td key={index} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-                      <Paragraph p="$6">
+                      <Paragraph allowFontScaling p="$6">
                         { cell.split("\n").map((line, i) => (
                           <div key={i} style={{ textAlign: "center" }}>
                             <ParagraphCustom text={line}/>

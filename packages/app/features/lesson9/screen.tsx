@@ -171,9 +171,9 @@ export function lesson9Screen() {
             {/* Блок Упражнений */}
 
             <HeaderBlock header={content2?.headerBlock2} />
-            <SquareText text={content?.squareText1} />
+            <SquareText text={content2?.squareText1} />
             <LangTest4 example={example4_2} tests={tests4_2} />
-            <SquareText text={content?.squareText2} />
+            <SquareText text={content2?.squareText2} />
             <LangTest1 example={example1_2} tests={tests1_2} />
 
             <HeaderBlock header={content2?.headerBlock3} />
