@@ -2,20 +2,15 @@ import {
   Paragraph,
   YStack,
   XStack,
-  Input,
-  Square,
   Separator,
-  listItemStaticConfig,
-  H4,
   H5,
+  H4,
   Button,
-  Dialog,
-  Adapt,
-  Sheet,
   Unspaced
         } from 'tamagui';
 import React, { useState, useEffect } from "react";
-import { ParagraphCustom } from "./CustomText";
+import { Sheet } from '@tamagui/sheet'
+import { ChevronDown} from '@tamagui/lucide-icons'
 import { X } from '@tamagui/lucide-icons'
 
 export type Test = {
@@ -36,6 +31,9 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example, isOneColumn
   const firstHalf = tests.slice(0, midIndex);
   const secondHalf = tests.slice(midIndex);
 
+  const [position, setPosition] = useState(0)
+  const [open, setOpen] = useState(false)
+
   const renderTest = ({ question, description }, index) => {
     return (
       <YStack key={index} mb="$4">
@@ -52,7 +50,7 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example, isOneColumn
   }
 
   return (
-
+    
     <YStack w="100%" f={1} paddingHorizontal="$6" mb="$4" maw={1000} ai="center">
       
       {example && (
@@ -83,60 +81,41 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example, isOneColumn
 
           <Separator w="60%" mb="$4" borderColor="$backgroundFocus" $sm={{width: "90%"}}/>
           <YStack ai="center">
-            
-            <Dialog modal>
-              <Dialog.Trigger asChild>
-                <Button
-                  br="$2"
-                  bw="$1"
-                  boc="$backgroundPress">
-                    Проверить
-                </Button>
-              </Dialog.Trigger>
-
-              <Adapt when="sm" platform="touch">
-                <Sheet zIndex={200000} modal dismissOnSnapToBottom>
-                  <Sheet.Frame>
-                    <Sheet.ScrollView padding="$4" space>
-                      <Adapt.Contents />
-                    </Sheet.ScrollView>
-                  </Sheet.Frame>
-                  <Sheet.Overlay />
-                </Sheet>
-              </Adapt>
-
-              <Dialog.Portal>
-                <Dialog.Overlay
-                  key="overlay"
-                  animation="quick"
-                  o={0.5}
-                  enterStyle={{ o: 0 }}
-                  exitStyle={{ o: 0 }}
-                />
-
-                <Dialog.Content
-                  bordered
-                  elevate
-                  key="content"
-                  animation={[
-                    'quick',
-                    {
-                      opacity: {
-                        overshootClamping: true,
-                      },
-                    },
-                  ]}
-                  enterStyle={{ x: 0, y: -20, opacity: 0, scale: 0.9 }}
-                  exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
-                  space
-                >
-                <Dialog.Title>Перевод</Dialog.Title>
-                <Dialog.Description>
+            <Button
+              br="$2"
+              bw="$1"
+              boc="$backgroundPress"
+              onPress={() => {
+                setOpen(true);
+              }}>
+                Проверить
+            </Button>
+            <Sheet
+                forceRemoveScrollEnabled={open}
+                modal={true}
+                open={open}
+                onOpenChange={setOpen}
+                snapPoints={[85, 50, 25]}
+                dismissOnSnapToBottom
+                position={position}
+                onPositionChange={setPosition}
+                zIndex={100_000}
+                
+              >
+              <Sheet.Overlay />
+              <Sheet.Handle />
+              <Sheet.Frame
+                flex={1}
+                padding="$4"
+                justifyContent="center"
+                alignItems="center"
+                space="$5"
+              >
+                <Button size="$6" boc="$backgroundFocus" circular icon={ChevronDown} onPress={() => setOpen(false)} />
+                <Sheet.ScrollView padding="$4" space>
                   <YStack ai="center" maw={800} mt="$4" p="$4">
                     <YStack m="$2" w="100%" $gtSm={{ width: "45%" }}>
                       {firstHalf.map(({ unswer, description}, index) => {
-              
-
                         return (
                           <YStack key={index}  w="100%" mb="$4">
                             { description && (
@@ -154,7 +133,6 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example, isOneColumn
 
                     <YStack m="$2" w="100%" $gtSm={{ width: "45%" }} >  
                       {secondHalf.map(({ unswer, description }, index) => {
-
                         return (
                           <YStack key={index}  w="100%" mb="$4">
                             { description && (
@@ -170,15 +148,10 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example, isOneColumn
                       })}
                     </YStack>
                   </YStack>
-                </Dialog.Description>
-                <Unspaced>
-                  <Dialog.Close asChild>
-                    <Button pos="absolute" t="$3" r="$3" size="$2" circular icon={X} />
-                  </Dialog.Close>
-                </Unspaced>
-              </Dialog.Content>
-            </Dialog.Portal>
-            </Dialog>
+                </Sheet.ScrollView>
+              </Sheet.Frame>
+            </Sheet>
+
           </YStack>
         </YStack>
       )}
