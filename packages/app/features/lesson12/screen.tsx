@@ -136,7 +136,6 @@ export function lesson12Screen() {
         <SquareText text={content?.squareText3} />
         <DescriptionBlock description={content?.descriptionBlock4} />
         <WordToTranslateBlock words={wordToTranslate1} />
-        <DopDialog contents={dopDialog1}/>
         <YStack mt="$5" />
         <DescriptionBlock description={content?.descriptionBlock5} />
         <SquareText text={content?.squareText4} />
@@ -149,6 +148,8 @@ export function lesson12Screen() {
         <WordToTranslateBlock words={wordToTranslate2} />
         <LangTest1 example={example1_5} tests={tests1_5} isOneColumn/>
         <LangTest1 example={example1_6} tests={tests1_6} isOneColumn/>
+        <HeaderBlock header={content?.headerBlock3} />
+        <DopDialog contents={dopDialog1}/>
 
       </YStack>
     <NavigationBlock
