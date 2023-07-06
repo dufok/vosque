@@ -17,9 +17,9 @@ export function WordToTranslateBlock({ words }) {
   const secondHalf = words.slice(midIndex);
 
   return (
-    <YStack p="$2" mb="$4" marginHorizontal="$6" f={1} w="100%" maw={900}>
+    <YStack p="$2" mb="$4" f={1} w="100%" maw={900} $sm={{ marginHorizontal : "$4" }}>
       <XStack fw="wrap" jc="space-around" >
-        <YStack maw={350} w="100%" $gtSm={{ width: "40%" }}>
+        <YStack  w="100%" $gtMd={{ width: "43%" }} maw={480}>
           <XStack ai="center" fw="wrap" >
             <YStack m="$2" >
               {firstHalf.map((word, index) => (
@@ -44,7 +44,7 @@ export function WordToTranslateBlock({ words }) {
           </XStack>
         </YStack>
         <Separator vertical borderColor="$backgroundFocus"  marginHorizontal="$10"  $sm={{display: "none"}}/>
-        <YStack maw={350}  w="100%" $gtSm={{ width: "40%" }}>
+        <YStack  w="100%" $gtMd={{ width: "43%" }} maw={480}>
         <XStack ai="center" fw="wrap" >
             <YStack m="$2" >
               {secondHalf.map((word, index) => (

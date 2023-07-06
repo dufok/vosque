@@ -206,6 +206,7 @@ export function lesson11Screen() {
 
             <HeaderBlock header={content3?.headerBlock3} />
             <DescriptionBlock description={content3?.descriptionBlock3} />
+            
             <TableBlock table={content3?.tableBlock3} />
 
             <HeaderBlock header={content3?.headerBlock4} />
