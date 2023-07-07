@@ -33,7 +33,7 @@ export function phrasebookScreen() {
 export function WelcomeBlock(){
   return(
       <YStack mt="$10" paddingVertical="$10" ai="center" bc="$backgroundFocus" >
-          <Image mt={30} src={{uri: 'https://cdn.vosque.education/images/img-home-phrasebook.png?raw', width: 26, height: 63}}
+          <Image mt={30} source={{uri: 'https://cdn.vosque.education/images/img-home-phrasebook.png?raw', width: 26, height: 63}}
           height="$8"
           width="$8"
           scale="80%"

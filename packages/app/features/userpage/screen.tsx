@@ -76,7 +76,7 @@ function Welcome({ isSignedIn, currentUser, lessonCount}) {
           <H3 col="$background">Привет {currentUser?.userName} !</H3>
         </YStack>
         <YStack>
-          <Image src={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
+          <Image source={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
             height="100%"
             width="100%"
             />

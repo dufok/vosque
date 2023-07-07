@@ -88,7 +88,7 @@ function StructureCourse() {
         <XStack mt="$4" jc="space-between" fw='wrap'>
           <YStack w='50%' $sm={{ width: '100%' }}>
             <YStack w='100%' p='$3'>
-              <H4 fontWeight="bold" col="$background">Видео с профессиональным<br/>преподавателем-билингвом</H4>
+              <H4 col="$background">Видео с профессиональным<br/>преподавателем-билингвом</H4>
               <Paragraph ta="left" col="$background">Видео, которые приятно и интересно смотреть. Анастасия - носитель испанского и русского языков - доступно ведет уроки, объясняя все правила, давая примеры и рассказывая про разные жизненные ситуации, с которыми Вы можете столкнуться</Paragraph>
             </YStack>
           </YStack>
@@ -96,7 +96,7 @@ function StructureCourse() {
             <XStack h='100%'>
               <Separator w='100%' vertical $sm={{display: "none"}}/>
               <YStack w='100%' p='$3'>
-                <H4 fontWeight="bold" col="$background">Доступная теория</H4>
+                <H4 col="$background">Доступная теория</H4>
                 <Paragraph ta="left" col="$background">После каждого видео Вы увидите теоретический блок, в котором вся теория разложена по полочкам в таблицы для удобства визуального восприятия.</Paragraph>
               </YStack>
             </XStack>
@@ -104,7 +104,7 @@ function StructureCourse() {
           <YStack w='50%' $sm={{ width: '100%' }}>
             <Separator w='100%' $sm={{display: "none"}}/>
             <YStack w='100%' p='$3'>
-              <H4 fontWeight="bold" col="$background">Большое количество упражнений</H4>
+              <H4 col="$background">Большое количество упражнений</H4>
               <Paragraph ta="left" col="$background">После прочтения теоретического блока и закрепления правил, Вам предстоит сделать большое количество разнообразных упражнений. Фразы в упражнениях - именно те, которые Вам понадобятся в ежедневном общении и по ходу выполнения заданий Вы сможете узнать еще много полезного об аргентинском испанском!</Paragraph> 
             </YStack>
           </YStack>
@@ -113,7 +113,7 @@ function StructureCourse() {
             <XStack  h='100%'>
               <Separator w='100%' vertical $sm={{display: "none"}}/>
               <YStack w='100%' p='$3'>
-                <H4 fontWeight="bold" col="$background">Диалоги между носителями<br/>на каждую пройденную тему</H4>
+                <H4 col="$background">Диалоги между носителями<br/>на каждую пройденную тему</H4>
                 <Paragraph ta="left" col="$background">Это уникально! В конце каждого грамматического урока Вас ждут видео, записаные специально для этого курса носителями языка: Вы не просто учите материал, Вы сразу видите, как использовать его в живую!</Paragraph>
               </YStack>
             </XStack>
@@ -136,7 +136,7 @@ function ProgramCourse() {
           <YStack w='50%' $sm={{ width: '100%' }}>
             <YStack w='100%' p='$3'>
               <XStack $sm={{flexWrap: "wrap"}}>
-                <Image src={{uri: 'https://cdn.vosque.education/images/course-fonetica.png?raw', width: 54, height: 91}}
+                <Image source={{uri: 'https://cdn.vosque.education/images/course-fonetica.png?raw', width: 54, height: 91}}
                   height="100%"
                   width="100%"
                   />
@@ -152,7 +152,7 @@ function ProgramCourse() {
               <Separator w='100%' vertical $sm={{display: "none"}}/>
               <YStack w='100%' p='$3'>
                 <XStack $sm={{flexWrap: "wrap"}}>
-                  <Image src={{uri: 'https://cdn.vosque.education/images/course-gramma.png?raw', width: 57, height: 97}}
+                  <Image source={{uri: 'https://cdn.vosque.education/images/course-gramma.png?raw', width: 57, height: 97}}
                     height="100%"
                     width="100%"
                     />
@@ -168,7 +168,7 @@ function ProgramCourse() {
             <Separator w='100%' $sm={{display: "none"}}/>
             <YStack w='100%' p='$3'>
               <XStack $sm={{flexWrap: "wrap"}}>
-                <Image src={{uri: 'https://cdn.vosque.education/images/course-lecsica.png?raw', width: 69, height: 97}}
+                <Image source={{uri: 'https://cdn.vosque.education/images/course-lecsica.png?raw', width: 69, height: 97}}
                   height="100%"
                   width="100%"
                   />
@@ -185,7 +185,7 @@ function ProgramCourse() {
               <Separator w='100%' vertical $sm={{display: "none"}}/>
               <YStack w='100%' p='$3'>
                 <XStack $sm={{flexWrap: "wrap"}}>
-                  <Image  src={{uri: 'https://cdn.vosque.education/images/course-speac.png?raw', width: 52, height: 97 }}
+                  <Image  source={{uri: 'https://cdn.vosque.education/images/course-speac.png?raw', width: 52, height: 97 }}
                     height="100%"
                     width="100%"
                     />

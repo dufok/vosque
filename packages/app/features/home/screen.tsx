@@ -181,7 +181,7 @@ function AboutCourse ({courseLinkProps}) {
         position: 'relative',
       }}>
         <Image
-          src={{ uri: 'https://cdn.vosque.education/images/img-course-trees-left.png?raw', width: 480, height: 480}}
+          source={{ uri: 'https://cdn.vosque.education/images/img-course-trees-left.png?raw', width: 480, height: 480}}
           height='120%'
           width='120%'
           left={0}
@@ -190,7 +190,7 @@ function AboutCourse ({courseLinkProps}) {
           $sm={{ display: 'none'}}
         />
         <Image
-          src={{ uri: 'https://cdn.vosque.education/images/img-course-trees-right.png?raw', width: 274, height: 534}}
+          source={{ uri: 'https://cdn.vosque.education/images/img-course-trees-right.png?raw', width: 274, height: 534}}
           height='120%'
           width='120%'
           right={0}
@@ -207,7 +207,7 @@ function AboutCourse ({courseLinkProps}) {
             zIndex: 1
           }}>
             <Image
-              src={{uri: 'https://cdn.vosque.education/images/img-home-course.png', width: 50, height: 50}}
+              source={{uri: 'https://cdn.vosque.education/images/img-home-course.png', width: 50, height: 50}}
               height={50}
               width={50}
             />

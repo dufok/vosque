@@ -34,7 +34,7 @@ export const LifeHackerBlock: React.FC<LifeHackerBlockProps> = ({
       //shadowOffset={{ width: 0, height: 4 }}
     >
       <Image mt="$2"
-        src={{ uri: `https://cdn.vosque.education/images/lifehack-img.png` , width: 30, height: 30}}
+        source={{ uri: `https://cdn.vosque.education/images/lifehack-img.png` , width: 30, height: 30}}
         width="50"
         height="50"
       />
