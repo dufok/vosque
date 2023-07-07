@@ -2,8 +2,11 @@ import {
   Paragraph,
   YStack,
   XStack,
-  Button } from 'tamagui';
+  Button,
+  ToggleGroup
+  } from 'tamagui';
 import React, { useState, useEffect } from "react";
+import { Play, Pause, Plus } from '@tamagui/lucide-icons';
 
 export type Content = {
   text: string;
@@ -17,43 +20,68 @@ interface ContentsBlockAudioProps {
 export const DopDialog: React.FC<ContentsBlockAudioProps> = ({ contents }) => {
 
   const [isPlaying, setIsPlaying] = React.useState(false);
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [audio, setAudio] = useState(new Audio());
 
-  const togglePlay = (src) => {
-    if (isPlaying && audio) {
+  const togglePlay = (src:string) => {
+    setAudio(new Audio(src));
+    setIsPlaying(true);
+  };
+
+  const togglePause = () => {
+    if (audio) {
       audio.pause();
       setIsPlaying(false);
-    } else {
-      let newAudio = new Audio(src);
-      setAudio(newAudio);
-      newAudio.play();
-      setIsPlaying(true);
     }
-  }
+  };
+
+  const togglePlus10sec = () => {
+    if (audio) {
+      audio.currentTime += 10;
+    }
+  };
 
   useEffect(() => {
-    return () => {
-      // Cleanup function to stop audio playing if component unmounts
-      if (audio) {
-        audio.pause();
-      }
+    if (isPlaying && audio) {
+      audio.play();
     }
-  }, [audio]);
+  }, [isPlaying, audio]);
+
 
   return (
     <YStack ai="center" mb="$4" w="90%" maw={900}>
       {contents.map(({text, src}, index) => (
-          <XStack key={index} style={{flexWrap: 'wrap'}}>
+        <XStack key={index} style={{flexWrap: 'wrap'}}>
+          {activeIndex === index ? (
+            <ToggleGroup
+            orientation="horizontal"
+            id="alignment"
+            type="single"
+            w={200} h={50}
+            >
+              <ToggleGroup.Item value="left" aria-label="Left aligned">
+                <Play onPress={() => togglePlay(src)} />
+              </ToggleGroup.Item>
+              <ToggleGroup.Item value="center" aria-label="Center aligned">
+                <Pause onPress={togglePause} />
+              </ToggleGroup.Item>
+              <ToggleGroup.Item value="right" aria-label="Right aligned">
+                <Plus onPress={togglePlus10sec} />
+              </ToggleGroup.Item>
+            </ToggleGroup>
+          ):(
             <Button 
-              onPress={() => togglePlay(src)}
-              bc={'$borderColor'}
-              w={200} h={50}
-              m="$2"
-              >
-                <Paragraph col='$background'>{text}</Paragraph>
-              </Button>
-          </XStack>
-        ))}
+            onPress={() => togglePlay(src)}
+            bc={'$borderColor'}
+            w={200} h={50}
+            m="$2"
+            >
+              <Paragraph col='$background'>{text}</Paragraph>
+            </Button>
+          )}
+        </XStack>
+      ))}
     </YStack>
   )
 }
+
