@@ -31,18 +31,6 @@ import texts from './rew.json';
 
 export function HomeScreen() {
 
-  /*
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 5500); // 2 seconds delay
-
-    return () => clearTimeout(timer); // Clean up on component unmount
-  }, []);
-  */
-
   const userpageLinkProps = useLink({ href: "/userpage"});
   const phasebookLinkProps = useLink({href: "/phrasebook"});
   const courseLinkProps = useLink({href: "/course"});
@@ -50,20 +38,18 @@ export function HomeScreen() {
   const imageSource = { uri: 'https://cdn.vosque.education/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw'};
   const imageSource1 = { uri: 'https://cdn.vosque.education/images/avatar.png?raw'};
   
-
-
-
-  //block with errors from Author 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
+
+  if (isLoading) {
+      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
+  }
+
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
-  }
-  if (isLoading) {
-    return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
   }
 
   return (
@@ -155,7 +141,7 @@ function AboutAutor({imageSource1}){
           <Avatar size="$15" mt={85}>
             <Avatar.Image
               accessibilityLabel="Анастасия Лукьянова"
-              src={imageSource1}
+              source={imageSource1}
             />
             <Avatar.Fallback backgroundColor="$backgroundFocus" />
           </Avatar>
