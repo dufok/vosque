@@ -50,7 +50,7 @@ export function lesson12Screen() {
 
   const userpageLinkProps = useLink({ href: "/userpage"});
   const lessonLinkPageUP = useLink({ href: "/lesson1"});
-  const lessonLinkPageDown = useLink({ href: "/lesson11_3"});
+  const lessonLinkPageDown = useLink({ href: "/lesson11"});
 
   const exercises1 = Object.values(content?.exercisesBlockText1 || {});
   const exercises2 = Object.values(content?.exercisesBlockText2 || {});
@@ -89,77 +89,77 @@ export function lesson12Screen() {
     <YStack>
         <HeaderComp />
         { isSignedIn && (
-      <YStack f={1}>
-      <YStack ai="center" mt="$10">
-        <WelcomeBlock
-          name={TwelfthLesson?.name}
-          description={content?.description}/>
-          <YStack  w="100%" $gtSm={{ width: "70%" }}>
-            <VideoPlayer linkVideo={content?.video}/>
+          <YStack f={1}>
+          <YStack ai="center" mt="$10">
+            <WelcomeBlock
+              name={TwelfthLesson?.name}
+              description={content?.description}/>
+              <YStack  w="100%" $gtSm={{ width: "70%" }}>
+                <VideoPlayer linkVideo={content?.video}/>
+              </YStack>
+            <ImageCircle img={content?.image}/>
+
+            <HeaderBlock header={content?.headerBlock1}/>
+            <ExercisesBlockText exercises={exercises1} />
+
+            <TableBlock table={content?.tableBlock1} />
+            <TableBlock table={content?.tableBlock2} />
+            <TableBlock table={content?.tableBlock3} />
+            <LifeHackerBlock
+              lifehacktitle={content?.lifeHackerBlock1.title}
+              descriptions={[
+                content?.lifeHackerBlock1.description1,
+                content?.lifeHackerBlock1.description2,
+                content?.lifeHackerBlock1.description3,
+                content?.lifeHackerBlock1.description4,
+              ]}
+              contents={[
+                content?.lifeHackerBlock1.content1,
+                content?.lifeHackerBlock1.content2,
+                content?.lifeHackerBlock1.content3,
+                content?.lifeHackerBlock1.content4,
+              ]}
+            />
+
+            <HeaderBlock header={content?.headerBlock2} />
+            <SquareText text={content?.squareText1} />
+            <LangTest3 example={example3_1} tests={tests3_1} isOneColumn/>
+            <SquareText text={content?.squareText2} />
+            <LangTest1 example={example1_1} tests={tests1_1} />
+
+            <HeaderBlock header={content?.headerBlock3} />
+            <ExercisesBlockText exercises={exercises2} />
+
+            <TableBlock table={content?.tableBlock4} />
+            <TableBlock table={content?.tableBlock5} />
+            <TextExampleBlock textExamples={textExample1}/>
+            <SquareText text={content?.squareText3} />
+            <DescriptionBlock description={content?.descriptionBlock4} />
+            <WordToTranslateBlock words={wordToTranslate1} />
+            <YStack mt="$5" />
+            <DescriptionBlock description={content?.descriptionBlock5} />
+            <SquareText text={content?.squareText4} />
+            <LangTest1 example={example1_2} tests={tests1_2} />
+            <SquareText text={content?.squareText5} />
+            <LangTest1 example={example1_3} tests={tests1_3} />
+            <SquareText text={content?.squareText6} />
+            <LangTest1 example={example1_4} tests={tests1_4} />
+            <SquareText text={content?.squareText7} />
+            <WordToTranslateBlock words={wordToTranslate2} />
+            <LangTest1 example={example1_5} tests={tests1_5} isOneColumn/>
+            <LangTest1 example={example1_6} tests={tests1_6} isOneColumn/>
+            <HeaderBlock header={content?.headerBlock3} />
+            <DopDialog contents={dopDialog1}/>
+
           </YStack>
-        <ImageCircle img={content?.image}/>
-
-        <HeaderBlock header={content?.headerBlock1}/>
-        <ExercisesBlockText exercises={exercises1} />
-
-        <TableBlock table={content?.tableBlock1} />
-        <TableBlock table={content?.tableBlock2} />
-        <TableBlock table={content?.tableBlock3} />
-        <LifeHackerBlock
-          lifehacktitle={content?.lifeHackerBlock1.title}
-          descriptions={[
-            content?.lifeHackerBlock1.description1,
-            content?.lifeHackerBlock1.description2,
-            content?.lifeHackerBlock1.description3,
-            content?.lifeHackerBlock1.description4,
-          ]}
-          contents={[
-            content?.lifeHackerBlock1.content1,
-            content?.lifeHackerBlock1.content2,
-            content?.lifeHackerBlock1.content3,
-            content?.lifeHackerBlock1.content4,
-          ]}
-        />
-
-        <HeaderBlock header={content?.headerBlock2} />
-        <SquareText text={content?.squareText1} />
-        <LangTest3 example={example3_1} tests={tests3_1} isOneColumn/>
-        <SquareText text={content?.squareText2} />
-        <LangTest1 example={example1_1} tests={tests1_1} />
-
-        <HeaderBlock header={content?.headerBlock3} />
-        <ExercisesBlockText exercises={exercises2} />
-
-        <TableBlock table={content?.tableBlock4} />
-        <TableBlock table={content?.tableBlock5} />
-        <TextExampleBlock textExamples={textExample1}/>
-        <SquareText text={content?.squareText3} />
-        <DescriptionBlock description={content?.descriptionBlock4} />
-        <WordToTranslateBlock words={wordToTranslate1} />
-        <YStack mt="$5" />
-        <DescriptionBlock description={content?.descriptionBlock5} />
-        <SquareText text={content?.squareText4} />
-        <LangTest1 example={example1_2} tests={tests1_2} />
-        <SquareText text={content?.squareText5} />
-        <LangTest1 example={example1_3} tests={tests1_3} />
-        <SquareText text={content?.squareText6} />
-        <LangTest1 example={example1_4} tests={tests1_4} />
-        <SquareText text={content?.squareText7} />
-        <WordToTranslateBlock words={wordToTranslate2} />
-        <LangTest1 example={example1_5} tests={tests1_5} isOneColumn/>
-        <LangTest1 example={example1_6} tests={tests1_6} isOneColumn/>
-        <HeaderBlock header={content?.headerBlock3} />
-        <DopDialog contents={dopDialog1}/>
-
+        <NavigationBlock
+          lessonLinkPageDOWNname={"Урок 11 (часть 3)"}
+          lessonLinkPageUPname={"Урок 1"}
+          lessonLinkPageUP={lessonLinkPageUP} 
+          lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>
-    <NavigationBlock
-      lessonLinkPageDOWNname={"Урок 11 (часть 3)"}
-      lessonLinkPageUPname={"Урок 1"}
-      lessonLinkPageUP={lessonLinkPageUP} 
-      lessonLinkPageDOWN={lessonLinkPageDown}/>
-  </YStack>
     )}
       <SubMenu userpageLinkProps={userpageLinkProps}/>
-    </YStack>
-  );
+  </YStack>
+);
 } 

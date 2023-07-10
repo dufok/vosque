@@ -143,9 +143,6 @@ export function lesson10Screen() {
             <WelcomeBlock
               name={content2?.name}
               description={content2?.description}/>
-              <YStack  w="100%" $gtSm={{ width: "70%" }}>
-                <VideoPlayer linkVideo={content2?.video}/>
-              </YStack>
 
             <HeaderBlock header={content2?.headerBlock1}/>
             <TableBlock table={content2?.tableBlock1} />

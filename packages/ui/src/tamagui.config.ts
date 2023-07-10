@@ -81,6 +81,7 @@ const bodyVosqueFont = createFont({
     4: 10,
     5: 8,
     6: 6,
+    true: 16,
   },
   lineHeight: {
     1: 18,
@@ -122,6 +123,7 @@ const bodyBoldVosqueFont = createFont({
     4: 10,
     5: 8,
     6: 6,
+    true: 16,
   },
   lineHeight: {
     1: 18,
@@ -163,6 +165,7 @@ const hackVosqueFont = createFont({
     4: 10,
     5: 8,
     6: 6,
+    true: 16,
   },
   lineHeight: {
     1: 18,

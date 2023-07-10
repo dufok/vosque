@@ -2,10 +2,8 @@ import { Asterisk } from '@tamagui/lucide-icons'
 import {
   Adapt,
   Button,
-  Label,
   Paragraph,
   Popover,
-  XStack,
   YStack,
 } from 'tamagui'
 
@@ -13,7 +11,7 @@ export function HelpComp({texts, html}) {
   return (
     <Popover size="$5" allowFlip placement="top" > 
       <Popover.Trigger asChild>
-        <Button size="$1" icon={Asterisk} />
+        <Button bw={0} size="$1" icon={Asterisk} />
       </Popover.Trigger>
 
       <Adapt when="sm" platform="touch">
@@ -21,7 +19,7 @@ export function HelpComp({texts, html}) {
           <Popover.Sheet.Frame padding="$4">
             <Adapt.Contents />
           </Popover.Sheet.Frame>
-          <Popover.Sheet.Overlay />
+          <Popover.Sheet.Overlay o={0}/>
         </Popover.Sheet>
       </Adapt>
 

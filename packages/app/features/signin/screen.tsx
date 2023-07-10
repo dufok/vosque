@@ -58,7 +58,7 @@ export function SignInScreen() {
 
   const redirectIfSignedIn = async () => {
     if (signIn.status == "complete") {
-      push("/userpage");
+      window.location.href = "/userpage";
     }
   };
 

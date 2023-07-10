@@ -44,7 +44,7 @@ export const LangTest2: React.FC<LangTestProps> = ({ tests, example }) => {
         toastProperties = {
           id: 2,
           title: "Упс",
-          description: `Ответ должен быть таким "${help}"`,
+          description: `Ответ должен быть таким \n "${help}"`,
           backgroundColor: "#d9534f",
           icon: Triangle,
         };

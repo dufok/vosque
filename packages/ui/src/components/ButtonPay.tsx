@@ -26,6 +26,7 @@ import { ToastComp } from "@my/ui/src/components/ToastComp";
 
 
 export function ButtonPay(props: {
+  name: string
   description: string
   course: string
   coupon: string
@@ -45,9 +46,9 @@ export function ButtonPay(props: {
   };
 
   //this for paying options
-  const summaryCardBody = `Номер карты СберБанка. После перевода подтвердите нажав ниже кнопку "Перевод Выполнен"`;
+  const summaryCardBody = `Номер карты Тиньков. После перевода подтвердите, нажав ниже кнопку "Перевод Выполнен"`;
   const summaryUSDTBody = `Номер кошелька USDT (TRC20). После перевода подтвердите нажав ниже кнопку "Перевод Выполнен"`;
-  const summaryCardHead = `0000 0000 0000 0000`;
+  const summaryCardHead = `5536 9140 3988 8122`;
   const summaryUSDTHead = `TVyFKcfTPAmEdF5iYX3XiveLQ6HaV1UQ38`;
 
   const summaryBody = currency === "RUB" ? summaryCardBody : currency === "USDT" ? summaryUSDTBody : "";
@@ -135,7 +136,7 @@ export function ButtonPay(props: {
         bw="$1"
         boc="$backgroundPress" h={80} w={270}>
         <Paragraph color="$background" ta="center">
-          Тариф <br/> Online </Paragraph></Button>
+         {props.name} </Paragraph></Button>
       </Dialog.Trigger>
 
       <Adapt when="sm" platform="touch">
@@ -143,7 +144,7 @@ export function ButtonPay(props: {
           <Sheet.Frame padding="$4" space>
             <Adapt.Contents />
           </Sheet.Frame>
-          <Sheet.Overlay />
+          <Sheet.Overlay o={0}/>
         </Sheet>
       </Adapt>
 
@@ -152,6 +153,7 @@ export function ButtonPay(props: {
           key="overlay"
           animation="quick"
           o={0.5}
+          style={{ opacity: 0.5}}
           enterStyle={{ o: 0 }}
           exitStyle={{ o: 0 }}
         />
@@ -174,7 +176,9 @@ export function ButtonPay(props: {
         >
           <Dialog.Title>Тариф Online</Dialog.Title>
           <Dialog.Description>
-            {props.description}
+            <Paragraph fontFamily="$bodyBold">
+              {props.description}
+            </Paragraph>
           </Dialog.Description>
             <YStack ai="center" m="$4">
               {isSignedIn && (
@@ -227,7 +231,7 @@ export function ButtonPay(props: {
                       <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                           await handleTransferCompleted();
                           showToast("success");
-                      }}> Перевод выполнен ! </Button>
+                      }}>Перевод выполнен!</Button>
                     </Dialog.Close>
                   </YStack>
                 </YStack>

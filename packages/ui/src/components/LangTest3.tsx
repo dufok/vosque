@@ -100,9 +100,8 @@ export const LangTest3: React.FC<LangTestProps> = ({ tests, example, isOneColumn
                 position={position}
                 onPositionChange={setPosition}
                 zIndex={100_000}
-                
               >
-              <Sheet.Overlay />
+              <Sheet.Overlay o={0}/>
               <Sheet.Handle />
               <Sheet.Frame
                 flex={1}

@@ -51,41 +51,40 @@ export function ToastComp(props) {
       }, [list, autoDelete, autoDeleteTime, toastList]);
 
     return (
-            <YStack
-            //@ts-ignore
-            pos="fixed"
-            className={`notification-container ${position}`}
+      <YStack
+      //@ts-ignore
+      pos="fixed"
+      className={`notification-container ${position}`}
+      >
+        {list.map((toast) =>
+          <XStack
+            br="$2"
+            p="$2"
+            maw="100%"
+            jc="center"
+            key={toast.id}
+            className={`notification toast ${position}`}
+            bg={toast.backgroundColor}
+            space="$2"
             >
-                {
-                    list.map((toast) =>
-                        <XStack
-                        jc="space-between"
-                        w="100%" ai="center"
-                        br="$2"
-                        p="$2"
-                        key={toast.id}
-                        className={`notification toast ${position}`}
-                        bg={toast.backgroundColor}
-                        space="$2"
-                            >
-                            < toast.icon size={30}/>
-                            <YStack >
-                                <H5 >{toast.title}</H5>
-                                <Paragraph >
-                                    {toast.description}
-                                </Paragraph>
-                            </YStack>
-                            <Button
-                            pos="absolute"
-                            t="$3" r="$3"
-                            size="$2"
-                            circular
-                            icon={X}
-                            bg={toast.backgroundColor}
-                            onPress={() => deleteToast(toast.id)}/>
-                        </XStack>
-                    )
-                }
+            <YStack>
+              <toast.icon size={30}/>
             </YStack>
+            <YStack maw="80%" ai="flex-start">
+              <H5 >{toast.title}</H5>
+              <Paragraph dangerouslySetInnerHTML={{ __html: toast.description.replace(/\n/g, "<br />") }}/>
+            </YStack>
+            <Button
+            pos="absolute"
+            t="$3" r="$3"
+            size="$2"
+            circular
+            icon={X}
+            bg={toast.backgroundColor}
+            onPress={() => deleteToast(toast.id)}/>
+          </XStack>
+          )
+        }
+      </YStack>
     );
 }

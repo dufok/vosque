@@ -38,8 +38,8 @@ export function lesson1Screen() {
   //lesson content
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   
-  const lessonName = "Урок 1. Фонетика";
-  const firstLesson = userLessons?.find(lesson => lesson.name === lessonName);
+  const lessonName = "урок 1";
+  const firstLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
   //part with types from file json full
 
@@ -74,7 +74,7 @@ export function lesson1Screen() {
     <YStack>
       <HeaderComp />
       { isSignedIn && (
-      <YStack f={1}>
+        <YStack f={1}>
         <YStack ai="center" mt="$10">
           <WelcomeBlock
             name={firstLesson?.name}
@@ -89,81 +89,70 @@ export function lesson1Screen() {
           <HeaderBlock header={content?.headerBlock1}/>
           <SquareText text={content?.squareText1}/>
           <DescriptionBlock description={content?.descriptionBlock1}/>
-          <ButtonSquereSheet letters={letters} />
-
-          {/* Обратите внимание: */}
+          <ButtonSquereSheet letters={letters} /> 
 
           <SquareText text={content?.squareText2}/>
           <TextExampleBlock textExamples={textExampleBlock1}/>
           <LifeHackerBlock
-              lifehacktitle={content?.lifeHackerBlock1.title}
-              descriptions={[
-                content?.lifeHackerBlock1.description1,
-                content?.lifeHackerBlock1.description2,
-                content?.lifeHackerBlock1.description3,
-                content?.lifeHackerBlock1.description4,
-              ]}
-              contents={[
-                content?.lifeHackerBlock1.content1,
-                content?.lifeHackerBlock1.content2,
-                content?.lifeHackerBlock1.content3,
-                content?.lifeHackerBlock1.content4,
-              ]}
-            />
+            lifehacktitle={content?.lifeHackerBlock1.title}
+            descriptions={[
+              content?.lifeHackerBlock1.description1,
+              content?.lifeHackerBlock1.description2,
+              content?.lifeHackerBlock1.description3,
+              content?.lifeHackerBlock1.description4,
+            ]}
+            contents={[
+              content?.lifeHackerBlock1.content1,
+              content?.lifeHackerBlock1.content2,
+              content?.lifeHackerBlock1.content3,
+              content?.lifeHackerBlock1.content4,
+            ]}
+          />
           <TextExampleBlock textExamples={textExampleBlock2}/>
-
-          {/* БЛОК УПРАЖНЕНИЙ */}
 
           <HeaderBlock header={content?.headerBlock2}/>
           <SquareText text={content?.squareText3}/>
           <ExercisesBlockAudioWithDisc exercises={exercisesBlockAudioWithDisc1} />
-
-          {/* Чтение Фраз */}
 
           <HeaderBlock header={content?.headerBlock3}/>
           <DescriptionBlock description={content?.descriptionBlock2}/>
           <SquareText text={content?.squareText4}/>
           <ExercisesBlockAudio exercises={exercisesBlockAudio1}/>
           <LifeHackerBlock
-              lifehacktitle={content?.lifeHackerBlock2.title}
-              descriptions={[
-                content?.lifeHackerBlock2.description1,
-                content?.lifeHackerBlock2.description2,
-                content?.lifeHackerBlock2.description3,
-                content?.lifeHackerBlock2.description4,
-              ]}
-              contents={[
-                content?.lifeHackerBlock2.content1,
-                content?.lifeHackerBlock2.content2,
-                content?.lifeHackerBlock2.content3,
-                content?.lifeHackerBlock2.content4,
-              ]}
-            />
+            lifehacktitle={content?.lifeHackerBlock2.title}
+            descriptions={[
+              content?.lifeHackerBlock2.description1,
+              content?.lifeHackerBlock2.description2,
+              content?.lifeHackerBlock2.description3,
+              content?.lifeHackerBlock2.description4,
+            ]}
+            contents={[
+              content?.lifeHackerBlock2.content1,
+              content?.lifeHackerBlock2.content2,
+              content?.lifeHackerBlock2.content3,
+              content?.lifeHackerBlock2.content4,
+            ]}
+          />
           
-
-          {/* БЛОК УДАРЕНИЕ */}
-
           <HeaderBlock header={content?.headerBlock4}/>
           <ExercisesBlockText exercises={exercises1}/>
           <SquareText text={content?.squareText5}/>
           <ExercisesBlockAudio exercises={exercisesBlockAudio2}/>
           <LifeHackerBlock
-              lifehacktitle={content?.lifeHackerBlock3.title}
-              descriptions={[
-                content?.lifeHackerBlock3.description1,
-                content?.lifeHackerBlock3.description2,
-                content?.lifeHackerBlock3.description3,
-                content?.lifeHackerBlock3.description4,
-              ]}
-              contents={[
-                content?.lifeHackerBlock3.content1,
-                content?.lifeHackerBlock3.content2,
-                content?.lifeHackerBlock3.content3,
-                content?.lifeHackerBlock3.content4,
-              ]}
-            />
-
-          {/* БЛОК  ЛЕКСИКИ */}
+            lifehacktitle={content?.lifeHackerBlock3.title}
+            descriptions={[
+              content?.lifeHackerBlock3.description1,
+              content?.lifeHackerBlock3.description2,
+              content?.lifeHackerBlock3.description3,
+              content?.lifeHackerBlock3.description4,
+            ]}
+            contents={[
+              content?.lifeHackerBlock3.content1,
+              content?.lifeHackerBlock3.content2,
+              content?.lifeHackerBlock3.content3,
+              content?.lifeHackerBlock3.content4,
+            ]}
+          />
 
           <HeaderBlock header={content?.headerBlock5}/>
           <DescriptionBlock description={content?.descriptionBlock3}/>
@@ -172,10 +161,10 @@ export function lesson1Screen() {
         <NavigationBlock lessonLinkPageDOWNname={"Урок 1"} lessonLinkPageUPname={"Урок 2"} lessonLinkPageUP={lessonLinkPageUP} lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>
       )}
-        <SubMenu userpageLinkProps={userpageLinkProps}/>
-      </YStack>
-    );
-  }
+      <SubMenu userpageLinkProps={userpageLinkProps}/>
+    </YStack>
+  );
+}
 
   //ButtonSquereSheet block
 

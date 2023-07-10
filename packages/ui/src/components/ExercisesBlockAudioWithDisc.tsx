@@ -16,15 +16,15 @@ interface ExercisesBlockAudioWithDiscProps {
 
  export const ExercisesBlockAudioWithDisc: React.FC<ExercisesBlockAudioWithDiscProps> = ({ exercises }) => {
   return (
-    <YStack marginHorizontal="$6" ai="flex-start" w="90%" maw={900} mb="$4">
+    <YStack marginHorizontal="$6" ai="flex-start" width="90%" maw={900} mb="$4">
       <YStack>
       {exercises.map(({description, text, audio}, index) => (
-        <XStack  key={index} style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-          <YStack marginVertical="$4" mr="$2"  style={{flex: 1}}> 
+        <XStack  key={index} fw="wrap" w="100%" f={1}>
+          <YStack marginVertical="$4" mr="$2" f={0.6}> 
             <Paragraph fontFamily="$bodyBold" mb="$2" ta="left" >{description}</Paragraph>
             <ParagraphCustom text={text}/>
           </YStack>
-          <YStack ai="flex-start" jc="center">
+          <YStack ai="flex-end" jc="center" w="100%" f={0.4}>
             <AudioPlayer src={audio}/>
           </YStack>
         </XStack>

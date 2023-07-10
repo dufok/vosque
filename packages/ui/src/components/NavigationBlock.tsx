@@ -6,12 +6,12 @@ export function NavigationBlock({lessonLinkPageUP, lessonLinkPageDOWN, lessonLin
   return (
     <XStack m="$2" mt="$6" f={1}>
       <YStack f={0.5} ai="flex-start">
-        <Button {...lessonLinkPageDOWN} icon={ArrowLeft}>
+        <Button bw={0} {...lessonLinkPageDOWN} icon={ArrowLeft}>
           {lessonLinkPageDOWNname}
         </Button>
       </YStack>
       <YStack f={0.5} ai="flex-end">
-        <Button {...lessonLinkPageUP} icon={ArrowRight}>
+        <Button bw={0} {...lessonLinkPageUP} icon={ArrowRight}>
           {lessonLinkPageUPname}
         </Button> 
       </YStack>

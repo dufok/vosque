@@ -31,18 +31,6 @@ import texts from './rew.json';
 
 export function HomeScreen() {
 
-  /*
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 5500); // 2 seconds delay
-
-    return () => clearTimeout(timer); // Clean up on component unmount
-  }, []);
-  */
-
   const userpageLinkProps = useLink({ href: "/userpage"});
   const phasebookLinkProps = useLink({href: "/phrasebook"});
   const courseLinkProps = useLink({href: "/course"});
@@ -50,20 +38,18 @@ export function HomeScreen() {
   const imageSource = { uri: 'https://cdn.vosque.education/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw'};
   const imageSource1 = { uri: 'https://cdn.vosque.education/images/avatar.png?raw'};
   
-
-
-
-  //block with errors from Author 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
+
+  if (isLoading) {
+      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
+  }
+
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
-  }
-  if (isLoading) {
-    return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
   }
 
   return (
@@ -155,7 +141,7 @@ function AboutAutor({imageSource1}){
           <Avatar size="$15" mt={85}>
             <Avatar.Image
               accessibilityLabel="Анастасия Лукьянова"
-              src={imageSource1}
+              source={imageSource1}
             />
             <Avatar.Fallback backgroundColor="$backgroundFocus" />
           </Avatar>
@@ -176,75 +162,52 @@ function AboutAutor({imageSource1}){
 
 function AboutCourse ({courseLinkProps}) {
     return(
-      <View style={{
-        flex: 1,
-        position: 'relative',
+      <YStack
+        mt={100}
+        ai="center"
+        mb={200}
+        $xs={{ marginTop : 50, mb: 50}}
+        style={{
+        zIndex: 1
       }}>
         <Image
-          src={{ uri: 'https://cdn.vosque.education/images/img-course-trees-left.png?raw', width: 480, height: 480}}
-          height='120%'
-          width='120%'
-          left={0}
-          bottom={0}
-          pos="absolute"
-          $sm={{ display: 'none'}}
+          source={{uri: 'https://cdn.vosque.education/images/img-home-course.png', width: 50, height: 50}}
+          height={50}
+          width={50}
         />
-        <Image
-          src={{ uri: 'https://cdn.vosque.education/images/img-course-trees-right.png?raw', width: 274, height: 534}}
-          height='120%'
-          width='120%'
-          right={0}
-          bottom={0}
-          pos="absolute"
-          $sm={{ display: 'none' }}
-        />
-          <YStack
-            mt={100}
-            ai="center"
-            mb={200}
-            $xs={{ marginTop : 50, mb: 50}}
-            style={{
-            zIndex: 1
-          }}>
-            <Image
-              src={{uri: 'https://cdn.vosque.education/images/img-home-course.png', width: 50, height: 50}}
-              height={50}
-              width={50}
-            />
-            <H2 tt="uppercase">курсы</H2>
-            <YStack mt={40} maw={800}>
-              <Paragraph paddingHorizontal="$6" ta="center">Хотите научиться разговаривать, как аргентинцы? Наши курсы сфокусированы на грамматике и практических навыках, чтобы вы могли использовать новые знания в повседневной жизни и на работе.</Paragraph>
-              <Paragraph paddingHorizontal="$6" mt="$5" ta="center">Присоединяйтесь к нашим курсам аргентинского испанского языка и расширьте свои горизонты!</Paragraph>
-            </YStack>
-            <XStack mt={53} fw="wrap" w='100%' jc="space-around" maw={850}>
-              <YStack marginVertical="$4">
-                <Button
-                  backgroundColor="$backgroundPress"
-                  elevation="$0.5"
-                  br="$2"
-                  bw="$1"
-                  boc="$backgroundPress" h={70} w={350}
-                  {...courseLinkProps}>
-                    <Paragraph color="$background" ta="center">
-                      Базовый курс <br/> аргентинского испанского
-                    </Paragraph>
-                </Button>
-              </YStack> 
-              <YStack marginVertical="$4">
-                <Button
-                  elevation="$0.5"
-                  br="$2"
-                  bw="$1"
-                  boc="$backgroundPress"
-                  h={70} w={350}>
-                    <Paragraph color="$backgroundPress" ta="center">
-                      Скоро Больше Курсов
-                    </Paragraph>
-                </Button>
-              </YStack>
-            </XStack>
+        <H2 tt="uppercase">курсы</H2>
+        <YStack mt={40} maw={800}>
+          <Paragraph paddingHorizontal="$6" ta="center">Хотите научиться разговаривать, как аргентинцы? Наши курсы сфокусированы на грамматике и практических навыках, чтобы вы могли использовать новые знания в повседневной жизни и на работе.</Paragraph>
+          <Paragraph paddingHorizontal="$6" mt="$5" ta="center">Присоединяйтесь к нашим курсам аргентинского испанского языка и расширьте свои горизонты!</Paragraph>
+        </YStack>
+        <YStack mt={53} w='100%' maw={850} ai="center" space="$2">
+          <YStack marginVertical="$4">
+            <Button
+              backgroundColor="$borderColor"
+              elevation="$0.5"
+              br="$2"
+              bw="$1"
+              boc="$backgroundPress" h={70} w={350}
+              {...courseLinkProps}>
+                <Paragraph color="$background" ta="center">
+                  Базовый курс <br/> аргентинского испанского
+                </Paragraph>
+            </Button>
+          </YStack> 
+          <YStack marginVertical="$4">
+            <Button
+              elevation="$0.5"
+              br="$2"
+              bw="$1"
+              boc="$backgroundPress"
+              h={40} w={200}>
+                <Paragraph color="$backgroundPress" ta="center">
+                  Скоро Больше Курсов
+                </Paragraph>
+            </Button>
           </YStack>
-      </View>
+        </YStack>
+      </YStack>
     )
 }
  
@@ -262,7 +225,7 @@ function ReviewSection () {
           <YStack key={index} w='100%'>
               <Square
                   br="$2"
-                  bc="$backgroundPress"
+                  bc="$borderColor"
                   m="$4"
                   p="$3"
                   pressStyle={{ scale: 0.98 }}
@@ -271,7 +234,7 @@ function ReviewSection () {
                     setSelectedText(textObj);
                   }}
               >
-                <Paragraph ta="center" >{truncate(textObj.text)}" - {textObj.name}</Paragraph>
+                <Paragraph col="$background" ta="center" >{truncate(textObj.text)}" - {textObj.name}</Paragraph>
               </Square>
           </YStack>
       ));
@@ -298,21 +261,22 @@ function ReviewSection () {
               modal={true}
               open={open}
               onOpenChange={setOpen}
-              snapPoints={[85, 50, 25]}
+              snapPoints={[50, 25]}
               dismissOnSnapToBottom
               position={position}
               onPositionChange={setPosition}
               zIndex={100_000}
-              
             >
-              <Sheet.Overlay />
+              <Sheet.Overlay o={0}/>
               <Sheet.Handle />
               <Sheet.Frame
                 flex={1}
                 padding="$4"
                 justifyContent="center"
                 alignItems="center"
+                alignSelf="center"
                 space="$5"
+                $gtSm={{ width: "50%" }}
               >
                 <Button size="$6" boc="$backgroundFocus" circular icon={ChevronDown} onPress={() => setOpen(false)} />
                 <Sheet.ScrollView padding="$4" space>

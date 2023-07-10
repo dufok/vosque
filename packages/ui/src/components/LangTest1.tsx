@@ -80,7 +80,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example, isOneColumn
         toastProperties = {
           id: 2,
           title: "Упс",
-          description: `Ответ должен быть таким "${unswer[0]}"`,
+          description: `Ответ должен быть таким:  \n ${unswer[0]}`,
           backgroundColor: "#d9534f",
           icon: Triangle,
         };
@@ -162,9 +162,9 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example, isOneColumn
 
       <ToastComp 
         toastList={list}
-        position="bottom-right"
+        position="bottom-center"
         autoDelete={true}
-        autoDeleteTime={3000}
+        autoDeleteTime={6000}
       />
       
       {example && (

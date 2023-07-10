@@ -18,11 +18,11 @@ export const ExercisesBlockAudio: React.FC<ExercisesBlockAudioProps> = ({ exerci
     <YStack marginHorizontal="$6" ai="flex-start" w="90%" maw={900} mb="$4">
       <YStack>
         {exercises.map(({text, audio}, index) => (
-            <XStack key={index} style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-              <YStack marginVertical="$4" style={{flex: 1}}>
+            <XStack key={index} fw="wrap" w="100%" f={1}>
+              <YStack marginVertical="$4" f={0.6}>
                 <H3Custom text={text} />
               </YStack>
-              <YStack paddingHorizontal="$3" ai="flex-start" jc="center">
+              <YStack paddingHorizontal="$3" ai="flex-start" jc="center" f={0.4}>
                 <AudioPlayer src={audio}/>
               </YStack>
             </XStack>

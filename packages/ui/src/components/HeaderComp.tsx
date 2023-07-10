@@ -28,10 +28,16 @@ export function HeaderComp() {
       >
         <XStack space="$4" $sm={{display: "none"}} >
           <TextLink prefetch={false} href="/phrasebook">
-            <Paragraph >Разговорники</Paragraph>
+            <Paragraph
+              hoverStyle={{ opacity: 0.6}}>
+                Разговорники
+            </Paragraph>
           </TextLink>
           <TextLink prefetch={false} href="/course">
-            <Paragraph >Курсы</Paragraph>
+            <Paragraph  
+              hoverStyle={{ opacity: 0.6}}>
+                Курсы
+            </Paragraph>
           </TextLink>
         </XStack>
         <TextLink href="/">

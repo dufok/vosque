@@ -14,10 +14,6 @@ import React from "react";
 ///
 
 function parseAndRenderText(text, color) {
-
-  if (typeof text !== 'string') {
-    return null; // Or return a default value or throw an error, as appropriate for your use case
-  }
   
   const parts = text.split(/(\*\/|\/\*|~|\^|_|\*)/);
   let isBlue = false;

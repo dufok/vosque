@@ -45,7 +45,7 @@ interface TableBlockProps {
 export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
   const maxColumns = Math.max(...table.rows.map(row => row.data.length + (row.name ? 1 : 0)));
   let scaleFactor = 1;
-  if (maxColumns > 3 && maxColumns < 6 && useWindowDimensions().width < 500) {
+  if (maxColumns > 4 && useWindowDimensions().width < 500) {
     scaleFactor = 0.8;
   }
   return (

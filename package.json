@@ -38,8 +38,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.9",
-    "@tamagui/animations-css": "^1.30.0",
-    "@tamagui/collection": "^1.21.0",
+    "@tamagui/animations-css": "^1.39.5",
+    "@tamagui/collection": "^1.39.5",
     "dotenv": "^16.0.3",
     "dotenv-cli": "^6.0.0"
   },

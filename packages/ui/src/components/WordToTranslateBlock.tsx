@@ -21,18 +21,21 @@ export function WordToTranslateBlock({ words }) {
       <XStack fw="wrap" jc="space-around" >
         <YStack  w="100%" $gtMd={{ width: "43%" }} maw={480}>
           <XStack ai="center" fw="wrap" >
+
             <YStack m="$2" >
               {firstHalf.map((word, index) => (
                 <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index}>{word.text1}</Paragraph>
               ))}
             </YStack>
+
             <YStack m="$2" f={1}>
-              {firstHalf.map((word, index) => (
-                <YStack h={22} mt="$1.5" mb="$1.5" key={index} jc="center">
+              {firstHalf.map((index) => (
+                <YStack h={18} mt="$1.5" mb="$1.5" key={index} jc="center">
                   <Separator w="50%" borderColor="$backgroundFocus" key={index} alignSelf="center"/>
                 </YStack>
               ))}
             </YStack>
+
             <YStack m="$2" > 
               {firstHalf.map((word, index) => (
                 <XStack >
@@ -41,23 +44,29 @@ export function WordToTranslateBlock({ words }) {
                 </XStack>
               ))}
             </YStack>
+
           </XStack>
         </YStack>
+
         <Separator vertical borderColor="$backgroundFocus"  marginHorizontal="$10"  $sm={{display: "none"}}/>
+        
         <YStack  w="100%" $gtMd={{ width: "43%" }} maw={480}>
         <XStack ai="center" fw="wrap" >
+
             <YStack m="$2" >
               {secondHalf.map((word, index) => (
                 <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index}>{word.text1}</Paragraph>
               ))}
             </YStack>
+
             <YStack m="$2" f={1}>
-              {secondHalf.map((word, index) => (
-                <YStack h={22} mt="$1.5" mb="$1.5" key={index} jc="center">
+              {secondHalf.map((index) => (
+                <YStack h={18} mt="$1.5" mb="$1.5" key={index} jc="center">
                   <Separator w="50%" borderColor="$backgroundFocus" key={index} alignSelf="center"/>
                 </YStack>
               ))}
             </YStack>
+
             <YStack m="$2">
               {secondHalf.map((word, index) => (
                 <XStack >
@@ -66,6 +75,7 @@ export function WordToTranslateBlock({ words }) {
                 </XStack>
               ))}
             </YStack>
+
           </XStack>
         </YStack>
       </XStack>

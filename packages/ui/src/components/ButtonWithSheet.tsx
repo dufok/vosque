@@ -12,12 +12,20 @@ import {
   Square
   } from 'tamagui';
 import { X } from '@tamagui/lucide-icons'
-import React from "react";
+import React, {useState} from "react";
 
 export function ButtonWithSheet(Props) {
+  const [open, setOpen] = useState(false)
+ 
   return (
     <YStack ai="center">
-      <Dialog modal>
+      <Dialog
+        modal
+        onOpenChange={(open) => {
+          setOpen(open)
+        }}>
+        
+        { Props.Description && (
         <Dialog.Trigger asChild>
           <Square
             bc="$background"
@@ -33,26 +41,51 @@ export function ButtonWithSheet(Props) {
             <H3>{Props.Title}</H3>
           </Square>
         </Dialog.Trigger>
+        )}
+
+        { !Props.Description && (
+          <Square
+            bc="$background"
+            animation="bouncy"
+            boc="$backgroundFocus"
+            bw={Props.Description ? 3 : 1}
+            size="$7"
+            br="$5"
+            m="$1.5"
+            hoverStyle={Props.Description ? { scale: 1.1 } : {}}
+            pressStyle={Props.Description ? { scale: 0.9 } : {}}
+            >
+          <H3>{Props.Title}</H3>
+        </Square>
+        )}
+
         <Adapt when="sm" platform="touch">
-          <Sheet zIndex={200000} modal dismissOnSnapToBottom>
+          <Sheet
+            zIndex={200000}
+            modal
+            dismissOnSnapToBottom
+            >
+            <Sheet.Overlay o={0}/>
             <Sheet.Frame padding="$4" space>
               <Adapt.Contents />
             </Sheet.Frame>
-            <Sheet.Overlay />
           </Sheet>
         </Adapt>
+
         <Dialog.Portal>
           <Dialog.Overlay
             key="overlay"
             animation="quick"
-            o={0.5}
-            enterStyle={{ o: 0 }}
-            exitStyle={{ o: 0 }}
+            style={{ opacity: 0.5 }}
+            enterStyle={{ opacity: 0 }}
+            exitStyle={{ opacity: 0 }}
           />
+
           <Dialog.Content
             bordered
             elevate
             key="content"
+            animateOnly={['opacity']}
             animation={[
               'quick',
               {
@@ -92,6 +125,7 @@ export function ButtonWithSheet(Props) {
                 </XStack>
               </Dialog.Close>
             </YStack>
+            
             <Unspaced>
               <Dialog.Close asChild>
                 <Button pos="absolute" t="$3" r="$3" size="$2" circular icon={X} />

@@ -104,7 +104,7 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example, isOneColumn
                   <Sheet.Frame padding="$4" space>
                     <Adapt.Contents />
                   </Sheet.Frame>
-                  <Sheet.Overlay />
+                  <Sheet.Overlay o={0}/>
                 </Sheet>
               </Adapt>
 
@@ -112,7 +112,7 @@ export const LangTest4: React.FC<LangTestProps> = ({ tests, example, isOneColumn
                 <Dialog.Overlay
                   key="overlay"
                   animation="quick"
-                  o={0.5}
+                  style={{ opacity: 0 }}
                   enterStyle={{ o: 0 }}
                   exitStyle={{ o: 0 }}
                 />
