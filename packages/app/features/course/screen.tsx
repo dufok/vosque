@@ -1,18 +1,15 @@
+/// This is page about Course.
+/// dufok and gpt was here (^.^')
+
 import {
   Paragraph,
   YStack,
   XStack,
-  H3,
   H1,
   H2,
   H4,
-  Avatar,
-  Circle,
-  Square,
-  Image,
   Button,
-  Separator,
-  ProgressFrame
+  Separator
             } from "@my/ui";
 import { useLink } from "solito/link";
 import React from "react";

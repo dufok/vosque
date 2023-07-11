@@ -6,21 +6,15 @@ import { trpc } from "../../utils/trpc";
 import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
 import { SubMenu } from '@my/ui/src/components/SubMenu';
 
+
 export function userpageScreen() {
 
   const userpageLinkProps = useLink({ href: "/userpage"});
 
-  //const { data: currentUser, isLoading: isCurrentUserLoading } = trpc.user.current.useQuery();
-  //const isSignedIn = !!currentUser;
-
   const { isSignedIn } = useAuth();
-  let userQuery;
-  if (isSignedIn) {
-    userQuery = trpc.user.current.useQuery();
-  }
-
+  
+  const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-
   const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
   const { data: userPacks, isLoading: isUserPacksLoading } = trpc.user.userLessonPacks.useQuery();
 
@@ -44,72 +38,82 @@ export function userpageScreen() {
   return (
     <YStack>
       <HeaderComp />
-      <Welcome
-        isSignedIn={isSignedIn}
-        currentUser={userQuery?.data}
-        lessonCount={lessonCount}
-        userPacks={userPacks}
-        isUserPacksLoading={isUserPacksLoading}/>
+      { isSignedIn ?
+        <Welcome/> : <WelcomeNotSignedIn/>}
       <Login />
-      <Lessons
-        isSignedIn={isSignedIn}
-        lessonCount={lessonCount}
-        userLessons={filteredUserLessons}
-        isUserLessonsLoading={isUserLessonsLoading}/>
+      { isSignedIn &&
+      <Lessons/> }
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
 }
 
-function Welcome({ isSignedIn, currentUser, lessonCount, userPacks, isUserPacksLoading}) {
+function Welcome() {
 
-  type LessonPack = {
-    id: number;
-    name: string;
-  }
+  const { data: currentUser } = trpc.user.current.useQuery();
+  const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
+  const filteredUserLessons =  userLessons ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
+  const lessonCount = filteredUserLessons.length;
+  const { data: userPacks, isLoading: isUserPacksLoading } = trpc.user.userLessonPacks.useQuery();
 
  return (
     <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6" mt="$10">
-        <YStack space="$4" ai="center" p="$4">
-          <H3 col="$background">Hola {currentUser?.userName} !</H3>
+      <YStack space="$4" ai="center" p="$4">
+        <H3 col="$background">Hola {currentUser?.userName} !</H3>
+      </YStack>
+      <YStack>
+        <Image source={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
+          height="100%"
+          width="100%"
+          />
+      </YStack>
+      <YStack space="$3" w="90%" maw={600} ai="center">
+        <Paragraph mb={20} mt={10} ta="center" col="$background">Добро пожаловать на курс!</Paragraph>
+        <YStack ai="flex-start" space="$2">
+          {isUserPacksLoading ? (
+              <Paragraph ta="left" col="$background">Loading your lesson packs...</Paragraph>
+            ) : (
+              <Paragraph ta="left" col="$background"> 
+                Купленный тариф: {Array.isArray(userPacks) ? userPacks.join(', ') : userPacks}
+              </Paragraph>
+          )}
+          <Paragraph ta="left" col="$background"> Сколько уроков пройдено: {lessonCount}</Paragraph>
         </YStack>
-        <YStack>
-          <Image source={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
-            height="100%"
-            width="100%"
-            />
-        </YStack>
-        {isSignedIn && (
-        <YStack space="$3" w="90%" maw={600} ai="center">
-          <Paragraph mb={20} mt={10} ta="center" col="$background">Добро пожаловать на курс!</Paragraph>
-          <YStack ai="flex-start" space="$2">
-            {isUserPacksLoading ? (
-                <Paragraph ta="left" col="$background">Loading your lesson packs...</Paragraph>
-              ) : (
-                <Paragraph ta="left" col="$background"> 
-                  Купленный тариф: {Array.isArray(userPacks) ? userPacks.join(', ') : userPacks}
-                </Paragraph>
-            )}
-            <Paragraph ta="left" col="$background"> Сколько уроков пройдено: {lessonCount}</Paragraph>
-          </YStack>
-        </YStack>
-        )}
-        {!isSignedIn && (
-          <YStack mt="$5">
-            <Paragraph mb={20} ta="center" col="$background">!!! Пройдите регистрацию !!! </Paragraph>
-          </YStack>
-        )}
+      </YStack>
     </YStack>
   );
 }
 
-function Lessons({ isSignedIn, lessonCount, userLessons, isUserLessonsLoading }) {
+function WelcomeNotSignedIn() {
+  return (
+    <YStack>
+      <YStack space="$4" ai="center" p="$4">
+        <H3 col="$background">Hola!</H3>
+      </YStack>
+      <YStack>
+        <Image source={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
+          height="100%"
+          width="100%"
+          />
+      </YStack>
+      <YStack mt="$5">
+        <Paragraph mb={20} ta="center" col="$background">!!! Пройдите регистрацию !!! </Paragraph>
+      </YStack>
+    </YStack>
+  );
+}
+
+function Lessons() {
 
   type ContentLesson = {
     image: string;
     href: string;
     description: string;
   }
+
+  const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
+  const filteredUserLessons =  userLessons ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
+  const lessonCount = filteredUserLessons.length;
 
   const contentLessons = userLessons?.map((lesson) => lesson.content) as ContentLesson[];
 
@@ -138,9 +142,7 @@ function Lessons({ isSignedIn, lessonCount, userLessons, isUserLessonsLoading })
   }
 
   return (
-    
     <YStack>
-    {isSignedIn && (
       <YStack pb="$6" pt="$6" ai="center" f={1}>
       <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
         {isUserLessonsLoading ? (
@@ -151,10 +153,10 @@ function Lessons({ isSignedIn, lessonCount, userLessons, isUserLessonsLoading })
           ) : (
             <XStack p="$2" fw="wrap" w="100%" maw={1000} jc="center">
               <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
-                {userLessons.slice(0, Math.floor(userLessons.length / 2)).map(renderLesson)}
+                {userLessons?.slice(0, Math.floor(userLessons?.length / 2)).map(renderLesson)}
               </YStack>
               <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
-                {userLessons.slice(Math.floor(userLessons.length / 2)).map(renderLesson)}
+                {userLessons?.slice(Math.floor(userLessons?.length / 2)).map(renderLesson)}
               </YStack>
             </XStack>
           )}
@@ -169,11 +171,9 @@ function Lessons({ isSignedIn, lessonCount, userLessons, isUserLessonsLoading })
           </YStack>
         )}
       </YStack>
-      )}
     </YStack>
   );
 }
-
 
 
 function Login() {
