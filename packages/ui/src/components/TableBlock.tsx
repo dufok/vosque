@@ -49,7 +49,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
     scaleFactor = 0.8;
   }
   return (
-    <YStack marginHorizontal="$6" mb="$4" w="100%" f={1} maw={800}>
+    <YStack marginHorizontal="$6" mb="$10" w="100%" f={1} maw={800}>
       <table style={{ 
         border: "2px solid #83503C", 
         borderCollapse: "collapse",
