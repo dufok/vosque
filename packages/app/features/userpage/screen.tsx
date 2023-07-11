@@ -15,22 +15,20 @@ export function userpageScreen() {
 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
-  const lessonCount = userLessons ? userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).length : 0;
+  const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
 
+  const filteredUserLessons =  userLessons ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
+  const lessonCount = filteredUserLessons.length;
+
+  
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
 
   if (isSignedIn) {
-    if (isLoading || isCurrentUserLoading) {
-      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-    }
-  } else {
-    if (isLoading) {
-      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-    }
-  }
+    if ( isLoading || isCurrentUserLoading || isUserLessonsLoading ) {
+    return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
+  }}
 
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
@@ -41,7 +39,7 @@ export function userpageScreen() {
       <HeaderComp />
       <Welcome isSignedIn={isSignedIn} currentUser={currentUser} lessonCount={lessonCount}/>
       <Login />
-      <Lessons isSignedIn={isSignedIn} lessonCount={lessonCount} userLessons={userLessons} />
+      <Lessons isSignedIn={isSignedIn} lessonCount={lessonCount} userLessons={filteredUserLessons} />
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
@@ -49,55 +47,29 @@ export function userpageScreen() {
 
 function Welcome({ isSignedIn, currentUser, lessonCount}) {
 
-  const [newUserName, setNewUserName] = useState("");
+  type LessonPack = {
+    id: number;
+    name: string;
+  }
 
-  const utils = trpc.useContext();
-  const updateUserName = trpc.user.update.useMutation({
-    onSuccess: () => {
-      utils.user.current.invalidate();
-    },
-  });
-
-  const handleInputChange = (e) => {
-    setNewUserName(e.target.value);
-  };
-
-  const handleUpdateUserName = async () => {
-    if (!currentUser) {
-      return;
-    }
-    await updateUserName.mutateAsync({ id: currentUser.id, userName: newUserName });
-    setNewUserName("");
-  };
-
-  return (
+ return (
     <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6" mt="$10">
         <YStack space="$4" ai="center" p="$4">
-          <H3 col="$background">Привет {currentUser?.userName} !</H3>
+          <H3 col="$background">Hola {currentUser?.userName} !</H3>
         </YStack>
         <YStack>
-          <Image src={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
+          <Image source={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
             height="100%"
             width="100%"
             />
         </YStack>
         {isSignedIn && (
-        <YStack space="$2" >
-          <Paragraph mb={20} ta="center" col="$background"> добро пожаловать на наш курс</Paragraph>
-          <Paragraph col="$background"> Сколько уроков доступно: {lessonCount}</Paragraph>
-          <Paragraph col="$background"> Сколько уроков пройдено: {lessonCount}</Paragraph>
-          <Paragraph col="$background">Ваша почта: {currentUser.email}</Paragraph>
-          <XStack space="$2">
-            <Input
-              size="$2"
-              value={newUserName}
-              onChange={handleInputChange}
-              placeholder={currentUser.userName}
-            />
-            <Button size="$2" onPress={handleUpdateUserName}>
-              Обновите Имя Пользователя
-            </Button>
-          </XStack>
+        <YStack space="$3" w="90%" maw={600} ai="center">
+          <Paragraph mb={20} mt={10} ta="center" col="$background">Добро пожаловать на курс!</Paragraph>
+          <YStack ai="flex-start" space="$2">
+            <Paragraph ta="left" col="$background"> Купленный тариф: </Paragraph>
+            <Paragraph ta="left" col="$background"> Сколько уроков пройдено: {lessonCount}</Paragraph>
+          </YStack>
         </YStack>
         )}
         {!isSignedIn && (
@@ -121,60 +93,42 @@ function Lessons({ isSignedIn, lessonCount, userLessons }) {
 
   const courseLinkProps = useLink({href: "/course"});
 
+  const renderLesson = (lesson) => {
+    return (
+    <YStack key={lesson.id} p="$2" hoverStyle={{ opacity: 0.9, scale: 1.01}}>
+      <XStack ai="center">
+        <Avatar circular size="$5" bg="$borderColor">
+          <Avatar.Image 
+            source={lesson.content?.image} scale="50%"
+          />
+          <Avatar.Fallback delayMs={600} backgroundColor="$borderColor" />
+        </Avatar>
+        <YStack m="$2" f={1}>
+          <H5>
+            <Anchor
+              href={lesson.content?.href}
+            >{lesson.name}</Anchor></H5>
+          <Paragraph ww="initial" >{lesson.content?.description}</Paragraph>
+        </YStack>
+      </XStack>
+    </YStack>
+    );
+  }
+
   return (
     
     <YStack>
-      {isSignedIn && (
-        <YStack pb="$6" pt="$6" ai="center" f={1}>
-        <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
-        <Stack p="$2" fd="column" $gtSm={{ fd: "row", fw: "wrap" }}>
-            <YStack jc="flex-start" m="$1">
-              {userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).slice(0, userLessons.length/2)?.map((lesson) =>
-                lesson !== null ? [
-                  <YStack p="$2" hoverStyle={{ opacity: 0.9, scale: 1.01}}>
-                    <XStack ai="center">
-                      <Avatar circular size="$4"  backgroundColor="$backgroundFocus">
-                        <Avatar.Image 
-                          src={lesson.content?.image} scale="50%"
-                        />
-                        <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
-                      </Avatar>
-                      <YStack m="$2" f={1}>
-                        <H5 key={lesson.id}>
-                          <Anchor
-                            href={lesson.content?.href}
-                          >{lesson.name}</Anchor></H5>
-                        <Paragraph ww="initial" key={lesson.id}>{lesson.content?.description}</Paragraph>
-                      </YStack>
-                    </XStack>
-                  </YStack>
-                ] : []
-              )}
-            </YStack>
-            <YStack jc="flex-start" m="$1">
-              {userLessons?.filter(lesson => lesson.name.toLowerCase().includes("урок")).slice(userLessons.length/2)?.map((lesson) =>
-                  lesson !== null ? [
-                    <YStack p="$2" hoverStyle={{ opacity: 0.9, scale: 1.01}}>
-                    <XStack ai="center">
-                      <Avatar circular size="$4"  backgroundColor="$backgroundFocus">
-                        <Avatar.Image 
-                          src={lesson.content?.image} scale="50%"
-                        />
-                        <Avatar.Fallback delayMs={600} backgroundColor="$backgroundFocus" />
-                      </Avatar>
-                      <YStack m="$2" f={1}>
-                        <H5 key={lesson.id}>
-                          <Anchor
-                            href={lesson.content?.href}
-                          >{lesson.name}</Anchor></H5>
-                        <Paragraph ww="initial" key={lesson.id}>{lesson.content?.description}</Paragraph>
-                      </YStack>
-                    </XStack>
-                  </YStack>
-                  ] : []
-                )}
-            </YStack>
-        </Stack>
+    {isSignedIn && (
+      <YStack pb="$6" pt="$6" ai="center" f={1}>
+      <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
+        <XStack p="$2" fw="wrap" w="100%" maw={1000} jc="center">
+          <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
+            {userLessons.slice(0, Math.floor(userLessons.length / 2)).map(renderLesson)}
+          </YStack>
+          <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
+            {userLessons.slice(Math.floor(userLessons.length / 2)).map(renderLesson)}
+          </YStack>
+        </XStack>
         {lessonCount === 0 && (
           <YStack>
             <YStack pb="$6" pt="$6" ai="center" f={1}>
