@@ -259,7 +259,7 @@ function ReviewSection () {
               modal={true}
               open={open}
               onOpenChange={setOpen}
-              snapPoints={[50, 25]}
+              snapPoints={[50]}
               dismissOnSnapToBottom
               position={position}
               onPositionChange={setPosition}
