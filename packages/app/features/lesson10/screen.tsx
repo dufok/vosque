@@ -9,6 +9,7 @@ import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
+import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
 import { SquareText } from '@my/ui/src/components/SquareText';
@@ -22,11 +23,9 @@ import { ExercisesBlockText } from "@my/ui/src/components/ExercisesBlockText";
 import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
 import { TableBlock } from "@my/ui/src/components/TableBlock";
 import { LangTest1 } from "@my/ui/src/components/LangTest1";
-import { LangTest2 } from "@my/ui/src/components/LangTest2";
 import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
-import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 
@@ -41,8 +40,8 @@ export function lesson10Screen() {
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
-
+  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+  const isLoadingOverall = userLessonsLoading || isLoading;
   const lessonName = "урок 10";
   const TenthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
@@ -87,10 +86,6 @@ export function lesson10Screen() {
     console.log(data);
   }, [isLoading]);
 
-  if (isLoading) {
-      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-  }
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
@@ -98,6 +93,7 @@ export function lesson10Screen() {
 
   return (
       <YStack>
+        {isLoadingOverall && <SpinnerOver />}
         <HeaderComp />
         { isSignedIn && (
       <YStack f={1}>

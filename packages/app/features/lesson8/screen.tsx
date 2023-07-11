@@ -9,6 +9,7 @@ import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
+import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 
 import { ContentLesson8 } from './type_Lesson8';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
@@ -41,8 +42,10 @@ export function lesson8Screen() {
     const { data, isLoading, error } = trpc.entry.all.useQuery();
     const isSignedIn = !!currentUser;
   
-    const { data: userLessons } = trpc.user.userLessons.useQuery();
-    const EightLesson = userLessons?.[10];
+    const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+    const isLoadingOverall = userLessonsLoading || isLoading;
+    const lessonName = "урок 8";
+    const EightLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
     
     const content = EightLesson?.content as ContentLesson8;
   
@@ -65,16 +68,13 @@ export function lesson8Screen() {
       console.log(data);
     }, [isLoading]);
   
-    if (isLoading) {
-        return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-    }
-  
     if (error) {
       return <Paragraph>{error.message}</Paragraph>;
     }
   
   return (
     <YStack>
+    {isLoadingOverall && <SpinnerOver />}
     <HeaderComp />
     { isSignedIn && (
     <YStack f={1}>

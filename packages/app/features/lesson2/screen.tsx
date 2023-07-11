@@ -9,6 +9,7 @@ import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
+import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 
 import { ContentLesson2 } from './type_Lesson2';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
@@ -33,11 +34,12 @@ export function lesson2Screen() {
   
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
+  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
 
   const lessonName = "урок 2";
   const SecondLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
+  const isLoadingOverall = userLessonsLoading || isLoading;
   //lesson content
 
   const userpageLinkProps = useLink({ href: "/userpage"});
@@ -64,16 +66,13 @@ export function lesson2Screen() {
     console.log(data);
   }, [isLoading]);
 
-  if (isLoading) {
-      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-  }
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
 
   return (
     <YStack>
+      {isLoadingOverall && <SpinnerOver />}
       <HeaderComp />
       { isSignedIn && (
       <YStack f={1}>

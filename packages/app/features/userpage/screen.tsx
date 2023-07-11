@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { YStack, XStack, H3, H5, Paragraph, Button, Input, Image, Spinner, Avatar, Anchor, Stack } from "@my/ui";
 import { useLink } from "solito/link";
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
+import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 import { trpc } from "app/utils/trpc";
 import { SignedIn, SignedOut, useAuth } from "app/utils/clerk";
 import { SubMenu } from '@my/ui/src/components/SubMenu';
@@ -49,8 +50,11 @@ function Welcome() {
   const lessonCount = filteredUserLessons.length;
   const { data: userPacks, isLoading: isUserPacksLoading } = trpc.user.userLessonPacks.useQuery();
 
+  const isLoadingOverall = isUserLessonsLoading || isUserPacksLoading;
+
  return (
     <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6" mt="$10">
+      { isLoadingOverall && <SpinnerOver /> }
       <YStack space="$4" ai="center" p="$4">
         <H3 col="$background">Hola {currentUser?.userName} !</H3>
       </YStack>
@@ -108,6 +112,8 @@ function Lessons() {
   const filteredUserLessons =  userLessons ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
   const lessonCount = filteredUserLessons.length;
 
+  const isLoadingOverall = isUserLessonsLoading;
+
   const contentLessons = userLessons?.map((lesson) => lesson.content) as ContentLesson[];
 
   const courseLinkProps = useLink({href: "/course"});
@@ -137,22 +143,16 @@ function Lessons() {
   return (
     <YStack>
       <YStack pb="$6" pt="$6" ai="center" f={1}>
-      <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
-        {isUserLessonsLoading ? (
-            <XStack>
-              <Spinner size="large" color="$backgroundFocus" ai="center" jc="center"/>
-              <Paragraph>Loading your lesson packs...</Paragraph>
-            </XStack>
-          ) : (
-            <XStack p="$2" fw="wrap" w="100%" maw={1000} jc="center">
-              <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
-                {filteredUserLessons?.slice(0, Math.floor(filteredUserLessons?.length / 2)).map(renderLesson)}
-              </YStack>
-              <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
-                {filteredUserLessons?.slice(Math.floor(filteredUserLessons?.length / 2)).map(renderLesson)}
-              </YStack>
-            </XStack>
-          )}
+        { isLoadingOverall && <SpinnerOver /> }
+        <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
+        <XStack p="$2" fw="wrap" w="100%" maw={1000} jc="center">
+          <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
+            {filteredUserLessons?.slice(0, Math.floor(filteredUserLessons?.length / 2)).map(renderLesson)}
+          </YStack>
+          <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
+            {filteredUserLessons?.slice(Math.floor(filteredUserLessons?.length / 2)).map(renderLesson)}
+          </YStack>
+        </XStack>
         { !isUserLessonsLoading && lessonCount === 0 && (
           <YStack>
             <YStack pb="$6" pt="$6" ai="center" f={1}>

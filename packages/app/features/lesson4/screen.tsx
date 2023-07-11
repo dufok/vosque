@@ -9,6 +9,7 @@ import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
+import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 
 import { ContentLesson4 } from './type_Lesson4';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
@@ -35,7 +36,9 @@ export function lesson4Screen() {
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
+  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+  const isLoadingOverall = userLessonsLoading || isLoading;
+
   const lessonName = "урок 4";
   const FourthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
   
@@ -70,7 +73,6 @@ export function lesson4Screen() {
   const wordToTranslate4 = Object.values(content?.wordToTranslateBlock4 || {});
 
   const dopDialog1 = Object.values(content?.dopDialog1 || {});
-  const exercisesBlockAudio1 = Object.values(content?.exercisesBlockAudio1 || {});
 
 
   useEffect(() => {
@@ -87,6 +89,7 @@ export function lesson4Screen() {
 
   return (
     <YStack>
+      {isLoadingOverall && <SpinnerOver />}
       <HeaderComp />
       { isSignedIn && (
       <YStack f={1}>

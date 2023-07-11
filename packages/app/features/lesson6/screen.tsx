@@ -1,7 +1,6 @@
 import {
   Paragraph,
   YStack,
-  XStack,
   Spinner,
  } from "@my/ui";
 import { trpc } from "../../utils/trpc";
@@ -9,6 +8,7 @@ import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
+import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 
 import { ContentLesson6 } from './type_Lesson6';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
@@ -19,15 +19,12 @@ import { ImageCircle } from "@my/ui/src/components/ImageCircle";
 import { HeaderBlock } from "@my/ui/src/components/HeaderBlock";
 import { DescriptionBlock } from "@my/ui/src/components/DescriptionBlock";
 import { TextExampleBlock } from "@my/ui/src/components/TextExampleBlock";
-import { ExercisesBlockText } from "@my/ui/src/components/ExercisesBlockText";
 import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
 import { TableBlock } from "@my/ui/src/components/TableBlock";
 import { LangTest1 } from "@my/ui/src/components/LangTest1";
-import { LangTest2 } from "@my/ui/src/components/LangTest2";
 import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
-import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 export function lesson6Screen() {
@@ -38,8 +35,8 @@ export function lesson6Screen() {
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
-
+  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+  const isLoadingOverall = userLessonsLoading || isLoading;
   const lessonName = "урок 6";
   const SixthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
@@ -77,6 +74,7 @@ export function lesson6Screen() {
 
   return (
     <YStack>
+      {isLoadingOverall && <SpinnerOver />}
       <HeaderComp />
       { isSignedIn && (
        <YStack f={1}>

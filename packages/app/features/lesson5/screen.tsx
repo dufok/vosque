@@ -9,6 +9,7 @@ import { useLink } from "solito/link";
 import React,{useEffect} from "react";
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
+import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
 import { SquareText } from '@my/ui/src/components/SquareText';
@@ -16,18 +17,14 @@ import { SubMenu } from "@my/ui/src/components/SubMenu";
 import { WelcomeBlock } from "@my/ui/src/components/WelcomeBlock";
 import { ImageCircle } from "@my/ui/src/components/ImageCircle";
 import { HeaderBlock } from "@my/ui/src/components/HeaderBlock";
-import { DescriptionBlock } from "@my/ui/src/components/DescriptionBlock";
 import { TextExampleBlock } from "@my/ui/src/components/TextExampleBlock";
 import { ExercisesBlockText } from "@my/ui/src/components/ExercisesBlockText";
 import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
 import { TableBlock } from "@my/ui/src/components/TableBlock";
 import { LangTest1 } from "@my/ui/src/components/LangTest1";
-import { LangTest2 } from "@my/ui/src/components/LangTest2";
-import { LangTest3 } from "@my/ui/src/components/LangTest3";
 import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
-import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 import { ContentLesson5 } from './type_Lesson5';
@@ -41,7 +38,8 @@ export function lesson5Screen() {
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
+  const { data: userLessons, isLoading: userLessonsLoading  } = trpc.user.userLessons.useQuery();
+  const isLoadingOverall = userLessonsLoading || isLoading;
   const lessonName = "урок 5";
   const FifthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
@@ -83,16 +81,13 @@ export function lesson5Screen() {
     console.log(data);
   }, [isLoading]);
 
-  if (isLoading) {
-      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-  }
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
 
   return (
     <YStack>
+      {isLoadingOverall && <SpinnerOver />}
       <HeaderComp />
       { isSignedIn && (
       <YStack f={1}>
