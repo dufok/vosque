@@ -184,6 +184,7 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size}) {
 
    // this is for toast message
    const [list, setList] = useState<any[]>([]);
+
    const showToast = (type) => {
  
      let toastProperties;
@@ -210,12 +211,16 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size}) {
 
   return (
     <YStack p="$4" space="$4">
+      <div style={{
+      zIndex: 1000
+    }}>
       <ToastComp 
         toastList={list}
         position="bottom-center"
         autoDelete={true}
         autoDeleteTime={9000}
       />
+    </div>
       <XStack ai="center" space="$4">
           <Switch
               bc="$backgroundFocus"

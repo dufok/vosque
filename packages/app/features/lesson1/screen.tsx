@@ -10,6 +10,7 @@ import React,{useEffect} from "react";
 import { useAuth } from "app/utils/clerk";
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
+import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 
 import { ButtonWithSheet } from '@my/ui/src/components/ButtonWithSheet';
 import { ContentLesson1 } from './type_Lesson1';
@@ -78,9 +79,7 @@ function Lesson1SignIn() {
     console.log(data);
   }, [isLoading]);
 
-  if (userLessonsLoading) {
-      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-  }
+  const isLoadingOverall = userLessonsLoading || isLoading;
 
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
@@ -88,6 +87,7 @@ function Lesson1SignIn() {
 
   return (
     <YStack f={1}>
+      { isLoadingOverall && <SpinnerOver /> }
       <YStack ai="center" mt="$10">
         <WelcomeBlock
           name={firstLesson?.name}
