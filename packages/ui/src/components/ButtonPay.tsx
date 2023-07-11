@@ -41,41 +41,10 @@ export function ButtonPay(props: {
     href: "/userpage",
   });
 
-  // this is for toast message
-  const [list, setList] = useState<any[]>([]);
-  const showToast = (type) => {
-
-    let toastProperties;
-
-    switch (type) {
-      case "success":
-        toastProperties = {
-          id: 1,
-          title: "Мы проверяем перевод",
-          description: "Три урока вам уже открыто !",
-          backgroundColor: "#5cb85c",
-          icon: Banknote,
-        };
-        break;
-      
-      default:
-        setList([]);
-        break
-    }
-
-    setList([...list, toastProperties]);
-
-  };
 
   return (
     
     <Dialog modal>
-      <ToastComp 
-        toastList={list}
-        position="bottom-center"
-        autoDelete={true}
-        autoDeleteTime={9000}
-      />
       <Dialog.Trigger asChild>
        <Button
         backgroundColor="$backgroundPress"
@@ -128,7 +97,6 @@ export function ButtonPay(props: {
             <YStack ai="center" m="$4">
               {isSignedIn && (
                 <MessageIfSignIn
-                  showToast={showToast}
                   pricerub={props.pricerub}
                   priceusdt={props.priceusdt}
                   course={props.course}
@@ -158,7 +126,7 @@ export function ButtonPay(props: {
   );
 }
 
-function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast}) {
+function MessageIfSignIn({course, coupon, pricerub, priceusdt, size}) {
 
   const id = `switch-${size.toString().slice(1)}`
   
@@ -214,8 +182,40 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast})
     setDiscountedPrice(price);
   }, [price]);
 
+   // this is for toast message
+   const [list, setList] = useState<any[]>([]);
+   const showToast = (type) => {
+ 
+     let toastProperties;
+ 
+     switch (type) {
+       case "success":
+         toastProperties = {
+           id: 1,
+           title: "Мы проверяем перевод",
+           description: "Три урока вам уже открыто !",
+           backgroundColor: "#5cb85c",
+           icon: Banknote,
+         };
+         break;
+       
+       default:
+         setList([]);
+         break
+     }
+ 
+     setList([...list, toastProperties]);
+ 
+   };
+
   return (
     <YStack p="$4" space="$4">
+      <ToastComp 
+        toastList={list}
+        position="bottom-center"
+        autoDelete={true}
+        autoDeleteTime={9000}
+      />
       <XStack ai="center" space="$4">
           <Switch
               bc="$backgroundFocus"
