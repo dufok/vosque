@@ -52,7 +52,7 @@ function Lesson1SignIn() {
 
 //lesson content
 
-  const { data: userLessons } = trpc.user.userLessons.useQuery();
+  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
   
   const lessonName = "урок 1";
   const firstLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
@@ -78,7 +78,7 @@ function Lesson1SignIn() {
     console.log(data);
   }, [isLoading]);
 
-  if (isLoading) {
+  if (userLessonsLoading) {
       return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
   }
 
