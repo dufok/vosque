@@ -18,10 +18,7 @@ import { WelcomeBlock } from "@my/ui/src/components/WelcomeBlock";
 import { ImageCircle } from "@my/ui/src/components/ImageCircle";
 import { HeaderBlock } from "@my/ui/src/components/HeaderBlock";
 import { DescriptionBlock } from "@my/ui/src/components/DescriptionBlock";
-import { TextExampleBlock } from "@my/ui/src/components/TextExampleBlock";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
-import { ExercisesBlockAudioWithDisc } from "@my/ui/src/components/ExercisesBlockAudioWithDisc";
-import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 import { ExercisesBlockText } from "@my/ui/src/components/ExercisesBlockText";
 import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
@@ -32,13 +29,13 @@ export function lesson2Screen() {
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
+  const isSignedIn = !!currentUser;
   
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-  const isSignedIn = !!currentUser;
-
+  
   const { data: userLessons } = trpc.user.userLessons.useQuery();
 
-  const lessonName = "Урок 2. Существительные и Артикили";
+  const lessonName = "урок 2";
   const SecondLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
   //lesson content

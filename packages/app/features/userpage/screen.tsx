@@ -15,8 +15,6 @@ export function userpageScreen() {
   
   const { data, isLoading, error } = trpc.entry.all.useQuery();
  
-
-  
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
@@ -143,7 +141,7 @@ function Lessons() {
         {isUserLessonsLoading ? (
             <XStack>
               <Spinner size="large" color="$backgroundFocus" ai="center" jc="center"/>
-              <Paragraph ta="left" col="$background">Loading your lesson packs...</Paragraph>
+              <Paragraph>Loading your lesson packs...</Paragraph>
             </XStack>
           ) : (
             <XStack p="$2" fw="wrap" w="100%" maw={1000} jc="center">
@@ -155,7 +153,7 @@ function Lessons() {
               </YStack>
             </XStack>
           )}
-        {lessonCount === 0 && (
+        { !isUserLessonsLoading && lessonCount === 0 && (
           <YStack>
             <YStack pb="$6" pt="$6" ai="center" f={1}>
               <Paragraph pb="$4" ta="center" > Спасибо за Регистрацию ! Посмотрите наши курсы и выберите программу  </Paragraph>

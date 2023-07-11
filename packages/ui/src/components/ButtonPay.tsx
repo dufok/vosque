@@ -43,6 +43,29 @@ export function ButtonPay(props: {
 
   // this is for toast message
   const [list, setList] = useState<any[]>([]);
+  const showToast = (type) => {
+
+    let toastProperties;
+
+    switch (type) {
+      case "success":
+        toastProperties = {
+          id: 1,
+          title: "Мы проверяем перевод",
+          description: "Три урока вам уже открыто !",
+          backgroundColor: "#5cb85c",
+          icon: Banknote,
+        };
+        break;
+      
+      default:
+        setList([]);
+        break
+    }
+
+    setList([...list, toastProperties]);
+
+  };
 
   return (
     
@@ -105,6 +128,7 @@ export function ButtonPay(props: {
             <YStack ai="center" m="$4">
               {isSignedIn && (
                 <MessageIfSignIn
+                  showToast={showToast}
                   pricerub={props.pricerub}
                   priceusdt={props.priceusdt}
                   course={props.course}
@@ -134,8 +158,7 @@ export function ButtonPay(props: {
   );
 }
 
-function MessageIfSignIn({course, coupon, pricerub, priceusdt, size})
- {
+function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast}) {
 
   const id = `switch-${size.toString().slice(1)}`
   
@@ -186,34 +209,6 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size})
   const userpageLinkProps = useLink({
     href: "/userpage",
   });
-
-  // this is for toast message
-  const [list, setList] = useState<any[]>([]);
-
-  const showToast = (type) => {
-
-    let toastProperties;
-
-    switch (type) {
-      case "success":
-        toastProperties = {
-          id: 1,
-          title: "Мы проверяем перевод",
-          description: "Три урока вам уже открыто !",
-          backgroundColor: "#5cb85c",
-          icon: Banknote,
-        };
-        break;
-      
-      default:
-        setList([]);
-        break
-    }
-
-    setList([...list, toastProperties]);
-
-  };
-
 
   useEffect(() => {
     setDiscountedPrice(price);
