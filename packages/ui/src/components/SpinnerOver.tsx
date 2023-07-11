@@ -12,7 +12,9 @@ export function SpinnerOver() {
       display: 'flex', // Use flex for centering
       justifyContent: 'center', // Center horizontally
       alignItems: 'center', // Center vertically
-      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+      boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+      backdropFilter: 'blur( 8px )',
+      backgroundColor: 'rgba( 255, 255, 255, 0.25 )', // Semi-transparent background
       zIndex: 1000, // High z-index to overlay everything
     }}>
       <Spinner size="large" color="$backgroundFocus" />
