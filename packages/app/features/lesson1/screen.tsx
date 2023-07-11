@@ -4,10 +4,10 @@ import {
   XStack,
   Spinner,
  } from "@my/ui";
-import { trpc } from "../../utils/trpc";
+import { trpc } from "app/utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect} from "react";
-import { useAuth } from "../../utils/clerk";
+import { useAuth } from "app/utils/clerk";
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 

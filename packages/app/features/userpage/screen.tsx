@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { YStack, XStack, H3, H5, Paragraph, Button, Input, Image, Spinner, Avatar, Anchor, Stack } from "@my/ui";
 import { useLink } from "solito/link";
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
-import { trpc } from "../../utils/trpc";
-import { SignedIn, SignedOut, useAuth } from "../../utils/clerk";
+import { trpc } from "app/utils/trpc";
+import { SignedIn, SignedOut, useAuth } from "app/utils/clerk";
 import { SubMenu } from '@my/ui/src/components/SubMenu';
 
 
@@ -13,13 +13,8 @@ export function userpageScreen() {
 
   const { isSignedIn } = useAuth();
   
-  const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-  const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
-  const { data: userPacks, isLoading: isUserPacksLoading } = trpc.user.userLessonPacks.useQuery();
-
-  const filteredUserLessons =  userLessons ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
-  const lessonCount = filteredUserLessons.length;
+ 
 
   
   useEffect(() => {
@@ -27,7 +22,7 @@ export function userpageScreen() {
   }, [isLoading]);
 
   if (isSignedIn) {
-    if ( isLoading || isUserLessonsLoading ) {
+    if ( isLoading ) {
     return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
   }}
 
@@ -86,7 +81,7 @@ function Welcome() {
 
 function WelcomeNotSignedIn() {
   return (
-    <YStack>
+    <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6" mt="$10">
       <YStack space="$4" ai="center" p="$4">
         <H3 col="$background">Hola!</H3>
       </YStack>

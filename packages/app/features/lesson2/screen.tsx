@@ -32,6 +32,7 @@ export function lesson2Screen() {
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
+  
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const isSignedIn = !!currentUser;
 
