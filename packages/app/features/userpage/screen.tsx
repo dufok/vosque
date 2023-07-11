@@ -10,8 +10,14 @@ export function userpageScreen() {
 
   const userpageLinkProps = useLink({ href: "/userpage"});
 
-  const { data: currentUser, isLoading: isCurrentUserLoading } = trpc.user.current.useQuery();
-  const isSignedIn = !!currentUser;
+  //const { data: currentUser, isLoading: isCurrentUserLoading } = trpc.user.current.useQuery();
+  //const isSignedIn = !!currentUser;
+
+  const { isSignedIn } = useAuth();
+  let userQuery;
+  if (isSignedIn) {
+    userQuery = trpc.user.current.useQuery();
+  }
 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
@@ -27,7 +33,7 @@ export function userpageScreen() {
   }, [isLoading]);
 
   if (isSignedIn) {
-    if ( isLoading || isCurrentUserLoading || isUserLessonsLoading ) {
+    if ( isLoading || isUserLessonsLoading ) {
     return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
   }}
 
@@ -40,7 +46,7 @@ export function userpageScreen() {
       <HeaderComp />
       <Welcome
         isSignedIn={isSignedIn}
-        currentUser={currentUser}
+        currentUser={userQuery?.data}
         lessonCount={lessonCount}
         userPacks={userPacks}
         isUserPacksLoading={isUserPacksLoading}/>

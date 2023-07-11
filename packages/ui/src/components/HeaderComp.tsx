@@ -1,13 +1,13 @@
 import React from 'react';
 import { Paragraph, XStack, Button, YStack, isClient } from 'tamagui';
 import { TextLink } from 'solito/link';
-import { trpc } from "app/utils/trpc";
+import { useClerk } from '@clerk/clerk-react';
 
 
 export function HeaderComp() {
 
-  const { data: currentUser } = trpc.user.current.useQuery();
-  const isSignedIn = !!currentUser;
+  const { session } = useClerk();
+  const isSignedIn = !!session;
 
   return (
     <XStack

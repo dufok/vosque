@@ -7,6 +7,7 @@ import {
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect} from "react";
+import { useClerk } from '@clerk/clerk-react';
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 
@@ -30,12 +31,16 @@ import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock
 
 export function lesson1Screen() {
 
+  const { session } = useClerk();
+  const isSignedIn = !!session;
+
   //user check for lesson
-  const { data: currentUser } = trpc.user.current.useQuery();
+
+//  const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-  const isSignedIn = !!currentUser;
 
   //lesson content
+  
   const { data: userLessons } = trpc.user.userLessons.useQuery();
   
   const lessonName = "урок 1";
