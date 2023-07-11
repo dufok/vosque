@@ -135,8 +135,8 @@ export function ButtonPay(props: {
         br="$2"
         bw="$1"
         boc="$backgroundPress" h={80} w={270}>
-        <Paragraph color="$background" ta="center">
-         {props.name} </Paragraph></Button>
+        <Paragraph color="$background" ta="center" dangerouslySetInnerHTML={{ __html: props.name.replace(/\n/g, "<br />")}}/>
+         </Button>
       </Dialog.Trigger>
 
       <Adapt when="sm" platform="touch">
@@ -152,7 +152,6 @@ export function ButtonPay(props: {
         <Dialog.Overlay
           key="overlay"
           animation="quick"
-          o={0.5}
           style={{ opacity: 0.5}}
           enterStyle={{ o: 0 }}
           exitStyle={{ o: 0 }}
@@ -175,8 +174,8 @@ export function ButtonPay(props: {
           space
         >
           <Dialog.Title>Тариф Online</Dialog.Title>
-          <Dialog.Description>
-            <Paragraph fontFamily="$bodyBold" maw={600} dangerouslySetInnerHTML={{ __html: props.description.replace(/\n/g, "<br />")}} />
+          <Dialog.Description maw={600}>
+            <Paragraph fontFamily="$bodyBold" dangerouslySetInnerHTML={{ __html: props.description.replace(/\n/g, "<br />")}} />
           </Dialog.Description>
             <YStack ai="center" m="$4">
               {isSignedIn && (
