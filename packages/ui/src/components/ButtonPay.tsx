@@ -176,9 +176,7 @@ export function ButtonPay(props: {
         >
           <Dialog.Title>Тариф Online</Dialog.Title>
           <Dialog.Description>
-            <Paragraph fontFamily="$bodyBold">
-              {props.description}
-            </Paragraph>
+            <Paragraph fontFamily="$bodyBold" maw={600} dangerouslySetInnerHTML={{ __html: props.description.replace(/\n/g, "<br />")}} />
           </Dialog.Description>
             <YStack ai="center" m="$4">
               {isSignedIn && (
