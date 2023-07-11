@@ -146,10 +146,10 @@ function Lessons() {
           ) : (
             <XStack p="$2" fw="wrap" w="100%" maw={1000} jc="center">
               <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
-                {userLessons?.slice(0, Math.floor(userLessons?.length / 2)).map(renderLesson)}
+                {filteredUserLessons?.slice(0, Math.floor(filteredUserLessons?.length / 2)).map(renderLesson)}
               </YStack>
               <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
-                {userLessons?.slice(Math.floor(userLessons?.length / 2)).map(renderLesson)}
+                {filteredUserLessons?.slice(Math.floor(filteredUserLessons?.length / 2)).map(renderLesson)}
               </YStack>
             </XStack>
           )}
