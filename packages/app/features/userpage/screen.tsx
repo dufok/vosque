@@ -16,6 +16,7 @@ export function userpageScreen() {
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
   const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
+  const { data: userPacks, isLoading: isUserPacksLoading } = trpc.user.userLessonPacks.useQuery();
 
   const filteredUserLessons =  userLessons ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
   const lessonCount = filteredUserLessons.length;
@@ -37,15 +38,24 @@ export function userpageScreen() {
   return (
     <YStack>
       <HeaderComp />
-      <Welcome isSignedIn={isSignedIn} currentUser={currentUser} lessonCount={lessonCount}/>
+      <Welcome
+        isSignedIn={isSignedIn}
+        currentUser={currentUser}
+        lessonCount={lessonCount}
+        userPacks={userPacks}
+        isUserPacksLoading={isUserPacksLoading}/>
       <Login />
-      <Lessons isSignedIn={isSignedIn} lessonCount={lessonCount} userLessons={filteredUserLessons} />
+      <Lessons
+        isSignedIn={isSignedIn}
+        lessonCount={lessonCount}
+        userLessons={filteredUserLessons}
+        isUserLessonsLoading={isUserLessonsLoading}/>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
 }
 
-function Welcome({ isSignedIn, currentUser, lessonCount}) {
+function Welcome({ isSignedIn, currentUser, lessonCount, userPacks, isUserPacksLoading}) {
 
   type LessonPack = {
     id: number;
@@ -67,7 +77,13 @@ function Welcome({ isSignedIn, currentUser, lessonCount}) {
         <YStack space="$3" w="90%" maw={600} ai="center">
           <Paragraph mb={20} mt={10} ta="center" col="$background">Добро пожаловать на курс!</Paragraph>
           <YStack ai="flex-start" space="$2">
-            <Paragraph ta="left" col="$background"> Купленный тариф: </Paragraph>
+            {isUserPacksLoading ? (
+                <Paragraph ta="left" col="$background">Loading your lesson packs...</Paragraph>
+              ) : (
+                <Paragraph ta="left" col="$background"> 
+                  Купленный тариф: {Array.isArray(userPacks) ? userPacks.join(', ') : userPacks}
+                </Paragraph>
+            )}
             <Paragraph ta="left" col="$background"> Сколько уроков пройдено: {lessonCount}</Paragraph>
           </YStack>
         </YStack>
@@ -81,7 +97,7 @@ function Welcome({ isSignedIn, currentUser, lessonCount}) {
   );
 }
 
-function Lessons({ isSignedIn, lessonCount, userLessons }) {
+function Lessons({ isSignedIn, lessonCount, userLessons, isUserLessonsLoading }) {
 
   type ContentLesson = {
     image: string;
@@ -121,14 +137,21 @@ function Lessons({ isSignedIn, lessonCount, userLessons }) {
     {isSignedIn && (
       <YStack pb="$6" pt="$6" ai="center" f={1}>
       <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
-        <XStack p="$2" fw="wrap" w="100%" maw={1000} jc="center">
-          <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
-            {userLessons.slice(0, Math.floor(userLessons.length / 2)).map(renderLesson)}
-          </YStack>
-          <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
-            {userLessons.slice(Math.floor(userLessons.length / 2)).map(renderLesson)}
-          </YStack>
-        </XStack>
+        {isUserLessonsLoading ? (
+            <XStack>
+              <Spinner size="large" color="$backgroundFocus" ai="center" jc="center"/>
+              <Paragraph ta="left" col="$background">Loading your lesson packs...</Paragraph>
+            </XStack>
+          ) : (
+            <XStack p="$2" fw="wrap" w="100%" maw={1000} jc="center">
+              <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
+                {userLessons.slice(0, Math.floor(userLessons.length / 2)).map(renderLesson)}
+              </YStack>
+              <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
+                {userLessons.slice(Math.floor(userLessons.length / 2)).map(renderLesson)}
+              </YStack>
+            </XStack>
+          )}
         {lessonCount === 0 && (
           <YStack>
             <YStack pb="$6" pt="$6" ai="center" f={1}>
