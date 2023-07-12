@@ -90,10 +90,6 @@ export function lesson3Screen() {
     console.log(data);
   }, [isLoading]);
 
-  if (isLoading) {
-      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-  }
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
