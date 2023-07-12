@@ -266,7 +266,7 @@ function ReviewSection () {
               zIndex={100_000}
             >
               <Sheet.Overlay o={0.1} alignSelf="center"/>
-              <Sheet.Handle />
+              <Sheet.Handle alignSelf="center"/>
               <Sheet.Frame
                 flex={1}
                 padding="$4"

@@ -71,12 +71,15 @@ function PlayerDop({src}) {
         bw={0}
         jc="center"
         space="$2"
+        f={1}
+        h={70} w={350}
       >
         <Button
           circular
           onPress={togglePlay}
-          size="$0.5"
+          size="$1"
           backgroundColor="$backgroundFocus"
+          f={0.2}
           icon={isPlaying ?
             <Pause color="$background" /> :
             <Play color="$background" />
