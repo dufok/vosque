@@ -13,7 +13,7 @@ export function SpinnerOver() {
       justifyContent: 'center', // Center horizontally
       alignItems: 'center', // Center vertically
       boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-      backdropFilter: 'blur( 8px )',
+      backdropFilter: 'blur( 16px )',
       backgroundColor: 'rgba( 255, 255, 255, 0.25 )', // Semi-transparent background
       zIndex: 1000, // High z-index to overlay everything
     }}>
