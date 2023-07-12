@@ -1,11 +1,15 @@
-import {
-  Paragraph,
-  YStack,
-  XStack,
-  Progress
-  } from 'tamagui';
+import { YStack, XStack, Paragraph, Progress, Button } from "tamagui";
 import React, { useState, useEffect } from "react";
-import { Play, Pause, Plus } from '@tamagui/lucide-icons';
+import { Play, Pause } from '@tamagui/lucide-icons';
+
+function formatTime(seconds) {
+  let minutes = Math.floor(seconds / 60);
+  let secs = Math.floor(seconds % 60);
+  let minutesStr = minutes.toString().padStart(2, '0');
+  let secondsStr = secs.toString().padStart(2, '0');
+  return `${minutesStr}:${secondsStr}`;
+}
+
 
 export type Content = {
   text: string;
@@ -28,51 +32,36 @@ export const DopDialog: React.FC<ContentsBlockAudioProps> = ({ contents }) => {
   );
 };
 
-const PlayerDop = ({ src }) => {
+function PlayerDop({src}) {
   const [isPlaying, setIsPlaying] = useState(false);
-  let Audio = require('react-native').Audio;
-  const [audio, setAudio] = useState(new Audio(src));
+  const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const audio = new Audio(src);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  audio.onloadedmetadata = () => {
+    audio.ontimeupdate = () => {
+      setProgress((audio.currentTime/audio.duration) * 100);
       setCurrentTime(audio.currentTime);
-      setDuration(audio.duration);
-    }, 1000);
-
-    return () => {
-      clearInterval(timer);
     };
-  }, [audio]);
+  }
 
   const togglePlay = () => {
-    if (audio) {
-      if (isPlaying) {
-        audio.pause();
-      } else {
-        audio.play();
-      }
-      setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
     }
+    setIsPlaying(!isPlaying);
   };
 
-  const progress = (currentTime / duration) * 100;
-
   return (
-    <YStack
-      maw={300}
-      br="$1"
-      boc="$backgroundFocus"
-      h={20}
-      f={1}
-    >
+    <YStack m="$1" jc="center" ai="center">
+      <Button
+        icon={isPlaying ? Pause : Play}
+        onPress={togglePlay}
+        boc={"$backgroundFocus"}
+      />
       <XStack>
-        {isPlaying ? (
-          <Pause onPress={togglePlay} color="$background" size="$1" />
-        ) : (
-          <Play color="$background" onPress={togglePlay} size="$1" />
-        )}
         <Progress value={progress} f={0.2}>
           <Progress.Indicator animation="bouncy" backgroundColor="$borderColor" f={0.5} />
         </Progress>
@@ -82,11 +71,4 @@ const PlayerDop = ({ src }) => {
       </XStack>
     </YStack>
   );
-};
-
-// Helper function to format time in seconds into MM:SS
-function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-}
+} 
