@@ -41,10 +41,42 @@ export function ButtonPay(props: {
     href: "/userpage",
   });
 
+  // this is for toast message
+  const [list, setList] = useState<any[]>([]);
+
+  const showToast = (type) => {
+
+    let toastProperties;
+
+    switch (type) {
+      case "success":
+        toastProperties = {
+          id: 1,
+          title: "Мы проверяем перевод",
+          description: "Три урока вам уже открыто !",
+          backgroundColor: "#5cb85c",
+          icon: Banknote,
+        };
+        break;
+      
+      default:
+        setList([]);
+        break
+    }
+
+    setList([...list, toastProperties]);
+
+  };
+
 
   return (
-    
     <Dialog modal>
+      <ToastComp 
+        toastList={list}
+        position="bottom-center"
+        autoDelete={true}
+        autoDeleteTime={9000}
+      />
       <Dialog.Trigger asChild>
        <Button
         backgroundColor="$backgroundPress"
@@ -102,6 +134,7 @@ export function ButtonPay(props: {
                   course={props.course}
                   coupon={props.coupon}
                   size={props.size}
+                  showToast={showToast}
                   />
               )}
               {!isSignedIn && (
@@ -126,7 +159,7 @@ export function ButtonPay(props: {
   );
 }
 
-function MessageIfSignIn({course, coupon, pricerub, priceusdt, size}) {
+function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast}) {
 
   const id = `switch-${size.toString().slice(1)}`
   
@@ -171,6 +204,7 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size}) {
       return;
     }
     await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course });
+    showToast("success");
   };
 
   //this is for user check
@@ -182,45 +216,8 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size}) {
     setDiscountedPrice(price);
   }, [price]);
 
-   // this is for toast message
-   const [list, setList] = useState<any[]>([]);
-
-   const showToast = (type) => {
- 
-     let toastProperties;
- 
-     switch (type) {
-       case "success":
-         toastProperties = {
-           id: 1,
-           title: "Мы проверяем перевод",
-           description: "Три урока вам уже открыто !",
-           backgroundColor: "#5cb85c",
-           icon: Banknote,
-         };
-         break;
-       
-       default:
-         setList([]);
-         break
-     }
- 
-     setList([...list, toastProperties]);
- 
-   };
-
   return (
     <YStack p="$4" space="$4">
-      <div style={{
-      zIndex: 1000
-    }}>
-      <ToastComp 
-        toastList={list}
-        position="bottom-center"
-        autoDelete={true}
-        autoDeleteTime={9000}
-      />
-    </div>
       <XStack ai="center" space="$4">
           <Switch
               bc="$backgroundFocus"
@@ -275,4 +272,3 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size}) {
     </YStack>
   )
 }
-
