@@ -69,21 +69,25 @@ function PlayerDop({src}) {
         bg="$backgroundFocus"
         br="$2"
         bw={0}
-        jc="center"
+        ai="center"
         space="$2"
         f={1}
         h={70} w={350}
       >
-        <Button
-          circular
-          onPress={togglePlay}
-          size="$1"
-          backgroundColor="$backgroundFocus"
-          f={0.2}
-          icon={isPlaying ?
-            <Pause color="$background" /> :
-            <Play color="$background" />
-          }/>
+        <YStack f={0.2}>
+          {isPlaying ?
+            <Pause
+              color="$background"
+              onPress={() => {
+                togglePlay()
+              }}/> :
+            <Play
+              color="$background"
+              onPress={() => {
+                togglePlay()
+              }}/>
+          }
+        </YStack>
         <Progress size="$1" value={progress} f={0.5}>
           <Progress.Indicator animation="bouncy" backgroundColor="$borderColor" />
         </Progress>
