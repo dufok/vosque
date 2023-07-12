@@ -6,7 +6,6 @@ import {
   } from 'tamagui';
 import React, { useState, useEffect } from "react";
 import { Play, Pause, Plus } from '@tamagui/lucide-icons';
-const Audio = require('react-native').Audio; // Requiring once, instead of inside the component
 
 export type Content = {
   text: string;
@@ -23,15 +22,16 @@ export const DopDialog: React.FC<ContentsBlockAudioProps> = ({ contents }) => {
   return (
     <YStack ai="center" mb="$4" w="90%" maw={900}>
       {contentsArray.map((content, index) => (
-        <AudioPlayer key={index} src={content.src} />
+        <PlayerDop key={index} src={content.src} />
       ))}
     </YStack>
   );
 };
 
-const AudioPlayer = ({ src }) => {
+const PlayerDop = ({ src }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audio] = useState(new Audio(src));
+  let Audio = require('react-native').Audio;
+  const [audio, setAudio] = useState(new Audio(src));
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
