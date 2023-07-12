@@ -70,13 +70,14 @@ function PlayerDop({src}) {
         br="$1"
         bw={0}
       >
-        <Button onPress={togglePlay}>
-          {isPlaying ?
-            <Pause color="$background" /> :
-            <Play color="$background" />
-          }
-        </Button>
-        <Progress value={progress} f={0.5}>
+        <Button
+          circular
+          onPress={togglePlay}
+          icon={isPlaying ?
+            <Pause size="$1" color="$background" /> :
+            <Play size="$1" color="$background" />
+          }/>
+        <Progress size="$1" value={progress} f={0.5}>
           <Progress.Indicator animation="bouncy" backgroundColor="$borderColor" />
         </Progress>
         <Paragraph color="$background" f={0.3}>
