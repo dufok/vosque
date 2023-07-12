@@ -5,7 +5,7 @@ import { Play, Pause } from '@tamagui/lucide-icons';
 export function AudioPlayer({src}) {
 
   const [isPlaying, setIsPlaying] = React.useState(false);
-  {/* const [audio, setAudio] = useState(new Audio(src));
+  const [audio, setAudio] = useState(new Audio(src));
 
   const togglePlay = () => {
     if (audio) {
@@ -18,16 +18,12 @@ export function AudioPlayer({src}) {
     }
   }
 
-*/}
-
   return (
     <YStack m="$1" jc="center" ai="center">
-      {/*
       <Button
         icon={isPlaying ? Pause : Play}
         onPress={togglePlay}
         boc={"$backgroundFocus"}/>
-        */}
     </YStack>
   );
 } 
