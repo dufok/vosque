@@ -19,13 +19,13 @@ interface ExercisesBlockAudioWithDiscProps {
     <YStack marginHorizontal="$6" ai="flex-start" width="90%" maw={900} mb="$4">
       <YStack>
       {exercises.map(({description, text, audio}, index) => (
-        <XStack  key={index} fw="wrap" w="100%" f={1}>
-          <YStack marginVertical="$4" mr="$2" f={0.6}> 
+        <XStack  key={index} w="100%" f={1}>
+          <YStack ai="flex-start" jc="center" mr="$2">
+            <AudioPlayer src={audio}/>
+          </YStack>
+          <YStack marginVertical="$4" mr="$2" f={0.8}> 
             <Paragraph fontFamily="$bodyBold" mb="$2" ta="left" >{description}</Paragraph>
             <ParagraphCustom text={text}/>
-          </YStack>
-          <YStack ai="flex-end" jc="center" w="100%" f={0.4}>
-            <AudioPlayer src={audio}/>
           </YStack>
         </XStack>
           ))}
