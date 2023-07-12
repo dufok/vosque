@@ -1,6 +1,7 @@
 import { YStack, XStack, Paragraph, Progress, Button } from "tamagui";
 import React, { useState, useEffect } from "react";
 import { Play, Pause } from '@tamagui/lucide-icons';
+import { useRef } from 'react';
 
 function formatTime(seconds) {
   let minutes = Math.floor(seconds / 60);
@@ -36,16 +37,24 @@ function PlayerDop({src}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const audio = new Audio(src);
+  const audioRef = useRef(new Audio(src)); // Use useRef here
 
-  audio.onloadedmetadata = () => {
-    audio.ontimeupdate = () => {
-      setProgress((audio.currentTime/audio.duration) * 100);
-      setCurrentTime(audio.currentTime);
-    };
-  }
+  useEffect(() => {
+    const audio = audioRef.current;
+    audio.onloadedmetadata = () => {
+      audio.ontimeupdate = () => {
+        setProgress((audio.currentTime/audio.duration) * 100);
+        setCurrentTime(audio.currentTime);
+      };
+    }
+
+    return () => {
+      audio.ontimeupdate = null; // Clean up on unmount
+    }
+  }, []); // Only run once after initial render
 
   const togglePlay = () => {
+    const audio = audioRef.current;
     if (isPlaying) {
       audio.pause();
     } else {
@@ -56,14 +65,19 @@ function PlayerDop({src}) {
 
   return (
     <YStack m="$1" jc="center" ai="center">
-      <Button
-        icon={isPlaying ? Pause : Play}
-        onPress={togglePlay}
-        boc={"$backgroundFocus"}
-      />
-      <XStack>
-        <Progress value={progress} f={0.2}>
-          <Progress.Indicator animation="bouncy" backgroundColor="$borderColor" f={0.5} />
+      <XStack
+        bg="$backgroundFocus"
+        br="$1"
+        bw={0}
+      >
+        <Button onPress={togglePlay}>
+          {isPlaying ?
+            <Pause color="$background" /> :
+            <Play color="$background" />
+          }
+        </Button>
+        <Progress value={progress} f={0.5}>
+          <Progress.Indicator animation="bouncy" backgroundColor="$borderColor" />
         </Progress>
         <Paragraph color="$background" f={0.3}>
           {formatTime(currentTime)}
@@ -71,4 +85,4 @@ function PlayerDop({src}) {
       </XStack>
     </YStack>
   );
-} 
+}
