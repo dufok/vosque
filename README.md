@@ -1,19 +1,6 @@
-# 🌌 create-universal-app (CUA)
-
-<https://user-images.githubusercontent.com/36214945/211167187-347b87ce-1c03-4678-9904-542aa78ab131.mp4>
-
-## 🌌 What is this?
-
-**create-universal-app (CUA)** is an opinionated template for creating full-stack universal (mobile + web codeshare) apps with built-in auth for both mobile and web using **Expo** (mobile), **NextJS** (web), **tRPC**, **Prisma**, **Tamagui** (UI + styling), and **Clerk** (mobile + web auth). A **demo** is live at <https://cua-demo.vercel.app/>.
-
-[Here's](https://youtu.be/aTEv0-ZBbWk) a 20 minute Youtube tutorial going over everything if that's more of your style!
-
-You can also run `npx create-t3-universal-app` to start your project! (by [albbus](https://github.com/albbus-stack/create-t3-universal-app))
-
-If you have any question while using this, feel free to join our [👾Discord👾](https://discord.gg/5HvtckjyYb), we are all pretty active in there!
-
 **This repo is made on top of**:
 
+- [create-universal-app] (https://github.com/albbus-stack/create-t3-universal-app): expo, next, trpc, prisma, nextauth - no UI code share & no mobile auth.
 - [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo): expo, next, trpc, prisma, nextauth - no UI code share & no mobile auth.
 - [t3-turbo-and-clerk](https://github.com/clerkinc/t3-turbo-and-clerk): t3 turbo with auth for mobile + web - still no  UI code share.
 - [tamagui + solito starter](https://github.com/tamagui/tamagui/tree/master/starters/next-expo-solito): expo + next code share - no tRPC & no built-in auth.
@@ -51,41 +38,6 @@ Your **backend** code is gonna be in `packages/api`. NextJS is going to run this
 
 *Note: you don't need to understand how everything works in detail before you can start using this template. As someone that wants to know how every bolt and nut works, I often get "blocked" by my own perfectionism, so I'm just throwing this out there in case you're feeling the same about something.*
 
-## 💭 Behind the decisions
-
-### Why Tamagui for UI & styling?
-
-#### *What is Tamagui?*
-
-*TLDR*: it's for making things look pretty on both web and mobile while being really really fast and easy to work with. In more detail, Tamagui has 3 things:
-
-- **Compiler**: their unique way of turning your *"style related code"* into pure CSS faster. Most important thing here is probably the tree flattening thing they do.
-- **Core**: a small set of components they built aimed to replace View and Text that you use in React Native, with some advantages.
-- **UI**: a set of UI components that the Tama team built using Core.
-
-Check out their [docs](https://tamagui.dev/docs/intro/introduction) for more informations.
-
-#### *Why not Nativewind & Tailwind?*
-
-What I like about Tamagui is that it's simultaneously Tailwind and DaisyUI that's built from the ground up designed for universal apps with its own compiler and core components.
-
-Feel free to use Nativewind & Tailwind instead of Tamagui, you should be able to set things up fairly easily (and if you do *please* contribute to this template creating a branch with the Nativewind installation).
-
-### Why Clerk for auth?
-
-On a high level, clerk promises an overall user management solution instead of just authentication with things like the User Profile, Banning and Device management built-in. In practice I've personally had an great time using Clerk for Expo projects compared to other solutions like Firebase or Supabase auth for my projects.
-
-#### *Practical things I like about Clerk*
-  
-- Really nice hooks & components (SignedIn/SignedOut) that work for both Expo and NextJS.
-- SDKs for all 3 platforms: Expo frontend, NextJS frontend, NextJS serverside.
-- Fantastic support and help from their team (from personal experience).
-
-#### *Downsides*
-
-- Doesn't do SMS unless you pay: big negative for mobile but makes up for it with easy oauth.
-- Premium plan expensive compared to the alternatives.
-- Double edged sword of being a startup.
 
 ### Which DB?
 
