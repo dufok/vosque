@@ -2,12 +2,14 @@ import {
   Paragraph,
   YStack,
   XStack,
-  Spinner,
+  Button
  } from "@my/ui";
 import { trpc } from "app/utils/trpc";
 import { useLink } from "solito/link";
-import React,{useEffect} from "react";
+import React,{ useEffect, useState } from "react";
 import { useAuth } from "app/utils/clerk";
+import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
+import { AnimatePresence } from 'tamagui'
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
@@ -46,6 +48,13 @@ export function lesson1Screen() {
 
 
 function Lesson1SignIn() {
+// Open or close treory block
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
 
 //user check for lesson
 
@@ -99,29 +108,45 @@ function Lesson1SignIn() {
 
         {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
 
-        <HeaderBlock header={content?.headerBlock1}/>
-        <SquareText text={content?.squareText1}/>
-        <DescriptionBlock description={content?.descriptionBlock1}/>
-        <ButtonSquereSheet letters={letters} /> 
+        <AnimatePresence>
+        {isOpen && (
+          <YStack
+          enterStyle={{opacity: 0, y: -100}}
+          animation='bouncy'
+          >
+            <HeaderBlock header={content?.headerBlock1}/>
+            <SquareText text={content?.squareText1}/>
+            <DescriptionBlock description={content?.descriptionBlock1}/>
+            <ButtonSquereSheet letters={letters} /> 
 
-        <SquareText text={content?.squareText2}/>
-        <TextExampleBlock textExamples={textExampleBlock1}/>
-        <LifeHackerBlock
-          lifehacktitle={content?.lifeHackerBlock1.title}
-          descriptions={[
-            content?.lifeHackerBlock1.description1,
-            content?.lifeHackerBlock1.description2,
-            content?.lifeHackerBlock1.description3,
-            content?.lifeHackerBlock1.description4,
-          ]}
-          contents={[
-            content?.lifeHackerBlock1.content1,
-            content?.lifeHackerBlock1.content2,
-            content?.lifeHackerBlock1.content3,
-            content?.lifeHackerBlock1.content4,
-          ]}
-        />
-        <TextExampleBlock textExamples={textExampleBlock2}/>
+            <SquareText text={content?.squareText2}/>
+            <TextExampleBlock textExamples={textExampleBlock1}/>
+            <LifeHackerBlock
+              lifehacktitle={content?.lifeHackerBlock1.title}
+              descriptions={[
+                content?.lifeHackerBlock1.description1,
+                content?.lifeHackerBlock1.description2,
+                content?.lifeHackerBlock1.description3,
+                content?.lifeHackerBlock1.description4,
+              ]}
+              contents={[
+                content?.lifeHackerBlock1.content1,
+                content?.lifeHackerBlock1.content2,
+                content?.lifeHackerBlock1.content3,
+                content?.lifeHackerBlock1.content4,
+              ]}
+            />
+            <TextExampleBlock textExamples={textExampleBlock2}/>
+          </YStack>
+        )}
+        </AnimatePresence>
+        <Button
+        w={100}
+        h={30}
+        bw={1}
+        br="$2"
+        bg="$backgroundFocus"
+        icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
 
         <HeaderBlock header={content?.headerBlock2}/>
         <SquareText text={content?.squareText3}/>
