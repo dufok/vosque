@@ -160,7 +160,7 @@ export function ButtonPay(props: {
   );
 }
 
-function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast}) {
+function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, ...props}) {
 
   const id = `switch-${size.toString().slice(1)}`
   
@@ -206,7 +206,7 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast})
     }
     await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course });
     showToast("success");
-    const text = `Пользователь: ${currentUser.email} оплатил курс: ${course}. Нужно проверить! ${currency}`;
+    const text = `Пользователь: ${currentUser.email} оплатил курс: ${props.description}. Нужно проверить! ${currency}`;
     sendTelegramMessage(text);
   };
 
