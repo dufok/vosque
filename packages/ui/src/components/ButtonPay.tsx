@@ -21,6 +21,7 @@ import { trpc } from "app/utils/trpc";
 import { useAuth } from "app/utils/clerk";
 import { Banknote } from '@tamagui/lucide-icons';
 import { ToastComp } from "@my/ui/src/components/ToastComp";
+import { sendTelegramMessage } from "@my/ui/src/components/sendTelegramMessage";
 
 
 
@@ -205,6 +206,8 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast})
     }
     await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course });
     showToast("success");
+    const text = `Пользователь: ${currentUser.email} оплатил курс: ${course}. Нужно проверить!`;
+    sendTelegramMessage(text);
   };
 
   //this is for user check
