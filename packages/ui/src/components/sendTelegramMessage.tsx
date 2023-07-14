@@ -1,4 +1,5 @@
 export const sendTelegramMessage = async (text) => {
+  
   try {
     const response = await fetch('/api/telegram', {
       method: 'POST',
@@ -7,17 +8,9 @@ export const sendTelegramMessage = async (text) => {
       },
       body: JSON.stringify({ text }),
     });
-
-    const responseText = await response.text();
-    console.log('Response text:', responseText);
-
-    try {
-      const data = JSON.parse(responseText);
-      console.log(data);
-    } catch (error) {
-      console.error('Error parsing JSON:', error);
-    }
+    const data = await response.json();
+    // Data is retrieved but not used. If you need to use the data, do it here.
   } catch (error) {
-    console.log(error);
+    console.error('Error when sending message:', error);
   }
 }
