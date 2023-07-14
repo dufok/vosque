@@ -73,18 +73,20 @@ function PlayerDop({src}) {
         space="$2"
         f={1}
         h={35} w={200}
+        jc="center"
       >
         <YStack f={0.2} p="$2">
         <Button
           circular
           size="$1"
           bw={0}
+          bg="$backgroundFocus"
           icon={isPlaying ? Pause : Play}  onPress={() => {togglePlay()}}/>
         </YStack>
         <Progress size="$1" value={progress} f={0.5}>
           <Progress.Indicator animation="bouncy" backgroundColor="$borderColor" />
         </Progress>
-        <Paragraph fontFamily="$bodyBold" color="$background" f={0.3} p="$2">
+        <Paragraph fontFamily="$bodyBold" color="$background" f={0.3} w={50}>
           {formatTime(currentTime)}
         </Paragraph>
       </XStack>
