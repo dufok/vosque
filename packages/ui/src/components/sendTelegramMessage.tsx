@@ -8,13 +8,15 @@ export const sendTelegramMessage = async (text) => {
       body: JSON.stringify({ text }),
     });
 
+    const responseText = await response.text();
+    console.log('Response text:', responseText);
+
     try {
-      const data = await response.json();
+      const data = JSON.parse(responseText);
       console.log(data);
     } catch (error) {
       console.error('Error parsing JSON:', error);
     }
-    
   } catch (error) {
     console.log(error);
   }
