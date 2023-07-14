@@ -1,15 +1,17 @@
-const nodeFetch = require('node-fetch');
-
-export function sendTelegramMessage(text) {
+export const sendTelegramMessage = async (text) => {
   
-  nodeFetch(`https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TELEGRAM_API}/sendMessage?chat_id=${process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID}&text=${text}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+    try {
+      const response = await fetch('/api/telegram', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text }),
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
     }
-  })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(err => console.log(err));
-}
 
+}
