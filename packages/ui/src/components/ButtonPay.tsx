@@ -206,7 +206,8 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast})
     }
     await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course });
     showToast("success");
-    sendTelegramMessage(currentUser.id);
+    const text = `Пользователь: ${currentUser.email} оплатил курс: ${course}. Нужно проверить!`;
+    sendTelegramMessage(text);
   };
 
   //this is for user check
