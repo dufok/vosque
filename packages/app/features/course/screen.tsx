@@ -84,7 +84,7 @@ function WelcomeCourse() {
 
 function StructureCourse() {
   return (
-    <YStack bc="$backgroundFocus" space="$4" ai="center" p="$10">
+    <YStack marginVertical="$10" bc="$backgroundFocus" space="$4" ai="center" p="$4">
       <H2 tt="uppercase" ta="center" col="$background">
         Структура курса
       </H2>
