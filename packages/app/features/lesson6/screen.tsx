@@ -1,11 +1,13 @@
 import {
   Paragraph,
   YStack,
-  Spinner,
+  Button,
+  AnimatePresence
  } from "@my/ui";
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
+import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
@@ -28,6 +30,14 @@ import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock
 import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 export function lesson6Screen() {
+
+  //Open or close treory block
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
 
   // Part Config
 
@@ -64,10 +74,6 @@ export function lesson6Screen() {
     console.log(data);
   }, [isLoading]);
 
-  if (isLoading) {
-      return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-  }
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
@@ -87,6 +93,12 @@ export function lesson6Screen() {
            </YStack>
          <ImageCircle img={content?.image}/>
 
+    <AnimatePresence>
+      {isOpen && (
+        <YStack
+        enterStyle={{opacity: 0, y: -100}}
+        animation='bouncy'
+        > 
          <HeaderBlock header={content?.headerBlock1}/>
          <TableBlock table={content?.tableBlock1} />
          <TableBlock table={content?.tableBlock2} />
@@ -105,6 +117,16 @@ export function lesson6Screen() {
          <HeaderBlock header={content?.headerBlock3}/>
          <TableBlock table={content?.tableBlock4} />
          <TextExampleBlock textExamples={textExample2}/>
+         </YStack>
+        )}
+      </AnimatePresence>
+        <Button
+        w={100}
+        h={30}
+        bw={1}
+        br="$2"
+        bg="$backgroundFocus"
+        icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
 
          {/* БЛОК УПРАЖНЕНИЙ */}
 

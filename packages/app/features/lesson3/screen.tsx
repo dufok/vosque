@@ -2,10 +2,13 @@ import {
   Paragraph,
   YStack,
   XStack,
+  Button,
+  AnimatePresence
  } from "@my/ui";
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
+import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
@@ -32,6 +35,14 @@ import { ContentLesson3_2 } from "../lesson3/type_Lesson3";
 
 
 export function lesson3Screen() {
+
+  //Open or close treory block
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
@@ -105,7 +116,12 @@ export function lesson3Screen() {
               <ImageCircle img={content?.image}/>
 
           {/* Теоритический Блок */}
-
+        <AnimatePresence>
+        {isOpen && (
+          <YStack
+          enterStyle={{opacity: 0, y: -100}}
+          animation='bouncy'
+          >          
           <HeaderBlock header={content?.header1}/>
           <SquareText text={content?.squareText1}/>
           <TableBlock table={content?.tableBlock1}/>
@@ -124,6 +140,16 @@ export function lesson3Screen() {
 
           <HeaderBlock header={content?.headerBlock4}/>
           <ExercisesBlockText exercises={blockText2}/>
+          </YStack>
+        )}
+        </AnimatePresence>
+        <Button
+        w={100}
+        h={30}
+        bw={1}
+        br="$2"
+        bg="$backgroundFocus"
+        icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
 
           {/*  Блок Упражнений */}
 

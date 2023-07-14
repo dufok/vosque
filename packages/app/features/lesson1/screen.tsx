@@ -2,14 +2,14 @@ import {
   Paragraph,
   YStack,
   XStack,
-  Button
+  Button,
+  AnimatePresence
  } from "@my/ui";
 import { trpc } from "app/utils/trpc";
 import { useLink } from "solito/link";
 import React,{ useEffect, useState } from "react";
 import { useAuth } from "app/utils/clerk";
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
-import { AnimatePresence } from 'tamagui'
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
