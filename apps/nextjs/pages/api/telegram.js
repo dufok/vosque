@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-export const sendMessage = async (req, res) => {
+const sendMessage = async (req, res) => {
   const { text } = req.body;
 
   try {
@@ -17,3 +17,5 @@ export const sendMessage = async (req, res) => {
     res.status(500).json({ error: error.toString() });
   }
 }
+
+export default sendMessage;
