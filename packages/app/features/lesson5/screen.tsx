@@ -42,6 +42,12 @@ export function lesson5Screen() {
     setIsOpen(!isOpen);
   };
 
+  const [isOpen2, setIsOpen2] = useState(false);
+
+  const toggleOpen2 = () => {
+    setIsOpen2(!isOpen2);
+  };
+
   // Part Config
   
   const { data: currentUser } = trpc.user.current.useQuery();
@@ -84,7 +90,6 @@ export function lesson5Screen() {
   const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
   const wordToTranslate4 = Object.values(content2?.wordToTranslateBlock4 || {});
-  const dopDialog1 = Object.values(content2?.dopDialog1 || {});
   
 
   useEffect(() => {
@@ -158,10 +163,28 @@ export function lesson5Screen() {
             </YStack>
 
           <HeaderBlock header={content2?.headerBlock1}/>
-          <SquareText text={content2?.squareText1} />
-          <TextExampleBlock textExamples={textExample1}/>
-          <SquareText text={content2?.squareText2} />
-          <TextExampleBlock textExamples={textExample2}/>
+
+          <AnimatePresence>
+            {isOpen2 && (
+              <YStack
+              enterStyle={{opacity: 0, y: -100}}
+              animation='bouncy'
+              ai="center"
+              >
+                <SquareText text={content2?.squareText1} />
+                <TextExampleBlock textExamples={textExample1}/>
+                <SquareText text={content2?.squareText2} />
+                <TextExampleBlock textExamples={textExample2}/>
+              </YStack>
+            )}
+          </AnimatePresence>
+          <Button
+          w={100}
+          h={30}
+          bw={1}
+          br="$2"
+          bg="$backgroundFocus"
+          icon={isOpen2 ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen2()}}/>
 
           <HeaderBlock header={content2?.headerBlock2} />
           <SquareText text={content2?.squareText3} />
@@ -221,7 +244,7 @@ export function lesson5Screen() {
 
           <HeaderBlock header={content2?.headerBlock6} />
 
-          <DopDialog contents={dopDialog1}/>
+          <DopDialog contents={content2?.dopDialog1}/>
 
         </YStack>
         <NavigationBlock

@@ -44,6 +44,12 @@ export function lesson3Screen() {
     setIsOpen(!isOpen);
   };
 
+  const [isOpen2, setIsOpen2] = useState(false);
+
+  const toggleOpen2 = () => {
+    setIsOpen2(!isOpen2);
+  };
+
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
@@ -90,7 +96,6 @@ export function lesson3Screen() {
   const wordToTranslate1 = Object.values(content2?.wordToTranslateBlock1 || {});
   const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
-  const dopDialog1 = Object.values(content2?.dopDialog1 || {});
   
   useEffect(() => {
     console.log(data);
@@ -107,49 +112,52 @@ export function lesson3Screen() {
       { isSignedIn && (
         <YStack f={1}>
           <YStack ai="center" mt="$10">
-              <WelcomeBlock
-                name={ThirdLesson?.name}
-                description={content?.description}/>
-                <YStack  w="100%" $gtSm={{ width: "70%" }}>
-                  <VideoPlayer linkVideo={content?.video}/>
-                </YStack>
-              <ImageCircle img={content?.image}/>
+            <WelcomeBlock
+              name={ThirdLesson?.name}
+              description={content?.description}/>
+              <YStack  w="100%" $gtSm={{ width: "70%" }}>
+                <VideoPlayer linkVideo={content?.video}/>
+              </YStack>
+            <ImageCircle img={content?.image}/>
 
           {/* Теоритический Блок */}
-        <AnimatePresence>
-        {isOpen && (
-          <YStack
-          enterStyle={{opacity: 0, y: -100}}
-          animation='bouncy'
-          >          
+
           <HeaderBlock header={content?.header1}/>
-          <SquareText text={content?.squareText1}/>
-          <TableBlock table={content?.tableBlock1}/>
 
-          {/* Формы на “Usted” - “Ustedes”: */}
+          <AnimatePresence>
+          {isOpen && (
+            <YStack
+            enterStyle={{opacity: 0, y: -100}}
+            animation='bouncy'
+            ai="center"
+            >          
+            <SquareText text={content?.squareText1}/>
+            <TableBlock table={content?.tableBlock1}/>
 
-          <HeaderBlock header={content?.header2}/>
-          <ExercisesBlockText exercises={exercises1} />
+            {/* Формы на “Usted” - “Ustedes”: */}
 
-          {/*  Построение простого вопроса: */}
+            <HeaderBlock header={content?.header2}/>
+            <ExercisesBlockText exercises={exercises1} />
 
-          <HeaderBlock header={content?.headerBlock3}/>
-          <ExercisesBlockText exercises={blockText1}/>
+            {/*  Построение простого вопроса: */}
 
-          {/*  Построение Отрицания: */}
+            <HeaderBlock header={content?.headerBlock3}/>
+            <ExercisesBlockText exercises={blockText1}/>
 
-          <HeaderBlock header={content?.headerBlock4}/>
-          <ExercisesBlockText exercises={blockText2}/>
-          </YStack>
-        )}
-        </AnimatePresence>
-        <Button
-        w={100}
-        h={30}
-        bw={1}
-        br="$2"
-        bg="$backgroundFocus"
-        icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
+            {/*  Построение Отрицания: */}
+
+            <HeaderBlock header={content?.headerBlock4}/>
+            <ExercisesBlockText exercises={blockText2}/>
+            </YStack>
+          )}
+          </AnimatePresence>
+          <Button
+          w={100}
+          h={30}
+          bw={1}
+          br="$2"
+          bg="$backgroundFocus"
+          icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
 
           {/*  Блок Упражнений */}
 
@@ -167,7 +175,26 @@ export function lesson3Screen() {
             </YStack>
 
           <HeaderBlock header={content2?.headerBlock1}/>
-          <TableBlock table={content2?.tableBlock1} />
+
+          <AnimatePresence>
+            {isOpen2 && (
+              <YStack
+              
+              enterStyle={{opacity: 0, y: -100}}
+              animation='bouncy'
+              ai="center"
+              >  
+                <TableBlock table={content2?.tableBlock1} />
+              </YStack>
+            )}
+          </AnimatePresence>
+          <Button
+          w={100}
+          h={30}
+          bw={1}
+          br="$2"
+          bg="$backgroundFocus"
+          icon={isOpen2 ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen2()}}/>
 
           <HeaderBlock header={content2?.headerBlock2} />
           <SquareText text={content2?.squareText2} />
@@ -221,7 +248,7 @@ export function lesson3Screen() {
 
           <HeaderBlock header={content2?.headerBlock6} />
           <DescriptionBlock description={content2?.descriptionBlock10} />
-          <DopDialog contents={dopDialog1}/>
+          <DopDialog contents={content2?.dopDialog1 || {}}/>
 
           {/* Домашнее Задание */}
 

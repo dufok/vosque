@@ -87,101 +87,106 @@ export function lesson2Screen() {
       { isSignedIn && (
       <YStack f={1}>
        <YStack ai="center" mt="$10">
-           <WelcomeBlock
-             name={SecondLesson?.name}
-             description={content?.description}/>
-             <YStack  w="100%" $gtSm={{ width: "70%" }}>
-               <VideoPlayer linkVideo={content?.video}/>
-             </YStack>
-           <ImageCircle img={content?.image}/>
+        <WelcomeBlock
+          name={SecondLesson?.name}
+          description={content?.description}/>
+          <YStack  w="100%" $gtSm={{ width: "70%" }}>
+            <VideoPlayer linkVideo={content?.video}/>
+          </YStack>
+        <ImageCircle img={content?.image}/>
 
-       {/* Теоритический Блок */}
-      <AnimatePresence>
-        {isOpen && (
-          <YStack
-          enterStyle={{opacity: 0, y: -100}}
-          animation='bouncy'
-          >
-            <HeaderBlock header={content?.header1}/>
-            <TableBlock table={content?.tableBlock1}/>
+           {/* Теоритический Блок */}
 
-            {/* Важные Исключения */}
+        <HeaderBlock header={content?.header1}/>
 
-            <SquareText text={content?.squareText1}/>
-            <ExercisesBlockText exercises={blockText1}/>
+              
+        <AnimatePresence>
+          {isOpen && (
+            <YStack
+            enterStyle={{opacity: 0, y: -100}}
+            animation='bouncy'
+            ai="center"
+            >
+              
+              <TableBlock table={content?.tableBlock1}/>
 
-            {/*  Множественное число */}
+              {/* Важные Исключения */}
 
-            <HeaderBlock header={content?.headerBlock2}/>
-            <ExercisesBlockText exercises={blockText2}/>
+              <SquareText text={content?.squareText1}/>
+              <ExercisesBlockText exercises={blockText1}/>
 
-            {/*  Неопределенный Артикль */}
+              {/*  Множественное число */}
 
-            <HeaderBlock header={content?.headerBlock3}/>
-              <TableBlock table={content?.tableBlock2}/>
-              <LifeHackerBlock
-                lifehacktitle={content?.lifehack1.title}
-                descriptions={[
-                  content?.lifehack1.description1,
-                  content?.lifehack1.description2,
-                  content?.lifehack1.description3,
-                  content?.lifehack1.description4,
-                ]}
-                contents={[
-                  content?.lifehack1.content1,
-                  content?.lifehack1.content2,
-                  content?.lifehack1.content3,
-                  content?.lifehack1.content4,
-                ]}
-              />
+              <HeaderBlock header={content?.headerBlock2}/>
+              <ExercisesBlockText exercises={blockText2}/>
 
-            {/* Определенный Артикль */}
+              {/*  Неопределенный Артикль */}
 
-            <TableBlock table={content?.tableBlock3}/>
-            <YStack ai="center">
-              <XStack fw="wrap" jc="space-around" >
-                  <LifeHackerBlock
-                    lifehacktitle={content?.lifehack2.title}
-                    descriptions={[
-                      content?.lifehack2.description1,
-                      content?.lifehack2.description2,
-                      content?.lifehack2.description3,
-                      content?.lifehack2.description4,
-                    ]}
-                    contents={[
-                      content?.lifehack2.content1,
-                      content?.lifehack2.content2,
-                      content?.lifehack2.content3,
-                      content?.lifehack2.content4,
-                    ]}
-                  />
+              <HeaderBlock header={content?.headerBlock3}/>
+                <TableBlock table={content?.tableBlock2}/>
                 <LifeHackerBlock
-                  lifehacktitle={content?.lifehack3.title}
+                  lifehacktitle={content?.lifehack1.title}
                   descriptions={[
-                    content?.lifehack3.description1,
-                    content?.lifehack3.description2,
-                    content?.lifehack3.description3,
-                    content?.lifehack3.description4,
+                    content?.lifehack1.description1,
+                    content?.lifehack1.description2,
+                    content?.lifehack1.description3,
+                    content?.lifehack1.description4,
                   ]}
                   contents={[
-                    content?.lifehack3.content1,
-                    content?.lifehack3.content2,
-                    content?.lifehack3.content3,
-                    content?.lifehack3.content4,
+                    content?.lifehack1.content1,
+                    content?.lifehack1.content2,
+                    content?.lifehack1.content3,
+                    content?.lifehack1.content4,
                   ]}
                 />
-              </XStack>
+
+              {/* Определенный Артикль */}
+
+              <TableBlock table={content?.tableBlock3}/>
+              <YStack ai="center">
+                <XStack fw="wrap" jc="space-around" >
+                    <LifeHackerBlock
+                      lifehacktitle={content?.lifehack2.title}
+                      descriptions={[
+                        content?.lifehack2.description1,
+                        content?.lifehack2.description2,
+                        content?.lifehack2.description3,
+                        content?.lifehack2.description4,
+                      ]}
+                      contents={[
+                        content?.lifehack2.content1,
+                        content?.lifehack2.content2,
+                        content?.lifehack2.content3,
+                        content?.lifehack2.content4,
+                      ]}
+                    />
+                  <LifeHackerBlock
+                    lifehacktitle={content?.lifehack3.title}
+                    descriptions={[
+                      content?.lifehack3.description1,
+                      content?.lifehack3.description2,
+                      content?.lifehack3.description3,
+                      content?.lifehack3.description4,
+                    ]}
+                    contents={[
+                      content?.lifehack3.content1,
+                      content?.lifehack3.content2,
+                      content?.lifehack3.content3,
+                      content?.lifehack3.content4,
+                    ]}
+                  />
+                </XStack>
+              </YStack>
             </YStack>
-          </YStack>
-        )}
-      </AnimatePresence>
-      <Button
-        w={100}
-        h={30}
-        bw={1}
-        br="$2"
-        bg="$backgroundFocus"
-        icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
+          )}
+        </AnimatePresence>
+        <Button
+          w={100}
+          h={30}
+          bw={1}
+          br="$2"
+          bg="$backgroundFocus"
+          icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
 
 
         {/*  Теоретический блок Упражнений */}

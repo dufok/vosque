@@ -43,6 +43,18 @@ export function lesson11Screen() {
       setIsOpen(!isOpen);
     };
 
+    const [isOpen2, setIsOpen2] = useState(false);
+
+    const toggleOpen2 = () => {
+      setIsOpen2(!isOpen2);
+    };
+
+    const [isOpen3, setIsOpen3] = useState(false);
+
+    const toggleOpen3 = () => {
+      setIsOpen3(!isOpen3);
+    };
+
   // Part Config
 
   const { data: currentUser } = trpc.user.current.useQuery();
@@ -99,7 +111,6 @@ export function lesson11Screen() {
   const wordToTranslate11 = Object.values(content3?.wordToTranslateBlock11 || {});
   const tests3_1 = Object.values(content3?.langTest3_1.testContent || {});
   const example3_1 = content3?.langTest3_1.example;
-  const dopDialog1 = Object.values(content3?.dopDialog1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -124,44 +135,45 @@ export function lesson11Screen() {
               </YStack>
             <ImageCircle img={content?.image}/>
 
-    <AnimatePresence>
-      {isOpen && (
-        <YStack
-        enterStyle={{opacity: 0, y: -100}}
-        animation='bouncy'
-        > 
             <HeaderBlock header={content?.headerBlock1}/>
-            <HeaderBlock header={content?.headerBlock3}/>
-            <TextExampleBlock textExamples={textExample1}/>
-            <TableBlock table={content?.tableBlock1} />
-            <TableBlock table={content?.tableBlock2} />
-            <TableBlock table={content?.tableBlock3} />
-            <LifeHackerBlock
-              lifehacktitle={content?.lifeHackerBlock1.title}
-              descriptions={[
-                content?.lifeHackerBlock1.description1,
-                content?.lifeHackerBlock1.description2,
-                content?.lifeHackerBlock1.description3,
-                content?.lifeHackerBlock1.description4,
-              ]}
-              contents={[
-                content?.lifeHackerBlock1.content1,
-                content?.lifeHackerBlock1.content2,
-                content?.lifeHackerBlock1.content3,
-                content?.lifeHackerBlock1.content4,
-              ]}
-            />
-                 </YStack>
-        )}
-      </AnimatePresence>
-        <Button
-        w={100}
-        h={30}
-        bw={1}
-        br="$2"
-        bg="$backgroundFocus"
-        icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
-             
+
+            <AnimatePresence>
+              {isOpen && (
+                <YStack
+                enterStyle={{opacity: 0, y: -100}}
+                animation='bouncy'
+                > 
+                  <HeaderBlock header={content?.headerBlock3}/>
+                  <TextExampleBlock textExamples={textExample1}/>
+                  <TableBlock table={content?.tableBlock1} />
+                  <TableBlock table={content?.tableBlock2} />
+                  <TableBlock table={content?.tableBlock3} />
+                  <LifeHackerBlock
+                    lifehacktitle={content?.lifeHackerBlock1.title}
+                    descriptions={[
+                      content?.lifeHackerBlock1.description1,
+                      content?.lifeHackerBlock1.description2,
+                      content?.lifeHackerBlock1.description3,
+                      content?.lifeHackerBlock1.description4,
+                    ]}
+                    contents={[
+                      content?.lifeHackerBlock1.content1,
+                      content?.lifeHackerBlock1.content2,
+                      content?.lifeHackerBlock1.content3,
+                      content?.lifeHackerBlock1.content4,
+                    ]}
+                  />
+                </YStack>
+              )}
+            </AnimatePresence>
+            <Button
+            w={100}
+            h={30}
+            bw={1}
+            br="$2"
+            bg="$backgroundFocus"
+            icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
+                
               {/* Блок Упражнений */}  
 
             <HeaderBlock header={content?.headerBlock2} />
@@ -177,26 +189,43 @@ export function lesson11Screen() {
             </YStack>
 
             <HeaderBlock header={content2?.headerBlock1}/>
-            <HeaderBlock header={content2?.headerBlock3} />
-            <TextExampleBlock textExamples={textExample2}/>
-            <TableBlock table={content2?.tableBlock1} />
-            <TableBlock table={content2?.tableBlock2} />
-            <TableBlock table={content2?.tableBlock3} />
-            <LifeHackerBlock
-              lifehacktitle={content2?.lifeHackerBlock1.title}
-              descriptions={[
-                content2?.lifeHackerBlock1.description1,
-                content2?.lifeHackerBlock1.description2,
-                content2?.lifeHackerBlock1.description3,
-                content2?.lifeHackerBlock1.description4,
-              ]}
-              contents={[
-                content2?.lifeHackerBlock1.content1,
-                content2?.lifeHackerBlock1.content2,
-                content2?.lifeHackerBlock1.content3,
-                content2?.lifeHackerBlock1.content4,
-              ]}
-            />
+            <AnimatePresence>
+              {isOpen2 && (
+                <YStack
+                enterStyle={{opacity: 0, y: -100}}
+                animation='bouncy'
+                ai="center"
+                >
+                  <HeaderBlock header={content2?.headerBlock3} />
+                  <TextExampleBlock textExamples={textExample2}/>
+                  <TableBlock table={content2?.tableBlock1} />
+                  <TableBlock table={content2?.tableBlock2} />
+                  <TableBlock table={content2?.tableBlock3} />
+                  <LifeHackerBlock
+                    lifehacktitle={content2?.lifeHackerBlock1.title}
+                    descriptions={[
+                      content2?.lifeHackerBlock1.description1,
+                      content2?.lifeHackerBlock1.description2,
+                      content2?.lifeHackerBlock1.description3,
+                      content2?.lifeHackerBlock1.description4,
+                    ]}
+                    contents={[
+                      content2?.lifeHackerBlock1.content1,
+                      content2?.lifeHackerBlock1.content2,
+                      content2?.lifeHackerBlock1.content3,
+                      content2?.lifeHackerBlock1.content4,
+                    ]}
+                  />
+                </YStack>
+              )}
+            </AnimatePresence>
+            <Button
+            w={100}
+            h={30}
+            bw={1}
+            br="$2"
+            bg="$backgroundFocus"
+            icon={isOpen2 ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen2()}}/>
 
             {/* Блок Упражнений */}  
 
@@ -212,11 +241,28 @@ export function lesson11Screen() {
             </YStack>
 
             <HeaderBlock header={content3?.headerBlock1}/>
-            <HeaderBlock header={content3?.headerBlock6}/>
-            <TextExampleBlock textExamples={textExample3}/>
-            <TableBlock table={content3?.tableBlock1} />
-            <TableBlock table={content3?.tableBlock2} />
-            <ExercisesBlockText exercises={exercises1} />
+            <AnimatePresence>
+              {isOpen3 && (
+                <YStack
+                enterStyle={{opacity: 0, y: -100}}
+                animation='bouncy'
+                ai="center"
+                >
+                  <HeaderBlock header={content3?.headerBlock6}/>
+                  <TextExampleBlock textExamples={textExample3}/>
+                  <TableBlock table={content3?.tableBlock1} />
+                  <TableBlock table={content3?.tableBlock2} />
+                  <ExercisesBlockText exercises={exercises1} />
+                </YStack>
+              )}
+            </AnimatePresence>
+            <Button
+            w={100}
+            h={30}
+            bw={1}
+            br="$2"
+            bg="$backgroundFocus"
+            icon={isOpen3 ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen3()}}/>
 
             {/* Блок Упражнений */}  
 
@@ -274,7 +320,7 @@ export function lesson11Screen() {
             {/* Дополнительные материалы */}
 
             <HeaderBlock header={content3?.headerBlock7} />
-            <DopDialog contents={dopDialog1}/>
+            <DopDialog contents={content3?.dopDialog1}/>
 
 
           </YStack>

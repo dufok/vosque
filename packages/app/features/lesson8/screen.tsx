@@ -19,17 +19,12 @@ import { SubMenu } from "@my/ui/src/components/SubMenu";
 import { WelcomeBlock } from "@my/ui/src/components/WelcomeBlock";
 import { ImageCircle } from "@my/ui/src/components/ImageCircle";
 import { HeaderBlock } from "@my/ui/src/components/HeaderBlock";
-import { DescriptionBlock } from "@my/ui/src/components/DescriptionBlock";
 import { TextExampleBlock } from "@my/ui/src/components/TextExampleBlock";
-import { ExercisesBlockText } from "@my/ui/src/components/ExercisesBlockText";
 import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
-import { TableBlock } from "@my/ui/src/components/TableBlock";
 import { LangTest1 } from "@my/ui/src/components/LangTest1";
-import { LangTest2 } from "@my/ui/src/components/LangTest2";
 import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
-import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 export function lesson8Screen() {
@@ -96,47 +91,48 @@ export function lesson8Screen() {
           </YStack>
         <ImageCircle img={content?.image}/>
 
-   <AnimatePresence>
-      {isOpen && (
-        <YStack
-        enterStyle={{opacity: 0, y: -100}}
-        animation='bouncy'
-        > 
         <HeaderBlock header={content?.headerBlock1}/>
-        <TextExampleBlock textExamples={textExample1}/>
-        <HeaderBlock header={content?.headerBlock2} />
-        <SquareText text={content?.squareText1} />
-        <LangTest4 example={example4_1} tests={tests4_1} />
-        <SquareText text={content?.squareText2} />
-        <LangTest1 example={example1_1} tests={tests1_1} />
-        <LifeHackerBlock
-          lifehacktitle={content?.lifeHackerBlock1.title}
-          descriptions={[
-            content?.lifeHackerBlock1.description1,
-            content?.lifeHackerBlock1.description2,
-            content?.lifeHackerBlock1.description3,
-            content?.lifeHackerBlock1.description4,
-          ]}
-          contents={[
-            content?.lifeHackerBlock1.content1,
-            content?.lifeHackerBlock1.content2,
-            content?.lifeHackerBlock1.content3,
-            content?.lifeHackerBlock1.content4,
-          ]}
-        />
 
-        <HeaderBlock header={content?.headerBlock3} />
-        <SquareText text={content?.squareText3} />
-        <WordToTranslateBlock words={wordToTranslate1} />
-        <SquareText text={content?.squareText4} />
-        <WordToTranslateBlock words={wordToTranslate2} />
-        <SquareText text={content?.squareText5} />
-        <WordToTranslateBlock words={wordToTranslate3} />
-        <SquareText text={content?.squareText6} />
-        <WordToTranslateBlock words={wordToTranslate4} />
-      </YStack>
-        )}
-      </AnimatePresence>
+        <AnimatePresence>
+            {isOpen && (
+              <YStack
+              enterStyle={{opacity: 0, y: -100}}
+              animation='bouncy'
+              > 
+              <TextExampleBlock textExamples={textExample1}/>
+              <HeaderBlock header={content?.headerBlock2} />
+              <SquareText text={content?.squareText1} />
+              <LangTest4 example={example4_1} tests={tests4_1} />
+              <SquareText text={content?.squareText2} />
+              <LangTest1 example={example1_1} tests={tests1_1} />
+              <LifeHackerBlock
+                lifehacktitle={content?.lifeHackerBlock1.title}
+                descriptions={[
+                  content?.lifeHackerBlock1.description1,
+                  content?.lifeHackerBlock1.description2,
+                  content?.lifeHackerBlock1.description3,
+                  content?.lifeHackerBlock1.description4,
+                ]}
+                contents={[
+                  content?.lifeHackerBlock1.content1,
+                  content?.lifeHackerBlock1.content2,
+                  content?.lifeHackerBlock1.content3,
+                  content?.lifeHackerBlock1.content4,
+                ]}
+              />
+
+              <HeaderBlock header={content?.headerBlock3} />
+              <SquareText text={content?.squareText3} />
+              <WordToTranslateBlock words={wordToTranslate1} />
+              <SquareText text={content?.squareText4} />
+              <WordToTranslateBlock words={wordToTranslate2} />
+              <SquareText text={content?.squareText5} />
+              <WordToTranslateBlock words={wordToTranslate3} />
+              <SquareText text={content?.squareText6} />
+              <WordToTranslateBlock words={wordToTranslate4} />
+            </YStack>
+          )}
+        </AnimatePresence>
         <Button
         w={100}
         h={30}
@@ -155,7 +151,7 @@ export function lesson8Screen() {
         {/* Дополнительные материалы */}
 
         <HeaderBlock header={content?.headerBlock5} />
-        <DopDialog contents={dopDialog1}/>
+        <DopDialog contents={content?.dopDialog1}/>
 
       </YStack>
       <NavigationBlock

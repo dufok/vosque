@@ -24,11 +24,8 @@ import { TextExampleBlock } from "@my/ui/src/components/TextExampleBlock";
 import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
 import { TableBlock } from "@my/ui/src/components/TableBlock";
 import { LangTest1 } from "@my/ui/src/components/LangTest1";
-import { LangTest2 } from "@my/ui/src/components/LangTest2";
 import { LangTest4 } from "@my/ui/src/components/LangTest4";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
-import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
-import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 
@@ -43,6 +40,12 @@ export function lesson7Screen() {
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
+  };
+
+  const [isOpen2, setIsOpen2] = useState(false);
+
+  const toggleOpen2 = () => {
+    setIsOpen2(!isOpen2);
   };
 
   // Part Config
@@ -81,7 +84,6 @@ export function lesson7Screen() {
   const example1_2 = content2?.langTest1_2.example;
   const tests1_3 = Object.values(content2?.langTest1_3.testContent || {});
   const example1_3 = content2?.langTest1_3.example;
-  const dopDialog1 = Object.values(content2?.dopDialog1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -191,8 +193,25 @@ export function lesson7Screen() {
             </YStack>
 
         <HeaderBlock header={content2?.headerBlock1}/>
-        <DescriptionBlock description={content2?.descriptionBlock1} />
-        <TextExampleBlock textExamples={textExample1}/>
+        <AnimatePresence>
+          {isOpen2 && (
+            <YStack
+            enterStyle={{opacity: 0, y: -100}}
+            animation='bouncy'
+            ai="center"
+            >
+              <DescriptionBlock description={content2?.descriptionBlock1} />
+              <TextExampleBlock textExamples={textExample1}/>
+            </YStack>
+          )}
+        </AnimatePresence>
+        <Button
+        w={100}
+        h={30}
+        bw={1}
+        br="$2"
+        bg="$backgroundFocus"
+        icon={isOpen2 ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen2()}}/>
 
         <HeaderBlock header={content2?.headerBlock2}/>
         <SquareText text={content2?.squareText2} />
@@ -222,7 +241,7 @@ export function lesson7Screen() {
         {/* Дополнительные материалы */}
 
         <HeaderBlock header={content2?.headerBlock4} />
-        <DopDialog contents={dopDialog1}/>
+        <DopDialog contents={content2?.dopDialog1}/>
 
       </YStack>
       <NavigationBlock

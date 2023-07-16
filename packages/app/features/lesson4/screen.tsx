@@ -22,14 +22,11 @@ import { ImageCircle } from "@my/ui/src/components/ImageCircle";
 import { HeaderBlock } from "@my/ui/src/components/HeaderBlock";
 import { DescriptionBlock } from "@my/ui/src/components/DescriptionBlock";
 import { TextExampleBlock } from "@my/ui/src/components/TextExampleBlock";
-import { ExercisesBlockText } from "@my/ui/src/components/ExercisesBlockText";
 import { NavigationBlock } from "@my/ui/src/components/NavigationBlock";
 import { TableBlock } from "@my/ui/src/components/TableBlock";
 import { LangTest1 } from "@my/ui/src/components/LangTest1";
-import { LangTest2 } from "@my/ui/src/components/LangTest2";
 import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
-import { ExercisesBlockAudio } from "@my/ui/src/components/ExercisesBlockAudio";
 import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 export function lesson4Screen() {
@@ -82,9 +79,7 @@ export function lesson4Screen() {
   const wordToTranslate3 = Object.values(content?.wordToTranslateBlock3 || {});
   const wordToTranslate4 = Object.values(content?.wordToTranslateBlock4 || {});
 
-  const dopDialog1 = Object.values(content?.dopDialog1 || {});
-
-
+  
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
@@ -108,18 +103,19 @@ export function lesson4Screen() {
           </YStack>
         <ImageCircle img={content?.image}/>
 
+        <HeaderBlock header={content?.headerBlock1}/>
+
         <AnimatePresence>
           {isOpen && (
             <YStack
             enterStyle={{opacity: 0, y: -100}}
             animation='bouncy'
             >         
-        <HeaderBlock header={content?.headerBlock1}/>
-        <TableBlock table={content?.tableBlock1} />
-        <SquareText text={content?.squareText1} />
-        <TextExampleBlock textExamples={textExample1}/>
-        <SquareText text={content?.squareText2} />
-        <TextExampleBlock textExamples={textExample2}/>
+              <TableBlock table={content?.tableBlock1} />
+              <SquareText text={content?.squareText1} />
+              <TextExampleBlock textExamples={textExample1}/>
+              <SquareText text={content?.squareText2} />
+              <TextExampleBlock textExamples={textExample2}/>
             </YStack>
           )}
         </AnimatePresence>
@@ -230,7 +226,7 @@ export function lesson4Screen() {
 
         <HeaderBlock header={content?.headerBlock6} />
 
-        <DopDialog contents={dopDialog1}/>
+        <DopDialog contents={content?.dopDialog1}/>
         
       </YStack>
       <NavigationBlock

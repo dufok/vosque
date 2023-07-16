@@ -79,7 +79,6 @@ export function lesson12Screen() {
   const textExample1 = Object.values(content?.textExampleBlock1 || {});
   const wordToTranslate1 = Object.values(content?.wordToTranslateBlock1 || {});
   const wordToTranslate2 = Object.values(content?.wordToTranslateBlock2 || {});
-  const dopDialog1 = Object.values(content?.dopDialog1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -104,43 +103,43 @@ export function lesson12Screen() {
               </YStack>
             <ImageCircle img={content?.image}/>
 
-    <AnimatePresence>
-      {isOpen && (
-        <YStack
-        enterStyle={{opacity: 0, y: -100}}
-        animation='bouncy'
-        > 
             <HeaderBlock header={content?.headerBlock1}/>
-            <ExercisesBlockText exercises={exercises1} />
 
-            <TableBlock table={content?.tableBlock1} />
-            <TableBlock table={content?.tableBlock2} />
-            <TableBlock table={content?.tableBlock3} />
-            <LifeHackerBlock
-              lifehacktitle={content?.lifeHackerBlock1.title}
-              descriptions={[
-                content?.lifeHackerBlock1.description1,
-                content?.lifeHackerBlock1.description2,
-                content?.lifeHackerBlock1.description3,
-                content?.lifeHackerBlock1.description4,
-              ]}
-              contents={[
-                content?.lifeHackerBlock1.content1,
-                content?.lifeHackerBlock1.content2,
-                content?.lifeHackerBlock1.content3,
-                content?.lifeHackerBlock1.content4,
-              ]}
-            />
+            <AnimatePresence>
+              {isOpen && (
+                <YStack
+                enterStyle={{opacity: 0, y: -100}}
+                animation='bouncy'
+                > 
+                  <ExercisesBlockText exercises={exercises1} />
+                  <TableBlock table={content?.tableBlock1} />
+                  <TableBlock table={content?.tableBlock2} />
+                  <TableBlock table={content?.tableBlock3} />
+                  <LifeHackerBlock
+                    lifehacktitle={content?.lifeHackerBlock1.title}
+                    descriptions={[
+                      content?.lifeHackerBlock1.description1,
+                      content?.lifeHackerBlock1.description2,
+                      content?.lifeHackerBlock1.description3,
+                      content?.lifeHackerBlock1.description4,
+                    ]}
+                    contents={[
+                      content?.lifeHackerBlock1.content1,
+                      content?.lifeHackerBlock1.content2,
+                      content?.lifeHackerBlock1.content3,
+                      content?.lifeHackerBlock1.content4,
+                    ]}
+                  />
                 </YStack>
-        )}
-      </AnimatePresence>
-        <Button
-        w={100}
-        h={30}
-        bw={1}
-        br="$2"
-        bg="$backgroundFocus"
-        icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
+              )}
+            </AnimatePresence>
+            <Button
+            w={100}
+            h={30}
+            bw={1}
+            br="$2"
+            bg="$backgroundFocus"
+            icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
 
             <HeaderBlock header={content?.headerBlock2} />
             <SquareText text={content?.squareText1} />
@@ -170,7 +169,7 @@ export function lesson12Screen() {
             <LangTest1 example={example1_5} tests={tests1_5} isOneColumn/>
             <LangTest1 example={example1_6} tests={tests1_6} isOneColumn/>
             <HeaderBlock header={content?.headerBlock3} />
-            <DopDialog contents={dopDialog1}/>
+            <DopDialog contents={content?.dopDialog1}/>
 
           </YStack>
         <NavigationBlock

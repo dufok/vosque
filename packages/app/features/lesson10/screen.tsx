@@ -44,6 +44,12 @@ export function lesson10Screen() {
       setIsOpen(!isOpen);
     };
 
+    const [isOpen2, setIsOpen2] = useState(false);
+
+    const toggleOpen2 = () => {
+      setIsOpen2(!isOpen2);
+    };
+
   // Part Config
 
   const { data: currentUser } = trpc.user.current.useQuery();
@@ -90,7 +96,6 @@ export function lesson10Screen() {
   const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
   const textExample1 = Object.values(content2?.textExampleBlock1 || {});
-  const dopDialog1 = Object.values(content2?.dopDialog1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -116,43 +121,43 @@ export function lesson10Screen() {
               </YStack>
             <ImageCircle img={content?.image}/>
 
-    <AnimatePresence>
-      {isOpen && (
-        <YStack
-        enterStyle={{opacity: 0, y: -100}}
-        animation='bouncy'
-        > 
             <HeaderBlock header={content?.headerBlock1}/>
-            <TableBlock table={content?.tableBlock1} />
-            <SquareText text={content?.squareText3} />
-            <YStack ai="center">
-              <ExercisesBlockText exercises={exercises1} />
-            </YStack>
-            <LifeHackerBlock
-              lifehacktitle={content?.lifeHackerBlock1.title}
-              descriptions={[
-                content?.lifeHackerBlock1.description1,
-                content?.lifeHackerBlock1.description2,
-                content?.lifeHackerBlock1.description3,
-                content?.lifeHackerBlock1.description4,
-              ]}
-              contents={[
-                content?.lifeHackerBlock1.content1,
-                content?.lifeHackerBlock1.content2,
-                content?.lifeHackerBlock1.content3,
-                content?.lifeHackerBlock1.content4,
-              ]}
-            />
-                 </YStack>
-        )}
-      </AnimatePresence>
-        <Button
-        w={100}
-        h={30}
-        bw={1}
-        br="$2"
-        bg="$backgroundFocus"
-        icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
+            <AnimatePresence>
+              {isOpen && (
+                <YStack
+                enterStyle={{opacity: 0, y: -100}}
+                animation='bouncy'
+                > 
+                  <TableBlock table={content?.tableBlock1} />
+                  <SquareText text={content?.squareText3} />
+                  <YStack ai="center">
+                    <ExercisesBlockText exercises={exercises1} />
+                  </YStack>
+                  <LifeHackerBlock
+                    lifehacktitle={content?.lifeHackerBlock1.title}
+                    descriptions={[
+                      content?.lifeHackerBlock1.description1,
+                      content?.lifeHackerBlock1.description2,
+                      content?.lifeHackerBlock1.description3,
+                      content?.lifeHackerBlock1.description4,
+                    ]}
+                    contents={[
+                      content?.lifeHackerBlock1.content1,
+                      content?.lifeHackerBlock1.content2,
+                      content?.lifeHackerBlock1.content3,
+                      content?.lifeHackerBlock1.content4,
+                    ]}
+                  />
+                </YStack>
+              )}
+            </AnimatePresence>
+            <Button
+            w={100}
+            h={30}
+            bw={1}
+            br="$2"
+            bg="$backgroundFocus"
+            icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
 
               {/* Блок Упражнений */}
 
@@ -167,34 +172,51 @@ export function lesson10Screen() {
               description={content2?.description}/>
 
             <HeaderBlock header={content2?.headerBlock1}/>
-            <TableBlock table={content2?.tableBlock1} />
+            <AnimatePresence>
+              {isOpen2 && (
+                <YStack
+                  enterStyle={{opacity: 0, y: -100}}
+                  animation='bouncy'
+                  ai="center"
+                >
+                  <TableBlock table={content2?.tableBlock1} />
 
-            <SquareText text={content2?.squareText3} />
-            <YStack ai="center">
-              <ExercisesBlockText exercises={exercises2} />
-            </YStack>
+                  <SquareText text={content2?.squareText3} />
+                  <YStack ai="center">
+                    <ExercisesBlockText exercises={exercises2} />
+                  </YStack>
 
-            <TableBlock table={content2?.tableBlock2} />
-            <TableBlock table={content2?.tableBlock3} />
-            <SquareText text={content2?.squareText4} />
-            <YStack ai="center">
-              <ExercisesBlockText exercises={exercises3} />
-            </YStack>
-            <TableBlock table={content2?.tableBlock4} />
-            <SquareText text={content2?.squareText5} />
-            <YStack ai="center">
-              <ExercisesBlockText exercises={exercises4} />
-            </YStack>
-            <TableBlock table={content2?.tableBlock5} />
-            <SquareText text={content2?.squareText6} />
-            <YStack ai="center">
-              <ExercisesBlockText exercises={exercises5} />
-            </YStack>
-            <TableBlock table={content2?.tableBlock6} />
-            <SquareText text={content2?.squareText7} />
-            <YStack ai="center">
-              <ExercisesBlockText exercises={exercises6} />
-            </YStack>
+                  <TableBlock table={content2?.tableBlock2} />
+                  <TableBlock table={content2?.tableBlock3} />
+                  <SquareText text={content2?.squareText4} />
+                  <YStack ai="center">
+                    <ExercisesBlockText exercises={exercises3} />
+                  </YStack>
+                  <TableBlock table={content2?.tableBlock4} />
+                  <SquareText text={content2?.squareText5} />
+                  <YStack ai="center">
+                    <ExercisesBlockText exercises={exercises4} />
+                  </YStack>
+                  <TableBlock table={content2?.tableBlock5} />
+                  <SquareText text={content2?.squareText6} />
+                  <YStack ai="center">
+                    <ExercisesBlockText exercises={exercises5} />
+                  </YStack>
+                  <TableBlock table={content2?.tableBlock6} />
+                  <SquareText text={content2?.squareText7} />
+                  <YStack ai="center">
+                    <ExercisesBlockText exercises={exercises6} />
+                  </YStack>
+                </YStack>
+              )}
+            </AnimatePresence>
+            <Button
+            w={100}
+            h={30}
+            bw={1}
+            br="$2"
+            bg="$backgroundFocus"
+            icon={isOpen2 ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen2()}}/>
 
             <HeaderBlock header={content2?.headerBlock2} />
             <SquareText text={content2?.squareText1} />
@@ -239,7 +261,7 @@ export function lesson10Screen() {
             {/* Дополнительные материалы */}
 
             <HeaderBlock header={content2?.headerBlock5} />
-            <DopDialog contents={dopDialog1}/>
+            <DopDialog contents={content2?.dopDialog1}/>
 
           </YStack>
         <NavigationBlock

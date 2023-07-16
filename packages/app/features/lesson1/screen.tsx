@@ -108,13 +108,14 @@ function Lesson1SignIn() {
 
         {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
 
+        HeaderBlock header={content?.headerBlock1}/>
         <AnimatePresence>
         {isOpen && (
           <YStack
           enterStyle={{opacity: 0, y: -100}}
           animation='bouncy'
           >
-            <HeaderBlock header={content?.headerBlock1}/>
+            
             <SquareText text={content?.squareText1}/>
             <DescriptionBlock description={content?.descriptionBlock1}/>
             <ButtonSquereSheet letters={letters} /> 

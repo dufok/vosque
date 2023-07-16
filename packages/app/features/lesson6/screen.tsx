@@ -68,7 +68,6 @@ export function lesson6Screen() {
 
   const textExample1 = Object.values(content?.textExampleBlock1 || {});
   const textExample2 = Object.values(content?.textExampleBlock2 || {});
-  const dopDialog1 = Object.values(content?.dopDialog1 || {});
 
   useEffect(() => {
     console.log(data);
@@ -93,33 +92,34 @@ export function lesson6Screen() {
            </YStack>
          <ImageCircle img={content?.image}/>
 
-    <AnimatePresence>
-      {isOpen && (
-        <YStack
-        enterStyle={{opacity: 0, y: -100}}
-        animation='bouncy'
-        > 
          <HeaderBlock header={content?.headerBlock1}/>
-         <TableBlock table={content?.tableBlock1} />
-         <TableBlock table={content?.tableBlock2} />
-         <DescriptionBlock description={content?.descriptionBlock1} />
-         <TableBlock table={content?.tableBlock3} />
+        <AnimatePresence>
+          {isOpen && (
+            <YStack
+            enterStyle={{opacity: 0, y: -100}}
+            animation='bouncy'
+            > 
+            <HeaderBlock header={content?.headerBlock1}/>
+            <TableBlock table={content?.tableBlock1} />
+            <TableBlock table={content?.tableBlock2} />
+            <DescriptionBlock description={content?.descriptionBlock1} />
+            <TableBlock table={content?.tableBlock3} />
 
-         {/* ВАЖНАЯ ИНФОРМАЦИЯ ПРО ПРЕДЛОГ “А”: */}
+            {/* ВАЖНАЯ ИНФОРМАЦИЯ ПРО ПРЕДЛОГ “А”: */}
 
-         <HeaderBlock header={content?.headerBlock2}/>
-         <DescriptionBlock description={content?.descriptionBlock2} />
-         <TextExampleBlock textExamples={textExample1}/>
+            <HeaderBlock header={content?.headerBlock2}/>
+            <DescriptionBlock description={content?.descriptionBlock2} />
+            <TextExampleBlock textExamples={textExample1}/>
 
-         {/* УКАЗАТЕЛЬНЫЕ МЕСТОИМЕНИЯ */}
+            {/* УКАЗАТЕЛЬНЫЕ МЕСТОИМЕНИЯ */}
 
-         <DescriptionBlock description={content?.descriptionBlock3} />
-         <HeaderBlock header={content?.headerBlock3}/>
-         <TableBlock table={content?.tableBlock4} />
-         <TextExampleBlock textExamples={textExample2}/>
-         </YStack>
-        )}
-      </AnimatePresence>
+            <DescriptionBlock description={content?.descriptionBlock3} />
+            <HeaderBlock header={content?.headerBlock3}/>
+            <TableBlock table={content?.tableBlock4} />
+            <TextExampleBlock textExamples={textExample2}/>
+            </YStack>
+          )}
+        </AnimatePresence>
         <Button
         w={100}
         h={30}
@@ -163,7 +163,7 @@ export function lesson6Screen() {
             {/* Дополнительные материалы */}
 
           <HeaderBlock header={content?.headerBlock7} />
-          <DopDialog contents={dopDialog1}/>
+          <DopDialog contents={content?.dopDialog1 }/>
 
        </YStack>
        <NavigationBlock
