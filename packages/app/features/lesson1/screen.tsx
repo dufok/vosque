@@ -50,7 +50,7 @@ export function lesson1Screen() {
 function Lesson1SignIn() {
 // Open or close treory block
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
@@ -108,7 +108,7 @@ function Lesson1SignIn() {
 
         {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
 
-        HeaderBlock header={content?.headerBlock1}/>
+        <HeaderBlock header={content?.headerBlock1}/>
         <AnimatePresence>
         {isOpen && (
           <YStack

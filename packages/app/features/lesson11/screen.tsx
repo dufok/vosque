@@ -37,19 +37,19 @@ export function lesson11Screen() {
 
   //Open or close treory block
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
     const toggleOpen = () => {
       setIsOpen(!isOpen);
     };
 
-    const [isOpen2, setIsOpen2] = useState(false);
+    const [isOpen2, setIsOpen2] = useState(true);
 
     const toggleOpen2 = () => {
       setIsOpen2(!isOpen2);
     };
 
-    const [isOpen3, setIsOpen3] = useState(false);
+    const [isOpen3, setIsOpen3] = useState(true);
 
     const toggleOpen3 = () => {
       setIsOpen3(!isOpen3);

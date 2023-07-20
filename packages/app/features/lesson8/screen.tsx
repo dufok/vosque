@@ -31,7 +31,7 @@ export function lesson8Screen() {
 
     //Open or close treory block
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
     const toggleOpen = () => {
       setIsOpen(!isOpen);
