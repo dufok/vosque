@@ -114,6 +114,7 @@ function Lesson1SignIn() {
           <YStack
           enterStyle={{opacity: 0, y: -100}}
           animation='bouncy'
+          ai="center"
           >
             
             <SquareText text={content?.squareText1}/>
