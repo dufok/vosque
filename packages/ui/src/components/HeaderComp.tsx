@@ -40,9 +40,11 @@ export function HeaderComp() {
             </Paragraph>
           </TextLink>
         </XStack>
-        <TextLink href="/">
-          <img src="https://cdn.vosque.education/images/Logo.PNG?raw" alt="Vosque Logo" width="50" height="50" />
-        </TextLink>
+        <YStack mr="$5">
+          <TextLink href="/">
+            <img src="https://cdn.vosque.education/images/Logo.PNG?raw" alt="Vosque Logo" width="50" height="50" />
+          </TextLink>
+        </YStack>
         <TextLink prefetch={false} href="/userpage">
           {isSignedIn && ( <Button color="$background"  backgroundColor="$backgroundPress" space="$4" > Личный Кабинет </Button> )}
           {!isSignedIn && ( <Button color="$background"  backgroundColor="$backgroundPress" space="$4" >Регистрация</Button> )}
