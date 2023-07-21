@@ -140,9 +140,8 @@ export function ButtonPay(props: {
               )}
               {!isSignedIn && (
                 <YStack ai="center" space="$2">
-                  <H3>Для покупки курса необходимо авторизоваться</H3>
                   <Button {...userpageLinkProps} elevation="$0.5" br="$2" bw="$1" boc="$backgroundPress" >
-                    <Paragraph ta="center" color="$backgroundPress">Авторизоваться</Paragraph>
+                    <Paragraph ta="center" color="$backgroundPress">Регистрация</Paragraph>
                   </Button>
                 </YStack>
               )}
