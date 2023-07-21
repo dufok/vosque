@@ -30,13 +30,15 @@ export function userpageScreen() {
   }
 
   return (
-    <YStack>
-      <HeaderComp />
-      { isSignedIn ?
-        <Welcome/> : <WelcomeNotSignedIn/>}
-      <Login />
-      { isSignedIn &&
-      <Lessons/> }
+    <YStack f={1} jc="space-between">
+      <YStack>
+        <HeaderComp />
+        { isSignedIn ?
+          <Welcome/> : <WelcomeNotSignedIn/>}
+        <Login />
+        { isSignedIn &&
+        <Lessons/> }
+      </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
