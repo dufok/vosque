@@ -21,7 +21,7 @@ function isValidPassword(password) {
   const hasNumber = /\d/;
   const hasSpecialSymbol = /[!@#$%^&*(),.?":{}|<>]/;
 
-  return password.length >= 8 && hasNumber.test(password) && hasSpecialSymbol.test(password);
+  return password.length >= 8 ;
 }
 
 export const SignUpSignInComponent: React.FC<Props> = ({
@@ -63,7 +63,7 @@ export const SignUpSignInComponent: React.FC<Props> = ({
           if (isValidPassword(text)) {
             setPasswordMessage("");
           } else {
-            setPasswordMessage("Password must contain a number, a special symbol and at least 8 characters long ");
+            setPasswordMessage("Пароль должен содержать минимум 8 символов.");
           }
         }}
         textContentType="password"
@@ -87,7 +87,7 @@ export const SignUpSignInComponent: React.FC<Props> = ({
         onHoverOut={() => {}}
         focusStyle={{ scale: 0.975 }}
       >
-        {type === "sign-up" ? "Sign up" : "Sign in"}
+        {type === "sign-up" ? "Регистрация" : "Войти"}
       </Button>
 
       {/* or sign in, in small and less opaque font */}
@@ -105,7 +105,7 @@ export const SignUpSignInComponent: React.FC<Props> = ({
             opacity={0.5}
             hoverStyle={{ opacity: 0.4 }}
           >
-            {type === "sign-up" ? "Sign in" : "Sign up"}
+            {type === "sign-up" ? "Войти" : "Регистрация"}
           </Paragraph>
         </Link>
       </XStack>
