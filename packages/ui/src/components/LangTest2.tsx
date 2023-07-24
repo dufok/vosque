@@ -123,7 +123,7 @@ export const LangTest2: React.FC<LangTestProps> = ({ tests, example }) => {
                   setInputFocus(false);
                 
                   if (isCorrect !== null && answer !== "") {
-                    showToast(isCorrect ? "success" : "error", unswer);
+                    showToast(!isCorrect && "error", unswer);
                   }
                 }; 
 

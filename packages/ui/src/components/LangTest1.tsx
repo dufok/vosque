@@ -126,7 +126,7 @@ export const LangTest1: React.FC<LangTestProps> = ({ tests, example, isOneColumn
       setInputFocus(false);
     
       if (isCorrect !== null && answer !== "") {
-        showToast(isCorrect ? "success" : "error", unswer);
+        showToast(!isCorrect && "error", unswer);
       }
     }; 
   
