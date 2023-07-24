@@ -33,13 +33,13 @@ export function EmailVerificationScreen() {
       
       push("/userpage");
 
-    } else alert("Invalid verification code");
+    } else alert("Код не верный!");
   };
 
   return (
     <YStack f={1} jc="center" ai="center" space>
       <Input
-        placeholder="Verification code"
+        placeholder="Вставьте код из письма ..."
         onChangeText={(text) => {
           setVerificationCode(text);
         }}
@@ -51,7 +51,7 @@ export function EmailVerificationScreen() {
           handleEmailVerificationOnPress();
         }}
       >
-        Submit
+        Проверить
       </Button>
     </YStack>
   );
