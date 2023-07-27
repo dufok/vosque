@@ -265,8 +265,8 @@ function ReviewSection () {
               onPositionChange={setPosition}
               zIndex={100_000}
             >
-              <Sheet.Overlay o={0.1} alignSelf="center"/>
-              <Sheet.Handle alignSelf="center"/>
+              <Sheet.Overlay o={0.1}/>
+              <Sheet.Handle/>
               <Sheet.Frame
                 flex={1}
                 padding="$4"

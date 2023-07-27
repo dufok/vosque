@@ -21,10 +21,12 @@ export function phrasebookScreen() {
  
 
   return (
-    <YStack>
-      <HeaderComp />
-      <WelcomeBlock />
-      <ContentBlock />
+    <YStack f={1} jc="space-between">
+      <YStack>
+        <HeaderComp />
+        <WelcomeBlock />
+        <ContentBlock />
+      </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
