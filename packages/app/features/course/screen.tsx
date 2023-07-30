@@ -58,7 +58,7 @@ function WelcomeCourse() {
               <ButtonPay
                 name="Тариф <br/> Online"
                 description="Самостоятельное обучение на онлайн курсе: 12 уроков в записи с упражнениями"
-                course="Стартовый пакет"
+                course="Базовый курс Аргентинского Испанского"
                 coupon="MYARGENTINA"
                 pricerub={9000}
                 priceusdt={100}

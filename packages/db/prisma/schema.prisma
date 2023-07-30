@@ -46,6 +46,7 @@ model User {
 model LessonPack {
   id       Int        @id @default(autoincrement())
   name     String     @unique
+  sku_number     String?     @unique
   users    User[]     @relation(name: "LessonPackUsers")
   lessons  LessonPackLessons[]
 }
@@ -71,6 +72,7 @@ model LessonPackLessons {
 model PhrasebookPack {
   id       Int        @id @default(autoincrement())
   name     String     @unique
+  sku_number      String?     @unique
   users    User[]     @relation(name: "PhrasebookPackUsers")
   phrasebook  PhrasebookPackPhrasebook[]
 }

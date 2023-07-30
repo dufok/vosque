@@ -52,11 +52,21 @@ export function ButtonPay(props: {
     let toastProperties;
 
     switch (type) {
-      case "success":
+      case "success_part":
         toastProperties = {
           id: 1,
           title: "Мы проверяем перевод",
           description: "Три урока вам уже открыто !",
+          backgroundColor: "#5cb85c",
+          icon: Banknote,
+        };
+        break;
+      
+      case "success_all":
+        toastProperties = {
+          id: 1,
+          title: "Спасибо за перевод !",
+          description: "Ваши уроки в личном Кабинете !",
           backgroundColor: "#5cb85c",
           icon: Banknote,
         };
@@ -201,6 +211,8 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
   // This is for Lesson pack Mutation
   const { data: currentUser } = trpc.user.current.useQuery();
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
+  const { data: userLessonPack } = trpc.user.getUserLessonPack.useQuery({ userId: currentUser?.id });
+
   // This is for Binance USDT payout
   const binanceApiKey = process.env.BINANCE_API_KEY;
   const binanceSecretKey = process.env.BINANCE_SECRET_KEY;
@@ -214,7 +226,7 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
       return;
     }
     await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });
-    showToast("success");
+    showToast("success_part");
     const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
     sendTelegramMessage(text);
   };
@@ -223,10 +235,8 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
     if (!currentUser) {
       return;
     }
-    await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course });
-    showToast("success");
+    
     const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
-    sendTelegramMessage(text);
 
     // Binance API call
   
@@ -242,25 +252,40 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
       currency: "USDT",
       goods: {
           goodsType: "01",
-          goodsCategory: "D000",
-          referenceGoodsId: "your_goods_id",
+          goodsCategory: "Z000",
+          referenceGoodsId: "",
           goodsName: description,
           goodsDetail: course,
       },
+      timestamp: Date.now(),
     };
 
     binancePayload.timestamp = Date.now(); // Adding timestamp
 
-    const queryString = Object.keys(binancePayload)
-    .map((key) => `${key}=${encodeURIComponent(binancePayload[key])}`)
+    const sortedPayload = Object.keys(binancePayload).sort().reduce(
+      (obj, key) => {
+        obj[key] = binancePayload[key];
+        return obj;
+      },
+      {}
+    );
+
+    const queryString = Object.keys(sortedPayload)
+    .map((key) => {
+      if (typeof sortedPayload[key] === 'object') {
+        return `${key}=${encodeURIComponent(JSON.stringify(sortedPayload[key]))}`
+      } else {
+        return `${key}=${encodeURIComponent(sortedPayload[key])}`
+      }
+    })
     .join('&');
 
-    binancePayload.sign = crypto
+    sortedPayload.sign = crypto
       .createHmac('sha256', binanceSecretKey)
       .update(queryString)
       .digest('hex'); // Adding signature
 
-    fetch('https://api.binance.com/bapi/pay/v1/pay/order', {
+    fetch('/binancepay/openapi/v2/order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -269,7 +294,16 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
       body: JSON.stringify(binancePayload),
     })
     .then(response => response.json())  // convert to json
-    .then(data => console.log('Success:', data))  // print the data
+    .then(async (data) => {
+      if (data.status === "SUCCESS") {
+
+        await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course });
+        showToast("success_all");
+        sendTelegramMessage(text);
+      }
+      
+      console.log('Success:', data) // print the data
+    })
     .catch(error => console.log('Error:', error));
   };
 
@@ -332,12 +366,11 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
           { currency == "RUB" ? (
             <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                 await handleTransferCompletedRUB();
-                showToast("success");
+                showToast("success_part");
             }}>Подтверждаю Перевод!</Button>
           ) : (
             <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                 await handleTransferCompletedUSDT();
-                showToast("success");
             }}>Перевод BINANCE</Button>
           )
           }
