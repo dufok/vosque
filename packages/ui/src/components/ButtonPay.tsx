@@ -14,6 +14,8 @@ import {
   Separator,
   Paragraph
   } from 'tamagui';
+import crypto from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 import { X } from '@tamagui/lucide-icons'
 import React, { useState , useEffect } from "react";
 import { useLink } from "solito/link";
@@ -136,6 +138,7 @@ export function ButtonPay(props: {
                   coupon={props.coupon}
                   size={props.size}
                   showToast={showToast}
+                  description={props.description}
                   />
               )}
               {!isSignedIn && (
@@ -159,7 +162,7 @@ export function ButtonPay(props: {
   );
 }
 
-function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, ...props}) {
+function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, description}) {
 
   const id = `switch-${size.toString().slice(1)}`
   
@@ -198,15 +201,76 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
   // This is for Lesson pack Mutation
   const { data: currentUser } = trpc.user.current.useQuery();
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
+  // This is for Binance USDT payout
+  const binanceApiKey = process.env.BINANCE_API_KEY;
+  const binanceSecretKey = process.env.BINANCE_SECRET_KEY;
+  const binanceMerchantId = process.env.BINANCE_MERCHANT_ID;
+  const unique_trade_no = uuidv4();
 
-  const handleTransferCompleted = async () => {
+  const course_start = "Стартовый пакет";
+
+  const handleTransferCompletedRUB = async () => {
+    if (!currentUser) {
+      return;
+    }
+    await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });
+    showToast("success");
+    const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
+    sendTelegramMessage(text);
+  };
+
+  const handleTransferCompletedUSDT = async () => {
     if (!currentUser) {
       return;
     }
     await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course });
     showToast("success");
-    const text = `Пользователь: ${currentUser.email} оплатил курс: ${props.description}. Нужно проверить! ${currency}`;
+    const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
     sendTelegramMessage(text);
+
+    // Binance API call
+  
+    const binancePayload = {
+      env: {
+          terminalType: "WEB",
+      },
+      orderTags: {
+          ifProfitSharing: true,
+      },
+      merchantTradeNo: unique_trade_no,
+      orderAmount: discontedPrice,
+      currency: "USDT",
+      goods: {
+          goodsType: "01",
+          goodsCategory: "D000",
+          referenceGoodsId: "your_goods_id",
+          goodsName: description,
+          goodsDetail: course,
+      },
+    };
+
+    binancePayload.timestamp = Date.now(); // Adding timestamp
+
+    const queryString = Object.keys(binancePayload)
+    .map((key) => `${key}=${encodeURIComponent(binancePayload[key])}`)
+    .join('&');
+
+    binancePayload.sign = crypto
+      .createHmac('sha256', binanceSecretKey)
+      .update(queryString)
+      .digest('hex'); // Adding signature
+
+    fetch('https://api.binance.com/bapi/pay/v1/pay/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-BPAY-APIKEY': binanceApiKey,
+      },
+      body: JSON.stringify(binancePayload),
+    })
+    .then(response => response.json())  // convert to json
+    .then(data => console.log('Success:', data))  // print the data
+    .catch(error => console.log('Error:', error));
   };
 
   //this is for user check
@@ -265,10 +329,18 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
     
       <YStack ai="flex-end" mt="$2">
         <Dialog.Close displayWhenAdapted asChild>
-          <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
-              await handleTransferCompleted();
-              showToast("success");
-          }}>Перевод выполнен!</Button>
+          { currency == "RUB" ? (
+            <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
+                await handleTransferCompletedRUB();
+                showToast("success");
+            }}>Подтверждаю Перевод!</Button>
+          ) : (
+            <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
+                await handleTransferCompletedUSDT();
+                showToast("success");
+            }}>Перевод BINANCE</Button>
+          )
+          }
         </Dialog.Close>
       </YStack>
     </YStack>

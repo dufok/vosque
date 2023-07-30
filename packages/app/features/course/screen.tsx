@@ -67,14 +67,14 @@ function WelcomeCourse() {
             </YStack>
             <YStack p='$6'>
               <ButtonPay
-                  name="Тариф <br /> с преподователем"
-                  description=" Обучение в компании преподавателя Анастасии - 12 уроков в записи с упражнениями + 4 встречи с педагогом в Zoon после каждого 3его урока"
-                  course="Стартовый пакет"
-                  coupon="MYARGENTINA"
-                  pricerub={14400}
-                  priceusdt={160}
-                  size="$2"
-                  />
+                name="Тариф <br /> с преподователем"
+                description=" Обучение в компании преподавателя Анастасии - 12 уроков в записи с упражнениями + 4 встречи с педагогом в Zoon после каждого 3его урока"
+                course="Стартовый пакет"
+                coupon="MYARGENTINA"
+                pricerub={14400}
+                priceusdt={160}
+                size="$2"
+                />
             </YStack>
           </XStack>
         </YStack>
