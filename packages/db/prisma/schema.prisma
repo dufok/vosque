@@ -38,6 +38,7 @@ model User {
   entries      Entry[]
   lessonPacks  LessonPack[] @relation(name: "LessonPackUsers")
   phrasebooksPacks  PhrasebookPack[] @relation(name: "PhrasebookPackUsers")
+  payments     Payment[]
 }
 
 
@@ -92,4 +93,15 @@ model PhrasebookPackPhrasebook {
   phrasebookPackId  Int
   phrasebookPack   PhrasebookPack   @relation(fields: [phrasebookPackId], references: [id])
   @@unique([phrasebookId, phrasebookPackId])
+}
+
+// Model for store Payment detailse Binance
+model Payment {
+  id           Int          @id @default(autoincrement())
+  prepayId     String
+  merchantTradeNo     String
+  user  User   @relation(fields: [userId], references: [id])
+  userId       String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 }

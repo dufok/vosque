@@ -79,6 +79,12 @@ export const userRouter = router({
       const { name } = input;
       return ctx.prisma.lessonPack.findFirst({ where: { name } });
     }),
+  lessonPackBySku: protectedProcedure
+    .input(z.object({ sku_number: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { sku_number } = input;
+      return ctx.prisma.lessonPack.findFirst({ where: { sku_number } });
+    }),
   updateUserLessonPack: protectedProcedure
     .input(
       z.object({

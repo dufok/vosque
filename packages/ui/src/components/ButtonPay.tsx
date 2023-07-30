@@ -30,7 +30,7 @@ import { sendTelegramMessage } from "@my/ui/src/components/sendTelegramMessage";
 export function ButtonPay(props: {
   name: string
   description: string
-  course: string
+  sku: string
   coupon: string
   pricerub: number
   priceusdt: number
@@ -144,7 +144,7 @@ export function ButtonPay(props: {
                 <MessageIfSignIn
                   pricerub={props.pricerub}
                   priceusdt={props.priceusdt}
-                  course={props.course}
+                  sku={props.sku}
                   coupon={props.coupon}
                   size={props.size}
                   showToast={showToast}
@@ -172,7 +172,7 @@ export function ButtonPay(props: {
   );
 }
 
-function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, description}) {
+function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, description, sku}) {
 
   const id = `switch-${size.toString().slice(1)}`
   
@@ -211,7 +211,7 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
   // This is for Lesson pack Mutation
   const { data: currentUser } = trpc.user.current.useQuery();
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
-  const { data: userLessonPack } = trpc.user.getUserLessonPack.useQuery({ userId: currentUser?.id });
+
 
   // This is for Binance USDT payout
   const binanceApiKey = process.env.BINANCE_API_KEY;
@@ -219,7 +219,10 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
   const binanceMerchantId = process.env.BINANCE_MERCHANT_ID;
   const unique_trade_no = uuidv4();
 
+  // Course name
   const course_start = "Стартовый пакет";
+  const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
+  const course = lessonPack?.name;
 
   const handleTransferCompletedRUB = async () => {
     if (!currentUser) {
@@ -253,7 +256,7 @@ function MessageIfSignIn({course, coupon, pricerub, priceusdt, size, showToast, 
       goods: {
           goodsType: "01",
           goodsCategory: "Z000",
-          referenceGoodsId: "",
+          referenceGoodsId: sku,
           goodsName: description,
           goodsDetail: course,
       },

@@ -58,7 +58,7 @@ function WelcomeCourse() {
               <ButtonPay
                 name="Тариф <br/> Online"
                 description="Самостоятельное обучение на онлайн курсе: 12 уроков в записи с упражнениями"
-                course="Базовый курс Аргентинского Испанского"
+                sku="VQ02LP"
                 coupon="MYARGENTINA"
                 pricerub={9000}
                 priceusdt={100}
@@ -69,7 +69,7 @@ function WelcomeCourse() {
               <ButtonPay
                 name="Тариф <br /> с преподователем"
                 description=" Обучение в компании преподавателя Анастасии - 12 уроков в записи с упражнениями + 4 встречи с педагогом в Zoon после каждого 3его урока"
-                course="Стартовый пакет"
+                sku="VQ01LP"
                 coupon="MYARGENTINA"
                 pricerub={14400}
                 priceusdt={160}
