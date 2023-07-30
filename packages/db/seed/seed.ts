@@ -33,6 +33,7 @@ async function main() {
     const createdLessonPack = await prismaInstance.lessonPack.create({
       data: {
         name: lessonPack.name,
+        sku_number: lessonPack.sku_number,
       },
     });
 
@@ -70,6 +71,7 @@ async function main() {
     const createdPhrasebookPack = await prismaInstance.phrasebookPack.create({
       data: {
         name: phrasebookPack.name,
+        sku_number: phrasebookPack.sku_number,
       },
     });
 
