@@ -71,6 +71,16 @@ export function ButtonPay(props: {
           icon: Banknote,
         };
         break;
+
+      case "error":
+        toastProperties = {
+          id: 1,
+          title: "Ошибка !",
+          description: "Попробуйте еще раз !",
+          backgroundColor: "#d9534f",
+          icon: Banknote,
+        };
+        break;
       
       default:
         setList([]);
@@ -175,6 +185,10 @@ export function ButtonPay(props: {
 function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, description, sku}) {
 
   const id = `switch-${size.toString().slice(1)}`
+
+  //this is for qr code BINANCE
+  const [qrUrl, setQrUrl] = useState(null);
+  const [linkUrl, setLinkUrl] = useState(null);
   
   //this is for swithc currency
   const [currency, setCurrency] = useState("RUB");
@@ -210,19 +224,30 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
 
   // This is for Lesson pack Mutation
   const { data: currentUser } = trpc.user.current.useQuery();
+    if (!currentUser) {
+      return null;
+    }
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
+  const createPayment = trpc.user.createPayment.useMutation();
 
 
   // This is for Binance USDT payout
-  const binanceApiKey = process.env.BINANCE_API_KEY;
-  const binanceSecretKey = process.env.BINANCE_SECRET_KEY;
+  const binanceApiKey = process.env.BINANCE_API_KEY || "1";
+  const binanceSecretKey = process.env.BINANCE_SECRET_KEY || "1";
   const binanceMerchantId = process.env.BINANCE_MERCHANT_ID;
   const unique_trade_no = uuidv4();
 
   // Course name
   const course_start = "Стартовый пакет";
   const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
-  const course = lessonPack?.name;
+    if (!lessonPack) {
+      return null;
+    }
+  const course = lessonPack.name;
+
+  const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
+  const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}. Но возникла ошибка!`;
+   
 
   const handleTransferCompletedRUB = async () => {
     if (!currentUser) {
@@ -230,7 +255,6 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
     }
     await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });
     showToast("success_part");
-    const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
     sendTelegramMessage(text);
   };
 
@@ -238,57 +262,42 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
     if (!currentUser) {
       return;
     }
-    
-    const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
-
-    // Binance API call
   
+    // Binance API call
     const binancePayload = {
       env: {
-          terminalType: "WEB",
+        terminalType: "WEB",
       },
       orderTags: {
-          ifProfitSharing: true,
+        ifProfitSharing: true,
       },
       merchantTradeNo: unique_trade_no,
       orderAmount: discontedPrice,
       currency: "USDT",
       goods: {
-          goodsType: "01",
-          goodsCategory: "Z000",
-          referenceGoodsId: sku,
-          goodsName: description,
-          goodsDetail: course,
+        goodsType: "01",
+        goodsCategory: "Z000",
+        referenceGoodsId: sku,
+        goodsName: description,
+        goodsDetail: course,
       },
       timestamp: Date.now(),
+      sign: "",
     };
-
-    binancePayload.timestamp = Date.now(); // Adding timestamp
-
-    const sortedPayload = Object.keys(binancePayload).sort().reduce(
-      (obj, key) => {
-        obj[key] = binancePayload[key];
-        return obj;
-      },
-      {}
-    );
-
-    const queryString = Object.keys(sortedPayload)
-    .map((key) => {
-      if (typeof sortedPayload[key] === 'object') {
-        return `${key}=${encodeURIComponent(JSON.stringify(sortedPayload[key]))}`
-      } else {
-        return `${key}=${encodeURIComponent(sortedPayload[key])}`
-      }
-    })
-    .join('&');
-
-    sortedPayload.sign = crypto
-      .createHmac('sha256', binanceSecretKey)
-      .update(queryString)
-      .digest('hex'); // Adding signature
-
-    fetch('/binancepay/openapi/v2/order', {
+  
+    const nonce = uuidv4(); // Generate a unique nonce for each request
+    const body = JSON.stringify(binancePayload);
+    const payload = `${binancePayload.timestamp}\n${nonce}\n${body}\n`;
+  
+    const signature = crypto
+      .createHmac('sha512', binanceSecretKey)
+      .update(payload)
+      .digest('hex')
+      .toUpperCase(); // Generate the signature
+  
+    binancePayload.sign = signature; // Add the signature to the payload
+  
+    fetch('https://bpay.binanceapi.com/binancepay/openapi/v2/order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -299,10 +308,13 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
     .then(response => response.json())  // convert to json
     .then(async (data) => {
       if (data.status === "SUCCESS") {
-
-        await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course });
-        showToast("success_all");
+        setQrUrl(data.data.qrcodeLink);
+        setLinkUrl(data.data.universalUrl);
         sendTelegramMessage(text);
+      } else {
+        showToast("error");
+        await createPayment.mutateAsync({ prepayId: data.data.prepayId, merchantTradeNo: binancePayload.merchantTradeNo, code: data.code });
+        sendTelegramMessage(textError);
       }
       
       console.log('Success:', data) // print the data
@@ -365,20 +377,25 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
       </YStack>
     
       <YStack ai="flex-end" mt="$2">
-        <Dialog.Close displayWhenAdapted asChild>
+       
           { currency == "RUB" ? (
-            <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
-                await handleTransferCompletedRUB();
-                showToast("success_part");
-            }}>Подтверждаю Перевод!</Button>
+            <Dialog.Close displayWhenAdapted asChild>
+              <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
+                  await handleTransferCompletedRUB();
+                  showToast("success_part");
+              }}>Подтверждаю Перевод!</Button>
+            </Dialog.Close>
           ) : (
-            <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
-                await handleTransferCompletedUSDT();
-            }}>Перевод BINANCE</Button>
+            <>
+              <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
+                  await handleTransferCompletedUSDT();
+              }}>Перевод BINANCE</Button>
+              {qrUrl && <img src={qrUrl} alt="QR Code" />}
+              {linkUrl && <a href={linkUrl}>Go to Payment</a>}
+            </>
           )
           }
-        </Dialog.Close>
-      </YStack>
+      </YStack> 
     </YStack>
   )
 }

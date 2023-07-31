@@ -41,7 +41,7 @@ export const userRouter = router({
         data: { userName },
       });
     }),
-    userLessons: protectedProcedure.query(async ({ ctx }) => {
+  userLessons: protectedProcedure.query(async ({ ctx }) => {
       const userId = ctx.user.id;
     
       const user = await ctx.prisma.user.findUnique({
@@ -115,6 +115,27 @@ export const userRouter = router({
         return "Пока что нет";
       }
       return user.lessonPacks.map(pack => pack.name);
+    }),
+  createPayment: protectedProcedure
+    .input(
+      z.object({
+        prepayId: z.string(),
+        merchantTradeNo: z.string(),
+        code: z.string(),
+      })
+    )
+    .mutation(async({ctx, input}) => {
+      const userId = ctx.user.id;
+      const { prepayId, merchantTradeNo, code } = input;
+
+      return ctx.prisma.payment.create({
+        data: {
+          prepayId,
+          merchantTradeNo,
+          code,
+          userId,
+        },
+      });
     }),
 });
 
