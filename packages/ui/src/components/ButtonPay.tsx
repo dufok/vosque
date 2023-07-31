@@ -239,7 +239,7 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
 
   
   // This is for Binance USDT payout
-  const binanceApiKey = process.env.BINANCE_API_KEY || "1";
+
   const binanceSecretKey = process.env.BINANCE_SECRET_KEY || "1";
   const binanceMerchantId = process.env.BINANCE_MERCHANT_ID;
   const unique_trade_no = uuidv4();
@@ -264,7 +264,6 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
   };
 
   const handleTransferCompletedUsdtBinance = async () => {
-    
     // Binance API call
     const binancePayload = {
       env: {
@@ -299,11 +298,10 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
   
     binancePayload.sign = signature; // Add the signature to the payload
   
-    fetch('https://bpay.binanceapi.com/binancepay/openapi/v2/order', {
+    fetch('/api/binance', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-BPAY-APIKEY': binanceApiKey,
       },
       body: JSON.stringify(binancePayload),
     })
