@@ -190,13 +190,14 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
 
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
+  console.log (lessonPack);
 
     if (!currentUser) {
       return <div>Something went wrong with currentUser</div>;
     } 
 
     if (!lessonPack) {
-      return <div>SKU: {sku} Something went wrong with lessonPack</div>;
+      return { id: "loading", name: "loading", sku_number: "loading"};
     }
 
     setCourse(lessonPack.name);
