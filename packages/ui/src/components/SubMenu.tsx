@@ -13,7 +13,9 @@ export function SubMenu({userpageLinkProps}) {
             <GithubIcon width={30} color="$background" />
           </a>
           <InstagramIcon width={30} color="$background" />
-          <TelegramIcon width={30} color="$background" />
+          <a href="https://t.me/vosque_help" target="_blank" rel="noopener noreferrer">
+            <TelegramIcon width={30} color="$background" />
+          </a>
         </XStack>
         <YStack mr="$4">
           <Button {...userpageLinkProps} bc="backgroundPress" bw='0'>

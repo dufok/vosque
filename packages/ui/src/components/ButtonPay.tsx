@@ -242,7 +242,7 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
   const course_start = "Стартовый пакет";
   const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
   if (!lessonPack) {
-    return <div>Something went wrong with lessonPack</div>;
+    return <div>SKU: {sku} Something went wrong with lessonPack</div>;
   }
   const course = lessonPack.name;
 
