@@ -39,17 +39,6 @@ export function ButtonPay(props: {
 
   const { isSignedIn } = useAuth();
 
-  let course;
-
-  if ( isSignedIn ) {
-    const { data } = trpc.user.lessonPackBySku.useQuery({ sku_number: props.sku });
-    if (!data) {
-      return <div>SKU: {props.sku} Something went wrong with lessonPack</div>;
-    }
-    const course = data.name;
-    // Use the `course` variable here
-  }
-
   //this is for user check
   const userpageLinkProps = useLink({
     href: "/userpage",
@@ -165,7 +154,6 @@ export function ButtonPay(props: {
                 <MessageIfSignIn
                   pricerub={props.pricerub}
                   priceusdt={props.priceusdt}
-                  course={course}
                   sku={props.sku}
                   coupon={props.coupon}
                   size={props.size}
@@ -194,9 +182,27 @@ export function ButtonPay(props: {
   );
 }
 
-function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, description, course, sku}) {
+function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, description, sku}) {
 
   const id = `switch-${size.toString().slice(1)}`
+
+  const [course, setCourse] = useState<string | undefined>();
+
+  const { data: currentUser } = trpc.user.current.useQuery();
+  const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
+
+    if (!currentUser) {
+      return <div>Something went wrong with currentUser</div>;
+    } 
+
+    if (!lessonPack) {
+      return <div>SKU: {sku} Something went wrong with lessonPack</div>;
+    }
+
+    setCourse(lessonPack.name);
+  
+  const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
+  const createPayment = trpc.user.createPayment.useMutation();
 
   //this is for qr code BINANCE
   const [qrUrl, setQrUrl] = useState(null);
@@ -234,16 +240,7 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
     } 
   };
 
-  // This is for Lesson pack Mutation
-  const { data: currentUser } = trpc.user.current.useQuery();
-  if (!currentUser) {
-    return <div>Something went wrong with currentUser</div>;
-  }
   
-  const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
-  const createPayment = trpc.user.createPayment.useMutation();
-
-
   // This is for Binance USDT payout
   const binanceApiKey = process.env.BINANCE_API_KEY || "1";
   const binanceSecretKey = process.env.BINANCE_SECRET_KEY || "1";
