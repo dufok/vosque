@@ -214,8 +214,8 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
   };
 
   //this for paying options
-  const summaryCardBody = `Номер карты Тиньков. После перевода подтвердите, нажав ниже кнопку "Перевод Выполнен"`;
-  const summaryUSDTBody = `Номер кошелька USDT (TRC20). После перевода подтвердите нажав ниже кнопку "Перевод Выполнен"`;
+  const summaryCardBody = `Номер карты Тиньков. После перевода подтвердите, нажав ниже кнопку "Подтверждаю Перевод"`;
+  const summaryUSDTBody = `Номер кошелька USDT (TRC20). Вы можете перевести сами и после перевода подтвердите нажав кнопку "Подтверждаю Перевод". Либо воспользуйтесь опцией перевода через BINANCE`;
   const summaryCardHead = `5536 9140 3988 8122`;
   const summaryUSDTHead = `TVyFKcfTPAmEdF5iYX3XiveLQ6HaV1UQ38`;
 
@@ -257,11 +257,14 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
     sendTelegramMessage(text);
   };
 
-  const handleTransferCompletedUSDT = async () => {
-    if (!currentUser) {
-      return;
-    }
-  
+  const handleTransferCompletedUsdtSelf = async () => {
+    await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });
+    showToast("success_part");
+    sendTelegramMessage(text);
+  };
+
+  const handleTransferCompletedUsdtBinance = async () => {
+    
     // Binance API call
     const binancePayload = {
       env: {
@@ -382,13 +385,21 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
               <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                   await handleTransferCompletedRUB();
                   showToast("success_part");
-              }}>Подтверждаю Перевод!</Button>
+              }}>Подтверждаю Перевод</Button>
             </Dialog.Close>
           ) : (
             <>
-              <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
-                  await handleTransferCompletedUSDT();
-              }}>Перевод BINANCE</Button>
+              <XStack>
+                <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
+                    await handleTransferCompletedUsdtBinance();
+                }}>Перевод BINANCE</Button>
+                <Dialog.Close displayWhenAdapted asChild>
+                  <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
+                    await handleTransferCompletedUsdtSelf();
+                    showToast("success_part");
+                  }}>Подтверждаю Перевод</Button>
+                </Dialog.Close>
+              </XStack>
               {qrUrl && <img src={qrUrl} alt="QR Code" />}
               {linkUrl && <a href={linkUrl}>Go to Payment</a>}
             </>
