@@ -3,7 +3,7 @@
 import { Lesson } from "@my/db/index";
 import { router, publicProcedure, protectedProcedure } from "../trpc";
 import { z } from "zod";
-  
+
 export const userRouter = router({
   current: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.user.findFirst({ where: { id: ctx.user.id } });
@@ -70,20 +70,18 @@ export const userRouter = router({
           }
         }
       }
-    
       return allLessons;
     }),
-  lessonPackByName: protectedProcedure
+  lessonPackBySku: protectedProcedure
     .input(z.object({ name: z.string() }))
     .query(async ({ ctx, input }) => {
-      const { name } = input;
-      return ctx.prisma.lessonPack.findFirst({ where: { name } });
-    }),
-  lessonPackBySku: protectedProcedure
-    .input(z.object({ sku_number: z.string() }))
-    .query(async ({ ctx, input }) => {
-      const { sku_number } = input;
-      return ctx.prisma.lessonPack.findFirst({ where: { sku_number } });
+      try {
+        const { name } = input;
+        return await ctx.prisma.lessonPack.findFirst({ where: { name } });
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
     }),
   updateUserLessonPack: protectedProcedure
     .input(
