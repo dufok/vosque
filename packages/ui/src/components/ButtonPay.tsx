@@ -224,9 +224,7 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
 
   // This is for Lesson pack Mutation
   const { data: currentUser } = trpc.user.current.useQuery();
-    if (!currentUser) {
-      return null;
-    }
+  
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
   const createPayment = trpc.user.createPayment.useMutation();
 
@@ -240,9 +238,6 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
   // Course name
   const course_start = "Стартовый пакет";
   const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
-    if (!lessonPack) {
-      return null;
-    }
   const course = lessonPack.name;
 
   const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
@@ -250,9 +245,6 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
    
 
   const handleTransferCompletedRUB = async () => {
-    if (!currentUser) {
-      return;
-    }
     await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });
     showToast("success_part");
     sendTelegramMessage(text);
