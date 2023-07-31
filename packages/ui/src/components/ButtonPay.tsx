@@ -241,13 +241,11 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
   // Course name
   const course_start = "Стартовый пакет";
   
-  const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
-  console.log(lessonPack);
-  if (!lessonPack) {
-   return <div>SKU: {sku} Something went wrong with lessonPack</div>;
+  const { data } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
+  if (!data) {
+    return <div>SKU: {sku} Something went wrong with lessonPack</div>;
   }
-  const course = lessonPack.name;
-
+  const course = data.name;
 
   const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
   const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}. Но возникла ошибка!`;
