@@ -197,7 +197,7 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
     } 
 
     if (!lessonPack) {
-      return { id: "loading", name: "loading", sku_number: "loading"};
+      return { name: "loading" };
     }
 
     setCourse(lessonPack.name);
