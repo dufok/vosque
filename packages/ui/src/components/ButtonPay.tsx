@@ -39,6 +39,17 @@ export function ButtonPay(props: {
 
   const { isSignedIn } = useAuth();
 
+  let course;
+
+  if ( isSignedIn ) {
+    const { data } = trpc.user.lessonPackBySku.useQuery({ sku_number: props.sku });
+    if (!data) {
+      return <div>SKU: {props.sku} Something went wrong with lessonPack</div>;
+    }
+    const course = data.name;
+    // Use the `course` variable here
+  }
+
   //this is for user check
   const userpageLinkProps = useLink({
     href: "/userpage",
@@ -154,6 +165,7 @@ export function ButtonPay(props: {
                 <MessageIfSignIn
                   pricerub={props.pricerub}
                   priceusdt={props.priceusdt}
+                  course={course}
                   sku={props.sku}
                   coupon={props.coupon}
                   size={props.size}
@@ -182,7 +194,7 @@ export function ButtonPay(props: {
   );
 }
 
-function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, description, sku}) {
+function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, description, course, sku}) {
 
   const id = `switch-${size.toString().slice(1)}`
 
@@ -240,12 +252,6 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
 
   // Course name
   const course_start = "Стартовый пакет";
-  
-  const { data } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
-  if (!data) {
-    return <div>SKU: {sku} Something went wrong with lessonPack</div>;
-  }
-  const course = data.name;
 
   const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
   const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}. Но возникла ошибка!`;
