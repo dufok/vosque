@@ -189,18 +189,14 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
   const [course, setCourse] = useState<string | undefined>();
 
   const { data: currentUser } = trpc.user.current.useQuery();
-  const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
-  console.log (lessonPack);
-
     if (!currentUser) {
-      return <div>Something went wrong with currentUser</div>;
-    } 
-
-    if (!lessonPack) {
-      return { name: "loading" };
+      return null;
     }
-
-    setCourse(lessonPack.name);
+  const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
+  
+    useEffect(() => {
+      setCourse(lessonPack?.name);
+    }, [lessonPack]);
   
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
   const createPayment = trpc.user.createPayment.useMutation();
