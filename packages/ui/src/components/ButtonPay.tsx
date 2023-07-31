@@ -224,6 +224,9 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
 
   // This is for Lesson pack Mutation
   const { data: currentUser } = trpc.user.current.useQuery();
+  if (!currentUser) {
+    return <div>Something went wrong with currentUser</div>;
+  }
   
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
   const createPayment = trpc.user.createPayment.useMutation();
@@ -238,6 +241,9 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
   // Course name
   const course_start = "Стартовый пакет";
   const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
+  if (!lessonPack) {
+    return <div>Something went wrong with lessonPack</div>;
+  }
   const course = lessonPack.name;
 
   const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
