@@ -391,12 +391,10 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
                 <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                     await handleTransferCompletedUsdtBinance();
                 }}>Перевод BINANCE</Button>
-                <Dialog.Close displayWhenAdapted asChild>
                   <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                     await handleTransferCompletedUsdtSelf();
                     showToast("success_part");
                   }}>Подтверждаю Перевод</Button>
-                </Dialog.Close>
               </XStack>
               {qrUrl && <img src={qrUrl} alt="QR Code" />}
               {linkUrl && <a href={linkUrl}>Go to Payment</a>}
