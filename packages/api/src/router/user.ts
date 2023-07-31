@@ -73,11 +73,11 @@ export const userRouter = router({
       return allLessons;
     }),
   lessonPackBySku: protectedProcedure
-    .input(z.object({ name: z.string() }))
+    .input(z.object({ sku_number: z.string() }))
     .query(async ({ ctx, input }) => {
       try {
-        const { name } = input;
-        return await ctx.prisma.lessonPack.findFirst({ where: { name } });
+        const { sku_number } = input;
+        return await ctx.prisma.lessonPack.findFirst({ where: { sku_number } });
       } catch (error) {
         console.error(error);
         throw error;
