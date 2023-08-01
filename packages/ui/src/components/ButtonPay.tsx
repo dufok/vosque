@@ -389,7 +389,7 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
             </Dialog.Close>
           ) : (
             <>
-              <XStack spcace="$2">
+              <XStack space={50}>
                 <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                     await handleTransferCompletedUsdtBinance();
                 }}>Перевод BINANCE</Button>
