@@ -127,12 +127,14 @@ export function ButtonPay(props: {
           style={{ opacity: 0.5}}
           enterStyle={{ o: 0 }}
           exitStyle={{ o: 0 }}
+          
         />
 
         <Dialog.Content
           bordered
           elevate
           key="content"
+          $sm={{ width : "90%" }} $gtSm={{ width : "80%" }} $gtMd={{ width : "60%" }}
           animation={[
             'quick',
             {
@@ -387,7 +389,7 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
             </Dialog.Close>
           ) : (
             <>
-              <XStack>
+              <XStack spcace="$2">
                 <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                     await handleTransferCompletedUsdtBinance();
                 }}>Перевод BINANCE</Button>
