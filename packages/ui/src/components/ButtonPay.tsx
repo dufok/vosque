@@ -389,14 +389,14 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
             </Dialog.Close>
           ) : (
             <>
-              <XStack space={50}>
+              <XStack space={50} fw="wrap" jc="center">
                 <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                     await handleTransferCompletedUsdtBinance();
                 }}>Перевод BINANCE</Button>
-                  <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
-                    await handleTransferCompletedUsdtSelf();
-                    showToast("success_part");
-                  }}>Подтверждаю Перевод</Button>
+                <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
+                  await handleTransferCompletedUsdtSelf();
+                  showToast("success_part");
+                }}>Подтверждаю Перевод</Button>
               </XStack>
               {qrUrl && <img src={qrUrl} alt="QR Code" />}
               {linkUrl && <a href={linkUrl}>Go to Payment</a>}
