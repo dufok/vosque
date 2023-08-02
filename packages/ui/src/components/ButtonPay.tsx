@@ -187,9 +187,6 @@ export function ButtonPay(props: {
 function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, description, sku}) {
   const [course, setCourse] = useState<string | undefined>();
   const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
-    useEffect(() => {
-      setCourse(lessonPack?.name);
-    }, [lessonPack]);
   const { data: currentUser } = trpc.user.current.useQuery();
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
   const createPayment = trpc.user.createPayment.useMutation();
@@ -256,6 +253,9 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
     sendTelegramMessage(text);
   };
 
+  let qrUrl;
+  let linkUrl;
+
   const handleTransferCompletedUsdtBinance = async () => {
     // Binance API call
     const binancePayload = {
@@ -290,9 +290,7 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
       .toUpperCase(); // Generate the signature
   
     binancePayload.sign = signature; // Add the signature to the payload
-    let qrUrl;
-    let linkUrl;
-  
+    
     fetch('/api/binance', {
       method: 'POST',
       headers: {
@@ -303,8 +301,8 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
     .then(response => response.json())  // convert to json
     .then(async (data) => {
       if (data.status === "SUCCESS") {
-        let qrUrl = data.data.qrcodeLink;
-        let linkUrl = data.data.universalUrl;
+        qrUrl = data.data.qrcodeLink;
+        linkUrl = data.data.universalUrl;
         sendTelegramMessage(text);
       } else {
         showToast("error");
@@ -321,6 +319,10 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
   const userpageLinkProps = useLink({
     href: "/userpage",
   });
+
+  useEffect(() => {
+    setCourse(lessonPack?.name);
+  }, [lessonPack]);
 
   useEffect(() => {
     setDiscountedPrice(price);
