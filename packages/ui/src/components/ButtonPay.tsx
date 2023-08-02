@@ -185,28 +185,21 @@ export function ButtonPay(props: {
 }
 
 function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, description, sku}) {
-
-  const id = `switch-${size.toString().slice(1)}`
-
   const [course, setCourse] = useState<string | undefined>();
-
-  const { data: currentUser } = trpc.user.current.useQuery();
-    if (!currentUser) {
-      return null;
-    }
   const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
-  
     useEffect(() => {
       setCourse(lessonPack?.name);
     }, [lessonPack]);
-  
+  const { data: currentUser } = trpc.user.current.useQuery();
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
   const createPayment = trpc.user.createPayment.useMutation();
 
-  //this is for qr code BINANCE
-  const [qrUrl, setQrUrl] = useState(null);
-  const [linkUrl, setLinkUrl] = useState(null);
-  
+    if (!currentUser) {
+      return null;
+    }
+
+  const id = `switch-${size.toString().slice(1)}`
+
   //this is for swithc currency
   const [currency, setCurrency] = useState("RUB");
   const price = currency === "RUB" ? pricerub : currency === "USDT" ? priceusdt : 0;
@@ -224,7 +217,6 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
   const summaryBody = currency === "RUB" ? summaryCardBody : currency === "USDT" ? summaryUSDTBody : "";
   const summaryHead = currency === "RUB" ? summaryCardHead : currency === "USDT" ? summaryUSDTHead : "";
 
-
   //this is for coupon input
   
   const [discontedPrice, setDiscountedPrice] = useState(price)
@@ -239,7 +231,6 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
     } 
   };
 
-  
   // This is for Binance USDT payout
 
   const binanceSecretKey = process.env.BINANCE_SECRET_KEY || "1";
@@ -299,6 +290,8 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
       .toUpperCase(); // Generate the signature
   
     binancePayload.sign = signature; // Add the signature to the payload
+    let qrUrl;
+    let linkUrl;
   
     fetch('/api/binance', {
       method: 'POST',
@@ -310,8 +303,8 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
     .then(response => response.json())  // convert to json
     .then(async (data) => {
       if (data.status === "SUCCESS") {
-        setQrUrl(data.data.qrcodeLink);
-        setLinkUrl(data.data.universalUrl);
+        let qrUrl = data.data.qrcodeLink;
+        let linkUrl = data.data.universalUrl;
         sendTelegramMessage(text);
       } else {
         showToast("error");
@@ -389,7 +382,7 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
             </Dialog.Close>
           ) : (
             <>
-              <XStack space={50} fw="wrap" jc="center">
+              <XStack space={50} fw="wrap">
                 <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                     await handleTransferCompletedUsdtBinance();
                 }}>Перевод BINANCE</Button>
