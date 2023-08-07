@@ -56,7 +56,7 @@ export function ButtonPay(props: {
         toastProperties = {
           id: 1,
           title: "Мы проверяем перевод",
-          description: "Три урока вам уже открыто !",
+          description: "Спасибо! Вам сразу же откроются уроки, после того как перевод подтвердится.",
           backgroundColor: "#5cb85c",
           icon: Banknote,
         };
@@ -242,13 +242,13 @@ function MessageIfSignIn({coupon, pricerub, priceusdt, size, showToast, descript
    
 
   const handleTransferCompletedRUB = async () => {
-    await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });
+    {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
     showToast("success_part");
     sendTelegramMessage(text);
   };
 
   const handleTransferCompletedUsdtSelf = async () => {
-    await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });
+    {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
     showToast("success_part");
     sendTelegramMessage(text);
   };
