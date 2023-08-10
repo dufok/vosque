@@ -66,24 +66,18 @@ function WelcomeCourse() {
                 coupon="MYARGENTINA"
                 pricerub={9000}
                 priceusdt={100}
-                size="$2"
                 />
             </YStack>
             <YStack p='$6'>
-              <Button
-                backgroundColor="$backgroundPress"
-                elevation="$0.5"
-                br="$2"
-                bw="$1"
-                boc="$backgroundPress"
-                h={80}
-                w={270}
-                //onpres to link payscreenLinkProps
-                {...payscreenLinkProps}
-                >
-                <Paragraph color="$background" ta="center">Тариф <br /> с преподователем</Paragraph>
-              </Button>
-            </YStack>
+              <ButtonPay
+                name="Тариф <br /> с преподователем"
+                description=" Обучение в компании преподавателя Анастасии - 12 уроков в записи с упражнениями + 4 встречи с педагогом в Zoon после каждого 3его урока"
+                sku="VQ01LP"
+                coupon="MYARGENTINA"
+                pricerub={14400}
+                priceusdt={160}
+                />
+              </YStack>
           </XStack>
         </YStack>
       </YStack>
