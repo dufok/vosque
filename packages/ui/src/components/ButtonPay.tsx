@@ -11,7 +11,6 @@ export function ButtonPay(props: {
   name: string
   description: string
   sku: string
-  coupon: string
   pricerub: number
   priceusdt: number
 }){
@@ -25,7 +24,6 @@ export function ButtonPay(props: {
       name: props.name,
       description: props.description,
       sku: props.sku,
-      coupon: props.coupon,
       pricerub: props.pricerub.toString(),
       priceusdt: props.priceusdt.toString(),
     }).toString();

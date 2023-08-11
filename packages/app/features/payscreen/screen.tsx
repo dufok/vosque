@@ -25,8 +25,8 @@ import { sendTelegramMessage } from "@my/ui/src/components/sendTelegramMessage";
 export function payScreenScreen() {
 
   const router = useRouter();
-  const { name, description, sku, coupon, pricerub, priceusdt } = router.query;
-  if (!name || !description || !sku || !coupon || !pricerub || !priceusdt) {
+  const { name, description, sku, pricerub, priceusdt } = router.query;
+  if (!name || !description || !sku  || !pricerub || !priceusdt) {
     return <div> No data in payscreen !</div>;
   }
 
@@ -45,14 +45,13 @@ export function payScreenScreen() {
         pricerub={pricerub}
         priceusdt={priceusdt}
         sku={sku}
-        coupon={coupon}
         description={description}
         />
     </YStack>
   );
 } 
 
-function PayContent({ name, description, sku, coupon, pricerub, priceusdt }) {
+function PayContent({ name, description, sku, pricerub, priceusdt }) {
 
   const { data: lessonPack } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
   const { data: currentUser } = trpc.user.current.useQuery();
@@ -62,6 +61,10 @@ function PayContent({ name, description, sku, coupon, pricerub, priceusdt }) {
   }
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
   const createPayment = trpc.user.createPayment.useMutation();
+
+  //this is for coupon input
+  const coupon = process.env.NEXT_PUBLIC_SECRET_COUPON;
+  const sale = process.env.NEXT_PUBLIC_SECRET_SALE;
 
   //this for paying options
   const summaryCardBody = `Номер карты Тиньков. После перевода подтвердите, нажав ниже кнопку "Подтверждаю Перевод"`;
@@ -253,8 +256,11 @@ function PayContent({ name, description, sku, coupon, pricerub, priceusdt }) {
           autoDelete={true}
           autoDeleteTime={9000}
         />
-        <YStack p="$4" space="$4">
-          
+        <YStack space="$4">
+          <YStack ai="center" w="100%" bg="$backgroundHover">
+            <H3>{name}</H3>
+            <Paragraph>{description}</Paragraph>
+          </YStack>
           <Paragraph>{summaryHead}</Paragraph>
           <Paragraph>{summaryBody}</Paragraph>
           <XStack ai="center" space="$2" mt="$4">
