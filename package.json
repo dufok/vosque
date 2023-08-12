@@ -41,7 +41,8 @@
     "@tamagui/animations-css": "^1.39.5",
     "@tamagui/collection": "^1.39.5",
     "dotenv": "^16.0.3",
-    "dotenv-cli": "^6.0.0"
+    "dotenv-cli": "^6.0.0",
+    "node-mailjet": "^6.0.4"
   },
   "devDependencies": {
     "@manypkg/cli": "^0.19.1",
