@@ -87,7 +87,11 @@ function PayContent({ name, description, sku, pricerub, priceusdt }) {
     const inputValue = inputElement instanceof HTMLInputElement ? inputElement.value : null;
     if (inputValue === coupon) {
       setDiscountedPrice(price * 0.75);
-    } else {
+    }
+    if (inputValue === sale) {
+      setDiscountedPrice(price * 0.5);
+    }
+    else {
       setDiscountedPrice(price);
     } 
   };
