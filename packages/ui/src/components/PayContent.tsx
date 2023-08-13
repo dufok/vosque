@@ -8,21 +8,20 @@ import {
   H3,
   H4,
   XGroup
-} from "@my/ui";
+} from "tamagui";
 import React, { useEffect, useState} from "react";
 import { useRouter } from "next/router";
 
 import crypto from 'crypto';
 import { v4 as uuidv4 } from 'uuid';
-import { X } from '@tamagui/lucide-icons'
 import { trpc } from "app/utils/trpc";
 import { useLink } from "solito/link";
 import { useAuth } from "app/utils/clerk";
 import { Ticket, ChevronDown, Banknote } from '@tamagui/lucide-icons';
 import { Sheet } from '@tamagui/sheet';
-import { ToastComp } from "@my/ui/src/components/ToastComp";
-import { sendTelegramMessage } from "@my/ui/src/components/sendTelegramMessage";
-import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
+import { ToastComp } from "./ToastComp";
+import { sendTelegramMessage } from "./sendTelegramMessage";
+import { SpinnerOver } from "./SpinnerOver";
 
 export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   const router = useRouter();
