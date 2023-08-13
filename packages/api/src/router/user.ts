@@ -41,6 +41,20 @@ export const userRouter = router({
         data: { userName },
       });
     }),
+  listAllUsers: protectedProcedure.query(async ({ ctx }) => {
+      return ctx.prisma.user.findMany();
+    }),
+    listAllCourseSKUs: protectedProcedure.query(async ({ ctx }) => {
+      // Fetch all lesson packs
+      const lessonPacks = await ctx.prisma.lessonPack.findMany({
+        select: { sku_number: true }, // Select only the SKU numbers
+      });
+    
+      // Extract the SKU numbers into an array
+      const skus = lessonPacks.map((pack) => pack.sku_number);
+    
+      return skus;
+    }),
   userLessons: protectedProcedure.query(async ({ ctx }) => {
       const userId = ctx.user.id;
     
@@ -94,14 +108,31 @@ export const userRouter = router({
       const { userId, lessonPackName } = input;
       const lessonPack = await ctx.prisma.lessonPack.findUnique({ where: { name: lessonPackName } });
   
-      if (!lessonPack) {
-        throw new Error('LessonPack not found');
-      }
-  
-      return ctx.prisma.user.update({
+      const user = await ctx.prisma.user.findUnique({
         where: { id: userId },
-        data: { lessonPacks: { connect: { id: lessonPack.id } } },
+        include: { lessonPacks: true },
       });
+    
+      if (!user) {
+        throw new Error('User not found');
+      }
+    
+      // Check if the user already has this lesson pack
+      const hasLessonPack = user.lessonPacks.some((pack) => pack.name === lessonPackName);
+    
+      if (hasLessonPack) {
+        // If the user already has the lesson pack, disconnect it
+        return ctx.prisma.user.update({
+          where: { id: userId },
+          data: { lessonPacks: { disconnect: { id: lessonPack.id } } },
+        });
+      } else {
+        // If the user doesn't have the lesson pack, connect it
+        return ctx.prisma.user.update({
+          where: { id: userId },
+          data: { lessonPacks: { connect: { id: lessonPack.id } } },
+        });
+      }
     }),
   userLessonPacks: protectedProcedure.query(async ({ ctx }) => {
       const userId = ctx.user.id;
@@ -113,6 +144,22 @@ export const userRouter = router({
         return "Пока что нет";
       }
       return user.lessonPacks.map(pack => pack.name);
+    }),
+  userLessonPacksByID: protectedProcedure.query(async ({ ctx }) => {
+      const users = await ctx.prisma.user.findMany({
+        include: { lessonPacks: true },
+      });
+    
+      const userLessonPacksByID = {};
+      users.forEach((user) => {
+        if (user.lessonPacks && user.lessonPacks.length > 0) {
+          userLessonPacksByID[user.id] = user.lessonPacks.map(pack => pack.name).join(', ');
+        } else {
+          userLessonPacksByID[user.id] = "No Pack Assigned";
+        }
+      });
+    
+      return userLessonPacksByID;
     }),
   createPayment: protectedProcedure
     .input(
