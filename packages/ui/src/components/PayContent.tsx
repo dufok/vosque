@@ -288,10 +288,10 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
           </YStack>
           <XGroup jc="center">
             <XGroup.Item>
-              <Button w={100} onPress={handleToUSDT}><H4>USDT</H4></Button>
+              <Button w={157} onPress={handleToUSDT}><H4>USDT</H4></Button>
             </XGroup.Item>
             <XGroup.Item>
-              <Button w={100} onPress={handleToRUB}><H4>RUB</H4></Button>
+              <Button w={157} onPress={handleToRUB}><H4>RUB</H4></Button>
             </XGroup.Item>
           </XGroup>
           <YStack paddingHorizontal="$4">
