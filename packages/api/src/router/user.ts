@@ -107,7 +107,11 @@ export const userRouter = router({
     .mutation(async ({ ctx, input }) => {
       const { userId, lessonPackName } = input;
       const lessonPack = await ctx.prisma.lessonPack.findUnique({ where: { name: lessonPackName } });
-  
+      
+      if (!lessonPack) {
+        throw new Error('LessonPack not found');
+      }
+      
       const user = await ctx.prisma.user.findUnique({
         where: { id: userId },
         include: { lessonPacks: true },
