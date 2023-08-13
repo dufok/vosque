@@ -21,7 +21,7 @@ const sendEmail = async (req, res) => {
           ],
           "Subject": subject,
           "TextPart": text,
-          "HTMLPart:": htmlContent,
+          "HTMLPart": htmlContent,
         }
       ]
     });
