@@ -1,11 +1,11 @@
-export const sendEmailMessage = async (userEmail, lessonPackName) => {
-  console.log('Sending email to', userEmail, 'with pack', lessonPackName);
+export const sendEmailMessage = async (userEmail) => {
+  console.log('Sending email to', userEmail);
   
   try {
     const htmlContent = `
       <h1>Hola!</h1>
       <p>Добро пожаловать на базовый курс аргентинского испанского языка!</p>
-      <p>Теперь Вам доступны все уроки <strong>${lessonPackName}</strong>.</p>
+      <p>Теперь Вам доступны все уроки <strong>базового курса</strong>.</p>
       <p>Для того чтобы начать обучение, Вам необходимо зайти в свой личный кабинет и выбрать нужный урок. Ниже Вы найдете ссылку на него:</p>
       <a href="www.vosque.education/userpage">www.vosque.education/userpage</a>
       <p>Удачи и пишите по любым вопросам! ;)</p>
