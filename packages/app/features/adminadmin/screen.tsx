@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import { useRouter } from "solito/router";
 import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 import { trpc } from "app/utils/trpc";
+import { sendEmailMessage } from "@my/ui/src/components/sendEmailMessage";
 
 export function adminadminScreen() {
   const router = useRouter();
@@ -44,45 +45,10 @@ export function adminadminScreen() {
     );
   };
   
+  const test = process.env.MAILJET_API_KEY
 
   // Send email
-  const sendEmailToUser = async (userEmail, lessonPackName) => {
-    setShowSpinner(true); // Show spinner when sending email
-    try {
-      const htmlContent = `
-        <h1>Hola!</h1>
-        <p>Добро пожаловать на базовый курс аргентинского испанского языка!</p>
-        <p>Теперь Вам доступны все уроки <strong>${lessonPackName}</strong>.</p>
-        <p>Для того чтобы начать обучение, Вам необходимо зайти в свой личный кабинет и выбрать нужный урок. Ниже Вы найдете ссылку на него:</p>
-        <a href="www.vosque.education/userpage">www.vosque.education/userpage</a>
-        <p>Удачи и пишите по любым вопросам! ;)</p>
-        <p>Анастасия, создатель платформы Vosque.education</p>
-        <a href="https://t.me/vosque_help">Telegram: https://t.me/vosque_help</a>
-      `;
   
-      const response = await fetch('/api/sendEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          to: userEmail,
-          subject: 'Доступ к Vosque.education',
-          html: htmlContent, // Send the HTML content
-        }),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to send email');
-      }
-  
-      // You can show a success message here if you want
-    } catch (err) {
-      console.error(err);
-      // Handle the error as you see fit
-    }
-    setShowSpinner(false); // Hide spinner when email is sent
-  };
 
   // If currentUser empty then error in TRPC console
   if (isUserLoading) {
@@ -147,7 +113,7 @@ export function adminadminScreen() {
                   </Paragraph>
                 )}
                 <XStack fw="wrap" space="$2">
-                  <Button onClick={() => sendEmailToUser(user.email, lessonPackName)}><Paragraph size="$3">Send Email</Paragraph></Button>
+                  <Button onClick={() => sendEmailMessage(user.email, lessonPackName)}><Paragraph size="$3">Send Email</Paragraph></Button>
                   {allSKUs.map((sku) => (
                     <LessonPackButton key={sku} sku={sku} userId={currentUser.id} updateUserLessonPack={updateUserLessonPack} />
                   ))}

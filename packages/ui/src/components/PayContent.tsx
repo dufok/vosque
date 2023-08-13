@@ -251,7 +251,6 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
     <YStack
         borderRadius="$10"
         space
-        $gtXs={{ w: 600 }}
         w={350}
         shadowColor={"#00000020"}
         shadowRadius={26}
