@@ -25,10 +25,14 @@ import { sendTelegramMessage } from "@my/ui/src/components/sendTelegramMessage";
 import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 
 export function PayContent({ name, description, sku, pricerub, priceusdt }) {
+  const router = useRouter();
 
   const { data: lessonPack, isLoading: isUserPacksLoading } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
   const { data: currentUser, isLoading: isUserLoading } = trpc.user.current.useQuery();
   //if curentUser empty then error in TRPC console
+  if (isUserLoading) {
+    return <SpinnerOver />;
+  }
   if (!currentUser)
   {
     return <div> No data in currentUser !</div>;
@@ -41,6 +45,9 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   const summaryUSDTBody = `Номер кошелька USDT (TRC20). Вы можете перевести сами и после перевода подтвердите нажав кнопку "Проверить Перевод". Либо воспользуйтесь опцией перевода через BINANCE`;
   const summaryCardHead = `5536 9140 3988 8122`;
   const summaryUSDTHead = `TVyFKcfTPAmEdF5iYX3XiveLQ6HaV1UQ38`;
+
+  // Spinner for loading
+  const [showSpinner, setShowSpinner] = useState(false);
 
   //this is for swithc currency
   const [currency, setCurrency] = useState("RUB");
@@ -193,14 +200,26 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   // Transfer Completed
   const handleTransferCompletedRUB = async () => {
     {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
+    // Show the spinner
+    setShowSpinner(true);
     showToast("success_part");
     sendTelegramMessage(text);
+    setTimeout(() => {
+      setShowSpinner(false);
+      router.push('/');
+    }, 5000);
   };
 
   const handleTransferCompletedUsdtSelf = async () => {
     {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
+    // Show the spinner
+    setShowSpinner(true);
     showToast("success_part");
     sendTelegramMessage(text);
+    setTimeout(() => {
+      setShowSpinner(false);
+      router.push('/');
+    }, 5000);
   };
 
   // Course name
@@ -217,6 +236,14 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   const isLoadingOverall = isUserLoading || isUserPacksLoading;
   
   return (
+    <>
+    { (isLoadingOverall || showSpinner) && <SpinnerOver /> }
+    <ToastComp 
+    toastList={list}
+    position="bottom-center"
+    autoDelete={true}
+    autoDeleteTime={9000}
+    />
     <YStack
         borderRadius="$10"
         space
@@ -233,13 +260,6 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
           opacity: 0,
         }}
       >
-        { isLoadingOverall && <SpinnerOver /> }
-        <ToastComp 
-          toastList={list}
-          position="bottom-center"
-          autoDelete={true}
-          autoDeleteTime={9000}
-        />
         <YStack space="$4">
           <YStack
             ai="center"
@@ -305,6 +325,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
         </YStack>
         {/* <SheetCoupon open={open} onOpenChange={setOpen} price={price} discontedPrice={discontedPrice} setDiscountedPrice={setDiscountedPrice}/> */}
     </YStack>
+    </>
   );
 } 
 
