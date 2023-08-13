@@ -21,7 +21,7 @@ export const sendEmailMessage = async (userEmail) => {
       body: JSON.stringify({
         to: userEmail,
         subject: 'Доступ к Vosque.education',
-        html: htmlContent, // Send the HTML content
+        HTMLPart: htmlContent, // Updated property name
       }),
     });
 
