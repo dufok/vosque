@@ -6,7 +6,7 @@ import { trpc } from "app/utils/trpc";
 
 export function adminadminScreen() {
   const router = useRouter();
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const adminEmails = process.env.NEXT_PUBLIC_ADMIN_EMAIL?.split(',') || [];
   const { data: currentUser, isLoading: isUserLoading, error: userError } = trpc.user.current.useQuery();
   const { data: allUsers, isLoading: isAllUsersLoading, error: allUsersError } = trpc.user.listAllUsers.useQuery();
   const { data: allSKUs, isLoading: allSKUsLoading ,error: allSKUsError } = trpc.user.listAllCourseSKUs.useQuery();
@@ -91,7 +91,7 @@ export function adminadminScreen() {
 
   const userEmail = currentUser.email;
 
-  if (userEmail !== adminEmail) {
+  if (!adminEmails.includes(userEmail)) {
     router.push("/");
   }
 
