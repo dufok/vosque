@@ -233,6 +233,10 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
     setCourse(lessonPack?.name);
   }, [lessonPack]);
 
+  useEffect(() => {
+    setDiscountedPrice(price);
+  }, [price]);
+
   const isLoadingOverall = isUserLoading || isUserPacksLoading;
   
   return (
