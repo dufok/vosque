@@ -50,14 +50,15 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
 
   //this is for swithc currency
   const [currency, setCurrency] = useState("RUB");
+  const [price, setPrice] = useState(pricerub);
   const handleToRUB = async () => {
       setCurrency("RUB")
+      setPrice(pricerub)
   };
   const handleToUSDT = async () => {
     setCurrency("USDT")
+    setPrice(priceusdt)
   };
-
-  const price = currency === "RUB" ? pricerub : currency === "USDT" ? priceusdt : 0;
 
   const summaryBody = currency === "RUB" ? summaryCardBody : currency === "USDT" ? summaryUSDTBody : "";
   const summaryHead = currency === "RUB" ? summaryCardHead : currency === "USDT" ? summaryUSDTHead : "";
