@@ -45,8 +45,6 @@ export function adminadminScreen() {
     );
   };
   
-  const test = process.env.MAILJET_API_KEY
-  console.log(test)
   // Send email
   
 
