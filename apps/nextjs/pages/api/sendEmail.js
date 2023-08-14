@@ -6,7 +6,7 @@ const mailjet = Mailjet.apiConnect(
 );
 
 const sendEmail = async (req, res) => {
-  const { to, subject, htmlContent } = req.body;
+  const { to, subject, HTMLPart } = req.body;
 
   const request = mailjet
     .post("send", { 'version': 'v3.1' })
@@ -21,7 +21,7 @@ const sendEmail = async (req, res) => {
           ],
           "Subject": subject,
           
-          "HTMLPart": htmlContent,
+          "HTMLPart": HTMLPart,
         }
       ]
     });
@@ -30,7 +30,7 @@ const sendEmail = async (req, res) => {
     await request;
     res.status(200).send('Email sent');
   } catch (error) {
-    console.error(error.statusCode);
+    console.error(error.message);
     res.status(500).send('Error sending email');
   }
 };
