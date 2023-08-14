@@ -1,12 +1,12 @@
 import Mailjet from 'node-mailjet';
 
 const mailjet = Mailjet.apiConnect(
-  process.env.MJ_APIKEY_PUBLIC,
-  process.env.MJ_APIKEY_PRIVATE,
+  process.env.MAILJET_API_KEY,
+  process.env.MAILJET_SECRET_KEY,
 );
 
 const sendEmail = async (req, res) => {
-  const { to, subject, text } = req.body;
+  const { to, subject, htmlContent } = req.body;
 
   const request = mailjet
     .post("send", { 'version': 'v3.1' })
@@ -20,7 +20,7 @@ const sendEmail = async (req, res) => {
             { "Email": to }
           ],
           "Subject": subject,
-          "TextPart": text,
+          
           "HTMLPart": htmlContent,
         }
       ]
