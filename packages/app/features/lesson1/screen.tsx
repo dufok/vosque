@@ -35,7 +35,11 @@ export function lesson1Screen() {
 
   const userpageLinkProps = useLink({ href: "/userpage"});
 
-  const { isSignedIn } = useAuth();
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return <SpinnerOver />;
+  }
   
   return (
     <YStack>

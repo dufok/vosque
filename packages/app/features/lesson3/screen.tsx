@@ -8,6 +8,7 @@ import {
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect,useState} from "react";
+import { useAuth } from "app/utils/clerk";
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
@@ -33,8 +34,26 @@ import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock
 import { ContentLesson3 } from "../lesson3/type_Lesson3";
 import { ContentLesson3_2 } from "../lesson3/type_Lesson3";
 
-
 export function lesson3Screen() {
+
+  const userpageLinkProps = useLink({ href: "/userpage"});
+
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return <SpinnerOver />;
+  }
+  
+  return (
+    <YStack>
+      <HeaderComp />
+      { isSignedIn ? <Lesson3SignIn /> : null}
+      <SubMenu userpageLinkProps={userpageLinkProps}/>
+    </YStack>
+  );
+}
+
+function Lesson3SignIn() {
 
   //Open or close treory block
 
@@ -53,7 +72,6 @@ export function lesson3Screen() {
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-  const isSignedIn = !!currentUser;
 
   //lesson content
   const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
@@ -106,31 +124,23 @@ export function lesson3Screen() {
   }
 
   return (
-    <YStack>
+    <YStack f={1}>
       {isLoadingOverall && <SpinnerOver />}
-      <HeaderComp />
-      { isSignedIn && (
-        <YStack f={1}>
-          <YStack ai="center" mt="$10">
-            <WelcomeBlock
-              name={ThirdLesson?.name}
-              description={content?.description}/>
-              <YStack  w="100%" $gtSm={{ width: "70%" }}>
-                <VideoPlayer linkVideo={content?.video}/>
-              </YStack>
-            <ImageCircle img={content?.image}/>
+      <YStack ai="center" mt="$10">
+        <WelcomeBlock
+          name={ThirdLesson?.name}
+          description={content?.description}/>
+          <YStack  w="100%" $gtSm={{ width: "70%" }}>
+            <VideoPlayer linkVideo={content?.video}/>
+          </YStack>
+        <ImageCircle img={content?.image}/>
 
-          {/* Теоритический Блок */}
+        {/* Теоритический Блок */}
 
-          <HeaderBlock header={content?.header1}/>
+        <HeaderBlock header={content?.header1}/>
 
-          <AnimatePresence>
-          {isOpen && (
-            <YStack
-            enterStyle={{opacity: 0, y: -100}}
-            animation='bouncy'
-            ai="center"
-            >          
+        {isOpen && (
+          <>
             <SquareText text={content?.squareText1}/>
             <TableBlock table={content?.tableBlock1}/>
 
@@ -148,46 +158,37 @@ export function lesson3Screen() {
 
             <HeaderBlock header={content?.headerBlock4}/>
             <ExercisesBlockText exercises={blockText2}/>
-            </YStack>
+          </>
+        )} 
+        <Button
+        w={100}
+        h={30}
+        bw={1}
+        br="$2"
+        bg="$backgroundFocus"
+        icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
+
+        
+
+        <HeaderBlock header={content?.header3}/>
+        <SquareText text={content?.squareText4}/>
+        <LangTest4 example={example4_1} tests={tests4_1} />
+
+        {/* Часть 2 */}
+
+        <WelcomeBlock
+          name={content2?.name}
+          description={content2?.description}/>
+          <YStack  w="100%" $gtSm={{ width: "70%" }}>
+            <VideoPlayer linkVideo={content?.video}/>
+          </YStack>
+
+        <HeaderBlock header={content2?.headerBlock1}/>
+
+            
+        {isOpen2 && (
+          <TableBlock table={content2?.tableBlock1} />
           )}
-          </AnimatePresence>
-          <Button
-          w={100}
-          h={30}
-          bw={1}
-          br="$2"
-          bg="$backgroundFocus"
-          icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
-
-          {/*  Блок Упражнений */}
-
-          <HeaderBlock header={content?.header3}/>
-          <SquareText text={content?.squareText4}/>
-          <LangTest4 example={example4_1} tests={tests4_1} />
-
-          {/* Часть 2 */}
-
-          <WelcomeBlock
-            name={content2?.name}
-            description={content2?.description}/>
-            <YStack  w="100%" $gtSm={{ width: "70%" }}>
-              <VideoPlayer linkVideo={content?.video}/>
-            </YStack>
-
-          <HeaderBlock header={content2?.headerBlock1}/>
-
-          <AnimatePresence>
-            {isOpen2 && (
-              <YStack
-              
-              enterStyle={{opacity: 0, y: -100}}
-              animation='bouncy'
-              ai="center"
-              >  
-                <TableBlock table={content2?.tableBlock1} />
-              </YStack>
-            )}
-          </AnimatePresence>
           <Button
           w={100}
           h={30}
@@ -259,14 +260,11 @@ export function lesson3Screen() {
           <LangTest1 example={example1_5} tests={tests1_5} />
 
         </YStack> 
-        <NavigationBlock
-          lessonLinkPageDOWNname={"Урок 2"}
-          lessonLinkPageUPname={"Урок 4"}
-          lessonLinkPageUP={lessonLinkPageUP}
-          lessonLinkPageDOWN={lessonLinkPageDown}/>
-      </YStack>
-      )}
-        <SubMenu userpageLinkProps={userpageLinkProps}/>
-      </YStack>
-    );
-  }
+      <NavigationBlock
+        lessonLinkPageDOWNname={"Урок 2"}
+        lessonLinkPageUPname={"Урок 4"}
+        lessonLinkPageUP={lessonLinkPageUP}
+        lessonLinkPageDOWN={lessonLinkPageDown}/>
+    </YStack>
+  );
+}

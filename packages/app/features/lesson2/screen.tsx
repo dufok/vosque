@@ -8,6 +8,7 @@ import {
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect,useState} from "react";
+import { useAuth } from "app/utils/clerk";
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
@@ -29,6 +30,25 @@ import { TableBlock } from "@my/ui/src/components/TableBlock";
 import { LangTest1 } from "@my/ui/src/components/LangTest1";
 
 export function lesson2Screen() {
+  
+  const userpageLinkProps = useLink({ href: "/userpage"});
+
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return <SpinnerOver />;
+  }
+  
+  return (
+    <YStack>
+      <HeaderComp />
+        { isSignedIn ? <Lesson2SignIn /> : null}
+      <SubMenu userpageLinkProps={userpageLinkProps}/>
+    </YStack>
+  );
+}
+
+function Lesson2SignIn() {
 
   //Open or close treory block
 
@@ -40,16 +60,12 @@ export function lesson2Screen() {
 
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
-  const isSignedIn = !!currentUser;
-  
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-  
   const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
 
   const lessonName = "урок 2";
   const SecondLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
-  const isLoadingOverall = userLessonsLoading || isLoading;
   //lesson content
 
   const userpageLinkProps = useLink({ href: "/userpage"});
@@ -76,16 +92,15 @@ export function lesson2Screen() {
     console.log(data);
   }, [isLoading]);
 
+  const isLoadingOverall = userLessonsLoading || isLoading;
+
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
 
   return (
-    <YStack>
-      {isLoadingOverall && <SpinnerOver />}
-      <HeaderComp />
-      { isSignedIn && (
-      <YStack f={1}>
+    <YStack f={1}>
+      { isLoadingOverall && <SpinnerOver /> }
        <YStack ai="center" mt="$10">
         <WelcomeBlock
           name={SecondLesson?.name}
@@ -237,9 +252,6 @@ export function lesson2Screen() {
         lessonLinkPageUPname={"Урок 3"}
         lessonLinkPageUP={lessonLinkPageUP}
         lessonLinkPageDOWN={lessonLinkPageDown}/>
-       </YStack>
-      )}
-      <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
 } 
