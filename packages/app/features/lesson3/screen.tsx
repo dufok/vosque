@@ -140,7 +140,7 @@ function Lesson3SignIn() {
         <HeaderBlock header={content?.header1}/>
 
         {isOpen && (
-          <div>
+          <YStack>
             <SquareText text={content?.squareText1}/>
             <TableBlock table={content?.tableBlock1}/>
 
@@ -158,7 +158,7 @@ function Lesson3SignIn() {
 
             <HeaderBlock header={content?.headerBlock4}/>
             <ExercisesBlockText exercises={blockText2}/>
-          </div>
+          </YStack>
         )} 
         <Button
         w={100}

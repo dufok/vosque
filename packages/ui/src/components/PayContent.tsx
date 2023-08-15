@@ -11,6 +11,7 @@ import {
 } from "tamagui";
 import React, { useEffect, useState} from "react";
 import { useRouter } from "next/router";
+import { Text } from 'react-native';
 
 import crypto from 'crypto';
 import { v4 as uuidv4 } from 'uuid';
@@ -34,7 +35,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   }
   if (!currentUser)
   {
-    return <div> No data in currentUser !</div>;
+    return <Text> No data in currentUser !</Text>;
   }
   const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
   const createPayment = trpc.user.createPayment.useMutation();

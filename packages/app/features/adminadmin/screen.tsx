@@ -1,5 +1,6 @@
 import { Paragraph, YStack, XStack, H3, Button} from "@my/ui";
 import React, {useEffect, useState} from "react";
+import { Text } from "react-native";
 import { useRouter } from "solito/router";
 import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 import { trpc } from "app/utils/trpc";
@@ -19,11 +20,11 @@ export function adminadminScreen() {
 
 
   if (userError || allUsersError || allSKUsError || userLessonPacksError) {
-    return <div>Error loading data!</div>;
+    return <Text>Error loading data!</Text>;
   }
 
   if (!currentUser || !allUsers || !allSKUs || !userLessonPacksByID) {
-    return <div>No data!</div>;
+    return <Text>No data!</Text>;
   }
 
   // Update user lessons pack

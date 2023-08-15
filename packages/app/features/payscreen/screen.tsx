@@ -11,6 +11,7 @@ import {
 } from "@my/ui";
 import React, { useEffect, useState} from "react";
 import { useRouter } from "next/router";
+import { Text } from "react-native";
 
 import crypto from 'crypto';
 import { v4 as uuidv4 } from 'uuid';
@@ -28,7 +29,7 @@ export function payScreenScreen() {
   const router = useRouter();
   const { name, description, sku, pricerub, priceusdt } = router.query;
   if (!name || !description || !sku  || !pricerub || !priceusdt) {
-    return <div> No data in payscreen !</div>;
+    return <Text> No data in payscreen !</Text>;
   }
 
   const { isSignedIn } = useAuth();

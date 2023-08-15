@@ -24,22 +24,22 @@ export function WordToTranslateBlock({ words }) {
 
             <YStack m="$2" >
               {firstHalf.map((word, index) => (
-                <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index}>{word.text1}</Paragraph>
+                <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index + word.text1}>{word.text1}</Paragraph>
               ))}
             </YStack>
 
             <YStack m="$2" f={1}>
-              {firstHalf.map((index) => (
-                <YStack h={18} mt="$1.5" mb="$1.5" key={index} jc="center">
-                  <Separator w="50%" borderColor="$backgroundFocus" key={index} alignSelf="center"/>
+              {firstHalf.map((word, index) => (
+                <YStack key={index + word.text1} h={18} mt="$1.5" mb="$1.5" jc="center">
+                  <Separator w="50%" borderColor="$backgroundFocus" alignSelf="center"/>
                 </YStack>
               ))}
             </YStack>
 
             <YStack m="$2" > 
               {firstHalf.map((word, index) => (
-                <XStack >
-                    <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index} >{word.text2}</Paragraph>
+                <XStack key={index + word.text2}>
+                    <Paragraph mt="$1.5" mb="$1.5" ta="left" >{word.text2}</Paragraph>
                     {word.description && <HelpComp texts={word.description} html={index} />}
                 </XStack>
               ))}
@@ -55,22 +55,22 @@ export function WordToTranslateBlock({ words }) {
 
             <YStack m="$2" >
               {secondHalf.map((word, index) => (
-                <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index}>{word.text1}</Paragraph>
+                <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index + word.text1}>{word.text1}</Paragraph>
               ))}
             </YStack>
 
             <YStack m="$2" f={1}>
-              {secondHalf.map((index) => (
-                <YStack h={18} mt="$1.5" mb="$1.5" key={index} jc="center">
-                  <Separator w="50%" borderColor="$backgroundFocus" key={index} alignSelf="center"/>
+              {secondHalf.map((word, index) => (
+                <YStack h={18} mt="$1.5" mb="$1.5" key={index + word.text1} jc="center">
+                  <Separator w="50%" borderColor="$backgroundFocus" alignSelf="center"/>
                 </YStack>
               ))}
             </YStack>
 
             <YStack m="$2">
               {secondHalf.map((word, index) => (
-                <XStack >
-                  <Paragraph mt="$1.5" mb="$1.5" ta="left" key={index} >{word.text2}</Paragraph>
+                <XStack key={index + word.text2}>
+                  <Paragraph mt="$1.5" mb="$1.5" ta="left" >{word.text2}</Paragraph>
                   {word.description && <HelpComp texts={word.description} html={index} />}
                 </XStack>
               ))}

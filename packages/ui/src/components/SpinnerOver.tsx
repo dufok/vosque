@@ -1,9 +1,9 @@
-import { Spinner } from "tamagui";
+import { Spinner, YStack } from "tamagui";
 import React from "react";
 
 export function SpinnerOver() {
   return (
-    <div style={{
+    <YStack style={{
       position: 'fixed', // Use fixed position
       top: 0, // Position from the top
       left: 0, // Position from the left
@@ -18,6 +18,6 @@ export function SpinnerOver() {
       zIndex: 1000, // High z-index to overlay everything
     }}>
       <Spinner size="large" color="$backgroundFocus" />
-    </div>
+    </YStack>
   );
 } 

@@ -76,9 +76,9 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
                   <td style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
                     <Paragraph allowFontScaling fontSize="$1" p="$6">
                       {row.name?.split("\n").map((line, i) => (
-                        <div key={i} style={{ textAlign: "center" }}>
+                        <YStack key={i} style={{ textAlign: "center" }}>
                           <ParagraphCustom text={line}/>
-                        </div>
+                        </YStack>
                       ))}
                     </Paragraph>
                   </td>
@@ -86,9 +86,9 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
                     <td key={index} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
                       <Paragraph allowFontScaling p="$6">
                         { cell.split("\n").map((line, i) => (
-                          <div key={i} style={{ textAlign: "center" }}>
+                          <YStack key={i} style={{ textAlign: "center" }}>
                             <ParagraphCustom text={line}/>
-                          </div>
+                          </YStack>
                         ))}
                       </Paragraph>
                     </td>

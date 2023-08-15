@@ -42,17 +42,17 @@ function parseAndRenderText(text, color) {
         return null;
       default:
         if (isBlue) {
-          return <Paragraph col='$blue8Light' >{part}</Paragraph>;
+          return <Paragraph key={index} col='$blue8Light' >{part}</Paragraph>;
         } else if (isStrikeThrough) {
-          return <Paragraph col={color} textDecorationLine="line-through">{part}</Paragraph>;
+          return <Paragraph key={index} col={color} textDecorationLine="line-through">{part}</Paragraph>;
         } else if (isBold) {
-          return <Paragraph col={color} fontFamily="$bodyBold" >{part}</Paragraph>;
+          return <Paragraph key={index} col={color} fontFamily="$bodyBold" >{part}</Paragraph>;
         } else if (isUnderline) {
-          return <Paragraph col={color} textDecorationLine="underline" >{part}</Paragraph>;
+          return <Paragraph key={index} col={color} textDecorationLine="underline" >{part}</Paragraph>;
         } else if (isItalic) {
-          return <Paragraph col={color} fontStyle="italic" >{part}</Paragraph>;
+          return <Paragraph key={index} col={color} fontStyle="italic" >{part}</Paragraph>;
         } else {
-          return <Paragraph col={color}>{part}</Paragraph>;
+          return <Paragraph key={index} col={color}>{part}</Paragraph>;
         }
     }
   });
@@ -65,33 +65,8 @@ interface CustomProps {
 
 export const ParagraphCustom: React.FC<CustomProps> = ({ text, col }) => {
   return (
-    <Paragraph ta="left">
+    <div>
       {parseAndRenderText(text, col)}
-    </Paragraph>
-  );
-}
-
-export const H1Custom: React.FC<CustomProps> = ({ text, col }) => {
-  return (
-    <H1 ta="left">
-      {parseAndRenderText(text, col)}
-    </H1>
-  );
-}
-
-export const H2Custom: React.FC<CustomProps> = ({ text, col }) => {
-  return (
-    <H2 ta="left">
-      {parseAndRenderText(text, col)}
-    </H2>
-  );
-}
-
-// This is not H3 actualy it is Paragraph Bold
-export const H3Custom: React.FC<CustomProps> = ({ text, col }) => {
-  return (
-    <Paragraph fontFamily="$bodyBold" ta="left">
-      {parseAndRenderText(text, col)}
-    </Paragraph>
+    </div>
   );
 }

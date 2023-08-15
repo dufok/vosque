@@ -119,11 +119,12 @@ function Lesson1SignIn() {
           enterStyle={{opacity: 0, y: -100}}
           animation='bouncy'
           ai="center"
+          key={isOpen ? "open" : "closed"}
           >
             
             <SquareText text={content?.squareText1}/>
             <DescriptionBlock description={content?.descriptionBlock1}/>
-            <ButtonSquereSheet letters={letters} /> 
+            <ButtonSquereSheet letters={letters} />
 
             <SquareText text={content?.squareText2}/>
             <TextExampleBlock textExamples={textExampleBlock1}/>

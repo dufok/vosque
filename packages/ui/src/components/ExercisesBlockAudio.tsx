@@ -2,7 +2,7 @@ import { YStack, Paragraph, XStack } from "tamagui";
 import React from "react";
 
 import {AudioPlayer} from "./AudioPlayer";
-import { H3Custom } from "./CustomText";
+import { ParagraphCustom } from "./CustomText";
 
 export type Exercise = {
   text: string;
@@ -23,7 +23,7 @@ export const ExercisesBlockAudio: React.FC<ExercisesBlockAudioProps> = ({ exerci
                 <AudioPlayer src={audio}/>
               </YStack>
               <YStack marginVertical="$4" f={0.8}>
-                <H3Custom text={text} />
+                <ParagraphCustom text={text} />
               </YStack>
             </XStack>
           ))}

@@ -8,12 +8,12 @@ import {
 } from 'tamagui'
 
 export function HelpComp({texts, html}) {
+
   return (
     <Popover size="$5" allowFlip placement="top" > 
       <Popover.Trigger asChild>
         <Button bw={0} size="$1" icon={Asterisk} />
       </Popover.Trigger>
-
       <Adapt when="sm" platform="touch">
         <Popover.Sheet modal dismissOnSnapToBottom>
           <Popover.Sheet.Frame padding="$4">
@@ -22,7 +22,6 @@ export function HelpComp({texts, html}) {
           <Popover.Sheet.Overlay o={0}/>
         </Popover.Sheet>
       </Adapt>
-
       <Popover.Content
         borderWidth={1}
         borderColor="$borderColor"
@@ -52,5 +51,5 @@ export function HelpComp({texts, html}) {
         </YStack>
       </Popover.Content>
     </Popover>
-  )
+  );
 }

@@ -46,8 +46,8 @@ export const LifeHackerBlock: React.FC<LifeHackerBlockProps> = ({
             <Paragraph col="$borderColor" mt="$3" ta="center">{description}</Paragraph>
           </YStack>
           {contents[i] && Object.values(contents[i]).map((content, j) => (
-            <YStack mt="$3" ml="$3">
-              <ParagraphCustom col="$borderColor" key={j} text={content.text} />
+            <YStack key={j} mt="$3" ml="$3">
+              <ParagraphCustom col="$borderColor" text={content.text} />
             </YStack>
           ))}
         </React.Fragment>
