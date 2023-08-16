@@ -64,7 +64,7 @@ function PlayerDop({src}) {
   };
 
   return (
-    <YStack m="$1" jc="center" ai="center">
+    <YStack m="$1" jc="center">
       <XStack
         bg="$backgroundFocus"
         br="$4"
@@ -72,23 +72,29 @@ function PlayerDop({src}) {
         ai="center"
         space="$2"
         f={1}
-        h={35} w={200}
+        h={40} w={300}
         jc="center"
       >
-        <YStack f={0.2} p="$2">
-        <Button
-          circular
-          size="$1"
-          bw={0}
-          bg="$backgroundFocus"
-          icon={isPlaying ? Pause : Play}  onPress={() => {togglePlay()}}/>
-        </YStack>
-        <Progress size="$1" value={progress} f={0.5}>
-          <Progress.Indicator animation="bouncy" backgroundColor="$borderColor" />
-        </Progress>
-        <Paragraph fontFamily="$bodyBold" color="$background" f={0.3} w={50}>
-          {formatTime(currentTime)}
-        </Paragraph>
+          <div onClick={() => {togglePlay()}}>
+            <YStack pt={0.7} pl={10} pr={1}>
+              {isPlaying ? (
+                <Pause size={25} color="$background" />
+              ) : (
+                <Play size={25} color="$background"/>
+              )}
+            </YStack>
+          </div>
+          
+          <Progress size="$1" value={progress} f={1}>
+            <Progress.Indicator animation="bouncy" backgroundColor="$borderColor" />
+          </Progress>
+
+          <YStack w={60}>
+            <Paragraph ta="center" fontFamily="$bodyBold" color="$background">
+              {formatTime(currentTime)}
+            </Paragraph>
+          </YStack>
+
       </XStack>
     </YStack>
   );

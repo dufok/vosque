@@ -51,26 +51,28 @@ export function lesson2Screen() {
 function Lesson2SignIn() {
 
   //Open or close treory block
-
   const [isOpen, setIsOpen] = useState(true);
-
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
-
+  
   //user check for lesson
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
   const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+  const lessonLinkPageUP = useLink({ href: "/lesson3"});
+  const lessonLinkPageDown = useLink({ href: "/lesson1"});
+  if (isLoading || userLessonsLoading) {
+    return <SpinnerOver />;
+  }
 
   const lessonName = "урок 2";
   const SecondLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
   //lesson content
-
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson3"});
-  const lessonLinkPageDown = useLink({ href: "/lesson1"});
 
   const content = SecondLesson?.content as ContentLesson2;
 
@@ -87,20 +89,12 @@ function Lesson2SignIn() {
   const wordToTranslateBlock3 = Object.values(content?.wordToTranslateBlock3 || {});
   const wordToTranslateBlock4 = Object.values(content?.wordToTranslateBlock4 || {});
 
-
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
-  const isLoadingOverall = userLessonsLoading || isLoading;
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
 
   return (
     <YStack f={1}>
-      { isLoadingOverall && <SpinnerOver /> }
        <YStack ai="center" mt="$10">
         <WelcomeBlock
           name={SecondLesson?.name}
@@ -115,14 +109,8 @@ function Lesson2SignIn() {
         <HeaderBlock header={content?.header1}/>
 
               
-        <AnimatePresence>
-          {isOpen && (
-            <YStack
-            enterStyle={{opacity: 0, y: -100}}
-            animation='bouncy'
-            ai="center"
-            >
-              
+           {isOpen && (
+            <>
               <TableBlock table={content?.tableBlock1}/>
 
               {/* Важные Исключения */}
@@ -192,9 +180,9 @@ function Lesson2SignIn() {
                   />
                 </XStack>
               </YStack>
-            </YStack>
+             </>
           )}
-        </AnimatePresence>
+
         <Button
           w={100}
           h={30}

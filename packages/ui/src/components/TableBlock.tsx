@@ -1,5 +1,5 @@
 import { Paragraph, H5, YStack, XStack, useWindowDimensions } from "tamagui";
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { ParagraphCustom } from "./CustomText";
 import { HelpComp } from "@my/ui/src/components/HelpComp";
 
@@ -44,10 +44,21 @@ interface TableBlockProps {
 
 export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
   const maxColumns = Math.max(...table.rows.map(row => row.data.length + (row.name ? 1 : 0)));
-  let scaleFactor = 1;
-  if (maxColumns > 4 && useWindowDimensions().width < 500) {
-    scaleFactor = 0.8;
-  }
+  const tableRef = useRef<HTMLTableElement>(null);
+  const [scaleFactor, setScaleFactor] = useState(1);
+  const windowWidth = useWindowDimensions().width;
+
+  useEffect(() => {
+    if (tableRef.current) {
+      const tableWidth = tableRef.current.offsetWidth;
+      if (tableWidth > windowWidth) {
+        setScaleFactor(windowWidth / tableWidth);
+      } else {
+        setScaleFactor(1);
+      }
+    }
+  }, [windowWidth, table]); // Recalculate when window size or table content changes
+
   return (
     <YStack marginHorizontal="$6" mb="$10" w="100%" f={1} maw={800}>
       <table style={{ 
@@ -60,7 +71,7 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
           <tr>
             <td colSpan={maxColumns} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
               <XStack jc="center">
-                <H5 allowFontScaling tt="uppercase" ta="center">{table.header}</H5>
+                <H5 tt="uppercase" ta="center">{table.header}</H5>
                 {table.help && <HelpComp texts={table.help} html="help" />}
               </XStack>
             </td>
@@ -69,28 +80,28 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
             <tr key={index}>
               {row.spanAllColumns ? (
                 <td colSpan={table.rows.length} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-                  <H5 allowFontScaling tt="uppercase" dangerouslySetInnerHTML={{ __html: row.data[0].replace(/\n/g, "<br />") }} />
+                  <H5 tt="uppercase" dangerouslySetInnerHTML={{ __html: row.data[0].replace(/\n/g, "<br />") }} />
                 </td>
               ) : (
                 <>
                   <td style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-                    <Paragraph allowFontScaling fontSize="$1" p="$6">
+                    <div>
                       {row.name?.split("\n").map((line, i) => (
                         <YStack key={i} style={{ textAlign: "center" }}>
                           <ParagraphCustom text={line}/>
                         </YStack>
                       ))}
-                    </Paragraph>
+                    </div>
                   </td>
                   {row.data.map((cell, index) => (
                     <td key={index} style={{ border: "2px solid #83503C", padding: "10px", textAlign: "center" }}>
-                      <Paragraph allowFontScaling p="$6">
+                      <div>
                         { cell.split("\n").map((line, i) => (
                           <YStack key={i} style={{ textAlign: "center" }}>
                             <ParagraphCustom text={line}/>
                           </YStack>
                         ))}
-                      </Paragraph>
+                      </div>
                     </td>
                   ))}
                 </>

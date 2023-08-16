@@ -70,12 +70,18 @@ function Lesson3SignIn() {
   };
 
   //user check for lesson
-  const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
   //lesson content
   const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
   const isLoadingOverall = userLessonsLoading || isLoading;
+  const lessonLinkPageUP = useLink({ href: "/lesson4"});
+  const lessonLinkPageDown = useLink({ href: "/lesson2"});
+  if (isLoadingOverall) {
+    return <SpinnerOver />;
+  }
   // Find the required lesson by its name
    const lessonName = "Урок 3. Глаголы \"быть\"";
    const ThirdLesson = userLessons?.find(lesson => lesson.name === lessonName);
@@ -87,10 +93,6 @@ function Lesson3SignIn() {
 
   const content = ThirdLesson?.content as ContentLesson3;
   const content2 = ThirdLessonPartTwo?.content as ContentLesson3_2;
-
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson4"});
-  const lessonLinkPageDown = useLink({ href: "/lesson2"});
 
   const blockText1 = Object.values(content?.blockText1 || {});
   const blockText2 = Object.values(content?.blockText2 || {});
@@ -115,10 +117,6 @@ function Lesson3SignIn() {
   const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
   
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
@@ -140,7 +138,7 @@ function Lesson3SignIn() {
         <HeaderBlock header={content?.header1}/>
 
         {isOpen && (
-          <YStack>
+          <>
             <SquareText text={content?.squareText1}/>
             <TableBlock table={content?.tableBlock1}/>
 
@@ -158,7 +156,7 @@ function Lesson3SignIn() {
 
             <HeaderBlock header={content?.headerBlock4}/>
             <ExercisesBlockText exercises={blockText2}/>
-          </YStack>
+          </>
         )} 
         <Button
         w={100}
