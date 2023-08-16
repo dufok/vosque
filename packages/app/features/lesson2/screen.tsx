@@ -59,7 +59,6 @@ function Lesson2SignIn() {
   };
   
   //user check for lesson
-  const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   useEffect(() => {
     console.log(data);
@@ -68,7 +67,7 @@ function Lesson2SignIn() {
   const lessonLinkPageUP = useLink({ href: "/lesson3"});
   const lessonLinkPageDown = useLink({ href: "/lesson1"});
   const isLoadingOverall = userLessonsLoading || isLoading;
-  if (isLoading || userLessonsLoading) {
+  if (isLoadingOverall) {
     return <SpinnerOver />;
   }
 

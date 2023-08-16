@@ -44,9 +44,11 @@ export function lesson10Screen() {
   }
   
   return (
-    <YStack>
-      <HeaderComp />
-      { isSignedIn ? <Lesson10SignIn /> : null}
+    <YStack f={1} jc="space-between">
+      <YStack>
+        <HeaderComp />
+        { isSignedIn ? <Lesson10SignIn /> : null}
+      </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );

@@ -1,8 +1,7 @@
 import {
   Paragraph,
   YStack,
-  Button,
-  AnimatePresence
+  Button
  } from "@my/ui";
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
@@ -45,9 +44,11 @@ export function lesson11Screen() {
   }
   
   return (
-    <YStack>
-      <HeaderComp />
-      { isSignedIn ? <Lesson11SignIn /> : null}
+    <YStack f={1} jc="space-between">
+      <YStack>
+        <HeaderComp />
+        { isSignedIn ? <Lesson11SignIn /> : null}
+      </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );

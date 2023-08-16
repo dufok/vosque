@@ -65,10 +65,19 @@ function Lesson1SignIn() {
 //user check for lesson
 
   const { data, isLoading, error } = trpc.entry.all.useQuery();
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
 
 //lesson content
 
   const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+  const lessonLinkPageUP = useLink({ href: "/lesson2"});
+  const lessonLinkPageDown = useLink({ href: "/lesson1"});
+  const isLoadingOverall = userLessonsLoading || isLoading;
+  if (isLoadingOverall) {
+    return <SpinnerOver />;
+  }
   
   const lessonName = "урок 1";
   const firstLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
@@ -76,9 +85,6 @@ function Lesson1SignIn() {
   //part with types from file json full
 
   const content = firstLesson?.content as ContentLesson1;
-
-  const lessonLinkPageUP = useLink({ href: "/lesson2"});
-  const lessonLinkPageDown = useLink({ href: "/lesson1"});
 
   const letters = Object.values(content?.buttonWithSheetBlock1 || {});
   const textExampleBlock1 = Object.values(content?.textExampleBlock1 || {});
@@ -88,13 +94,6 @@ function Lesson1SignIn() {
   const exercisesBlockAudio2 = Object.values(content?.exercisesBlockAudio2 || {});
   const exercises1 = Object.values(content?.exercisesBlockText1 || {});
   const wordToTranslateBlock1 = Object.values(content?.wordToTranslateBlock1 || {});
-
-
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
-  const isLoadingOverall = userLessonsLoading || isLoading;
 
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
