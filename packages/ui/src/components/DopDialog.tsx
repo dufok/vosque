@@ -76,7 +76,7 @@ function PlayerDop({src}) {
         jc="center"
       >
           <div onClick={() => {togglePlay()}}>
-            <YStack pt={0.7} pl={10} pr={1}>
+            <YStack pl={10} pr={1}>
               {isPlaying ? (
                 <Pause size={25} color="$background" />
               ) : (

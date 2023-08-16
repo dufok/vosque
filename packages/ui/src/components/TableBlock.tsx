@@ -59,9 +59,12 @@ export const TableBlock: React.FC<TableBlockProps> = ({ table }) => {
     }
   }, [windowWidth, table]); // Recalculate when window size or table content changes
 
+  
   return (
     <YStack marginHorizontal="$6" mb="$10" w="100%" f={1} maw={800}>
-      <table style={{ 
+      <table
+      ref={tableRef}
+      style={{ 
         border: "2px solid #83503C", 
         borderCollapse: "collapse",
         transform: `scale(${scaleFactor})`,

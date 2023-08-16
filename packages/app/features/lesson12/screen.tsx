@@ -7,6 +7,8 @@ import {
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect,useState} from "react";
+import { useAuth } from "app/utils/clerk";
+
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
@@ -32,6 +34,24 @@ import { DopDialog } from "@my/ui/src/components/DopDialog";
 import { ContentLesson12 } from './type_Lesson12';
 
 export function lesson12Screen() {
+  const userpageLinkProps = useLink({ href: "/userpage"});
+
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return <SpinnerOver />;
+  }
+  
+  return (
+    <YStack>
+      <HeaderComp />
+      { isSignedIn ? <Lesson12SignIn /> : null}
+      <SubMenu userpageLinkProps={userpageLinkProps}/>
+    </YStack>
+  );
+}
+
+function Lesson12SignIn() {
 
   //Open or close treory block
 
@@ -43,22 +63,23 @@ export function lesson12Screen() {
 
   // Part Config
 
-  const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-  const isSignedIn = !!currentUser;
-
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
   const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
   const isLoadingOverall = userLessonsLoading || isLoading;
+  const lessonLinkPageUP = useLink({ href: "/phrasebook"});
+  const lessonLinkPageDown = useLink({ href: "/lesson11"});
+  if (isLoadingOverall) {
+    return <SpinnerOver />;
+  }
   const lessonName = "урок 12";
   const TwelfthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
   // Part Content
 
   const content = TwelfthLesson?.content as ContentLesson12;
-
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson1"});
-  const lessonLinkPageDown = useLink({ href: "/lesson11"});
 
   const exercises1 = Object.values(content?.exercisesBlockText1 || {});
   const exercises2 = Object.values(content?.exercisesBlockText2 || {});
@@ -80,20 +101,13 @@ export function lesson12Screen() {
   const wordToTranslate1 = Object.values(content?.wordToTranslateBlock1 || {});
   const wordToTranslate2 = Object.values(content?.wordToTranslateBlock2 || {});
 
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
 
   return (
-    <YStack>
-      {isLoadingOverall && <SpinnerOver />}
-        <HeaderComp />
-        { isSignedIn && (
           <YStack f={1}>
+            {isLoadingOverall && <SpinnerOver />}
           <YStack ai="center" mt="$10">
             <WelcomeBlock
               name={TwelfthLesson?.name}
@@ -105,12 +119,8 @@ export function lesson12Screen() {
 
             <HeaderBlock header={content?.headerBlock1}/>
 
-            <AnimatePresence>
               {isOpen && (
-                <YStack
-                enterStyle={{opacity: 0, y: -100}}
-                animation='bouncy'
-                > 
+                <> 
                   <ExercisesBlockText exercises={exercises1} />
                   <TableBlock table={content?.tableBlock1} />
                   <TableBlock table={content?.tableBlock2} />
@@ -130,9 +140,8 @@ export function lesson12Screen() {
                       content?.lifeHackerBlock1.content4,
                     ]}
                   />
-                </YStack>
+                </>
               )}
-            </AnimatePresence>
             <Button
             w={100}
             h={30}
@@ -168,18 +177,16 @@ export function lesson12Screen() {
             <WordToTranslateBlock words={wordToTranslate2} />
             <LangTest1 example={example1_5} tests={tests1_5} isOneColumn/>
             <LangTest1 example={example1_6} tests={tests1_6} isOneColumn/>
+
             <HeaderBlock header={content?.headerBlock3} />
             <DopDialog contents={content?.dopDialog1}/>
 
           </YStack>
         <NavigationBlock
-          lessonLinkPageDOWNname={"Урок 11 (часть 3)"}
-          lessonLinkPageUPname={"Урок 1"}
+          lessonLinkPageDOWNname={"Урок 11"}
+          lessonLinkPageUPname={"Разговорники"}
           lessonLinkPageUP={lessonLinkPageUP} 
           lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>
-    )}
-      <SubMenu userpageLinkProps={userpageLinkProps}/>
-  </YStack>
-);
+  );
 } 

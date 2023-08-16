@@ -8,6 +8,7 @@ import {
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect,useState} from "react";
+import { useAuth } from "app/utils/clerk";
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
@@ -33,6 +34,24 @@ import { ContentLesson5 } from './type_Lesson5';
 import { ContentLesson5_2 } from './type_Lesson5';
 
 export function lesson5Screen() {
+  const userpageLinkProps = useLink({ href: "/userpage"});
+
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return <SpinnerOver />;
+  }
+  
+  return (
+    <YStack>
+      <HeaderComp />
+      { isSignedIn ? <Lesson5SignIn /> : null}
+      <SubMenu userpageLinkProps={userpageLinkProps}/>
+    </YStack>
+  );
+}
+
+function Lesson5SignIn() {
 
   //Open or close treory block
 
@@ -50,12 +69,19 @@ export function lesson5Screen() {
 
   // Part Config
   
-  const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-  const isSignedIn = !!currentUser;
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
 
   const { data: userLessons, isLoading: userLessonsLoading  } = trpc.user.userLessons.useQuery();
   const isLoadingOverall = userLessonsLoading || isLoading;
+  const lessonLinkPageUP = useLink({ href: "/lesson6"});
+  const lessonLinkPageDown = useLink({ href: "/lesson4"});
+  if (isLoadingOverall) {
+    return <SpinnerOver />;
+  }
+
   const lessonName = "урок 5";
   const FifthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
@@ -66,10 +92,6 @@ export function lesson5Screen() {
 
   const content = FifthLesson?.content as ContentLesson5;
   const content2 = FifthPartTwoLesson?.content as ContentLesson5_2;
-
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson6"});
-  const lessonLinkPageDown = useLink({ href: "/lesson4"});
 
   const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
   const example4_1 = content?.langTest4_1.example;
@@ -91,21 +113,13 @@ export function lesson5Screen() {
   const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
   const wordToTranslate4 = Object.values(content2?.wordToTranslateBlock4 || {});
   
-
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
 
   return (
-    <YStack>
-      {isLoadingOverall && <SpinnerOver />}
-      <HeaderComp />
-      { isSignedIn && (
       <YStack f={1}>
+        {isLoadingOverall && <SpinnerOver />}
         <YStack ai="center" mt="$10">
           <WelcomeBlock
             name={FifthLesson?.name}
@@ -115,13 +129,8 @@ export function lesson5Screen() {
             </YStack>
           <ImageCircle img={content?.image}/>
 
-
-      <AnimatePresence>
         {isOpen && (
-          <YStack
-          enterStyle={{opacity: 0, y: -100}}
-          animation='bouncy'
-          > 
+          <> 
           <HeaderBlock header={content?.headerBlock1}/>
           <TableBlock table={content?.tableBlock1} />
           <LifeHackerBlock
@@ -138,9 +147,8 @@ export function lesson5Screen() {
               content?.lifeHackerBlock1.content3,
               content?.lifeHackerBlock1.content4,
             ]}/>
-          </YStack>
+          </>
         )}
-      </AnimatePresence>
         <Button
         w={100}
         h={30}
@@ -163,21 +171,14 @@ export function lesson5Screen() {
             </YStack>
 
           <HeaderBlock header={content2?.headerBlock1}/>
-
-          <AnimatePresence>
-            {isOpen2 && (
-              <YStack
-              enterStyle={{opacity: 0, y: -100}}
-              animation='bouncy'
-              ai="center"
-              >
-                <SquareText text={content2?.squareText1} />
-                <TextExampleBlock textExamples={textExample1}/>
-                <SquareText text={content2?.squareText2} />
-                <TextExampleBlock textExamples={textExample2}/>
-              </YStack>
-            )}
-          </AnimatePresence>
+          {isOpen2 && (
+            <>
+              <SquareText text={content2?.squareText1} />
+              <TextExampleBlock textExamples={textExample1}/>
+              <SquareText text={content2?.squareText2} />
+              <TextExampleBlock textExamples={textExample2}/>
+            </>
+          )}
           <Button
           w={100}
           h={30}
@@ -253,8 +254,5 @@ export function lesson5Screen() {
           lessonLinkPageUP={lessonLinkPageUP} 
           lessonLinkPageDOWN={lessonLinkPageDown}/>
       </YStack>
-      )}
-        <SubMenu userpageLinkProps={userpageLinkProps}/>
-    </YStack>
   );
 } 

@@ -65,6 +65,7 @@ function Lesson2SignIn() {
   const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
   const lessonLinkPageUP = useLink({ href: "/lesson3"});
   const lessonLinkPageDown = useLink({ href: "/lesson1"});
+  const isLoadingOverall = userLessonsLoading || isLoading;
   if (isLoading || userLessonsLoading) {
     return <SpinnerOver />;
   }
@@ -95,6 +96,7 @@ function Lesson2SignIn() {
 
   return (
     <YStack f={1}>
+      {isLoadingOverall && <SpinnerOver />}
        <YStack ai="center" mt="$10">
         <WelcomeBlock
           name={SecondLesson?.name}

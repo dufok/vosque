@@ -7,12 +7,12 @@ import {
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect,useState} from "react";
+import { useAuth } from "app/utils/clerk";
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 
-import { ContentLesson8 } from './type_Lesson8';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
 import { SquareText } from '@my/ui/src/components/SquareText';
 import { SubMenu } from "@my/ui/src/components/SubMenu";
@@ -27,7 +27,27 @@ import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 import { DopDialog } from "@my/ui/src/components/DopDialog";
 
+import { ContentLesson8 } from './type_Lesson8';
+
 export function lesson8Screen() {
+  const userpageLinkProps = useLink({ href: "/userpage"});
+
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return <SpinnerOver />;
+  }
+  
+  return (
+    <YStack>
+      <HeaderComp />
+      { isSignedIn ? <Lesson8SignIn /> : null}
+      <SubMenu userpageLinkProps={userpageLinkProps}/>
+    </YStack>
+  );
+}
+
+function Lesson8SignIn() {
 
     //Open or close treory block
 
@@ -38,16 +58,19 @@ export function lesson8Screen() {
     };
 
     // Part Config
-    const userpageLinkProps = useLink({ href: "/userpage"});
     const lessonLinkPageUP = useLink({ href: "/lesson9"});
     const lessonLinkPageDown = useLink({ href: "/lesson7"});
   
-    const { data: currentUser } = trpc.user.current.useQuery();
     const { data, isLoading, error } = trpc.entry.all.useQuery();
-    const isSignedIn = !!currentUser;
-  
+    useEffect(() => {
+      console.log(data);
+    }, [isLoading]);
     const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
     const isLoadingOverall = userLessonsLoading || isLoading;
+    if (isLoadingOverall) {
+      return <SpinnerOver />;
+    }
+
     const lessonName = "урок 8";
     const EightLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
     
@@ -68,20 +91,13 @@ export function lesson8Screen() {
     const example1_2 = content?.langTest1_2.example;
     const dopDialog1 = Object.values(content?.dopDialog1 || {});
 
-    useEffect(() => {
-      console.log(data);
-    }, [isLoading]);
-  
     if (error) {
       return <Paragraph>{error.message}</Paragraph>;
     }
   
   return (
-    <YStack>
-    {isLoadingOverall && <SpinnerOver />}
-    <HeaderComp />
-    { isSignedIn && (
     <YStack f={1}>
+      {isLoadingOverall && <SpinnerOver />}
       <YStack ai="center" mt="$10">
         <WelcomeBlock
           name={EightLesson?.name}
@@ -93,12 +109,8 @@ export function lesson8Screen() {
 
         <HeaderBlock header={content?.headerBlock1}/>
 
-        <AnimatePresence>
             {isOpen && (
-              <YStack
-              enterStyle={{opacity: 0, y: -100}}
-              animation='bouncy'
-              > 
+              <> 
               <TextExampleBlock textExamples={textExample1}/>
               <HeaderBlock header={content?.headerBlock2} />
               <SquareText text={content?.squareText1} />
@@ -130,9 +142,8 @@ export function lesson8Screen() {
               <WordToTranslateBlock words={wordToTranslate3} />
               <SquareText text={content?.squareText6} />
               <WordToTranslateBlock words={wordToTranslate4} />
-            </YStack>
+            </>
           )}
-        </AnimatePresence>
         <Button
         w={100}
         h={30}
@@ -160,8 +171,5 @@ export function lesson8Screen() {
         lessonLinkPageUP={lessonLinkPageUP} 
         lessonLinkPageDOWN={lessonLinkPageDown}/>
     </YStack>
-    )}
-      <SubMenu userpageLinkProps={userpageLinkProps}/>
-  </YStack>
   );
 } 

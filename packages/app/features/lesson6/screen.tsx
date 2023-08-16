@@ -7,12 +7,12 @@ import {
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect,useState} from "react";
+import { useAuth } from "app/utils/clerk";
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 
-import { ContentLesson6 } from './type_Lesson6';
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
 import { SquareText } from '@my/ui/src/components/SquareText';
 import { SubMenu } from "@my/ui/src/components/SubMenu";
@@ -29,7 +29,27 @@ import { LifeHackerBlock } from "@my/ui/src/components/LifeHackerBlock";
 import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock";
 import { DopDialog } from "@my/ui/src/components/DopDialog";
 
+import { ContentLesson6 } from './type_Lesson6';
+
 export function lesson6Screen() {
+  const userpageLinkProps = useLink({ href: "/userpage"});
+
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return <SpinnerOver />;
+  }
+  
+  return (
+    <YStack>
+      <HeaderComp />
+      { isSignedIn ? <Lesson6SignIn /> : null}
+      <SubMenu userpageLinkProps={userpageLinkProps}/>
+    </YStack>
+  );
+}
+
+function Lesson6SignIn() {
 
   //Open or close treory block
 
@@ -41,22 +61,25 @@ export function lesson6Screen() {
 
   // Part Config
 
-  const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-  const isSignedIn = !!currentUser;
-
+    useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
+  
   const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
   const isLoadingOverall = userLessonsLoading || isLoading;
+  const lessonLinkPageUP = useLink({ href: "/lesson7"});
+  const lessonLinkPageDown = useLink({ href: "/lesson5"});
+  if (isLoadingOverall) {
+    return <SpinnerOver />;
+  }
+
   const lessonName = "урок 6";
   const SixthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
   // Part Content
 
   const content = SixthLesson?.content as ContentLesson6;
-
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson7"});
-  const lessonLinkPageDown = useLink({ href: "/lesson5"});
 
   const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
   const example4_1 = content?.langTest4_1.example;
@@ -69,20 +92,13 @@ export function lesson6Screen() {
   const textExample1 = Object.values(content?.textExampleBlock1 || {});
   const textExample2 = Object.values(content?.textExampleBlock2 || {});
 
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
 
   return (
-    <YStack>
+      <YStack f={1}>
       {isLoadingOverall && <SpinnerOver />}
-      <HeaderComp />
-      { isSignedIn && (
-       <YStack f={1}>
        <YStack ai="center" mt="$10">
          <WelcomeBlock
            name={SixthLesson?.name}
@@ -93,12 +109,8 @@ export function lesson6Screen() {
          <ImageCircle img={content?.image}/>
 
          <HeaderBlock header={content?.headerBlock1}/>
-        <AnimatePresence>
           {isOpen && (
-            <YStack
-            enterStyle={{opacity: 0, y: -100}}
-            animation='bouncy'
-            > 
+            <> 
             <HeaderBlock header={content?.headerBlock1}/>
             <TableBlock table={content?.tableBlock1} />
             <TableBlock table={content?.tableBlock2} />
@@ -117,9 +129,8 @@ export function lesson6Screen() {
             <HeaderBlock header={content?.headerBlock3}/>
             <TableBlock table={content?.tableBlock4} />
             <TextExampleBlock textExamples={textExample2}/>
-            </YStack>
+            </>
           )}
-        </AnimatePresence>
         <Button
         w={100}
         h={30}
@@ -172,8 +183,5 @@ export function lesson6Screen() {
          lessonLinkPageUP={lessonLinkPageUP} 
          lessonLinkPageDOWN={lessonLinkPageDown}/>
      </YStack>
-      )}
-        <SubMenu userpageLinkProps={userpageLinkProps}/>
-    </YStack>
   );
 } 

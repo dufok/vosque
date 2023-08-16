@@ -7,6 +7,7 @@ import {
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
 import React,{useEffect,useState} from "react";
+import { useAuth } from "app/utils/clerk";
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
@@ -30,6 +31,24 @@ import { ContentLesson9 } from './type_Lesson9';
 import { ContentLesson9_2 } from './type_Lesson9';
 
 export function lesson9Screen() {
+  const userpageLinkProps = useLink({ href: "/userpage"});
+
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return <SpinnerOver />;
+  }
+  
+  return (
+    <YStack>
+      <HeaderComp />
+      { isSignedIn ? <Lesson9SignIn /> : null}
+      <SubMenu userpageLinkProps={userpageLinkProps}/>
+    </YStack>
+  );
+}
+
+function Lesson9SignIn() {
 
   //Open or close treory block
 
@@ -47,12 +66,18 @@ export function lesson9Screen() {
 
   // Part Config
 
-  const { data: currentUser } = trpc.user.current.useQuery();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-  const isSignedIn = !!currentUser;
-
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
   const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
   const isLoadingOverall = userLessonsLoading || isLoading;
+  const lessonLinkPageUP = useLink({ href: "/lesson10"});
+  const lessonLinkPageDown = useLink({ href: "/lesson8"});
+  if (isLoadingOverall) {
+      return <SpinnerOver />;
+    }
+
   const lessonName = "урок 9";
   const NinthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
@@ -63,10 +88,6 @@ export function lesson9Screen() {
 
   const content = NinthLesson?.content as ContentLesson9;
   const content2 = NinthPartTwoLesson?.content as ContentLesson9_2;
-
-  const userpageLinkProps = useLink({ href: "/userpage"});
-  const lessonLinkPageUP = useLink({ href: "/lesson10"});
-  const lessonLinkPageDown = useLink({ href: "/lesson8"});
 
   const textExample1 = Object.values(content?.textExampleBlock1 || {});
   const tests4_1 = Object.values(content?.langTest4_1.testContent || {});
@@ -85,180 +106,157 @@ export function lesson9Screen() {
   const tests1_3 = Object.values(content2?.langTest1_2.testContent || {});
   const example1_3 = content2?.langTest1_2.example;
   
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
   }
 
   return (
-      <YStack>
-        {isLoadingOverall && <SpinnerOver />}
-          <HeaderComp />
-          { isSignedIn && (
-          <YStack f={1}>
-          <YStack ai="center" mt="$10">
-            <WelcomeBlock
-              name={NinthLesson?.name}
-              description={content?.description}/>
-              <YStack  w="100%" $gtSm={{ width: "70%" }}>
-                <VideoPlayer linkVideo={content?.video}/>
-              </YStack>
-            <ImageCircle img={content?.image}/>
+    <YStack f={1}>
+    {isLoadingOverall && <SpinnerOver />}
+    <YStack ai="center" mt="$10">
+      <WelcomeBlock
+        name={NinthLesson?.name}
+        description={content?.description}/>
+        <YStack  w="100%" $gtSm={{ width: "70%" }}>
+          <VideoPlayer linkVideo={content?.video}/>
+        </YStack>
+      <ImageCircle img={content?.image}/>
 
-            <HeaderBlock header={content?.headerBlock1}/>
-            <AnimatePresence>
-              {isOpen && (
-                <YStack
-                enterStyle={{opacity: 0, y: -100}}
-                animation='bouncy'
-                > 
-                  <HeaderBlock header={content?.headerBlock3}/>
-                  <TextExampleBlock textExamples={textExample1}/>
-                  <TableBlock table={content?.tableBlock1} />
-                  <TableBlock table={content?.tableBlock2} />
-                  <TableBlock table={content?.tableBlock3} />
-                  <LifeHackerBlock
-                    lifehacktitle={content?.lifeHackerBlock1.title}
-                    descriptions={[
-                      content?.lifeHackerBlock1.description1,
-                      content?.lifeHackerBlock1.description2,
-                      content?.lifeHackerBlock1.description3,
-                      content?.lifeHackerBlock1.description4,
-                    ]}
-                    contents={[
-                      content?.lifeHackerBlock1.content1,
-                      content?.lifeHackerBlock1.content2,
-                      content?.lifeHackerBlock1.content3,
-                      content?.lifeHackerBlock1.content4,
-                    ]}
-                  />
-                  <TableBlock table={content?.tableBlock4 } />
-                  <TableBlock table={content?.tableBlock5 } />
-                </YStack>
-              )}
-            </AnimatePresence>
-            <Button
-            w={100}
-            h={30}
-            bw={1}
-            br="$2"
-            bg="$backgroundFocus"
-            icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
-            
-            {/* Домашнее задание */}
-
-            <HeaderBlock header={content?.headerBlock2} />
-            <SquareText text={content?.squareText1} />
-            <LangTest4 example={example4_1} tests={tests4_1} />
-            <SquareText text={content?.squareText2} />
-            <LangTest1 example={example1_1} tests={tests1_1} />
-
-            <WelcomeBlock
-              name={content2?.name}
-              description={content2?.description}/>
-              <YStack  w="100%" $gtSm={{ width: "70%" }}>
-                <VideoPlayer linkVideo={content2?.video}/>
-              </YStack>
-
-            <HeaderBlock header={content2?.headerBlock1}/>
-            <AnimatePresence>
-              {isOpen2 && (
-                <YStack
-                enterStyle={{opacity: 0, y: -100}}
-                animation='bouncy'
-                ai="center"
-                >
-                  <HeaderBlock header={content2?.headerBlock7}/>
-                  <TextExampleBlock textExamples={textExample2}/>
-                  <TableBlock table={content2?.tableBlock1} />
-                  <TableBlock table={content2?.tableBlock2} />
-                  <TableBlock table={content2?.tableBlock3} />
-                  <TableBlock table={content2?.tableBlock4} />
-                  <LifeHackerBlock
-                    lifehacktitle={content2?.lifeHackerBlock1.title}
-                    descriptions={[
-                      content2?.lifeHackerBlock1.description1,
-                      content2?.lifeHackerBlock1.description2,
-                      content2?.lifeHackerBlock1.description3,
-                      content2?.lifeHackerBlock1.description4,
-                    ]}
-                    contents={[
-                      content2?.lifeHackerBlock1.content1,
-                      content2?.lifeHackerBlock1.content2,
-                      content2?.lifeHackerBlock1.content3,
-                      content2?.lifeHackerBlock1.content4,
-                    ]}
-                  />
-                  <TableBlock table={content2?.tableBlock5} />
-                </YStack>
-              )}
-            </AnimatePresence>
-            <Button
-            w={100}
-            h={30}
-            bw={1}
-            br="$2"
-            bg="$backgroundFocus"
-            icon={isOpen2 ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen2()}}/>
-
-            {/* Блок Упражнений */}
-
-            <HeaderBlock header={content2?.headerBlock2} />
-            <SquareText text={content2?.squareText1} />
-            <LangTest4 example={example4_2} tests={tests4_2} />
-            <SquareText text={content2?.squareText2} />
-            <LangTest1 example={example1_2} tests={tests1_2} />
-
-            <HeaderBlock header={content2?.headerBlock3} />
-            <YStack  mt="$4" w="100%" $gtSm={{ width: "70%" }}>
-              <VideoPlayer linkVideo={content2?.video3}/>
-            </YStack>
-
-            {/* Время */}
-
-            <HeaderBlock header={content2?.headerBlock4} />
-            <ExercisesBlockText exercises={exercises1} />
-
-            {/* Домашнее Задание */}
-
-            <HeaderBlock header={content2?.headerBlock5} />
-            <SquareText text={content2?.squareText3} />
-            <LangTest1 example={example1_3} tests={tests1_3} />
+      <HeaderBlock header={content?.headerBlock1}/>
+        {isOpen && (
+          <> 
+            <HeaderBlock header={content?.headerBlock3}/>
+            <TextExampleBlock textExamples={textExample1}/>
+            <TableBlock table={content?.tableBlock1} />
+            <TableBlock table={content?.tableBlock2} />
+            <TableBlock table={content?.tableBlock3} />
             <LifeHackerBlock
-              lifehacktitle={content2?.lifeHackerBlock2.title}
+              lifehacktitle={content?.lifeHackerBlock1.title}
               descriptions={[
-                content2?.lifeHackerBlock2.description1,
-                content2?.lifeHackerBlock2.description2,
-                content2?.lifeHackerBlock2.description3,
-                content2?.lifeHackerBlock2.description4,
+                content?.lifeHackerBlock1.description1,
+                content?.lifeHackerBlock1.description2,
+                content?.lifeHackerBlock1.description3,
+                content?.lifeHackerBlock1.description4,
               ]}
               contents={[
-                content2?.lifeHackerBlock2.content1,
-                content2?.lifeHackerBlock2.content2,
-                content2?.lifeHackerBlock2.content3,
-                content2?.lifeHackerBlock2.content4,
+                content?.lifeHackerBlock1.content1,
+                content?.lifeHackerBlock1.content2,
+                content?.lifeHackerBlock1.content3,
+                content?.lifeHackerBlock1.content4,
               ]}
             />
+            <TableBlock table={content?.tableBlock4 } />
+            <TableBlock table={content?.tableBlock5 } />
+          </>
+        )}
+      <Button
+      w={100}
+      h={30}
+      bw={1}
+      br="$2"
+      bg="$backgroundFocus"
+      icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
+      
+      {/* Домашнее задание */}
 
-                    {/* Дополнительные материалы 
+      <HeaderBlock header={content?.headerBlock2} />
+      <SquareText text={content?.squareText1} />
+      <LangTest4 example={example4_1} tests={tests4_1} />
+      <SquareText text={content?.squareText2} />
+      <LangTest1 example={example1_1} tests={tests1_1} />
 
-            <HeaderBlock header={content2?.headerBlock6} />
-            <DopDialog contents={dopDialog1}/>
+      <WelcomeBlock
+        name={content2?.name}
+        description={content2?.description}/>
+        <YStack  w="100%" $gtSm={{ width: "70%" }}>
+          <VideoPlayer linkVideo={content2?.video}/>
+        </YStack>
 
-            */}
+      <HeaderBlock header={content2?.headerBlock1}/>
+        {isOpen2 && (
+          <>
+            <HeaderBlock header={content2?.headerBlock7}/>
+            <TextExampleBlock textExamples={textExample2}/>
+            <TableBlock table={content2?.tableBlock1} />
+            <TableBlock table={content2?.tableBlock2} />
+            <TableBlock table={content2?.tableBlock3} />
+            <TableBlock table={content2?.tableBlock4} />
+            <LifeHackerBlock
+              lifehacktitle={content2?.lifeHackerBlock1.title}
+              descriptions={[
+                content2?.lifeHackerBlock1.description1,
+                content2?.lifeHackerBlock1.description2,
+                content2?.lifeHackerBlock1.description3,
+                content2?.lifeHackerBlock1.description4,
+              ]}
+              contents={[
+                content2?.lifeHackerBlock1.content1,
+                content2?.lifeHackerBlock1.content2,
+                content2?.lifeHackerBlock1.content3,
+                content2?.lifeHackerBlock1.content4,
+              ]}
+            />
+            <TableBlock table={content2?.tableBlock5} />
+          </>
+        )}
+      <Button
+      w={100}
+      h={30}
+      bw={1}
+      br="$2"
+      bg="$backgroundFocus"
+      icon={isOpen2 ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen2()}}/>
 
-          </YStack>
-        <NavigationBlock
-          lessonLinkPageDOWNname={"Урок 8"}
-          lessonLinkPageUPname={"Урок 10"}
-          lessonLinkPageUP={lessonLinkPageUP} 
-          lessonLinkPageDOWN={lessonLinkPageDown}/>
+      {/* Блок Упражнений */}
+
+      <HeaderBlock header={content2?.headerBlock2} />
+      <SquareText text={content2?.squareText1} />
+      <LangTest4 example={example4_2} tests={tests4_2} />
+      <SquareText text={content2?.squareText2} />
+      <LangTest1 example={example1_2} tests={tests1_2} />
+
+      <HeaderBlock header={content2?.headerBlock3} />
+      <YStack  mt="$4" w="100%" $gtSm={{ width: "70%" }}>
+        <VideoPlayer linkVideo={content2?.video3}/>
       </YStack>
-      )}
-        <SubMenu userpageLinkProps={userpageLinkProps}/>
+
+      {/* Время */}
+
+      <HeaderBlock header={content2?.headerBlock4} />
+      <ExercisesBlockText exercises={exercises1} />
+
+      {/* Домашнее Задание */}
+
+      <HeaderBlock header={content2?.headerBlock5} />
+      <SquareText text={content2?.squareText3} />
+      <LangTest1 example={example1_3} tests={tests1_3} />
+      <LifeHackerBlock
+        lifehacktitle={content2?.lifeHackerBlock2.title}
+        descriptions={[
+          content2?.lifeHackerBlock2.description1,
+          content2?.lifeHackerBlock2.description2,
+          content2?.lifeHackerBlock2.description3,
+          content2?.lifeHackerBlock2.description4,
+        ]}
+        contents={[
+          content2?.lifeHackerBlock2.content1,
+          content2?.lifeHackerBlock2.content2,
+          content2?.lifeHackerBlock2.content3,
+          content2?.lifeHackerBlock2.content4,
+        ]}
+      />
+
+              {/* Дополнительные материалы */}
+
+      <HeaderBlock header={content2?.headerBlock6} />
+      <DopDialog contents={content2?.dopDialog1}/>
+
     </YStack>
+  <NavigationBlock
+    lessonLinkPageDOWNname={"Урок 8"}
+    lessonLinkPageUPname={"Урок 10"}
+    lessonLinkPageUP={lessonLinkPageUP} 
+    lessonLinkPageDOWN={lessonLinkPageDown}/>
+</YStack>
   );
 } 
