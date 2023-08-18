@@ -30,6 +30,8 @@ import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 import { ContentLesson4 } from './type_Lesson4';
 
+export function lesson4Screen() {
+
   const userpageLinkProps = useLink({ href: "/userpage"});
   const { isSignedIn, isLoaded } = useAuth();
   const { data, isLoading, error } = trpc.entry.all.useQuery();
@@ -60,7 +62,6 @@ function Lesson4SignIn({userLessons}) {
 
   //Open or close treory block
   const [isOpen, setIsOpen] = useState(true);
-
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };

@@ -1,8 +1,7 @@
 import {
   Paragraph,
   YStack,
-  Button,
-  AnimatePresence
+  Button
  } from "@my/ui";
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
@@ -30,11 +29,19 @@ import { DopDialog } from "@my/ui/src/components/DopDialog";
 import { ContentLesson8 } from './type_Lesson8';
 
 export function lesson8Screen() {
+
   const userpageLinkProps = useLink({ href: "/userpage"});
-
   const { isSignedIn, isLoaded } = useAuth();
-
-  if (!isLoaded) {
+  const { data, isLoading, error } = trpc.entry.all.useQuery();
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
+  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+  const isLoadingOverall = userLessonsLoading || isLoading;
+  if (error) {
+    return <Paragraph>{error.message}</Paragraph>;
+  }
+  if (!isLoaded || isLoadingOverall) {
     return <SpinnerOver />;
   }
   
@@ -42,19 +49,18 @@ export function lesson8Screen() {
     <YStack f={1} jc="space-between">
       <YStack>
         <HeaderComp />
-        { isSignedIn ? <Lesson8SignIn /> : null}
+        { isSignedIn ? <Lesson8SignIn userLessons={userLessons} /> : null}
       </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
 }
 
-function Lesson8SignIn() {
+function Lesson8SignIn({userLessons}) {
 
     //Open or close treory block
 
     const [isOpen, setIsOpen] = useState(true);
-
     const toggleOpen = () => {
       setIsOpen(!isOpen);
     };
@@ -63,16 +69,6 @@ function Lesson8SignIn() {
     const lessonLinkPageUP = useLink({ href: "/lesson9"});
     const lessonLinkPageDown = useLink({ href: "/lesson7"});
   
-    const { data, isLoading, error } = trpc.entry.all.useQuery();
-    useEffect(() => {
-      console.log(data);
-    }, [isLoading]);
-    const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
-    const isLoadingOverall = userLessonsLoading || isLoading;
-    if (isLoadingOverall) {
-      return <SpinnerOver />;
-    }
-
     const lessonName = "урок 8";
     const EightLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
     
@@ -93,13 +89,8 @@ function Lesson8SignIn() {
     const example1_2 = content?.langTest1_2.example;
     const dopDialog1 = Object.values(content?.dopDialog1 || {});
 
-    if (error) {
-      return <Paragraph>{error.message}</Paragraph>;
-    }
-  
   return (
     <YStack f={1}>
-      {isLoadingOverall && <SpinnerOver />}
       <YStack ai="center" mt="$10">
         <WelcomeBlock
           name={EightLesson?.name}
