@@ -30,12 +30,18 @@ import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 import { ContentLesson4 } from './type_Lesson4';
 
-export function lesson4Screen() {
   const userpageLinkProps = useLink({ href: "/userpage"});
-
   const { isSignedIn, isLoaded } = useAuth();
-
-  if (!isLoaded) {
+  const { data, isLoading, error } = trpc.entry.all.useQuery();
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
+  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+  const isLoadingOverall = userLessonsLoading || isLoading;
+  if (error) {
+    return <Paragraph>{error.message}</Paragraph>;
+  }
+  if (!isLoaded || isLoadingOverall) {
     return <SpinnerOver />;
   }
   
@@ -43,14 +49,14 @@ export function lesson4Screen() {
     <YStack f={1} jc="space-between">
       <YStack>
         <HeaderComp />
-        { isSignedIn ? <Lesson4SignIn /> : null}
+        { isSignedIn ? <Lesson4SignIn userLessons={userLessons} /> : null}
       </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
 }
 
-function Lesson4SignIn() {
+function Lesson4SignIn({userLessons}) {
 
   //Open or close treory block
   const [isOpen, setIsOpen] = useState(true);
@@ -59,18 +65,8 @@ function Lesson4SignIn() {
     setIsOpen(!isOpen);
   };
 
-  const { data, isLoading, error } = trpc.entry.all.useQuery();
-    useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
-  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
-  const isLoadingOverall = userLessonsLoading || isLoading;
   const lessonLinkPageUP = useLink({ href: "/lesson5"});
   const lessonLinkPageDown = useLink({ href: "/lesson3"});
-  if (isLoadingOverall) {
-    return <SpinnerOver />;
-  }
 
   const lessonName = "урок 4";
   const FourthLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
@@ -101,13 +97,8 @@ function Lesson4SignIn() {
   const wordToTranslate3 = Object.values(content?.wordToTranslateBlock3 || {});
   const wordToTranslate4 = Object.values(content?.wordToTranslateBlock4 || {});
 
-  if (error) {
-    return <Paragraph>{error.message}</Paragraph>;
-  }
-
   return (
     <YStack f={1}>
-      {isLoadingOverall && <SpinnerOver />}
       <YStack ai="center" mt="$10">
         <WelcomeBlock
           name={FourthLesson?.name}

@@ -2,8 +2,7 @@ import {
   Paragraph,
   YStack,
   XStack,
-  Button,
-  AnimatePresence
+  Button
  } from "@my/ui";
 import { trpc } from "app/utils/trpc";
 import { useLink } from "solito/link";
@@ -34,10 +33,17 @@ import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock
 export function lesson1Screen() {
 
   const userpageLinkProps = useLink({ href: "/userpage"});
-
   const { isSignedIn, isLoaded } = useAuth();
-
-  if (!isLoaded) {
+  const { data, isLoading, error } = trpc.entry.all.useQuery();
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
+  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+  const isLoadingOverall = userLessonsLoading || isLoading;
+  if (error) {
+    return <Paragraph>{error.message}</Paragraph>;
+  }
+  if (!isLoaded || isLoadingOverall) {
     return <SpinnerOver />;
   }
   
@@ -45,7 +51,7 @@ export function lesson1Screen() {
     <YStack f={1} jc="space-between">
       <YStack>
         <HeaderComp />
-        { isSignedIn ? <Lesson1SignIn /> : null}
+        { isSignedIn ? <Lesson1SignIn userLessons={userLessons} /> : null}
       </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
@@ -53,7 +59,7 @@ export function lesson1Screen() {
 }
 
 
-function Lesson1SignIn() {
+function Lesson1SignIn({ userLessons }) {
 // Open or close treory block
 
   const [isOpen, setIsOpen] = useState(true);
@@ -62,22 +68,10 @@ function Lesson1SignIn() {
     setIsOpen(!isOpen);
   };
 
-//user check for lesson
-
-  const { data, isLoading, error } = trpc.entry.all.useQuery();
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-
 //lesson content
 
-  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
   const lessonLinkPageUP = useLink({ href: "/lesson2"});
   const lessonLinkPageDown = useLink({ href: "/lesson1"});
-  const isLoadingOverall = userLessonsLoading || isLoading;
-  if (isLoadingOverall) {
-    return <SpinnerOver />;
-  }
   
   const lessonName = "урок 1";
   const firstLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
@@ -95,13 +89,8 @@ function Lesson1SignIn() {
   const exercises1 = Object.values(content?.exercisesBlockText1 || {});
   const wordToTranslateBlock1 = Object.values(content?.wordToTranslateBlock1 || {});
 
-  if (error) {
-    return <Paragraph>{error.message}</Paragraph>;
-  }
-
   return (
     <YStack f={1}>
-      { isLoadingOverall && <SpinnerOver /> }
       <YStack ai="center" mt="$10">
         <WelcomeBlock
           name={firstLesson?.name}
@@ -114,15 +103,8 @@ function Lesson1SignIn() {
         {/* ТЕОРЕТИЧЕСКИЙ БЛОК. */}
 
         <HeaderBlock header={content?.headerBlock1}/>
-        <AnimatePresence>
         {isOpen && (
-          <YStack
-          enterStyle={{opacity: 0, y: -100}}
-          animation='bouncy'
-          ai="center"
-          key={isOpen ? "open" : "closed"}
-          >
-            
+          <>
             <SquareText text={content?.squareText1}/>
             <DescriptionBlock description={content?.descriptionBlock1}/>
             <ButtonSquereSheet letters={letters} />
@@ -145,9 +127,8 @@ function Lesson1SignIn() {
               ]}
             />
             <TextExampleBlock textExamples={textExampleBlock2}/>
-          </YStack>
+          </>
         )}
-        </AnimatePresence>
         <Button
         w={100}
         h={30}

@@ -2,8 +2,7 @@ import {
   Paragraph,
   YStack,
   XStack,
-  Button,
-  AnimatePresence
+  Button
  } from "@my/ui";
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
@@ -32,10 +31,17 @@ import { LangTest1 } from "@my/ui/src/components/LangTest1";
 export function lesson2Screen() {
   
   const userpageLinkProps = useLink({ href: "/userpage"});
-
   const { isSignedIn, isLoaded } = useAuth();
-
-  if (!isLoaded) {
+  const { data, isLoading, error } = trpc.entry.all.useQuery();
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
+  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+  const isLoadingOverall = userLessonsLoading || isLoading;
+  if (error) {
+    return <Paragraph>{error.message}</Paragraph>;
+  }
+  if (!isLoaded || isLoadingOverall) {
     return <SpinnerOver />;
   }
   
@@ -43,14 +49,14 @@ export function lesson2Screen() {
     <YStack f={1} jc="space-between">
       <YStack>
         <HeaderComp />
-        { isSignedIn ? <Lesson2SignIn /> : null}
+        { isSignedIn ? <Lesson2SignIn userLessons={userLessons} /> : null}
       </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
 }
 
-function Lesson2SignIn() {
+function Lesson2SignIn({ userLessons }) {
 
   //Open or close treory block
   const [isOpen, setIsOpen] = useState(true);
@@ -59,17 +65,9 @@ function Lesson2SignIn() {
   };
   
   //user check for lesson
-  const { data, isLoading, error } = trpc.entry.all.useQuery();
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
-  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+ 
   const lessonLinkPageUP = useLink({ href: "/lesson3"});
   const lessonLinkPageDown = useLink({ href: "/lesson1"});
-  const isLoadingOverall = userLessonsLoading || isLoading;
-  if (isLoadingOverall) {
-    return <SpinnerOver />;
-  }
 
   const lessonName = "урок 2";
   const SecondLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
@@ -91,13 +89,9 @@ function Lesson2SignIn() {
   const wordToTranslateBlock3 = Object.values(content?.wordToTranslateBlock3 || {});
   const wordToTranslateBlock4 = Object.values(content?.wordToTranslateBlock4 || {});
 
-  if (error) {
-    return <Paragraph>{error.message}</Paragraph>;
-  }
 
   return (
     <YStack f={1}>
-      {isLoadingOverall && <SpinnerOver />}
        <YStack ai="center" mt="$10">
         <WelcomeBlock
           name={SecondLesson?.name}

@@ -2,8 +2,7 @@ import {
   Paragraph,
   YStack,
   XStack,
-  Button,
-  AnimatePresence
+  Button
  } from "@my/ui";
 import { trpc } from "../../utils/trpc";
 import { useLink } from "solito/link";
@@ -37,10 +36,17 @@ import { ContentLesson3_2 } from "../lesson3/type_Lesson3";
 export function lesson3Screen() {
 
   const userpageLinkProps = useLink({ href: "/userpage"});
-
   const { isSignedIn, isLoaded } = useAuth();
-
-  if (!isLoaded) {
+  const { data, isLoading, error } = trpc.entry.all.useQuery();
+  useEffect(() => {
+    console.log(data);
+  }, [isLoading]);
+  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
+  const isLoadingOverall = userLessonsLoading || isLoading;
+  if (error) {
+    return <Paragraph>{error.message}</Paragraph>;
+  }
+  if (!isLoaded || isLoadingOverall) {
     return <SpinnerOver />;
   }
   
@@ -48,48 +54,37 @@ export function lesson3Screen() {
     <YStack f={1} jc="space-between">
       <YStack>
         <HeaderComp />
-        { isSignedIn ? <Lesson3SignIn /> : null}
+        { isSignedIn ? <Lesson3SignIn userLessons={userLessons} /> : null}
       </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
   );
 }
 
-function Lesson3SignIn() {
+function Lesson3SignIn({ userLessons }) {
 
   //Open or close treory block
-
   const [isOpen, setIsOpen] = useState(true);
-
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
 
   const [isOpen2, setIsOpen2] = useState(true);
-
   const toggleOpen2 = () => {
     setIsOpen2(!isOpen2);
   };
 
-  //user check for lesson
-  const { data, isLoading, error } = trpc.entry.all.useQuery();
-  useEffect(() => {
-    console.log(data);
-  }, [isLoading]);
   //lesson content
-  const { data: userLessons, isLoading: userLessonsLoading } = trpc.user.userLessons.useQuery();
-  const isLoadingOverall = userLessonsLoading || isLoading;
+
   const lessonLinkPageUP = useLink({ href: "/lesson4"});
   const lessonLinkPageDown = useLink({ href: "/lesson2"});
-  if (isLoadingOverall) {
-    return <SpinnerOver />;
-  }
+
   // Find the required lesson by its name
    const lessonName = "Урок 3. Глаголы \"быть\"";
-   const ThirdLesson = userLessons?.find(lesson => lesson.name === lessonName);
+   const ThirdLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
    const partName =  "l3p2";
-   const ThirdLessonPartTwo = userLessons?.find(lesson => lesson.name === partName);
+   const ThirdLessonPartTwo = userLessons?.find(lesson => lesson.name.toLowerCase().includes(partName.toLowerCase()));
 
   //part with types from file json full
 
@@ -118,14 +113,9 @@ function Lesson3SignIn() {
   const wordToTranslate1 = Object.values(content2?.wordToTranslateBlock1 || {});
   const wordToTranslate2 = Object.values(content2?.wordToTranslateBlock2 || {});
   const wordToTranslate3 = Object.values(content2?.wordToTranslateBlock3 || {});
-  
-  if (error) {
-    return <Paragraph>{error.message}</Paragraph>;
-  }
 
   return (
     <YStack f={1}>
-      {isLoadingOverall && <SpinnerOver />}
       <YStack ai="center" mt="$10">
         <WelcomeBlock
           name={ThirdLesson?.name}
@@ -167,8 +157,6 @@ function Lesson3SignIn() {
         br="$2"
         bg="$backgroundFocus"
         icon={isOpen ? ChevronUp : ChevronDown } color="$background" onPress={() => {toggleOpen()}}/>
-
-        
 
         <HeaderBlock header={content?.header3}/>
         <SquareText text={content?.squareText4}/>
@@ -253,7 +241,7 @@ function Lesson3SignIn() {
 
           {/* Домашнее Задание */}
 
-          <HeaderBlock header={content2?.headerBlock4} />\
+          <HeaderBlock header={content2?.headerBlock4} />
           <SquareText text={content2?.squareText6} />
           <LangTest4 example={example4_2} tests={tests4_2} />
           <SquareText text={content2?.squareText7} />
