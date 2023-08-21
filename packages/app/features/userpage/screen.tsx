@@ -10,20 +10,21 @@ import { SubMenu } from '@my/ui/src/components/SubMenu';
 
 export function userpageScreen() {
 
+  const { isSignedIn, isLoaded } = useAuth();
+  const { data: currentUser } = trpc.user.current.useQuery();
+  const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
+  const { data: userPacks, isLoading: isUserPacksLoading } = trpc.user.userLessonPacks.useQuery();
   const userpageLinkProps = useLink({ href: "/userpage"});
-
-  const { isSignedIn } = useAuth();
   
   const { data, isLoading, error } = trpc.entry.all.useQuery();
- 
+    
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
 
-  if (isSignedIn) {
-    if ( isLoading ) {
-    return <Spinner size="large" color="$backgroundFocus" ai="center" jc="center" f={1} />;
-  }}
+  if (!isLoaded || isLoading || isUserLessonsLoading || isUserPacksLoading) {
+    return <SpinnerOver />;
+  }
 
   if (error) {
     return <Paragraph>{error.message}</Paragraph>;
@@ -34,7 +35,7 @@ export function userpageScreen() {
       <YStack>
         <HeaderComp />
         { isSignedIn ?
-          <Welcome/> : <WelcomeNotSignedIn/>}
+          <Welcome userLessons={userLessons} userPacks={userPacks} currentUser={currentUser}/> : <WelcomeNotSignedIn/>}
         <Login />
         { isSignedIn &&
         <Lessons/> }
@@ -44,19 +45,13 @@ export function userpageScreen() {
   );
 }
 
-function Welcome() {
+function Welcome({userLessons, userPacks, currentUser}) {
 
-  const { data: currentUser } = trpc.user.current.useQuery();
-  const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
   const filteredUserLessons =  userLessons ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
   const lessonCount = filteredUserLessons.length;
-  const { data: userPacks, isLoading: isUserPacksLoading } = trpc.user.userLessonPacks.useQuery();
-
-  const isLoadingOverall = isUserLessonsLoading || isUserPacksLoading;
 
  return (
     <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6" mt="$10">
-      { isLoadingOverall && <SpinnerOver /> }
       <YStack space="$4" ai="center" p="$4">
         <H3 col="$background">Hola {currentUser?.userName} !</H3>
       </YStack>
@@ -69,13 +64,9 @@ function Welcome() {
       <YStack space="$3" w="90%" maw={600} ai="center">
         <Paragraph mb={20} mt={10} ta="center" col="$background">Добро пожаловать на курс!</Paragraph>
         <YStack ai="flex-start" space="$2">
-          {isUserPacksLoading ? (
-              <Paragraph ta="left" col="$background">Loading your lesson packs...</Paragraph>
-            ) : (
-              <Paragraph ta="left" col="$background"> 
-                Купленный тариф: {Array.isArray(userPacks) ? userPacks.join(', ') : userPacks}
-              </Paragraph>
-          )}
+          <Paragraph ta="left" col="$background"> 
+            Купленный тариф: {Array.isArray(userPacks) ? userPacks.join(', ') : userPacks}
+          </Paragraph>
           <Paragraph ta="left" col="$background"> Сколько уроков пройдено: {lessonCount}</Paragraph>
         </YStack>
       </YStack>
