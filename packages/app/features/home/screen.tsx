@@ -221,19 +221,19 @@ function ReviewSection () {
   const renderTexts = (texts) => {
       return texts.map((textObj, index) => (
           <YStack key={index} w='100%'>
-              <Square
+              <Button
                   br="$2"
                   bc="$borderColor"
                   m="$4"
                   p="$3"
-                  pressStyle={{ scale: 0.98 }}
+                  //pressStyle={{ scale: 0.98 }}
                   onPress={() => {
                     setOpen(true);
                     setSelectedText(textObj);
                   }}
               >
                 <Paragraph col="$background" ta="center" >{truncate(textObj.text)}" - {textObj.name}</Paragraph>
-              </Square>
+              </Button>
           </YStack>
       ));
   };
@@ -254,6 +254,7 @@ function ReviewSection () {
           </XStack>
 
           {selectedText &&  // Added this conditional rendering
+          //create div with Alight all Center inside it
             <Sheet
               forceRemoveScrollEnabled={open}
               modal={true}
@@ -266,7 +267,7 @@ function ReviewSection () {
               zIndex={100_000}
             >
               <Sheet.Overlay o={0.1}/>
-              <Sheet.Handle/>
+              <Sheet.Handle o={0.5}/>
               <Sheet.Frame
                 flex={1}
                 padding="$4"
