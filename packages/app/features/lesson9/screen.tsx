@@ -111,7 +111,7 @@ function Lesson9SignIn({userLessons}) {
         name={NinthLesson?.name}
         description={content?.description}/>
         <YStack  w="100%" $gtSm={{ width: "70%" }}>
-          <VideoPlayer linkVideo={content?.video}/>
+          <VideoPlayer linkVideo={content?.video} poster={content?.poster}/>
         </YStack>
       <ImageCircle img={content?.image}/>
 
@@ -162,7 +162,7 @@ function Lesson9SignIn({userLessons}) {
         name={content2?.name}
         description={content2?.description}/>
         <YStack  w="100%" $gtSm={{ width: "70%" }}>
-          <VideoPlayer linkVideo={content2?.video}/>
+          <VideoPlayer linkVideo={content2?.video} poster={content?.poster}/>
         </YStack>
 
       <HeaderBlock header={content2?.headerBlock1}/>
@@ -210,7 +210,7 @@ function Lesson9SignIn({userLessons}) {
 
       <HeaderBlock header={content2?.headerBlock3} />
       <YStack  mt="$4" w="100%" $gtSm={{ width: "70%" }}>
-        <VideoPlayer linkVideo={content2?.video3}/>
+        <VideoPlayer linkVideo={content2?.video3} poster={content?.poster}/>
       </YStack>
 
       {/* Время */}

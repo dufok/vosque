@@ -6,6 +6,7 @@ import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
 import { trpc } from "app/utils/trpc";
 import { SignedIn, SignedOut, useAuth } from "app/utils/clerk";
 import { SubMenu } from '@my/ui/src/components/SubMenu';
+import { useRouter } from "next/router";
 
 
 export function userpageScreen() {
@@ -15,9 +16,15 @@ export function userpageScreen() {
   const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
   const { data: userPacks, isLoading: isUserPacksLoading } = trpc.user.userLessonPacks.useQuery();
   const userpageLinkProps = useLink({ href: "/userpage"});
-  
   const { data, isLoading, error } = trpc.entry.all.useQuery();
-    
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isSignedIn && isLoaded) {
+      router.push("/signup");
+    }
+  }, [isSignedIn]);
+  
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
@@ -34,11 +41,9 @@ export function userpageScreen() {
     <YStack f={1} jc="space-between">
       <YStack>
         <HeaderComp />
-        { isSignedIn ?
-          <Welcome userLessons={userLessons} userPacks={userPacks} currentUser={currentUser}/> : <WelcomeNotSignedIn/>}
+        <Welcome userLessons={userLessons} userPacks={userPacks} currentUser={currentUser}/>
         <Login />
-        { isSignedIn &&
-        <Lessons/> }
+        <Lessons/>
       </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
     </YStack>
@@ -51,9 +56,10 @@ function Welcome({userLessons, userPacks, currentUser}) {
   const lessonCount = filteredUserLessons.length;
 
  return (
-    <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6" mt="$10">
-      <YStack space="$4" ai="center" p="$4">
-        <H3 col="$background">Hola {currentUser?.userName} !</H3>
+    <YStack bc="$backgroundFocus" ai="center" pt="$6" mt="$10">
+      <YStack space="$2" ai="center" p="$4">
+        <H3 col="$background" ta="center" >Hola {currentUser?.userName} !</H3>
+        <H3 ta="center" col="$background">Добро пожаловать на курс!</H3>
       </YStack>
       <YStack>
         <Image source={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
@@ -62,32 +68,12 @@ function Welcome({userLessons, userPacks, currentUser}) {
           />
       </YStack>
       <YStack space="$3" w="90%" maw={600} ai="center">
-        <Paragraph mb={20} mt={10} ta="center" col="$background">Добро пожаловать на курс!</Paragraph>
-        <YStack ai="flex-start" space="$2">
+        <YStack ai="flex-start" space="$2" p="$5">
           <Paragraph ta="left" col="$background"> 
-            Купленный тариф: {Array.isArray(userPacks) ? userPacks.join(', ') : userPacks}
+            {Array.isArray(userPacks) ? userPacks.join(', ') : userPacks}
           </Paragraph>
-          <Paragraph ta="left" col="$background"> Сколько уроков пройдено: {lessonCount}</Paragraph>
+          <Paragraph ta="left" col="$background"> Кол-во уроков: {lessonCount}</Paragraph>
         </YStack>
-      </YStack>
-    </YStack>
-  );
-}
-
-function WelcomeNotSignedIn() {
-  return (
-    <YStack bc="$backgroundFocus" ai="center" pb="$4" pt="$6" mt="$10">
-      <YStack space="$4" ai="center" p="$4">
-        <H3 col="$background">Hola!</H3>
-      </YStack>
-      <YStack>
-        <Image source={{uri: 'https://cdn.vosque.education/images/userpage_welcome_image.png?raw', width: 80, height: 90}}
-          height="100%"
-          width="100%"
-          />
-      </YStack>
-      <YStack mt="$5">
-        <Paragraph mb={20} ta="center" col="$background">!!! Пройдите регистрацию !!! </Paragraph>
       </YStack>
     </YStack>
   );

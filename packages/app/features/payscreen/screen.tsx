@@ -1,27 +1,10 @@
 import {
-  Paragraph,
-  YStack,
-  XStack,
-  Switch,
-  Label,
-  Separator,
-  Button,
-  H3,
-  Input
+  YStack
 } from "@my/ui";
 import React, { useEffect, useState} from "react";
 import { useRouter } from "next/router";
 import { Text } from "react-native";
-
-import crypto from 'crypto';
-import { v4 as uuidv4 } from 'uuid';
-import { X } from '@tamagui/lucide-icons'
-import { trpc } from "app/utils/trpc";
-import { useLink } from "solito/link";
 import { useAuth } from "app/utils/clerk";
-import { Banknote } from '@tamagui/lucide-icons';
-import { ToastComp } from "@my/ui/src/components/ToastComp";
-import { sendTelegramMessage } from "@my/ui/src/components/sendTelegramMessage";
 import { PayContent } from "@my/ui/src/components/PayContent";
 
 export function payScreenScreen() {

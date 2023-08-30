@@ -105,7 +105,7 @@ function Lesson4SignIn({userLessons}) {
           name={FourthLesson?.name}
           description={content?.description}/>
           <YStack  w="100%" $gtSm={{ width: "70%" }}>
-            <VideoPlayer linkVideo={content?.video}/>
+            <VideoPlayer linkVideo={content?.video} poster={content?.poster}/>
           </YStack>
         <ImageCircle img={content?.image}/>
 

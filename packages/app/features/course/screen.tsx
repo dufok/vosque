@@ -52,7 +52,7 @@ function WelcomeCourse() {
               Базовый курс аргентинского испанского
             </H1>
             <YStack  w="100%" $gtSm={{ width: "70%" }}>
-              <VideoPlayer linkVideo="https://cdn.vosque.education/images/welcome.mp4?raw"/>
+              <VideoPlayer linkVideo="https://cdn.vosque.education/images/welcome.mp4?raw" poster="https://cdn.vosque.education/images/poster.jpg"/>
             </YStack>
           <H2 tt="uppercase" ta="center" mt={50} >
             Тарифы

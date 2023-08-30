@@ -121,7 +121,7 @@ function Lesson3SignIn({ userLessons }) {
           name={ThirdLesson?.name}
           description={content?.description}/>
           <YStack  w="100%" $gtSm={{ width: "70%" }}>
-            <VideoPlayer linkVideo={content?.video}/>
+            <VideoPlayer linkVideo={content?.video} poster={content?.poster}/>
           </YStack>
         <ImageCircle img={content?.image}/>
 
@@ -168,7 +168,7 @@ function Lesson3SignIn({ userLessons }) {
           name={content2?.name}
           description={content2?.description}/>
           <YStack  w="100%" $gtSm={{ width: "70%" }}>
-            <VideoPlayer linkVideo={content?.video}/>
+            <VideoPlayer linkVideo={content2?.video} poster={content?.poster}/>
           </YStack>
 
         <HeaderBlock header={content2?.headerBlock1}/>

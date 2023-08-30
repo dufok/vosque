@@ -39,15 +39,15 @@ ForwardControl.propTypes = {
 
 };
 
-export function VideoPlayer({linkVideo}) {
+export function VideoPlayer({linkVideo, poster}) {
   return (
       <Player
-        poster=""
+        poster={poster}
         src={linkVideo}
         >
         <BigPlayButton position="center" />
         <LoadingSpinner />
-        <ControlBar autoHide={false} className="my-class">
+        <ControlBar autoHide={true} className="my-class">
           <ForwardControl seconds={5} order={3.1} />
           <ForwardControl seconds={10} order={3.2} />
           <ForwardControl seconds={30} order={3.3} />
