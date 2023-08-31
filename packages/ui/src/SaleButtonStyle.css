@@ -1,0 +1,7 @@
+.gradient-text-button {
+  background: linear-gradient(90deg, #ffffff 3%, #FFFF00 53%, #FFA500 72%, #F14444 77%, #D53567 88%, #9A109A 97%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: 256ms all;
+}

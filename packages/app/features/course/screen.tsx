@@ -19,6 +19,8 @@ import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ButtonPay } from "@my/ui/src/components/ButtonPay";
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
 
+import { SaleButton } from "@my/ui/src/components/SaleButton";
+
 
 export function courseScreen() {
   const userpageLinkProps = useLink({href: "/userpage"});
@@ -29,6 +31,7 @@ export function courseScreen() {
   return (
     <YStack>
       <HeaderComp />
+      <SaleButton isOpen={false}/>
       <WelcomeCourse />
       <StructureCourse />
       <ProgramCourse />
