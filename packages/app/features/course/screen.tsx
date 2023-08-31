@@ -43,7 +43,6 @@ export function courseScreen() {
 } 
 
 
-
 function WelcomeCourse() {
 
   const payscreenLinkProps = useLink({href: "/payscreen"});
