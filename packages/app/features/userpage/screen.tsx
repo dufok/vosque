@@ -150,7 +150,8 @@ function Lessons() {
 
 function Login() {
   const { signOut } = useAuth();
-
+  const router = useRouter();
+  
   const signInLinkProps = useLink({
     href: "/signin",
   });
@@ -171,7 +172,7 @@ function Login() {
         </XStack>
       </SignedOut>
       <SignedIn>
-        <Button onPress={() => { signOut(); window.location.reload(); }} size="$2">
+        <Button onPress={() => { signOut(); window.location.reload(); router.push("/")}} size="$2">
           Выйти
         </Button>
       </SignedIn>

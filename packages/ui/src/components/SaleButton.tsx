@@ -22,7 +22,7 @@ export function SaleButton({ isOpen: initialIsOpen }: SaleButtonProps) {
       <AlertDialog.Overlay
         key="overlay"
         animation="quick"
-        opacity={0.5}
+        style={{ opacity: 0.3 }}
         enterStyle={{ opacity: 0 }}
         exitStyle={{ opacity: 0 }}
       />

@@ -25,33 +25,25 @@ import { sendTelegramMessage } from "./sendTelegramMessage";
 import { SpinnerOver } from "./SpinnerOver";
 
 export function PayContent({ name, description, sku, pricerub, priceusdt }) {
-  const router = useRouter();
 
+  const router = useRouter();
+  const createPayment = trpc.user.createPayment.useMutation();
   const { data: lessonPack, isLoading: isUserPacksLoading } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
   const { data: currentUser, isLoading: isUserLoading } = trpc.user.current.useQuery();
-  //if curentUser empty then error in TRPC console
-  if (isUserLoading) {
-    return <SpinnerOver />;
-  }
-  if (!currentUser)
-  {
-    return <Text> No data in currentUser !</Text>;
-  }
-  const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
-  const createPayment = trpc.user.createPayment.useMutation();
-
   //this for paying options
   const summaryCardBody = `Номер карты Тиньков. После перевода подтвердите, нажав ниже кнопку "Проверить Перевод"`;
   const summaryUSDTBody = `Номер кошелька USDT (TRC20). Вы можете перевести сами и после перевода подтвердите нажав кнопку "Проверить Перевод". Либо воспользуйтесь опцией перевода через BINANCE`;
   const summaryCardHead = `5536 9140 3988 8122`;
   const summaryUSDTHead = `TVyFKcfTPAmEdF5iYX3XiveLQ6HaV1UQ38`;
-
   // Spinner for loading
   const [showSpinner, setShowSpinner] = useState(false);
-
   //this is for swithc currency
   const [currency, setCurrency] = useState("RUB");
   const [price, setPrice] = useState(pricerub);
+  // Course name
+  const cource = lessonPack?.name;
+  //
+  const isLoadingOverall = isUserLoading || isUserPacksLoading;
   const handleToRUB = async () => {
       setCurrency("RUB")
       setPrice(pricerub)
@@ -60,33 +52,22 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
     setCurrency("USDT")
     setPrice(priceusdt)
   };
-
   const summaryBody = currency === "RUB" ? summaryCardBody : currency === "USDT" ? summaryUSDTBody : "";
   const summaryHead = currency === "RUB" ? summaryCardHead : currency === "USDT" ? summaryUSDTHead : "";
-
   // This is for price 
   const [discontedPrice, setDiscountedPrice] = useState(price);
-
-
   // This is clean name from html tags
   const cleanName = name.replace(/<br\s*\/?>/gi, '');
-
   // This is for sheet
-
   const [open, setOpen] = useState(false)
-
   const handleOpen = () => {
     setOpen(true)
   }
-
-
   // This is for Toast
   const [list, setList] = useState<any[]>([]);
-
   const showToast = (type) => {
 
     let toastProperties;
-
     switch (type) {
       case "success_part":
         toastProperties = {
@@ -97,7 +78,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
           icon: Banknote,
         };
         break;
-      
+
       case "success_all":
         toastProperties = {
           id: 1,
@@ -122,15 +103,21 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
         setList([]);
         break
     }
-
     setList([...list, toastProperties]);
-
   };
-
   // This is for Telegram message
-  const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}`;
-  const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${currency}. Но возникла ошибка!`;
-   
+  //if curentUser empty then error in TRPC console
+  if (isUserLoading) {
+    return <SpinnerOver />;
+  }
+  if (!currentUser)
+  {
+    return <Text> No data in currentUser !</Text>;
+  }
+
+  const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
+  const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
+    
   // This is for Binance USDT payout
   const binanceSecretKey = process.env.BINANCE_SECRET_KEY || "1";
   const binanceMerchantId = process.env.BINANCE_MERCHANT_ID;
@@ -156,7 +143,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
         goodsCategory: "Z000",
         referenceGoodsId: sku,
         goodsName: description,
-        goodsDetail: course,
+        goodsDetail: cource,
       },
       timestamp: Date.now(),
       sign: "",
@@ -223,23 +210,6 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
     }, 5000);
   };
 
-  // Course name
-  const [course, setCourse] = useState<string | undefined>();
-  const course_start = "Стартовый пакет";
-  const cource = lessonPack?.name;
-
-  //Hooks
-
-  useEffect(() => {
-    setCourse(lessonPack?.name);
-  }, [lessonPack]);
-
-  useEffect(() => {
-    setDiscountedPrice(price);
-  }, [price]);
-
-  const isLoadingOverall = isUserLoading || isUserPacksLoading;
-  
   return (
     <>
     { (isLoadingOverall || showSpinner) && <SpinnerOver /> }
@@ -277,7 +247,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
             >
             <H3 mb={10} >{cleanName}</H3>
             <Paragraph mb={5}>{description}</Paragraph>
-            <XStack jc="flex-end" w="100%">
+            <XStack jc="flex-end" w="100%" ai="center">
               <div onClick={handleOpen}>
                 <Paragraph size="$3" fontWeight={"700"} opacity={0.8} mr={5}>
                   Купон
@@ -285,6 +255,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
               </div>
               <Ticket opacity={0.8} size={15} />
             </XStack>
+            <SheetCoupon open={open} onOpenChange={setOpen} price={price} discontedPrice={discontedPrice} setDiscountedPrice={setDiscountedPrice}/>
           </YStack>
           <XGroup jc="center">
             <XGroup.Item>
@@ -327,72 +298,51 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
               }
           </YStack> 
         </YStack>
-        {/* <SheetCoupon open={open} onOpenChange={setOpen} price={price} discontedPrice={discontedPrice} setDiscountedPrice={setDiscountedPrice}/> */}
     </YStack>
     </>
   );
 } 
 
-function SheetCoupon(price, discontedPrice, setDiscountedPrice, open, onOpenChange) {
+function SheetCoupon({ price, discontedPrice, setDiscountedPrice, open, onOpenChange }) {
   const [position, setPosition] = useState(0)
 
-    
   //this is for coupon input
   const coupon = process.env.NEXT_PUBLIC_SECRET_COUPON;
   const sale = process.env.NEXT_PUBLIC_SECRET_SALE;
+  const friend = process.env.NEXT_PUBLIC_SECRET_FRIEND;
+  console.log( coupon, sale, friend)
+
+  const [couponInput, setCouponInput] = useState("");
 
   const applyDiscount = () => {
-    const inputElement = document.getElementById("coupon-input");
-    const inputValue = inputElement instanceof HTMLInputElement ? inputElement.value : null;
-    if (inputValue === coupon) {
-      setDiscountedPrice(price * 0.75);
-    }
-    if (inputValue === sale) {
-      setDiscountedPrice(price * 0.5);
-    }
-    else {
-      setDiscountedPrice(price);
-    } 
-  };
+  // Make sure the variables are defined
+  if (coupon && sale && friend) {
+    const discountMap = {
+      [String(coupon)]: 0.75, // Cast to string just to be safe
+      [String(sale)]: 0.5,
+      [String(friend)]: 0,
+    };
 
+    const discountFactor = discountMap[couponInput] || 1;
+    setDiscountedPrice(price * discountFactor);
+    } else {
+      // Handle the case where the variables are not defined
+      console.warn("Coupon codes are not defined.");
+    }
+  };
+  
   useEffect(() => {
     setDiscountedPrice(price);
   }, [price]);
 
   return (
     <>
-      <Sheet
-        forceRemoveScrollEnabled={open}
-        open={open}
-        modal={false}
-        onOpenChange={onOpenChange}
-        snapPoints={[85, 50, 25]}
-        dismissOnSnapToBottom
-        position={position}
-        onPositionChange={setPosition}
-        zIndex={100_000}
-        animation="bouncy"
-      >
-        <Sheet.Overlay
-          animation="lazy"
-          enterStyle={{ opacity: 0 }}
-          exitStyle={{ opacity: 0 }}
-        />
-        <Sheet.Handle />
-        <Sheet.Frame
-          flex={1}
-          padding="$4"
-          justifyContent="center"
-          alignItems="center"
-          space="$5"
-         >
-          <Button size="$6" circular icon={ChevronDown} onPress={() => onOpenChange(false)} />
-          <XStack ai="center" space="$2" mt="$4">
-            <Input f={1} size="$4" placeholder={`Есть вписка ?`} id="coupon-input"/>
-            <Button onPress={applyDiscount}>ПРИМЕНИТЬ</Button>
-          </XStack>
-        </Sheet.Frame>
-      </Sheet>
+    {open && (
+      <XStack ai="center" space="$2" mt="$4" >
+        <Input f={1} placeholder={`Есть вписка ?`} value={couponInput} onChange={(e) => setCouponInput(e.target.value)} />
+        <Button onPress={applyDiscount}>ПРИМЕНИТЬ</Button>
+      </XStack>
+    )}
     </>
   );
 }
