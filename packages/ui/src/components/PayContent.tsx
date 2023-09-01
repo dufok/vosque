@@ -341,7 +341,7 @@ function SheetCoupon({ price, discontedPrice, setDiscountedPrice, open, onOpenCh
     <>
     {open && (
       <XStack ai="center" space="$2" mt="$4">
-        <Input f={1} placeholder={`Есть вписка ?`} value={couponInput} onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>) => setCouponInput(e.nativeEvent.text)} />
+        <Input w='90%' f={1} placeholder={`Есть вписка ?`} value={couponInput} onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>) => setCouponInput(e.nativeEvent.text)} />
         <Button onPress={applyDiscount}>ПРИМЕНИТЬ</Button>
       </XStack>
     )}
