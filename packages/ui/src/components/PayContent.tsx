@@ -23,6 +23,8 @@ import { Sheet } from '@tamagui/sheet';
 import { ToastComp } from "./ToastComp";
 import { sendTelegramMessage } from "./sendTelegramMessage";
 import { SpinnerOver } from "./SpinnerOver";
+import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+
 
 export function PayContent({ name, description, sku, pricerub, priceusdt }) {
 
@@ -338,8 +340,8 @@ function SheetCoupon({ price, discontedPrice, setDiscountedPrice, open, onOpenCh
   return (
     <>
     {open && (
-      <XStack ai="center" space="$2" mt="$4" >
-        <Input f={1} placeholder={`Есть вписка ?`} value={couponInput} onChange={(e) => setCouponInput(e.target.value)} />
+      <XStack ai="center" space="$2" mt="$4">
+        <Input f={1} placeholder={`Есть вписка ?`} value={couponInput} onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>) => setCouponInput(e.nativeEvent.text)} />
         <Button onPress={applyDiscount}>ПРИМЕНИТЬ</Button>
       </XStack>
     )}
