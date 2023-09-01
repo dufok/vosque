@@ -24,7 +24,6 @@ export function SaleButton({ isOpen: initialIsOpen }: SaleButtonProps) {
         animation="quick"
         style={{ opacity: 0.3 }}
         enterStyle={{ opacity: 0 }}
-        exitStyle={{ opacity: 0 }}
       />
       <AlertDialog.Content
         bordered
@@ -44,12 +43,16 @@ export function SaleButton({ isOpen: initialIsOpen }: SaleButtonProps) {
         scale={1}
         opacity={1}
         y={0}
+        maw='80%'
       >
         <YStack space>
           <AlertDialog.Title>Хорошие Новости!</AlertDialog.Title>
           <AlertDialog.Description>
-            <Paragraph>Используй промо для 50% скидки на курс: {sale} </Paragraph>
-          </AlertDialog.Description>
+            <YStack space="$2">
+            <Paragraph>До 10 сентября действует скидка 20% на базовый курс аргентинского испанского.</Paragraph>
+            <Paragraph mt="$2">Чтобы воспользоваться скидкой, скопируйте промокод {sale} и введите его на странице оплаты, предварительно выбрав подходящий тариф.</Paragraph>
+            </YStack>
+         </AlertDialog.Description>
           <XStack space="$3" justifyContent="flex-end">
             <AlertDialog.Cancel asChild>
               <Button onPress={() => setIsOpen(false)}>Закрыть</Button>
