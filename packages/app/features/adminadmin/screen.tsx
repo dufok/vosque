@@ -114,7 +114,7 @@ export function adminadminScreen() {
                 <XStack fw="wrap" space="$2">
                   <Button onClick={() => sendEmailMessage(user.email)}><Paragraph size="$3">Send Email</Paragraph></Button>
                   {allSKUs.map((sku) => (
-                    <LessonPackButton key={sku} sku={sku} userId={currentUser.id} updateUserLessonPack={updateUserLessonPack} />
+                    <LessonPackButton key={sku} sku={sku} userId={user.id} updateUserLessonPack={updateUserLessonPack} />
                   ))}
                 </XStack>
               </YStack>
