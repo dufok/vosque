@@ -100,13 +100,13 @@ export function ButtonWithSheet(Props) {
           >
             <Dialog.Title>{Props.Title}</Dialog.Title>
             <Dialog.Description>
-              {Props.Description}
+              {/* {Props.Description} */}
             </Dialog.Description>
             <YStack ai="center" m="$4">
               <Dialog.Close displayWhenAdapted asChild>
                 <XStack>
                   <YStack>
-                    <Paragraph maw={200} ta="right">
+                    <Paragraph maw={200} ta="left">
                       {Props.Colum1_1}<br/>
                       {Props.Colum2_1}<br/>
                       {Props.Colum3_1}<br/>
