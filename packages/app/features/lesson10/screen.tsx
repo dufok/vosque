@@ -218,26 +218,26 @@ export function Lesson10SignIn({userLessons}) {
             <SquareText text={content2?.squareText11} />
             <WordToTranslateBlock words={wordToTranslate1} />
             <SquareText text={content2?.squareText12} />
-            <XStack fw="wrap" jc="center">
-              <YStack w="100%" $gtSm={{ width: "40%" }}>
-                <TextExampleBlock textExamples={textExample1}/>
-              </YStack>
-              <LifeHackerBlock
-                lifehacktitle={content2?.lifeHackerBlock1.title}
-                descriptions={[
-                  content2?.lifeHackerBlock1.description1,
-                  content2?.lifeHackerBlock1.description2,
-                  content2?.lifeHackerBlock1.description3,
-                  content2?.lifeHackerBlock1.description4,
-                ]}
-                contents={[
-                  content2?.lifeHackerBlock1.content1,
-                  content2?.lifeHackerBlock1.content2,
-                  content2?.lifeHackerBlock1.content3,
-                  content2?.lifeHackerBlock1.content4,
-                ]}
-              />
-            </XStack>
+
+            <YStack w="100%" $gtSm={{ width: "40%" }}>
+              <TextExampleBlock textExamples={textExample1}/>
+            </YStack>
+            <LifeHackerBlock
+              lifehacktitle={content2?.lifeHackerBlock1.title}
+              descriptions={[
+                content2?.lifeHackerBlock1.description1,
+                content2?.lifeHackerBlock1.description2,
+                content2?.lifeHackerBlock1.description3,
+                content2?.lifeHackerBlock1.description4,
+              ]}
+              contents={[
+                content2?.lifeHackerBlock1.content1,
+                content2?.lifeHackerBlock1.content2,
+                content2?.lifeHackerBlock1.content3,
+                content2?.lifeHackerBlock1.content4,
+              ]}
+            />
+            
             <SquareText text={content2?.squareText13} />
             <WordToTranslateBlock words={wordToTranslate2} />
             <SquareText text={content2?.squareText14} />

@@ -108,6 +108,7 @@ function Lesson2SignIn({ userLessons }) {
               
            {isOpen && (
             <>
+              <HeaderBlock header={content?.header2}/>
               <TableBlock table={content?.tableBlock1}/>
 
               {/* Важные Исключения */}

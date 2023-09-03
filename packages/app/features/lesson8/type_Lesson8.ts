@@ -4,6 +4,8 @@ export type ContentLesson8 = {
     video: string;
     image: string;
     headerBlock1: string;
+    headerBlock6: string;
+    descriptionBlock1: string;
     textExampleBlock1: { [key: string]: ExampleAndAnswer };
     headerBlock2: string;
     squareText1: string;

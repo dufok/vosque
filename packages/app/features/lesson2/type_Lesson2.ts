@@ -4,6 +4,7 @@ export type ContentLesson2 = {
     video: string;
     image: string;
     header1: string;
+    header2: string;
     tableBlock1: Table;
     tableBlock2: Table;
     tableBlock3: Table;

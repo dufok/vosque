@@ -3,6 +3,7 @@ export type ContentLesson11 = {
     poster: string;
     video: string;
     image: string;
+    headerBlock4: string;
     headerBlock1: string;
     headerBlock3: string;
     textExampleBlock1: { [key: string]: ExampleAndAnswer };

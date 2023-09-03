@@ -105,7 +105,6 @@ function Lesson6SignIn({userLessons}) {
          <HeaderBlock header={content?.headerBlock1}/>
           {isOpen && (
             <> 
-            <HeaderBlock header={content?.headerBlock1}/>
             <TableBlock table={content?.tableBlock1} />
             <TableBlock table={content?.tableBlock2} />
             <DescriptionBlock description={content?.descriptionBlock1} />

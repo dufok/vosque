@@ -36,6 +36,7 @@ export type ContentLesson12 = {
     wordToTranslateBlock1: { [key: string]: Words };
     dopDialog1: { [key: string]: Content };
     descriptionBlock5: string;
+    headerBlock4: string;
     squareText4: string;
     langTest1_2: { example: { header: string, question: string, unswer: string};
         testContent: {[key: string]: Tests1 }};

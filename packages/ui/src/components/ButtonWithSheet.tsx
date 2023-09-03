@@ -14,6 +14,8 @@ import {
 import { X } from '@tamagui/lucide-icons'
 import React, {useState} from "react";
 
+import { ParagraphCustom } from "./CustomText";
+
 export function ButtonWithSheet(Props) {
   const [open, setOpen] = useState(false)
  
@@ -106,16 +108,14 @@ export function ButtonWithSheet(Props) {
               <Dialog.Close displayWhenAdapted asChild>
                 <XStack>
                   <YStack>
-                    <Paragraph maw={200} ta="left">
-                      {Props.Colum1_1}<br/>
-                      {Props.Colum2_1}<br/>
-                      {Props.Colum3_1}<br/>
-                      {Props.Colum4_1}<br/>
-                    </Paragraph>
+                    <ParagraphCustom text={Props.Colum1_1} />
+                    <ParagraphCustom text={Props.Colum2_1} />
+                    <ParagraphCustom text={Props.Colum3_1} />
+                    <ParagraphCustom text={Props.Colum4_1} />  
                   </YStack>
                   <Separator als="stretch" vertical mx={15} />
                   <YStack>
-                    <Paragraph maw={200} ta="left">
+                    <Paragraph ta="left">
                       {Props.Colum1_2}<br/>
                       {Props.Colum2_2}<br/>
                       {Props.Colum3_2}<br/>

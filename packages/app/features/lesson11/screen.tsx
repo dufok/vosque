@@ -142,6 +142,7 @@ function Lesson11SignIn({userLessons}) {
               </YStack>
             <ImageCircle img={content?.image}/>
 
+            <HeaderBlock header={content?.headerBlock4}/>
             <HeaderBlock header={content?.headerBlock1}/>
 
               {isOpen && (

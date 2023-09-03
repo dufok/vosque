@@ -27,6 +27,7 @@ import { WordToTranslateBlock } from "@my/ui/src/components/WordToTranslateBlock
 import { DopDialog } from "@my/ui/src/components/DopDialog";
 
 import { ContentLesson8 } from './type_Lesson8';
+import { DescriptionBlock } from "@my/ui/src/components/DescriptionBlock";
 
 export function lesson8Screen() {
 
@@ -102,41 +103,45 @@ function Lesson8SignIn({userLessons}) {
 
         <HeaderBlock header={content?.headerBlock1}/>
 
-            {isOpen && (
-              <> 
-              <TextExampleBlock textExamples={textExample1}/>
-              <HeaderBlock header={content?.headerBlock2} />
-              <SquareText text={content?.squareText1} />
-              <LangTest4 example={example4_1} tests={tests4_1} />
-              <SquareText text={content?.squareText2} />
-              <LangTest1 example={example1_1} tests={tests1_1} />
-              <LifeHackerBlock
-                lifehacktitle={content?.lifeHackerBlock1.title}
-                descriptions={[
-                  content?.lifeHackerBlock1.description1,
-                  content?.lifeHackerBlock1.description2,
-                  content?.lifeHackerBlock1.description3,
-                  content?.lifeHackerBlock1.description4,
-                ]}
-                contents={[
-                  content?.lifeHackerBlock1.content1,
-                  content?.lifeHackerBlock1.content2,
-                  content?.lifeHackerBlock1.content3,
-                  content?.lifeHackerBlock1.content4,
-                ]}
-              />
-
-              <HeaderBlock header={content?.headerBlock3} />
-              <SquareText text={content?.squareText3} />
-              <WordToTranslateBlock words={wordToTranslate1} />
-              <SquareText text={content?.squareText4} />
-              <WordToTranslateBlock words={wordToTranslate2} />
-              <SquareText text={content?.squareText5} />
-              <WordToTranslateBlock words={wordToTranslate3} />
-              <SquareText text={content?.squareText6} />
-              <WordToTranslateBlock words={wordToTranslate4} />
+          {isOpen && (
+            <> 
+            <HeaderBlock header={content?.headerBlock6}/>
+            <DescriptionBlock description={content?.descriptionBlock1}/>
+            <TextExampleBlock textExamples={textExample1}/>
             </>
           )}
+          
+        <HeaderBlock header={content?.headerBlock2} />
+        <SquareText text={content?.squareText1} />
+        <LangTest4 example={example4_1} tests={tests4_1} />
+        <SquareText text={content?.squareText2} />
+        <LangTest1 example={example1_1} tests={tests1_1} />
+        <LifeHackerBlock
+          lifehacktitle={content?.lifeHackerBlock1.title}
+          descriptions={[
+            content?.lifeHackerBlock1.description1,
+            content?.lifeHackerBlock1.description2,
+            content?.lifeHackerBlock1.description3,
+            content?.lifeHackerBlock1.description4,
+          ]}
+          contents={[
+            content?.lifeHackerBlock1.content1,
+            content?.lifeHackerBlock1.content2,
+            content?.lifeHackerBlock1.content3,
+            content?.lifeHackerBlock1.content4,
+          ]}
+        />
+
+        <HeaderBlock header={content?.headerBlock3} />
+        <SquareText text={content?.squareText3} />
+        <WordToTranslateBlock words={wordToTranslate1} />
+        <SquareText text={content?.squareText4} />
+        <WordToTranslateBlock words={wordToTranslate2} />
+        <SquareText text={content?.squareText5} />
+        <WordToTranslateBlock words={wordToTranslate3} />
+        <SquareText text={content?.squareText6} />
+        <WordToTranslateBlock words={wordToTranslate4} />
+
         <Button
         w={100}
         h={30}

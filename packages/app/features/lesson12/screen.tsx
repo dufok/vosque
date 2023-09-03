@@ -162,6 +162,7 @@ function Lesson12SignIn({userLessons}) {
             <DescriptionBlock description={content?.descriptionBlock4} />
             <WordToTranslateBlock words={wordToTranslate1} />
             <YStack mt="$5" />
+            <HeaderBlock header={content?.headerBlock4} />
             <DescriptionBlock description={content?.descriptionBlock5} />
             <SquareText text={content?.squareText4} />
             <LangTest1 example={example1_2} tests={tests1_2} />

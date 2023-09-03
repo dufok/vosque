@@ -51,7 +51,7 @@ export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples
                         {help && <HelpComp texts={help} html={index} />}
                       </XStack>
                     </YStack>
-                    <YStack p="$2" style={{width: '50%'}}>
+                    <YStack p="$2">
                       <ParagraphCustom text={prononce}/>
                     </YStack>
                   </React.Fragment>
