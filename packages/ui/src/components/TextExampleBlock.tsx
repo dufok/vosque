@@ -41,20 +41,20 @@ export const TextExampleBlock: React.FC<TextExampleBlockProps> = ({ textExamples
         return (
           <YStack key={index} w="100%">
             <Paragraph fontFamily="$bodyBold" ta="left" mt="$2">{example.description}</Paragraph>
-            <YStack style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+            <YStack>
               {examplePronouncePairs.map(({example, prononce, help}, index) =>
                 example || prononce ? (
-                  <React.Fragment key={index}>
-                    <YStack p="$2" style={{width: '50%', textAlign: 'left'}}>
+                  <XStack key={index} w="100%" fw="wrap">
+                    <YStack p="$2" w="50%">
                       <XStack>
                         <ParagraphCustom text={example} />
                         {help && <HelpComp texts={help} html={index} />}
                       </XStack>
                     </YStack>
-                    <YStack p="$2">
+                    <YStack p="$2" w="50%">
                       <ParagraphCustom text={prononce}/>
                     </YStack>
-                  </React.Fragment>
+                  </XStack>
                 ) : null )}
             </YStack>
           </YStack>
