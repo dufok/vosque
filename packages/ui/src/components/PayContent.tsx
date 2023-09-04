@@ -31,7 +31,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   const router = useRouter();
   const createPayment = trpc.user.createPayment.useMutation();
   const { data: lessonPack, isLoading: isUserPacksLoading } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
-  const { data: currentUser, isLoading: isUserLoading } = trpc.user.current.useQuery();
+  
   //this for paying options
   const summaryCardBody = `Номер карты Тиньков. После перевода подтвердите, нажав ниже кнопку "Проверить Перевод"`;
   const summaryUSDTBody = `Номер кошелька USDT (TRC20). Вы можете перевести сами и после перевода подтвердите нажав кнопку "Проверить Перевод". Либо воспользуйтесь опцией перевода через BINANCE`;
@@ -45,7 +45,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   // Course name
   const cource = lessonPack?.name;
   //
-  const isLoadingOverall = isUserLoading || isUserPacksLoading;
+  const isLoadingOverall = isUserPacksLoading;
   const handleToRUB = async () => {
       setCurrency("RUB")
       setPrice(pricerub)
@@ -109,16 +109,8 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   };
   // This is for Telegram message
   //if curentUser empty then error in TRPC console
-  if (isUserLoading) {
-    return <SpinnerOver />;
-  }
-  if (!currentUser)
-  {
-    return <Text> No data in currentUser !</Text>;
-  }
-
-  const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
-  const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
+  
+  
     
   // This is for Binance USDT payout
   const binanceSecretKey = process.env.BINANCE_SECRET_KEY || "1";
@@ -173,10 +165,24 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
     .then(response => response.json())  // convert to json
     .then(async (data) => {
       if (data.status === "SUCCESS") {
+        const { data: currentUser} = trpc.user.current.useQuery();
+        if (!currentUser)
+        {
+          return <Text> No data in currentUser !</Text>;
+        }
+        const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
+        const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
         qrUrl = data.data.qrcodeLink;
         linkUrl = data.data.universalUrl;
         sendTelegramMessage(text);
       } else {
+        const { data: currentUser} = trpc.user.current.useQuery();
+        if (!currentUser)
+        {
+          return <Text> No data in currentUser !</Text>;
+        }
+        const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
+        const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
         showToast("error");
         await createPayment.mutateAsync({ prepayId: data.data.prepayId, merchantTradeNo: binancePayload.merchantTradeNo, code: data.code });
         sendTelegramMessage(textError);
@@ -200,6 +206,14 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
       }
     }, [isSignedIn]);
 
+    const { data: currentUser} = trpc.user.current.useQuery();
+    if (!currentUser)
+    {
+      return <Text> No data in currentUser !</Text>;
+    }
+    const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
+    const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
+
     setShowSpinner(true);
     showToast("success_part");
     sendTelegramMessage(text);
@@ -219,6 +233,14 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
         router.push("/signin");
       }
     }, [isSignedIn]);
+
+    const { data: currentUser} = trpc.user.current.useQuery();
+    if (!currentUser)
+    {
+      return <Text> No data in currentUser !</Text>;
+    }
+    const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
+    const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
 
     setShowSpinner(true);
     showToast("success_part");
