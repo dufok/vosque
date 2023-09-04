@@ -27,11 +27,12 @@ export function ButtonPay(props: {
       pricerub: props.pricerub.toString(),
       priceusdt: props.priceusdt.toString(),
     }).toString();
-    if (!isSignedIn) {
+    /* if (!isSignedIn) {
       router.push('/signin');
     } else {
     router.push(`/payscreen?${queryParams}`);
-    };
+    }; */
+    router.push(`/payscreen?${queryParams}`);
   };
 
   return (
