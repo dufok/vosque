@@ -309,20 +309,18 @@ function SheetCoupon({ price, discontedPrice, setDiscountedPrice, open, onOpenCh
   const [position, setPosition] = useState(0)
 
   //this is for coupon input
-  const coupon = process.env.NEXT_PUBLIC_SECRET_COUPON;
+  /* const coupon = process.env.NEXT_PUBLIC_SECRET_COUPON; */
   const sale = process.env.NEXT_PUBLIC_SECRET_SALE;
-  const friend = process.env.NEXT_PUBLIC_SECRET_FRIEND;
-  console.log( coupon, sale, friend)
+  /* const friend = process.env.NEXT_PUBLIC_SECRET_FRIEND; */
+  
 
   const [couponInput, setCouponInput] = useState("");
 
   const applyDiscount = () => {
   // Make sure the variables are defined
-  if (coupon && sale && friend) {
+  if (sale) {
     const discountMap = {
-      [String(coupon)]: 0.75, // Cast to string just to be safe
-      [String(sale)]: 0.5,
-      [String(friend)]: 0,
+      [String(sale)]: 0.8,
     };
 
     const discountFactor = discountMap[couponInput] || 1;
