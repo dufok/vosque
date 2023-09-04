@@ -46,7 +46,7 @@ export const SignUpSignInComponent: React.FC<Props> = ({
       bg="$background"
     >
       <Paragraph size="$5" fontWeight={"700"} opacity={0.8} mb="$1">
-        {type === "sign-up" ? "Регестрация" : "Войти"}
+        {type === "sign-up" ? "Регистрация" : "Войти"}
       </Paragraph>
       {/* all the oauth sign up options */}
       {/* email sign up option */}

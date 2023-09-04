@@ -167,7 +167,7 @@ function Login() {
             Войти
           </Button>
           <Button {...signUpLinkProps} size="$2">
-            Зарегестрироваться
+            Зарегистрироваться
           </Button>
         </XStack>
       </SignedOut>
