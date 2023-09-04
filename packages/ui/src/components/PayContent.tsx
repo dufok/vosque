@@ -2,7 +2,6 @@ import {
   Paragraph,
   YStack,
   XStack,
-  Spinner,
   Button,
   Input,
   H3,
@@ -11,15 +10,12 @@ import {
 } from "tamagui";
 import React, { useEffect, useState} from "react";
 import { useRouter } from "next/router";
-import { Text } from 'react-native';
 
 import crypto from 'crypto';
 import { v4 as uuidv4 } from 'uuid';
 import { trpc } from "app/utils/trpc";
-import { useLink } from "solito/link";
 import { useAuth } from "app/utils/clerk";
-import { Ticket, ChevronDown, Banknote } from '@tamagui/lucide-icons';
-import { Sheet } from '@tamagui/sheet';
+import { Ticket, Banknote } from '@tamagui/lucide-icons';
 import { ToastComp } from "./ToastComp";
 import { sendTelegramMessage } from "./sendTelegramMessage";
 import { SpinnerOver } from "./SpinnerOver";
@@ -27,11 +23,11 @@ import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 
 
 export function PayContent({ name, description, sku, pricerub, priceusdt }) {
-
+  const { isSignedIn } = useAuth();
   const router = useRouter();
   const createPayment = trpc.user.createPayment.useMutation();
   const { data: lessonPack, isLoading: isUserPacksLoading } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
-  
+  const { data: currentUser} = trpc.user.current.useQuery();
   //this for paying options
   const summaryCardBody = `Номер карты Тиньков. После перевода подтвердите, нажав ниже кнопку "Проверить Перевод"`;
   const summaryUSDTBody = `Номер кошелька USDT (TRC20). Вы можете перевести сами и после перевода подтвердите нажав кнопку "Проверить Перевод". Либо воспользуйтесь опцией перевода через BINANCE`;
@@ -109,9 +105,9 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   };
   // This is for Telegram message
   //if curentUser empty then error in TRPC console
+  const text = `Пользователь: ${currentUser?.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
+  const textError = `Пользователь: ${currentUser?.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
   
-  
-    
   // This is for Binance USDT payout
   const binanceSecretKey = process.env.BINANCE_SECRET_KEY || "1";
   const binanceMerchantId = process.env.BINANCE_MERCHANT_ID;
@@ -165,24 +161,10 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
     .then(response => response.json())  // convert to json
     .then(async (data) => {
       if (data.status === "SUCCESS") {
-        const { data: currentUser} = trpc.user.current.useQuery();
-        if (!currentUser)
-        {
-          return <Text> No data in currentUser !</Text>;
-        }
-        const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
-        const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
         qrUrl = data.data.qrcodeLink;
         linkUrl = data.data.universalUrl;
         sendTelegramMessage(text);
       } else {
-        const { data: currentUser} = trpc.user.current.useQuery();
-        if (!currentUser)
-        {
-          return <Text> No data in currentUser !</Text>;
-        }
-        const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
-        const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
         showToast("error");
         await createPayment.mutateAsync({ prepayId: data.data.prepayId, merchantTradeNo: binancePayload.merchantTradeNo, code: data.code });
         sendTelegramMessage(textError);
@@ -196,24 +178,9 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   // Transfer Completed
   const handleTransferCompletedRUB = async () => {
     {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
-    // Show the spinner
-    
-    const { isSignedIn } = useAuth();
-
-    useEffect(() => {
-      if (!isSignedIn) {
-        router.push("/signin");
-      }
-    }, [isSignedIn]);
-
-    const { data: currentUser} = trpc.user.current.useQuery();
-    if (!currentUser)
-    {
-      return <Text> No data in currentUser !</Text>;
-    }
-    const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
-    const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
-
+    if (!isSignedIn) {
+      router.push("/signin");
+    }else{
     setShowSpinner(true);
     showToast("success_part");
     sendTelegramMessage(text);
@@ -221,27 +188,15 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
       setShowSpinner(false);
       router.push('/');
     }, 5000);
+    }
   };
 
   const handleTransferCompletedUsdtSelf = async () => {
     {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
     // Show the spinner
-    const { isSignedIn } = useAuth();
-
-    useEffect(() => {
-      if (!isSignedIn) {
+    if (!isSignedIn) {
         router.push("/signin");
-      }
-    }, [isSignedIn]);
-
-    const { data: currentUser} = trpc.user.current.useQuery();
-    if (!currentUser)
-    {
-      return <Text> No data in currentUser !</Text>;
-    }
-    const text = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
-    const textError = `Пользователь: ${currentUser.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
-
+    }else{
     setShowSpinner(true);
     showToast("success_part");
     sendTelegramMessage(text);
@@ -249,6 +204,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
       setShowSpinner(false);
       router.push('/');
     }, 5000);
+    }
   };
 
   return (
@@ -319,7 +275,6 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
               { currency == "RUB" ? (
                   <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                     await handleTransferCompletedRUB();
-                    showToast("success_part");
                   }}>Проверить Перевод</Button>
               ) : (
                 <>
@@ -329,7 +284,6 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
                     }}><Paragraph fontFamily="$bodyBold" col="$color.gray1Light">BINANCE</Paragraph></Button>
                     <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                       await handleTransferCompletedUsdtSelf();
-                      showToast("success_part");
                     }}>Проверить Перевод</Button>
                   </XStack>
                   {qrUrl && <img src={qrUrl} alt="QR Code" />}
