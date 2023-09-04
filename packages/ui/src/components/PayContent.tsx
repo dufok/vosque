@@ -191,6 +191,15 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   const handleTransferCompletedRUB = async () => {
     {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
     // Show the spinner
+    
+    const { isSignedIn } = useAuth();
+
+    useEffect(() => {
+      if (!isSignedIn) {
+        router.push("/signin");
+      }
+    }, [isSignedIn]);
+
     setShowSpinner(true);
     showToast("success_part");
     sendTelegramMessage(text);
@@ -203,6 +212,14 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   const handleTransferCompletedUsdtSelf = async () => {
     {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
     // Show the spinner
+    const { isSignedIn } = useAuth();
+
+    useEffect(() => {
+      if (!isSignedIn) {
+        router.push("/signin");
+      }
+    }, [isSignedIn]);
+
     setShowSpinner(true);
     showToast("success_part");
     sendTelegramMessage(text);

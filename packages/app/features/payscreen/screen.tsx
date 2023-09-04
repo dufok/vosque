@@ -15,13 +15,13 @@ export function payScreenScreen() {
     return <Text> No data in payscreen !</Text>;
   }
 
-  const { isSignedIn } = useAuth();
+/*   const { isSignedIn } = useAuth();
 
   useEffect(() => {
     if (!isSignedIn) {
       router.push("/signin");
     }
-  }, [isSignedIn]);
+  }, [isSignedIn]); */
 
   return (
     <YStack f={1} jc="center" ai="center" space>

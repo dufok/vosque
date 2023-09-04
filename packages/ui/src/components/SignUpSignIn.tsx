@@ -102,8 +102,8 @@ export const SignUpSignInComponent: React.FC<Props> = ({
             cursor={"pointer"}
             size="$2"
             fontWeight={"700"}
-            opacity={0.5}
-            hoverStyle={{ opacity: 0.4 }}
+            opacity={0.8}
+            hoverStyle={{ opacity: 0.6 }}
           >
             {type === "sign-up" ? "Войти" : "Регистрация"}
           </Paragraph>
