@@ -18,8 +18,9 @@ import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ButtonPay } from "@my/ui/src/components/ButtonPay";
 import { VideoPlayer } from '@my/ui/src/components/VideoPlayer';
-
+import { useRouter } from "next/router";
 import { SaleButton } from "@my/ui/src/components/SaleButton";
+import { PayContent } from "@my/ui/src/components/PayContent";
 
 
 export function courseScreen() {
@@ -44,9 +45,11 @@ export function courseScreen() {
 
 
 function WelcomeCourse() {
-
+  const router = useRouter();
   const payscreenLinkProps = useLink({href: "/payscreen"});
-  
+  const routerQuery = router.query;
+  const coupon = routerQuery.coupon ? routerQuery.coupon.toString() : "undefined";
+
   return (
         <YStack space="$4" f={1}>
           <YStack ai="center" mt="$10">
@@ -67,6 +70,7 @@ function WelcomeCourse() {
                 sku="VQ02LP"
                 pricerub={9000}
                 priceusdt={100}
+                coupon={coupon}
                 />
             </YStack>
             <YStack p='$6'>
@@ -76,6 +80,7 @@ function WelcomeCourse() {
                 sku="VQ01LP"
                 pricerub={14400}
                 priceusdt={160}
+                coupon={coupon}
                 />
               </YStack>
           </XStack>

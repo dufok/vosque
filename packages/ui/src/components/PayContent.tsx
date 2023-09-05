@@ -22,7 +22,7 @@ import { SpinnerOver } from "./SpinnerOver";
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
 
 
-export function PayContent({ name, description, sku, pricerub, priceusdt }) {
+export function PayContent({ name, description, sku, pricerub, priceusdt, coupon }) {
   const { isSignedIn } = useAuth();
   const router = useRouter();
   const createPayment = trpc.user.createPayment.useMutation();
@@ -64,6 +64,11 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   const cleanName = name.replace(/<br\s*\/?>/gi, '');
   // This is for sheet
   const [open, setOpen] = useState(false)
+  useEffect(() => {
+    if (coupon !== "undefined") {
+      setOpen(true)
+    }
+  }, [coupon]);
   const handleOpen = () => {
     setOpen(true)
   }
@@ -254,7 +259,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
               </div>
               <Ticket opacity={0.8} size={15} />
             </XStack>
-            <SheetCoupon open={open} onOpenChange={setOpen} price={price} discontedPrice={discontedPrice} setDiscountedPrice={setDiscountedPrice}/>
+            <SheetCoupon open={open} onOpenChange={setOpen} price={price} discontedPrice={discontedPrice} setDiscountedPrice={setDiscountedPrice} coupon={coupon}/>
           </YStack>
           <XGroup jc="center">
             <XGroup.Item>
@@ -302,7 +307,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   );
 } 
 
-function SheetCoupon({ price, discontedPrice, setDiscountedPrice, open, onOpenChange }) {
+function SheetCoupon({ price, discontedPrice, setDiscountedPrice, open, onOpenChange, coupon }) {
   const [position, setPosition] = useState(0)
 
   //this is for coupon input
@@ -329,14 +334,25 @@ function SheetCoupon({ price, discontedPrice, setDiscountedPrice, open, onOpenCh
   };
   
   useEffect(() => {
-    setDiscountedPrice(price);
-  }, [price]);
+    if (coupon && coupon !== "undefined") {
+      setCouponInput(coupon);
+      applyDiscount();
+    } else {
+      setDiscountedPrice(price);
+    }
+  }, [price, coupon]);
 
   return (
     <>
     {open && (
       <XStack ai="center" space="$2" mt="$4">
-        <Input w='90%' f={1} placeholder={`Есть вписка ?`} value={couponInput} onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>) => setCouponInput(e.nativeEvent.text)} />
+        <Input 
+          w='90%' 
+          f={1} 
+          placeholder={`Есть вписка ?`} 
+          value={couponInput} 
+          onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>) => setCouponInput(e.nativeEvent.text)} 
+        />
         <Button onPress={applyDiscount}>ПРИМЕНИТЬ</Button>
       </XStack>
     )}

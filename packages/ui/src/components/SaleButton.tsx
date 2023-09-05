@@ -1,5 +1,6 @@
 import { Paragraph, YStack, AlertDialog, Button, XStack } from "tamagui";
 import React,{useEffect, useState} from "react";
+import { useRouter } from "next/router";
 
 interface SaleButtonProps {
   isOpen: boolean;
@@ -8,6 +9,16 @@ interface SaleButtonProps {
 export function SaleButton({ isOpen: initialIsOpen }: SaleButtonProps) {
   const [isOpen, setIsOpen] = useState(initialIsOpen);
   const sale = process.env.NEXT_PUBLIC_SECRET_SALE;
+  if (!sale) 
+    return null;
+  const router = useRouter();
+
+  const handleOnClick = () => {
+    const queryParams = new URLSearchParams({
+      coupon: sale.toString(),
+    }).toString();
+    router.push(`/course?${queryParams}`);
+  };
 
   useEffect(() => {
     setIsOpen(initialIsOpen);
@@ -59,9 +70,7 @@ export function SaleButton({ isOpen: initialIsOpen }: SaleButtonProps) {
             </AlertDialog.Cancel>
             <AlertDialog.Action asChild>
               <Button
-                onPress={() => {
-                  window.location.href = '/course';
-                }}
+                onPress={handleOnClick}
               >
                 Курс
               </Button>

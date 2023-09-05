@@ -13,6 +13,7 @@ export function ButtonPay(props: {
   sku: string
   pricerub: number
   priceusdt: number
+  coupon: string
 }){
 
   const { isSignedIn } = useAuth();
@@ -26,12 +27,8 @@ export function ButtonPay(props: {
       sku: props.sku,
       pricerub: props.pricerub.toString(),
       priceusdt: props.priceusdt.toString(),
+      coupon: props.coupon,
     }).toString();
-    /* if (!isSignedIn) {
-      router.push('/signin');
-    } else {
-    router.push(`/payscreen?${queryParams}`);
-    }; */
     router.push(`/payscreen?${queryParams}`);
   };
 

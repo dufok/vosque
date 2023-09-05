@@ -10,19 +10,11 @@ import { PayContent } from "@my/ui/src/components/PayContent";
 export function payScreenScreen() {
 
   const router = useRouter();
-  const { name, description, sku, pricerub, priceusdt } = router.query;
+  const { name, description, sku, pricerub, priceusdt, coupon } = router.query;
   if (!name || !description || !sku  || !pricerub || !priceusdt) {
     return <Text> No data in payscreen !</Text>;
   }
-
-/*   const { isSignedIn } = useAuth();
-
-  useEffect(() => {
-    if (!isSignedIn) {
-      router.push("/signin");
-    }
-  }, [isSignedIn]); */
-
+  
   return (
     <YStack f={1} jc="center" ai="center" space>
       <PayContent
@@ -31,6 +23,7 @@ export function payScreenScreen() {
         priceusdt={priceusdt}
         sku={sku}
         description={description}
+        coupon={coupon}
         />
     </YStack>
   );
