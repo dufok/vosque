@@ -29,8 +29,14 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   const { data: lessonPack, isLoading: isUserPacksLoading } = trpc.user.lessonPackBySku.useQuery({ sku_number: sku });
   const { data: currentUser} = trpc.user.current.useQuery();
   //this for paying options
-  const summaryCardBody = `Номер карты Тиньков. После перевода подтвердите, нажав ниже кнопку "Проверить Перевод"`;
-  const summaryUSDTBody = `Номер кошелька USDT (TRC20). Вы можете перевести сами и после перевода подтвердите нажав кнопку "Проверить Перевод". Либо воспользуйтесь опцией перевода через BINANCE`;
+  const summaryCardBody = isSignedIn 
+    ? `Номер карты Тиньков. После перевода подтвердите, нажав ниже кнопку "Проверить Перевод"`
+    : `Перевод на карту Банка Тиньков. Нужно зарегистрироваться. После перевода, нажав кнопку "Проверить Перевод", дождаться разблокировки уроков.`;
+  
+  const summaryUSDTBody = isSignedIn
+    ? `Номер кошелька USDT (TRC20). Вы можете перевести сами и после перевода подтвердите нажав кнопку "Проверить Перевод". Либо воспользуйтесь опцией перевода через BINANCE`
+    : `Перевод Криптовалютой. Нужно зарегистрироваться. После перевода, нажав кнопку "Проверить Перевод", дождаться разблокировки уроков.`;
+  
   const summaryCardHead = `5536 9140 3988 8122`;
   const summaryUSDTHead = `TVyFKcfTPAmEdF5iYX3XiveLQ6HaV1UQ38`;
   // Spinner for loading
@@ -178,9 +184,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
   // Transfer Completed
   const handleTransferCompletedRUB = async () => {
     {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
-    if (!isSignedIn) {
-      router.push("/signin");
-    }else{
+
     setShowSpinner(true);
     showToast("success_part");
     sendTelegramMessage(text);
@@ -188,15 +192,13 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
       setShowSpinner(false);
       router.push('/');
     }, 5000);
-    }
+    
   };
 
   const handleTransferCompletedUsdtSelf = async () => {
     {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
     // Show the spinner
-    if (!isSignedIn) {
-        router.push("/signin");
-    }else{
+
     setShowSpinner(true);
     showToast("success_part");
     sendTelegramMessage(text);
@@ -204,7 +206,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
       setShowSpinner(false);
       router.push('/');
     }, 5000);
-    }
+    
   };
 
   return (
@@ -271,26 +273,28 @@ export function PayContent({ name, description, sku, pricerub, priceusdt }) {
           </YStack>
         
           <YStack ai="center" mt="$2" mb="$6">
-          
-              { currency == "RUB" ? (
-                  <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
-                    await handleTransferCompletedRUB();
-                  }}>Проверить Перевод</Button>
-              ) : (
-                <>
-                  <XStack space={10} fw="wrap">
-                    <Button bc="$color.yellow7Light" aria-label="Close" onPress={async () => {
-                      await handleTransferCompletedUsdtBinance();
-                    }}><Paragraph fontFamily="$bodyBold" col="$color.gray1Light">BINANCE</Paragraph></Button>
+            { isSignedIn ? (
+              currency == "RUB" ? (
                     <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
-                      await handleTransferCompletedUsdtSelf();
+                      await handleTransferCompletedRUB();
                     }}>Проверить Перевод</Button>
-                  </XStack>
-                  {qrUrl && <img src={qrUrl} alt="QR Code" />}
-                  {linkUrl && <a href={linkUrl}>Go to Payment</a>}
-                </>
-              )
-              }
+                ) : (
+                  <>
+                    <XStack space={10} fw="wrap">
+                      <Button bc="$color.yellow7Light" aria-label="Close" onPress={async () => {
+                        await handleTransferCompletedUsdtBinance();
+                      }}><Paragraph fontFamily="$bodyBold" col="$color.gray1Light">BINANCE</Paragraph></Button>
+                      <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
+                        await handleTransferCompletedUsdtSelf();
+                      }}>Проверить Перевод</Button>
+                    </XStack>
+                    {qrUrl && <img src={qrUrl} alt="QR Code" />}
+                    {linkUrl && <a href={linkUrl}>Go to Payment</a>}
+                  </>
+                )
+              ) : (
+              <Button bc="$backgroundFocus" aria-label="Close" onPress={() => router.push("/signin")}>Войти</Button>
+            )}
           </YStack> 
         </YStack>
     </YStack>
