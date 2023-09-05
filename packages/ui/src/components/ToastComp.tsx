@@ -70,7 +70,7 @@ export function ToastComp(props) {
             <YStack>
               <toast.icon size={30}/>
             </YStack>
-            <YStack maw="80%" ai="flex-start">
+            <YStack maw="80%" ai="flex-start" paddingRight="$2">
               <H5 >{toast.title}</H5>
               <Paragraph dangerouslySetInnerHTML={{ __html: toast.description.replace(/\n/g, "<br />") }}/>
             </YStack>

@@ -8,10 +8,11 @@ import {
   H4,
   XStack
 } from "@my/ui";
-import React from "react";
+import React, { useState } from "react";
 import { useLink } from "solito/link";
-
+import { Banana } from '@tamagui/lucide-icons'
 import { HeaderComp } from '@my/ui/src/components/HeaderComp';
+import { ToastComp } from "@my/ui/src/components/ToastComp";
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 
 
@@ -44,27 +45,54 @@ export function WelcomeBlock(){
 }
 
 export function ContentBlock(){
+  // This is for Toast
+  const [list, setList] = useState<any[]>([]);
+  const showToast = (type) => {
+
+    let toastProperties;
+    switch (type) {
+      case "no_info":
+        toastProperties = {
+          id: 1,
+          title: "Ой! Скоро обновим!",
+          description: "Этот раздел сайта в работе (^.^')",
+          backgroundColor: "#5cb85c",
+          icon: Banana,
+        };
+        break;      
+      default:
+        setList([]);
+        break
+    }
+    setList([...list, toastProperties]);
+  };
   return(
     <YStack ai="center">
+      <ToastComp 
+          toastList={list}
+          position="bottom-center"
+          autoDelete={true}
+          autoDeleteTime={3000}
+          />
       <YStack marginVertical="$10" w='100%' maw={800}>
         <H3 tt="uppercase" ta="center"> купить</H3>
         <XStack fw="wrap" jc="center">
-          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {}}>
+          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {showToast("no_info")}}>
             <H4 tt="uppercase"  col="$background">tinder</H4>
           </Button>
-          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {}}>
+          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {showToast("no_info")}}>
             <H4 tt="uppercase"  col="$background">grinder</H4>
           </Button>
-          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {}}>
+          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {showToast("no_info")}}>
             <H4 tt="uppercase"  col="$background">restaurante</H4>
           </Button>
-          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {}}>
+          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {showToast("no_info")}}>
             <H4 tt="uppercase"  col="$background">migraciones</H4>
           </Button>
-          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {}}>
+          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {showToast("no_info")}}>
             <H4 tt="uppercase"  col="$background">palabras <br/> malas</H4>
           </Button>
-          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {}}>
+          <Button w={200} h={50} m="$5" bc="$backgroundPress" onPress={() => {showToast("no_info")}}>
             <H4 tt="uppercase"  col="$background">otros</H4>
           </Button>
         </XStack>

@@ -17,12 +17,13 @@ import {
 import { trpc } from "../../utils/trpc";
 
 import { Sheet } from '@tamagui/sheet'
-import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
+import { ChevronDown, ChevronUp, Banana } from '@tamagui/lucide-icons'
 import { useLink } from "solito/link";
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
 import { ImageBackground, View} from "react-native"
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
+import { ToastComp } from "@my/ui/src/components/ToastComp";
 import React, { useState, useEffect } from 'react';
 
 import { SaleButton } from "@my/ui/src/components/SaleButton";
@@ -162,6 +163,27 @@ function AboutAutor({imageSource1}){
 }
 
 function AboutCourse ({courseLinkProps}) {
+  // This is for Toast
+  const [list, setList] = useState<any[]>([]);
+  const showToast = (type) => {
+
+    let toastProperties;
+    switch (type) {
+      case "no_info":
+        toastProperties = {
+          id: 1,
+          title: "Ой! Скоро обновим!",
+          description: "Этот раздел сайта в работе (^.^')",
+          backgroundColor: "#5cb85c",
+          icon: Banana,
+        };
+        break;      
+      default:
+        setList([]);
+        break
+    }
+    setList([...list, toastProperties]);
+  };
     return(
       <YStack
         mt={100}
@@ -171,6 +193,12 @@ function AboutCourse ({courseLinkProps}) {
         style={{
         zIndex: 1
       }}>
+        <ToastComp 
+          toastList={list}
+          position="bottom-center"
+          autoDelete={true}
+          autoDeleteTime={3000}
+          />
         <Image
           source={{uri: 'https://cdn.vosque.education/images/img-home-course.png', width: 50, height: 50}}
           height={50}
@@ -201,7 +229,8 @@ function AboutCourse ({courseLinkProps}) {
               br="$2"
               bw="$1"
               boc="$backgroundPress"
-              h={40} w={200}>
+              h={40} w={200}
+              onPress={() => {showToast("no_info")}}>
                 <Paragraph color="$backgroundPress" ta="center">
                   Скоро Больше Курсов
                 </Paragraph>
