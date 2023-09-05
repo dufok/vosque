@@ -27,7 +27,7 @@ export function SaleButton({ isOpen: initialIsOpen }: SaleButtonProps) {
   return (
     <AlertDialog native open={isOpen}>
     <AlertDialog.Trigger asChild>
-      <Button zIndex={100_000} style={{ position: 'fixed', bottom: '10px', right: '10px'}} onPress={() => setIsOpen(true)}>ПРОМОКОД</Button>
+      <Button zIndex={100_000} style={{ position: 'fixed', bottom: '50px', right: '10px'}} onPress={() => setIsOpen(true)}>Скидка</Button>
     </AlertDialog.Trigger>
     <AlertDialog.Portal>
       <AlertDialog.Overlay
@@ -59,11 +59,9 @@ export function SaleButton({ isOpen: initialIsOpen }: SaleButtonProps) {
         <YStack space>
           <AlertDialog.Title>Хорошие Новости!</AlertDialog.Title>
           <AlertDialog.Description>
-            <YStack space="$2">
-            <Paragraph>До 10 сентября действует скидка 20% на базовый курс аргентинского испанского.</Paragraph>
-            <Paragraph mt="$2">Чтобы воспользоваться скидкой, скопируйте промокод {sale} и введите его на странице оплаты, предварительно выбрав подходящий тариф.</Paragraph>
-            </YStack>
-         </AlertDialog.Description>
+            До 10 сентября действует скидка 20% на базовый курс аргентинского испанского.
+          </AlertDialog.Description>
+          <Paragraph mt="$2">Чтобы воспользоваться скидкой, скопируйте промокод {sale} и введите его на странице оплаты, предварительно выбрав подходящий тариф.</Paragraph>
           <XStack space="$3" justifyContent="flex-end">
             <AlertDialog.Cancel asChild>
               <Button onPress={() => setIsOpen(false)}>Закрыть</Button>

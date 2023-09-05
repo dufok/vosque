@@ -23,20 +23,20 @@ export function SubMenu({userpageLinkProps}) {
             <TelegramIcon width={30} color="$background" />
           </a>
         </XStack>
-        <a href="https://t.me/vosque_help" target="_blank" rel="noopener noreferrer">
-          <H3
-            className="h3-animation"
-            color="$background"
-          >
-            ПОМОЩЬ ТУТ
-          </H3>
-        </a>
         <YStack mr="$4">
-          <Button {...userpageLinkProps} bc="backgroundPress" bw='0'>
+          {/* <Button {...userpageLinkProps} bc="backgroundPress" bw='0'>
             <Paragraph >
               ВОЙТИ / ЗАПИСАТЬСЯ
             </Paragraph>
-          </Button>
+          </Button> */}
+          <a href="https://t.me/vosque_help" target="_blank" rel="noopener noreferrer">
+            <H3
+              className="h3-animation"
+              color="$background"
+            >
+              ПОМОЩЬ ТУТ
+            </H3>
+          </a>
         </YStack>
       </XStack>
     </YStack>
