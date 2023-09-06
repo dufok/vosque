@@ -11,8 +11,6 @@ import {
 import React, { useEffect, useState} from "react";
 import { useRouter } from "next/router";
 
-import crypto from 'crypto';
-import { v4 as uuidv4 } from 'uuid';
 import { trpc } from "app/utils/trpc";
 import { useAuth } from "app/utils/clerk";
 import { Ticket, Banknote } from '@tamagui/lucide-icons';
@@ -20,6 +18,7 @@ import { ToastComp } from "./ToastComp";
 import { sendTelegramMessage } from "./sendTelegramMessage";
 import { SpinnerOver } from "./SpinnerOver";
 import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import { BinanceButton } from "./BinanceButton";
 
 
 export function PayContent({ name, description, sku, pricerub, priceusdt, coupon }) {
@@ -115,79 +114,11 @@ export function PayContent({ name, description, sku, pricerub, priceusdt, coupon
     setList([...list, toastProperties]);
   };
   // This is for Telegram message
+
   //if curentUser empty then error in TRPC console
   const text = `Пользователь: ${currentUser?.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
   const textError = `Пользователь: ${currentUser?.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
   
-  // This is for Binance USDT payout
-  const binanceSecretKey = process.env.BINANCE_SECRET_KEY || "1";
-  const binanceMerchantId = process.env.BINANCE_MERCHANT_ID;
-  const unique_trade_no = uuidv4();
-
-  let qrUrl;
-  let linkUrl;
-
-  const handleTransferCompletedUsdtBinance = async () => {
-    // Binance API call
-    const binancePayload = {
-      env: {
-        terminalType: "WEB",
-      },
-      orderTags: {
-        ifProfitSharing: true,
-      },
-      merchantTradeNo: unique_trade_no,
-      orderAmount: discontedPrice,
-      currency: "USDT",
-      goods: {
-        goodsType: "01",
-        goodsCategory: "Z000",
-        referenceGoodsId: sku,
-        goodsName: description,
-        goodsDetail: cource,
-      },
-      timestamp: Date.now(),
-      sign: "",
-    };
-  
-    const nonce = uuidv4(); // Generate a unique nonce for each request
-    const body = JSON.stringify(binancePayload);
-    const payload = `${binancePayload.timestamp}\n${nonce}\n${body}\n`;
-  
-    const signature = crypto
-      .createHmac('sha512', binanceSecretKey)
-      .update(payload)
-      .digest('hex')
-      .toUpperCase(); // Generate the signature
-  
-    binancePayload.sign = signature; // Add the signature to the payload
-    
-    fetch('/api/binance', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'BinancePay-Timestamp': binancePayload.timestamp.toString()
-      },
-      body: JSON.stringify(binancePayload),
-    })
-    .then(response => response.json())  // convert to json
-    .then(async (data) => {
-      if (data.status === "SUCCESS") {
-        qrUrl = data.data.qrcodeLink;
-        linkUrl = data.data.universalUrl;
-        sendTelegramMessage(text);
-      } else {
-        showToast("error");
-        console.log('Error:', data)
-        await createPayment.mutateAsync({ prepayId: data.data.prepayId, merchantTradeNo: binancePayload.merchantTradeNo, code: data.code });
-        sendTelegramMessage(textError);
-      }
-      
-      console.log('Success:', data) // print the data
-    })
-    .catch(error => console.log('Error:', error));
-  };
-
   // Transfer Completed
   const handleTransferCompletedRUB = async () => {
     {/*await updateUserLessonPack.mutateAsync({ userId: currentUser.id, lessonPackName: course_start });*/};
@@ -288,15 +219,19 @@ export function PayContent({ name, description, sku, pricerub, priceusdt, coupon
                 ) : (
                   <>
                     <XStack space={10} fw="wrap">
-                      <Button bc="$color.yellow7Light" aria-label="Close" onPress={async () => {
-                        await handleTransferCompletedUsdtBinance();
-                      }}><Paragraph fontFamily="$bodyBold" col="$color.gray1Light">BINANCE</Paragraph></Button>
+                    <BinanceButton 
+                        discontedPrice={discontedPrice}
+                        sku={sku}
+                        description={description}
+                        cource={cource}
+                        text={text}
+                        textError={textError}
+                        createPayment={createPayment}
+                      />
                       <Button bc="$backgroundFocus" aria-label="Close" onPress={async () => {
                         await handleTransferCompletedUsdtSelf();
                       }}>Проверить Перевод</Button>
                     </XStack>
-                    {qrUrl && <img src={qrUrl} alt="QR Code" />}
-                    {linkUrl && <a href={linkUrl}>Go to Payment</a>}
                   </>
                 )
               ) : (
