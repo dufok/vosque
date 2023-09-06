@@ -9,6 +9,7 @@ const createOrder = async (req, res) => {
       headers: {
         'Content-Type': 'application/json',
         'X-BPAY-APIKEY': process.env.BINANCE_API_KEY,
+        'BinancePay-Timestamp': req.headers['binancePay-timestamp']
       },
       body: JSON.stringify(binancePayload),
     });

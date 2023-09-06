@@ -166,6 +166,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt, coupon
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'BinancePay-Timestamp': binancePayload.timestamp.toString()
       },
       body: JSON.stringify(binancePayload),
     })
@@ -177,6 +178,7 @@ export function PayContent({ name, description, sku, pricerub, priceusdt, coupon
         sendTelegramMessage(text);
       } else {
         showToast("error");
+        console.log('Error:', data)
         await createPayment.mutateAsync({ prepayId: data.data.prepayId, merchantTradeNo: binancePayload.merchantTradeNo, code: data.code });
         sendTelegramMessage(textError);
       }
