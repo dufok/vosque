@@ -9,6 +9,7 @@ export function SpinnerOver() {
       alignItems="center"
       width="100%"
       height="100%"
+      position="absolute"
       style={{
       position: 'fixed', // Use fixed position
       backgroundColor: 'rgba( 255, 255, 255, 0.25 )', // Semi-transparent background

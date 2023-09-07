@@ -116,8 +116,8 @@ export function PayContent({ name, description, sku, pricerub, priceusdt, coupon
   // This is for Telegram message
 
   //if curentUser empty then error in TRPC console
-  const text = `Пользователь: ${currentUser?.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
-  const textError = `Пользователь: ${currentUser?.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}. Но возникла ошибка!`;
+  const text = `💰 Пользователь: ${currentUser?.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}`;
+  const textError = ` 😭ОШИБКА😭 Пользователь: ${currentUser?.email} оплатил курс: ${description}. Нужно проверить! ${discontedPrice} ${currency}.`;
   
   // Transfer Completed
   const handleTransferCompletedRUB = async () => {
@@ -196,10 +196,10 @@ export function PayContent({ name, description, sku, pricerub, priceusdt, coupon
           </YStack>
           <XGroup jc="center">
             <XGroup.Item>
-              <Button w={157} onPress={handleToUSDT}><H4>USDT</H4></Button>
+              <Button w={157} bc="$background" onPress={handleToUSDT}><H4>USDT</H4></Button>
             </XGroup.Item>
             <XGroup.Item>
-              <Button w={157} onPress={handleToRUB}><H4>RUB</H4></Button>
+              <Button w={157} bc="$background" onPress={handleToRUB}><H4>RUB</H4></Button>
             </XGroup.Item>
           </XGroup>
           <YStack paddingHorizontal="$4">

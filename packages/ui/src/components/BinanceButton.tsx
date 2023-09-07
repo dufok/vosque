@@ -71,23 +71,14 @@ export function BinanceButton({ discontedPrice, sku, description, cource, text, 
       sign: "",
     };
 
-    const nonce = uuidv4(); // Generate a unique nonce for each request
-    const body = JSON.stringify(binancePayload);
-    const payload = `${binancePayload.timestamp}\n${nonce}\n${body}\n`;
-
-    const signature = crypto
-      .createHmac('sha512', binanceSecretKey)
-      .update(payload)
-      .digest('hex')
-      .toUpperCase(); // Generate the signature
-
-    binancePayload.sign = signature; // Add the signature to the payload
+    const nonce = uuidv4().replace(/-/g, '').substring(0, 32); // Generate a unique nonce for each request
     
     fetch('/api/binance', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'BinancePay-Timestamp': binancePayload.timestamp.toString()
+        'BinancePay-Timestamp': binancePayload.timestamp.toString(),
+        'BinancePay-Nonce': nonce
       },
       body: JSON.stringify(binancePayload),
     })
@@ -96,11 +87,16 @@ export function BinanceButton({ discontedPrice, sku, description, cource, text, 
       if (data.status === "SUCCESS") {
         qrUrl = data.data.qrcodeLink;
         linkUrl = data.data.universalUrl;
+        await createPayment.mutateAsync({ prepayId: data.data?.prepayId, merchantTradeNo: binancePayload.merchantTradeNo, code: data.code });
         sendTelegramMessage(text);
       } else {
         showToast("error");
         console.log('Error:', data)
-        await createPayment.mutateAsync({ prepayId: data.data.prepayId, merchantTradeNo: binancePayload.merchantTradeNo, code: data.code });
+        await createPayment.mutateAsync({
+          prepayId: data.status,
+          merchantTradeNo: data.errorMessage,
+          code: data.code
+        });
         sendTelegramMessage(textError);
       }
       
