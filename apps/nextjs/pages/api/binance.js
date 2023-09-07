@@ -3,8 +3,8 @@ import crypto from 'crypto';
 
 const createOrder = async (req, res) => {
   const binancePayload = req.body;
-  console.log("Received headers:", req.headers);
-  console.log("Received body:", binancePayload);
+/*   console.log("Received headers:", req.headers);
+  console.log("Received body:", binancePayload); */
 
   const body = JSON.stringify(binancePayload);
   const payload = `${req.headers['binancepay-timestamp']}\n${req.headers['binancepay-nonce']}\n${body}\n`;
