@@ -250,7 +250,7 @@ function SheetCoupon({ price, discontedPrice, setDiscountedPrice, open, onOpenCh
   //this is for coupon input
   /* const coupon = process.env.NEXT_PUBLIC_SECRET_COUPON; */
   const sale = process.env.NEXT_PUBLIC_SECRET_SALE;
-  /* const friend = process.env.NEXT_PUBLIC_SECRET_FRIEND; */
+  const friend = process.env.NEXT_PUBLIC_SECRET_FRIEND;
   
 
   const [couponInput, setCouponInput] = useState("");
@@ -260,6 +260,7 @@ function SheetCoupon({ price, discontedPrice, setDiscountedPrice, open, onOpenCh
   if (sale) {
     const discountMap = {
       [String(sale)]: 0.8,
+      [String(friend)]: 0.01,
     };
 
     const discountFactor = discountMap[couponInput] || 1;

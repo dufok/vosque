@@ -1,10 +1,8 @@
 import { Paragraph, Button, YStack, Popover,
   PopoverProps, Adapt} from "tamagui";
 import React, { useState } from "react";
-import crypto from 'crypto';
 import { v4 as uuidv4 } from 'uuid';
 import { sendTelegramMessage } from "./sendTelegramMessage";
-import { trpc } from "app/utils/trpc";
 import { Banknote } from '@tamagui/lucide-icons';
 import { BinanceIcon } from "./GithubIcon";
 
@@ -99,8 +97,9 @@ export function BinanceButton({ discontedPrice, sku, description, cource, text, 
       } else {
         showToast("error");
         await createPayment.mutateAsync({
-          prepayId: data.status,
-          merchantTradeNo: data.errorMessage,
+          status: data.status,
+          prepayId: data.errorMessage,
+          merchantTradeNo: unique_trade_no,
           code: data.code
         });
         sendTelegramMessage(textError);
