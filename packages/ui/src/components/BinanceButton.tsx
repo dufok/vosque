@@ -122,12 +122,15 @@ export function BinanceButton({ discontedPrice, sku, description, cource, text, 
       <Adapt when="sm" platform="touch">
         <Popover.Sheet modal dismissOnSnapToBottom>
           <Popover.Sheet.Frame padding="$4">
-            <Adapt.Contents />
+            <YStack ai="center">
+              <Adapt.Contents />
+            </YStack>
           </Popover.Sheet.Frame>
           <Popover.Sheet.Overlay
             animation="lazy"
             enterStyle={{ opacity: 0 }}
             exitStyle={{ opacity: 0 }}
+            o={0}
           />
         </Popover.Sheet>
       </Adapt>
@@ -149,14 +152,16 @@ export function BinanceButton({ discontedPrice, sku, description, cource, text, 
       >
         <Popover.Arrow borderWidth={1} borderColor="$borderColor" />
 
-        <YStack space="$3" ai="center" maw={250}>
-          {qrUrl && <img src={qrUrl} width={200} height={200} alt="QR Code" />}
-          {linkUrl && <a href={linkUrl}>
-            <Paragraph >🍄 продолжить на BINANCE 🍄</Paragraph>
-          </a>}
-          <Paragraph fontFamily="$bodyBold" size="$3" fontWeight={"700"} opacity={0.6} mt={5}>
-             после оплаты уроки появятся у вас в личном кабинете
-          </Paragraph>
+        <YStack space="$3" maw={250} w="100%">
+          <YStack ai="center">
+            {qrUrl && <img src={qrUrl} width={200} height={200} alt="QR Code" />}
+            {linkUrl && <a href={linkUrl}>
+              <Paragraph>🍄 продолжить на BINANCE 🍄</Paragraph>
+            </a>}
+            <Paragraph fontFamily="$bodyBold" size="$3" fontWeight={"700"} opacity={0.6} mt={5}>
+              после оплаты уроки появятся у вас в личном кабинете
+            </Paragraph>
+          </YStack>
         </YStack>
 
         <Popover.Close asChild>
