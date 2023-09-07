@@ -7,6 +7,8 @@ import { Text } from "react-native";
 import { useAuth } from "app/utils/clerk";
 import { PayContent } from "@my/ui/src/components/PayContent";
 
+import { Analytics } from '@vercel/analytics/react';
+
 export function payScreenScreen() {
 
   const router = useRouter();
@@ -25,6 +27,7 @@ export function payScreenScreen() {
         description={description}
         coupon={coupon}
         />
+      <Analytics />
     </YStack>
   );
 } 

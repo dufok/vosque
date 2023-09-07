@@ -22,6 +22,8 @@ import { useRouter } from "next/router";
 import { SaleButton } from "@my/ui/src/components/SaleButton";
 import { PayContent } from "@my/ui/src/components/PayContent";
 
+import { Analytics } from '@vercel/analytics/react';
+
 
 export function courseScreen() {
   const userpageLinkProps = useLink({href: "/userpage"});
@@ -39,6 +41,7 @@ export function courseScreen() {
       <PhraseBooks phasebookLinkProps={phasebookLinkProps}/>
       {/* <OtherProducts /> */}
       <SubMenu userpageLinkProps={userpageLinkProps}/>
+      <Analytics />
     </YStack>
   );
 } 

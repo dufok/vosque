@@ -25,8 +25,9 @@ import { ImageBackground, View} from "react-native"
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { ToastComp } from "@my/ui/src/components/ToastComp";
 import React, { useState, useEffect } from 'react';
-
 import { SaleButton } from "@my/ui/src/components/SaleButton";
+
+import { Analytics } from '@vercel/analytics/react';
 
 import texts from './rew.json';
 
@@ -63,6 +64,7 @@ export function HomeScreen() {
         <PhraseBooks phasebookLinkProps={phasebookLinkProps}/>
         <ReviewSection />
         <SubMenu userpageLinkProps={userpageLinkProps}/>
+        <Analytics />
     </YStack>
   );
 }

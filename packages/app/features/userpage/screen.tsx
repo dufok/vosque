@@ -8,6 +8,8 @@ import { SignedIn, SignedOut, useAuth } from "app/utils/clerk";
 import { SubMenu } from '@my/ui/src/components/SubMenu';
 import { useRouter } from "next/router";
 
+import { Analytics } from '@vercel/analytics/react';
+
 
 export function userpageScreen() {
 
@@ -46,6 +48,7 @@ export function userpageScreen() {
         <Lessons/>
       </YStack>
       <SubMenu userpageLinkProps={userpageLinkProps}/>
+      <Analytics />
     </YStack>
   );
 }

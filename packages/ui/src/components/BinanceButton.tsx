@@ -9,8 +9,6 @@ import { BinanceIcon } from "./GithubIcon";
 
 export function BinanceButton({ discontedPrice, sku, description, cource, text, textError, createPayment}) {
 
-  const binanceSecretKey = process.env.BINANCE_SECRET_KEY || "1";
-  const binanceMerchantId = process.env.BINANCE_MERCHANT_ID;
   const unique_trade_no = uuidv4();
    // This is for Toast
   const [list, setList] = useState<any[]>([]);
