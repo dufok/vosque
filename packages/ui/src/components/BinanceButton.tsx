@@ -50,6 +50,11 @@ export function BinanceButton({ discontedPrice, sku, description, cource, text, 
 
 
   const handleTransferCompletedUsdtBinance = async () => {
+    // if qrUrl or linkUrl is not null, then we have already created a payment
+    if (qrUrl || linkUrl) {
+      return;
+    }
+
     // Binance API call
     const binancePayload = {
       env: {
@@ -145,9 +150,14 @@ export function BinanceButton({ discontedPrice, sku, description, cource, text, 
       >
         <Popover.Arrow borderWidth={1} borderColor="$borderColor" />
 
-        <YStack space="$3">
-          {qrUrl && <img src={qrUrl} alt="QR Code" />}
-          {linkUrl && <a href={linkUrl}> 🍄 Перейти на сайт BINANCE 🍄 </a>}
+        <YStack space="$3" ai="center" maw={250}>
+          {qrUrl && <img src={qrUrl} width={200} height={200} alt="QR Code" />}
+          {linkUrl && <a href={linkUrl}>
+            <Paragraph >🍄 продолжить на BINANCE 🍄</Paragraph>
+          </a>}
+          <Paragraph fontFamily="$bodyBold" size="$3" fontWeight={"700"} opacity={0.6} mt={5}>
+             после оплаты уроки появятся у вас в личном кабинете
+          </Paragraph>
         </YStack>
 
         <Popover.Close asChild>
