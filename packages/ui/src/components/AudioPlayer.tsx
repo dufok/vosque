@@ -1,5 +1,5 @@
 import { YStack, Button } from "tamagui";
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { Play, Pause } from '@tamagui/lucide-icons';
 
 export function AudioPlayer({src}) {
@@ -17,6 +17,17 @@ export function AudioPlayer({src}) {
       setIsPlaying(!isPlaying);
     }
   }
+
+  // hook  for restart audio if remount
+  useEffect(() => {
+    return () => {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0; // This will reset the audio to the beginning
+      }
+    }
+  }, [audio]); 
+
 
   return (
     <YStack m="$1" jc="center" ai="center">

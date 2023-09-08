@@ -63,6 +63,17 @@ function PlayerDop({src}) {
     setIsPlaying(!isPlaying);
   };
 
+  // hook for stopping audio if the component is unmounted
+  useEffect(() => {
+    return () => {
+      const audio = audioRef.current; // Reference audio from useRef here
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0; // This will reset the audio to the beginning
+      }
+    }
+  }, []);
+
   return (
     <YStack m="$1" jc="center">
       <XStack
