@@ -18,6 +18,7 @@ export function SaleButton({ isOpen: initialIsOpen }: SaleButtonProps) {
       coupon: sale.toString(),
     }).toString();
     router.push(`/course?${queryParams}`);
+    setIsOpen(false);
   };
 
   useEffect(() => {
