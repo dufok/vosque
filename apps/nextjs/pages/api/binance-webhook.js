@@ -13,38 +13,65 @@ export default async function handler(req, res) {
   const payload = req.body; // Assuming the body is already parsed as JSON
   console.log('Received payload:', payload);
 
+  const parsedData = JSON.parse(payload.data);
+  const merchantTradeNo = parsedData.merchantTradeNo;
+  const productType = parsedData.productType;
+
+
   const yourSignature = crypto
     .createHmac('sha512', process.env.BINANCE_SECRET_KEY)
     .update(JSON.stringify(payload))
-    .digest('hex');
+    .digest('hex')
+    .toUpperCase();
 
   if (yourSignature !== binanceSignature) {
     console.log('Signature verification failed');
     return res.status(401).json({ message: 'Invalid signature' });
   }
+  
+  const paymentType = payload.bizType;
 
-  // Check if this merchantTradeNo is already processed (Idempotency)
-  const existingPayment = await prisma.payment.findUnique({
-    where: { merchantTradeNo: payload.merchantTradeNo },
-  });
+  // Payment is closed
+  if (paymentType === 'PAY' && payload.bizStatus === 'PAY_CLOSED') {
+    try {
+        // delete payment from database
+        await prisma.payment.delete({
+            where: { merchantTradeNo: merchantTradeNo }
+        });
 
-  if (existingPayment) {
-    console.log('Payment already processed:', existingPayment);
-    return res.status(200).json({ message: 'Payment already processed' });
+    } catch (error) {
+        console.error("Error deleting payment:", error);
+        res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to close payment' });
+    }
+  } 
+
+  // Payment is refunded
+
+  if (paymentType === 'PAY' && payload.bizStatus === 'PAY_REFUND') {
+    try {
+      // update payment status in database
+      await prisma.payment.update({
+        where: { merchantTradeNo: merchantTradeNo },
+        data: { status: 'REFUNDED' },
+      });
+
+    } catch (error) {
+      console.error("Error updating payment:", error);
+      res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to update payment' });
+    }
   }
 
   // Process the payment status from the request body.
-  const paymentStatus = payload.status;
-  if (paymentStatus === 'SUCCESS') {
+  if (paymentType === 'PAY' && payload.bizStatus === 'PAY_SUCCESS') {
     console.log('Payment status is SUCCESS');
 
     // Find the user associated with the merchantTradeNo
     const payment = await prisma.payment.findUnique({
-        where: { merchantTradeNo: payload.merchantTradeNo },
+        where: { merchantTradeNo: merchantTradeNo },
     });
 
     if (!payment) {
-        console.log('Payment not found for merchantTradeNo:', payload.merchantTradeNo);
+        console.log('Payment not found for merchantTradeNo:', merchantTradeNo);
         return res.status(404).json({ message: 'Payment not found' });
     }
 
@@ -53,11 +80,11 @@ export default async function handler(req, res) {
 
     // Find the LessonPack using the sku_number
     const lessonPack = await prisma.lessonPack.findFirst({
-        where: { sku_number: payload.referenceGoodsId },
+        where: { sku_number: productType },
     });
 
     if (!lessonPack) {
-        console.log('LessonPack not found for SKU:', payload.referenceGoodsId);
+        console.log('LessonPack not found for SKU:', productType);
         return res.status(404).json({ message: 'LessonPack not found' });
     }
 
@@ -75,11 +102,17 @@ export default async function handler(req, res) {
     const user = await prisma.user.findUnique({
         where: { id: userId },
     });
-    sendEmailMessage(user.email)
+
+    try {
+        await sendEmailMessage(user.email);
+    } catch (error) {
+        console.error("Error sending email:", error);
+        res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to send email' });
+    }
 
     // Update the payment status in the database
     await prisma.payment.update({
-        where: { merchantTradeNo: payload.merchantTradeNo },
+        where: { merchantTradeNo: merchantTradeNo },
         data: { status: 'SUCCESS' },
     });
 
@@ -88,5 +121,5 @@ export default async function handler(req, res) {
   }
 
   // Respond to Binance.
-  res.status(200).json({ message: 'Webhook processed successfully' });
+  res.status(200).json({ returnCode: 'SUCCESS', returnMessage: null });
 }
