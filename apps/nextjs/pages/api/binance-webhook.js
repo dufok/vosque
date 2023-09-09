@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
   const parsedData = JSON.parse(payload.data);
   const merchantTradeNo = parsedData.merchantTradeNo;
-  const productType = parsedData.productType;
+  const productName = parsedData.productName;
 
 
   const yourSignature = crypto
@@ -80,11 +80,11 @@ export default async function handler(req, res) {
 
     // Find the LessonPack using the sku_number
     const lessonPack = await prisma.lessonPack.findFirst({
-        where: { sku_number: productType },
+        where: { name: productName },
     });
 
     if (!lessonPack) {
-        console.log('LessonPack not found for SKU:', productType);
+        console.log('LessonPack not found for SKU:', productName);
         return res.status(404).json({ message: 'LessonPack not found' });
     }
 
