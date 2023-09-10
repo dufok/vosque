@@ -1,7 +1,9 @@
 import crypto from 'crypto';
-import prisma from '@my/db/index';
+import { PrismaClient } from "@prisma/client";
 import { sendEmailMessage } from "@my/ui/src/components/sendEmailMessage";
 import { sendTelegramMessage } from "@my/ui/src/components/sendTelegramMessage";
+
+const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -11,7 +13,8 @@ export default async function handler(req, res) {
 
   // Verify Binance's signature
   const binanceSignature = req.headers['binancepay-signature'];
-  console.log('Received signature:', binanceSignature);
+  const decodedBinanceSignature = Buffer.from(binanceSignature, 'base64').toString('utf-8');
+  console.log('Decoded signature:', decodedBinanceSignature);
   const binanceTimestamp = req.headers['binancepay-timestamp'];
   /* console.log('Received timestamp:', binanceTimestamp); */
   const binanceNonce = req.headers['binancepay-nonce'];
@@ -36,9 +39,9 @@ export default async function handler(req, res) {
 
   console.log('Your signature:', yourSignature);
 
-  if (yourSignature !== binanceSignature) {
+  if (yourSignature !== decodedBinanceSignature) {
     console.log('Signature verification failed');
-    /* return res.status(401).json({ message: 'Invalid signature' }); */
+    return res.status(401).json({ message: 'Invalid signature' }); */
   }
   
   const paymentType = payload.bizType;
@@ -46,6 +49,16 @@ export default async function handler(req, res) {
   // Payment is closed
   if (paymentType === 'PAY' && payload.bizStatus === 'PAY_CLOSED') {
     try {
+
+        const payment = await prisma.payment.findUnique({
+          where: { merchantTradeNo: merchantTradeNo },
+        });
+
+        if (!payment) {
+            console.log('Payment not found for merchantTradeNo:', merchantTradeNo);
+            return res.status(404).json({ message: 'Payment not found' });
+        }
+
         // delete payment from database
         await prisma.payment.delete({
             where: { merchantTradeNo: merchantTradeNo }
@@ -53,7 +66,7 @@ export default async function handler(req, res) {
 
     } catch (error) {
         console.error("Error deleting payment:", error);
-        res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to close payment' });
+        return res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to close payment' });
     }
   } 
 
@@ -69,7 +82,7 @@ export default async function handler(req, res) {
 
     } catch (error) {
       console.error("Error updating payment:", error);
-      res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to update payment' });
+      return res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to update payment' });
     }
   }
 
@@ -122,7 +135,7 @@ export default async function handler(req, res) {
         console.log('Successfully sent telegram message to user');
     } catch (error) {
         console.error("Error sending email:", error);
-        res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to send email' });
+        return res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to send email' });
     }
 
     // Update the payment status in the database
