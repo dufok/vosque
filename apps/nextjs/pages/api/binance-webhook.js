@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import prisma from '@my/db/index';
 import { sendEmailMessage } from "@my/ui/src/components/sendEmailMessage";
+import { sendTelegramMessage } from "@my/ui/src/components/sendTelegramMessage";
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -12,23 +13,27 @@ export default async function handler(req, res) {
   const binanceSignature = req.headers['binancepay-signature'];
   console.log('Received signature:', binanceSignature);
   const binanceTimestamp = req.headers['binancepay-timestamp'];
-  console.log('Received timestamp:', binanceTimestamp);
+  /* console.log('Received timestamp:', binanceTimestamp); */
   const binanceNonce = req.headers['binancepay-nonce'];
-  console.log('Received nonce:', binanceNonce);
+  /* console.log('Received nonce:', binanceNonce); */
   const payload = req.body;
   console.log('Received payload:', payload);
   
   const signaturePayload = `${binanceTimestamp}\n${binanceNonce}\n${JSON.stringify(payload)}\n`;
 
-  console.log('signature payload:', signaturePayload);
+  /* console.log('signature payload:', signaturePayload); */
 
   const merchantTradeNo = payload.data.merchantTradeNo;
+  console.log('Received merchantTradeNo:', merchantTradeNo);
   const productName = payload.data.productName;
+  console.log('Received productName:', productName);
 
   const yourSignature = crypto
     .createHmac('sha512', process.env.BINANCE_SECRET_KEY)
     .update(signaturePayload)
     .digest('hex');
+
+  console.log('Your signature:', yourSignature);
 
   if (yourSignature !== binanceSignature) {
     console.log('Signature verification failed');
@@ -111,6 +116,9 @@ export default async function handler(req, res) {
 
     try {
         await sendEmailMessage(user.email);
+        console.log('Successfully sent email to user');
+        await sendTelegramMessage( `💰 Пользователь: ${user.email} оплатил курс: ${productName}. Через BINANCE` );
+        console.log('Successfully sent telegram message to user');
     } catch (error) {
         console.error("Error sending email:", error);
         res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to send email' });
