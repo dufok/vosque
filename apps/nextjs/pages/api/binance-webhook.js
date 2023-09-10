@@ -41,7 +41,7 @@ export default async function handler(req, res) {
 
   if (yourSignature !== decodedBinanceSignature) {
     console.log('Signature verification failed');
-    return res.status(401).json({ message: 'Invalid signature' }); */
+    return res.status(401).json({ message: 'Invalid signature' });
   }
   
   const paymentType = payload.bizType;
