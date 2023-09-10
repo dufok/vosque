@@ -10,23 +10,30 @@ export default async function handler(req, res) {
 
   // Verify Binance's signature
   const binanceSignature = req.headers['binancepay-signature'];
-  const payload = JSON.stringify(req.body);
+  console.log('Received signature:', binanceSignature);
+  const binanceTimestamp = req.headers['binancepay-timestamp'];
+  console.log('Received timestamp:', binanceTimestamp);
+  const binanceNonce = req.headers['binancepay-nonce'];
+  console.log('Received nonce:', binanceNonce);
+  const payload = req.body;
   console.log('Received payload:', payload);
+  
+  const signaturePayload = `${binanceTimestamp}\n${binanceNonce}\n${JSON.stringify(payload)}\n`;
 
-  const parsedData = JSON.parse(payload);
-  const merchantTradeNo = parsedData.merchantTradeNo;
-  const productName = parsedData.productName;
+  console.log('Received signature payload:', signaturePayload);
 
+  const merchantTradeNo = payload.data.merchantTradeNo;
+  const productName = payload.data.productName;
 
   const yourSignature = crypto
     .createHmac('sha512', process.env.BINANCE_SECRET_KEY)
-    .update(JSON.stringify(payload))
+    .update(signaturePayload)
     .digest('hex')
     .toUpperCase();
 
   if (yourSignature !== binanceSignature) {
     console.log('Signature verification failed');
-    /* return res.status(401).json({ message: 'Invalid signature' }); */
+    return res.status(401).json({ message: 'Invalid signature' });
   }
   
   const paymentType = payload.bizType;
