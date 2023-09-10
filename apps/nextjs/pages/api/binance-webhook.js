@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   
   const signaturePayload = `${binanceTimestamp}\n${binanceNonce}\n${JSON.stringify(payload)}\n`;
 
-  console.log('Received signature payload:', signaturePayload);
+  console.log('signature payload:', signaturePayload);
 
   const merchantTradeNo = payload.data.merchantTradeNo;
   const productName = payload.data.productName;
@@ -28,8 +28,7 @@ export default async function handler(req, res) {
   const yourSignature = crypto
     .createHmac('sha512', process.env.BINANCE_SECRET_KEY)
     .update(signaturePayload)
-    .digest('hex')
-    .toUpperCase();
+    .digest('hex');
 
   if (yourSignature !== binanceSignature) {
     console.log('Signature verification failed');
