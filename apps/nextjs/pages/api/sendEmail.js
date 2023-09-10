@@ -1,33 +1,26 @@
-import Mailjet from 'node-mailjet';
-
-const mailjet = Mailjet.apiConnect(
-  process.env.MAILJET_API_KEY,
-  process.env.MAILJET_SECRET_KEY,
-);
-
 const sendEmail = async (req, res) => {
   const { to, subject, HTMLPart } = req.body;
 
-  const request = mailjet
-    .post("send", { 'version': 'v3.1' })
-    .request({
-      "Messages": [
-        {
-          "From": { "Email": 'admin@vosque.education',
-                    "Name": 'Vosque Education'
-                  },
-          "To": [
-            { "Email": to }
-          ],
-          "Subject": subject,
-          
-          "HTMLPart": HTMLPart,
-        }
-      ]
+  try {
+    const response = await fetch('http://mailst-api.dokku.daruma.dev:1314/sendEmail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'mailst-api-key': process.env.MAILST_API_KEY
+      },
+      body: JSON.stringify({
+        to: to,
+        subject: subject,
+        html: HTMLPart,
+        user: process.env.MAILST_user,
+        pass: process.env.MAILST_password
+      }),
     });
 
-  try {
-    await request;
+    if (!response.ok) {
+      throw new Error('Failed to send email via RESTful API');
+    }
+
     res.status(200).send('Email sent');
   } catch (error) {
     console.error(error.message);
@@ -36,5 +29,3 @@ const sendEmail = async (req, res) => {
 };
 
 export default sendEmail;
-
-  

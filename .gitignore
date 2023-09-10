@@ -63,3 +63,4 @@ EXAMPLE_TEST_SCREEN_USERPAGE
 packages/db/seed/seed_backup.json
 apps/nextjs/pages/test/index.tsx
 packages/app/features/test/screen.tsx
+generateKey.js
