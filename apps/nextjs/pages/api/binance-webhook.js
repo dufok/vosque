@@ -44,7 +44,7 @@ export default async function handler(req, res) {
     console.log('Signature matches');
   } else {
     console.log('Signature verification failed');
-    return res.status(401).json({ message: 'Invalid signature' });
+    /* return res.status(401).json({ message: 'Invalid signature' }); */
   }
 
   /* if (yourSignature !== decodedBinanceSignature) {
@@ -64,7 +64,7 @@ export default async function handler(req, res) {
 
         if (!payment) {
             console.log('Payment not found for merchantTradeNo:', merchantTradeNo);
-            return res.status(404).json({ message: 'Payment not found' });
+            /* return res.status(404).json({ message: 'Payment not found' }); */
         }
 
         // delete payment from database
@@ -74,7 +74,7 @@ export default async function handler(req, res) {
 
     } catch (error) {
         console.error("Error deleting payment:", error);
-        return res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to close payment' });
+        /* return res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to close payment' }); */
     }
   } 
 
@@ -90,7 +90,7 @@ export default async function handler(req, res) {
 
     } catch (error) {
       console.error("Error updating payment:", error);
-      return res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to update payment' });
+      /* return res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to update payment' }); */
     }
   }
 
@@ -105,7 +105,7 @@ export default async function handler(req, res) {
 
     if (!payment) {
         console.log('Payment not found for merchantTradeNo:', merchantTradeNo);
-        return res.status(404).json({ message: 'Payment not found' });
+        /* return res.status(404).json({ message: 'Payment not found' }); */
     }
 
     const userId = payment.userId;
@@ -118,7 +118,7 @@ export default async function handler(req, res) {
 
     if (!lessonPack) {
         console.log('LessonPack not found for SKU:', productName);
-        return res.status(404).json({ message: 'LessonPack not found' });
+        /* return res.status(404).json({ message: 'LessonPack not found' }); */
     }
 
     console.log('Found LessonPack:', lessonPack);
@@ -143,7 +143,7 @@ export default async function handler(req, res) {
         console.log('Successfully sent telegram message to user');
     } catch (error) {
         console.error("Error sending email:", error);
-        return res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to send email' });
+        /* return res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to send email' }); */
     }
 
     // Update the payment status in the database
