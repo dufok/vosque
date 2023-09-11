@@ -99,7 +99,7 @@ model PhrasebookPackPhrasebook {
 model Payment {
   id           Int          @id @default(autoincrement())
   prepayId     String
-  merchantTradeNo     String
+  merchantTradeNo     String   @unique
   status     String?
   code     String
   user  User   @relation(fields: [userId], references: [id])
