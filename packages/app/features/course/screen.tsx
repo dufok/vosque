@@ -34,7 +34,7 @@ export function courseScreen() {
   return (
     <YStack>
       <HeaderComp />
-      <SaleButton isOpen={false}/>
+      
       <WelcomeCourse />
       <StructureCourse />
       <ProgramCourse />
