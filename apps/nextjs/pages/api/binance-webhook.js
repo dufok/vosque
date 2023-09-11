@@ -13,8 +13,8 @@ export default async function handler(req, res) {
 
   // Verify Binance's signature
   const binanceSignature = req.headers['binancepay-signature'];
-  const decodedBinanceSignature = Buffer.from(binanceSignature, 'base64').toString('utf-8');
-  console.log('Decoded signature:', decodedBinanceSignature);
+  /* const decodedBinanceSignature = Buffer.from(binanceSignature, 'base64').toString('utf-8');
+  console.log('Decoded signature:', decodedBinanceSignature); */
   const binanceTimestamp = req.headers['binancepay-timestamp'];
   /* console.log('Received timestamp:', binanceTimestamp); */
   const binanceNonce = req.headers['binancepay-nonce'];
@@ -37,12 +37,20 @@ export default async function handler(req, res) {
     .update(signaturePayload)
     .digest('hex');
 
-  console.log('Your signature:', yourSignature);
+  const yourSignatureBytes = Buffer.from(yourSignature, 'hex');
+  const binanceSignatureBytes = Buffer.from(binanceSignature, 'base64');
 
-  if (yourSignature !== decodedBinanceSignature) {
+  if (yourSignatureBytes.equals(binanceSignatureBytes)) {
+    console.log('Signature matches');
+  } else {
     console.log('Signature verification failed');
     return res.status(401).json({ message: 'Invalid signature' });
   }
+
+  /* if (yourSignature !== decodedBinanceSignature) {
+    console.log('Signature verification failed');
+    return res.status(401).json({ message: 'Invalid signature' });
+  } */
   
   const paymentType = payload.bizType;
 

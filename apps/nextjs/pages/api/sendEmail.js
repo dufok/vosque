@@ -1,8 +1,10 @@
+import fetch from 'node-fetch';
+
 const sendEmail = async (req, res) => {
   const { to, subject, HTMLPart } = req.body;
 
   try {
-    const response = await fetch('http://mailst-api.dokku.daruma.dev:1314/sendEmail', {
+    const response = await fetch('http://mailst-api.dokku.daruma.dev/sendEmail', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
