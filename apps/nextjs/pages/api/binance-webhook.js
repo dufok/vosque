@@ -80,7 +80,7 @@ export default async function handler(req, res) {
 
   // Payment is refunded
 
-  if (paymentType === 'PAY' && payload.bizStatus === 'REFUND_SUCCESS') {
+  if ( paymentType === 'PAY_REFUND' && payload.bizStatus === 'REFUND_SUCCESS') {
     try {
       // update payment status in database
       await prisma.payment.update({
