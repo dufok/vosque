@@ -88,6 +88,9 @@ export default async function handler(req, res) {
         data: { status: 'REFUNDED' },
       });
 
+      await sendTelegramMessage( `🌾 Пользователю вернули деньги через BINANCE` );
+      console.log('Successfully sent telegram message to user');
+
     } catch (error) {
       console.error("Error updating payment:", error);
       /* return res.status(500).json({ returnCode: 'ERROR', returnMessage: 'Failed to update payment' }); */

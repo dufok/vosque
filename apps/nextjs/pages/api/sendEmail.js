@@ -4,7 +4,7 @@ const sendEmail = async (req, res) => {
   const { to, subject, HTMLPart } = req.body;
 
   try {
-    const response = await fetch('http://mailst-api.dokku.daruma.dev/sendEmail', {
+    const response = await fetch('https://mailst-api.dokku.daruma.dev/sendEmail', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

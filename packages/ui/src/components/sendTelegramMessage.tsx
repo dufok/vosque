@@ -1,7 +1,9 @@
 export const sendTelegramMessage = async (text) => {
-  
+
+  const apiUrl = typeof window !== 'undefined' ? '/api/telegram' : 'telegram';
+
   try {
-    const response = await fetch('/api/telegram', {
+    const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

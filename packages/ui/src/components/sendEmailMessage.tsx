@@ -1,6 +1,8 @@
 export const sendEmailMessage = async (userEmail) => {
   console.log('Sending email to', userEmail);
-  
+
+  const apiUrl = typeof window !== 'undefined' ? '/api/sendEmail' : 'sendEmail';
+
   try {
     const htmlContent = `
       <h1>Hola!</h1>
@@ -13,7 +15,7 @@ export const sendEmailMessage = async (userEmail) => {
       <a href="https://t.me/vosque_help">Telegram: https://t.me/vosque_help</a>
     `;
 
-    const response = await fetch('/api/sendEmail', {
+    const response = await fetch( apiUrl , {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
