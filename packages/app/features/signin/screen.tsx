@@ -91,7 +91,6 @@ export function SignInScreen() {
       />
       <SignUpSignInComponent
         type="sign-in"
-        handleOAuthWithPress={handleOAuthSignInWithPress}
         handleEmailWithPress={handleEmailSignInWithPress}
       />
     </YStack>

@@ -29,7 +29,6 @@ export function SignUpScreen() {
     <YStack f={1} jc="center" ai="center" space>
       <SignUpSignInComponent
         type="sign-up"
-        handleOAuthWithPress={handleOAuthSignUpWithPress}
         handleEmailWithPress={handleEmailSignUpWithPress}
       />
     </YStack>

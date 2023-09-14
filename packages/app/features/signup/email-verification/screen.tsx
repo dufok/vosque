@@ -9,6 +9,7 @@ export function EmailVerificationScreen() {
   const { push } = useRouter();
   const [verificationCode, setVerificationCode] = useState("");
   const createUserMutation = trpc.user.create.useMutation();
+  const updateUserLessonPack = trpc.user.updateUserLessonPack.useMutation();
 
   const { signUp, setSession } = useSignUp();
   if (!signUp) return null;
@@ -28,6 +29,10 @@ export function EmailVerificationScreen() {
         email: signUp.emailAddress!,
         userName: signUp.emailAddress!,
       });
+
+      /* add user lesson pack */
+
+      updateUserLessonPack.mutateAsync({ userId: signUp.createdUserId!, lessonPackName: "Пробный курс" });
 
       /* redirect to userpage */
       

@@ -57,6 +57,7 @@ export function HomeScreen() {
   return (
     <YStack>
         <HeaderComp />
+        <SaleButton isOpen={true} />
         <Welcome imageSource={imageSource} userpageLinkProps={userpageLinkProps} />
         <AboutAutor imageSource1={imageSource1}/>
         <AboutCourse courseLinkProps={courseLinkProps}/>

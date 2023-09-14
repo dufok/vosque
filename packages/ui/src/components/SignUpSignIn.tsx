@@ -13,7 +13,6 @@ import { OAuthStrategy } from "@clerk/types";
 //changes
 interface Props {
   type: "sign-up" | "sign-in";
-  handleOAuthWithPress: (strategy: OAuthStrategy) => void;
   handleEmailWithPress: (emailAddress, password) => void;
 }
 
@@ -26,7 +25,6 @@ function isValidPassword(password) {
 
 export const SignUpSignInComponent: React.FC<Props> = ({
   type,
-  handleOAuthWithPress,
   handleEmailWithPress,
 }) => {
   const [emailAddress, setEmailAddress] = useState("");
