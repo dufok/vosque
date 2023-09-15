@@ -102,6 +102,8 @@ function Welcome({ onUserLessonsLoadingChange, onUserPacksLoadingChange }) {
   const filteredUserLessons =  Array.isArray(userLessons) ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
   const lessonCount = filteredUserLessons.length;
 
+  console.log(filteredUserLessons)
+
  return (
     <YStack bc="$backgroundFocus" ai="center" pt="$6" mt="$10">
       <YStack space="$2" ai="center" p="$4">
@@ -130,6 +132,7 @@ function Lessons({ onUserLessonsLoadingChange}) {
 
   const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
   const filteredUserLessons =  Array.isArray(userLessons) ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
+  const sortedUserLessons = filteredUserLessons.sort((a, b) => a.id - b.id);
 
   useEffect(() => {
     if (userLessons) {
@@ -162,16 +165,15 @@ function Lessons({ onUserLessonsLoadingChange}) {
     );
   }
 
-  const halfLength = Math.floor(filteredUserLessons.length / 2);
+  const halfLength = Math.floor(sortedUserLessons.length / 2);
 
-  const leftColumnLessons = filteredUserLessons.length === 1 
-      ? filteredUserLessons 
-      : filteredUserLessons.slice(0, halfLength);
-  
-  const rightColumnLessons = filteredUserLessons.length > 1
-      ? filteredUserLessons.slice(halfLength)
+  const leftColumnLessons = sortedUserLessons.length === 1 
+      ? sortedUserLessons 
+      : sortedUserLessons.slice(0, halfLength);
+    
+  const rightColumnLessons = sortedUserLessons.length > 1
+      ? sortedUserLessons.slice(halfLength)
       : [];
-  
 
   return (
     <YStack>
@@ -198,7 +200,6 @@ function Lessons({ onUserLessonsLoadingChange}) {
       </YStack>
     </YStack>
   );
-
 }
 
 
