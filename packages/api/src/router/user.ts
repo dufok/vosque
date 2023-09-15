@@ -86,7 +86,7 @@ export const userRouter = router({
       }
       return allLessons;
     }),
-  lessonPackBySku: protectedProcedure
+  lessonPackBySku: publicProcedure
     .input(z.object({ sku_number: z.string() }))
     .query(async ({ ctx, input }) => {
       try {

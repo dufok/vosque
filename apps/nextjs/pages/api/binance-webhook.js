@@ -83,13 +83,25 @@ export default async function handler(req, res) {
   if ( paymentType === 'PAY_REFUND' && payload.bizStatus === 'REFUND_SUCCESS') {
     try {
       // update payment status in database
-      await prisma.payment.update({
+      
+      // Find the the merchantTradeNo
+      const payment = await prisma.payment.findUnique({
         where: { merchantTradeNo: merchantTradeNo },
-        data: { status: 'REFUNDED' },
       });
 
-      await sendTelegramMessage( `🌾 Пользователю вернули деньги через BINANCE` );
-      console.log('Successfully sent telegram message to user');
+      if (!payment) {
+        console.log('Payment not found for merchantTradeNo:', merchantTradeNo);
+        /* return res.status(404).json({ message: 'Payment not found' }); */
+      } else {
+        
+        await prisma.payment.update({
+          where: { merchantTradeNo: merchantTradeNo },
+          data: { status: 'REFUNDED' },
+        });
+
+        await sendTelegramMessage( `🌾 Пользователю вернули деньги через BINANCE` );
+        console.log('Successfully sent telegram message to user');
+      }
 
     } catch (error) {
       console.error("Error updating payment:", error);

@@ -1,11 +1,9 @@
 import fetch from 'node-fetch';
 import crypto from 'crypto';
+import { sendTelegramMessage } from "@my/ui/src/components/sendTelegramMessage";
 
 const createOrder = async (req, res) => {
   const binancePayload = req.body;
-/*   console.log("Received headers:", req.headers);
-  console.log("Received body:", binancePayload); */
-
   const body = JSON.stringify(binancePayload);
   const payload = `${req.headers['binancepay-timestamp']}\n${req.headers['binancepay-nonce']}\n${body}\n`;
 
@@ -27,6 +25,8 @@ const createOrder = async (req, res) => {
       },
       body: body,
     });
+
+    await sendTelegramMessage( `🪑 Tecты BINANCE` );
 
     const data = await response.json();
     res.status(200).json(data);

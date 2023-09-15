@@ -1,3 +1,7 @@
+// This Sale button working with coupon code.
+// It is not used now, but it can be used in future.
+// Coupon stored in url. And going to course page with coupon code.
+ 
 import { Paragraph, YStack, AlertDialog, Button, XStack } from "tamagui";
 import React,{useEffect, useState} from "react";
 import { useRouter } from "next/router";
