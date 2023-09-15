@@ -7,11 +7,10 @@ import {
   H5,
   Paragraph,
   Button,
-  Input,
   Image,
   Avatar,
-  Anchor,
-  Stack } from "@my/ui";
+  Anchor
+} from "@my/ui";
 import { useLink } from "solito/link";
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { SpinnerOver } from "@my/ui/src/components/SpinnerOver";
@@ -117,7 +116,7 @@ function Welcome({ onUserLessonsLoadingChange, onUserPacksLoadingChange }) {
       </YStack>
       <YStack space="$3" w="90%" maw={600} ai="center">
         <YStack ai="flex-start" space="$2" p="$5">
-          <Paragraph ta="left" col="$background"> 
+          <Paragraph ta="left" col="$background">
             {Array.isArray(userPacks) ? userPacks.join(', ') : userPacks}
           </Paragraph>
           <Paragraph ta="left" col="$background"> Кол-во уроков: {lessonCount}</Paragraph>
@@ -139,15 +138,6 @@ function Lessons({ onUserLessonsLoadingChange}) {
   }, [isUserLessonsLoading, userLessons]);
 
   const lessonCount = filteredUserLessons.length;
-
-  type ContentLesson = {
-    image: string;
-    href: string;
-    description: string;
-  }
-
-  /* const contentLessons = userLessons?.map((lesson) => lesson.content) as ContentLesson[]; */
-
   const courseLinkProps = useLink({href: "/course"});
 
   const renderLesson = (lesson) => {
@@ -172,16 +162,27 @@ function Lessons({ onUserLessonsLoadingChange}) {
     );
   }
 
+  const halfLength = Math.floor(filteredUserLessons.length / 2);
+
+  const leftColumnLessons = filteredUserLessons.length === 1 
+      ? filteredUserLessons 
+      : filteredUserLessons.slice(0, halfLength);
+  
+  const rightColumnLessons = filteredUserLessons.length > 1
+      ? filteredUserLessons.slice(halfLength)
+      : [];
+  
+
   return (
     <YStack>
       <YStack pb="$6" pt="$6" ai="center" f={1}>
         <Paragraph pb="$4" ta="center">Список Уроков:</Paragraph>
         <XStack p="$2" fw="wrap" w="100%" maw={1000} jc="center">
           <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
-            {filteredUserLessons?.slice(0, Math.floor(filteredUserLessons?.length / 2)).map(renderLesson)}
+            {leftColumnLessons.map(renderLesson)}
           </YStack>
           <YStack jc="flex-start" m="$1" $gtSm={{ width : '40%' }} w="90%">
-            {filteredUserLessons?.slice(Math.floor(filteredUserLessons?.length / 2)).map(renderLesson)}
+            {rightColumnLessons.map(renderLesson)}
           </YStack>
         </XStack>
         { lessonCount === 0 && (
@@ -197,6 +198,7 @@ function Lessons({ onUserLessonsLoadingChange}) {
       </YStack>
     </YStack>
   );
+
 }
 
 
