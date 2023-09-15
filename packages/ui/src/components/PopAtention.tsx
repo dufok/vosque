@@ -43,7 +43,7 @@ export function PopAtention({ isOpen: initialIsOpen }) {
           y={0}
           maw='80%'
         >
-          <YStack space="$1">
+          <YStack space="$3">
             <AlertDialog.Title>Начни обучение бесплатно прямо сейчас!</AlertDialog.Title>
             <AlertDialog.Description>
               🧉🧉🧉
