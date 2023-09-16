@@ -29,8 +29,6 @@ import { Analytics } from '@vercel/analytics/react';
 export function userpageScreen() {
 
   const { isSignedIn, isLoaded } = useAuth();
-  const [isUserLessonsLoading, setUserLessonsLoading] = useState(false);
-  const [isUserPacksLoading, setUserPacksLoading] = useState(false);
   const userpageLinkProps = useLink({ href: "/userpage"});
   const { data, isLoading, error } = trpc.entry.all.useQuery();
   const router = useRouter();
@@ -45,7 +43,7 @@ export function userpageScreen() {
     console.log(data);
   }, [isLoading]);
 
-  if ((isLoading || isUserLessonsLoading || isUserPacksLoading) && !data) {
+  if (isLoading) {
     return <SpinnerOver />;
   }
   
@@ -59,9 +57,9 @@ export function userpageScreen() {
         <HeaderComp />
         { isSignedIn && (
             <>
-              <Welcome onUserLessonsLoadingChange={setUserLessonsLoading} onUserPacksLoadingChange={setUserPacksLoading} />
+              <Welcome  />
               <Login />
-              <Lessons onUserLessonsLoadingChange={setUserLessonsLoading}/>
+              <Lessons />
             </>
           )
         }
@@ -81,28 +79,17 @@ export function userpageScreen() {
   );
 }
 
-function Welcome({ onUserLessonsLoadingChange, onUserPacksLoadingChange }) {
+function Welcome() {
 
   const { data: currentUser } = trpc.user.current.useQuery();
   const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
   const { data: userPacks, isLoading: isUserPacksLoading } = trpc.user.userLessonPacks.useQuery();
-
-  useEffect(() => {
-    if (userLessons) {
-      onUserLessonsLoadingChange(isUserLessonsLoading);
-    }
-  }, [isUserLessonsLoading, userLessons]);
-  
-  useEffect(() => {
-    if (userPacks) {
-      onUserPacksLoadingChange(isUserPacksLoading);
-    }
-  }, [isUserPacksLoading, userPacks]);
-
   const filteredUserLessons =  Array.isArray(userLessons) ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
   const lessonCount = filteredUserLessons.length;
 
-  console.log(filteredUserLessons)
+  if ( isUserLessonsLoading || isUserPacksLoading) {
+    return <SpinnerOver />;
+  }
 
  return (
     <YStack bc="$backgroundFocus" ai="center" pt="$6" mt="$10">
@@ -128,20 +115,17 @@ function Welcome({ onUserLessonsLoadingChange, onUserPacksLoadingChange }) {
   );
 }
 
-function Lessons({ onUserLessonsLoadingChange}) {
+function Lessons() {
 
   const { data: userLessons, isLoading: isUserLessonsLoading } = trpc.user.userLessons.useQuery();
   const filteredUserLessons =  Array.isArray(userLessons) ? userLessons.filter(lesson => lesson.name.toLowerCase().includes("урок")) : [];
   const sortedUserLessons = filteredUserLessons.sort((a, b) => a.id - b.id);
-
-  useEffect(() => {
-    if (userLessons) {
-      onUserLessonsLoadingChange(isUserLessonsLoading);
-    }
-  }, [isUserLessonsLoading, userLessons]);
-
   const lessonCount = filteredUserLessons.length;
   const courseLinkProps = useLink({href: "/course"});
+
+  if ( isUserLessonsLoading ) {
+    return <SpinnerOver />;
+  }
 
   const renderLesson = (lesson) => {
     return (
@@ -270,8 +254,10 @@ function Message() {
         <H2 ta="center">
           Что вы получите на бесплатном уроке?
         </H2>
-        <Paragraph ta="left">На вашем бесплатном уроке вы сможете:</Paragraph>
-        <ParagraphCustom text={"Оценить уникальную методику обучения, которая придаст ^структуру и логику^ вашему изучению испанского языка. Познакомиться с нашим профессиональным преподавателем, посмотрев первый урок в записи. Убедиться, что даже если вы уже обучались испанскому языку на других курсах, теперь у вас есть возможность систематизировать разрозненные знания и наконец-то начать использовать язык в живом общении!"}/>
+        <ParagraphCustom text={"^На вашем бесплатном уроке вы сможете:^"} />
+        <ParagraphCustom text={"• Оценить уникальную методику обучения, которая придаст ^структуру и логику^ вашему изучению испанского языка."} />
+        <ParagraphCustom text={"• Познакомиться с нашим профессиональным преподавателем, посмотрев первый урок в записи."} />
+        <ParagraphCustom text={"• Убедиться, что даже если вы уже обучались испанскому языку на других курсах, теперь у вас есть возможность систематизировать разрозненные знания и наконец-то начать использовать язык в живом общении!"}/>
         <H3 ta="center">Преимущества VOSQUE</H3>
         <ParagraphCustom text={"^Гибкий график:^ Наши уроки доступны 24/7, чтобы подходить вашему графику."}/>
         <ParagraphCustom text={"^Качественное обучение:^ Анастасия, наш опытный преподаватель, объяснит Вам структуру языка, разложит все правила и темы по полочкам и наглядно покажет, как начать говорить с аргентинцами уже после второго урока!"}/>
