@@ -99,7 +99,7 @@ export default async function handler(req, res) {
           data: { status: 'REFUNDED' },
         });
 
-        await sendTelegramMessage( `🌾 Пользователю вернули деньги через BINANCE` );
+        await sendTelegramMessage( `🌾 Пользователю вернули деньги через BINANCE`, req );
         console.log('Successfully sent telegram message to user');
       }
 
@@ -152,9 +152,9 @@ export default async function handler(req, res) {
     });
 
     try {
-        await sendEmailMessage(user.email);
+        await sendEmailMessage(user.email , req);
         console.log('Successfully sent email to user');
-        await sendTelegramMessage( `💰 Пользователь: ${user.email} оплатил курс: ${productName}. Через BINANCE` );
+        await sendTelegramMessage( `💰 Пользователь: ${user.email} оплатил курс: ${productName}. Через BINANCE`, req );
         console.log('Successfully sent telegram message to user');
     } catch (error) {
         console.error("Error sending email:", error);

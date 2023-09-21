@@ -1,7 +1,13 @@
-export const sendEmailMessage = async (userEmail) => {
+import { IncomingMessage } from 'http';
+
+export const sendEmailMessage = async (userEmail, req: IncomingMessage | null = null) => {
   console.log('Sending email to', userEmail);
 
-  const apiUrl = typeof window !== 'undefined' ? '/api/sendEmail' : 'sendEmail';
+  let apiUrl = '/api/sendEmail';
+
+  if (typeof window === 'undefined' && req) {
+    apiUrl = `${req.headers.origin}/api/sendEmail`;
+  }
 
   try {
     const htmlContent = `

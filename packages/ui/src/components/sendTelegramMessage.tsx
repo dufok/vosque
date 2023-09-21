@@ -1,6 +1,11 @@
-export const sendTelegramMessage = async (text) => {
+import { IncomingMessage } from 'http';
 
-  const apiUrl = typeof window !== 'undefined' ? '/api/telegram' : 'telegram';
+export const sendTelegramMessage = async (text, req: IncomingMessage | null = null) => {
+  let apiUrl = '/api/telegram';
+
+  if (typeof window === 'undefined' && req) {
+    apiUrl = `${req.headers.origin}/api/telegram`;
+  }
 
   try {
     const response = await fetch(apiUrl, {
@@ -15,4 +20,4 @@ export const sendTelegramMessage = async (text) => {
   } catch (error) {
     console.error('Error when sending message:', error);
   }
-}
+};

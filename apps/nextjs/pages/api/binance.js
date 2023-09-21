@@ -26,8 +26,6 @@ const createOrder = async (req, res) => {
       body: body,
     });
 
-    await sendTelegramMessage( `🪑 Tecты BINANCE` );
-
     const data = await response.json();
     res.status(200).json(data);
   } catch (error) {
