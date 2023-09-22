@@ -17,7 +17,7 @@ import {
 import { trpc } from "../../utils/trpc";
 
 import { Sheet } from '@tamagui/sheet'
-import { ChevronDown, ChevronUp, Banana } from '@tamagui/lucide-icons'
+import { ChevronDown, Banana } from '@tamagui/lucide-icons'
 import { useLink } from "solito/link";
 import { SubMenu} from '@my/ui/src/components/SubMenu';
 import { PhraseBooks } from "@my/ui/src/components/PhraseBooks";
@@ -25,7 +25,6 @@ import { ImageBackground, View} from "react-native"
 import { HeaderComp } from "@my/ui/src/components/HeaderComp";
 import { ToastComp } from "@my/ui/src/components/ToastComp";
 import React, { useState, useEffect } from 'react';
-import { PopAtention } from "@my/ui/src/components/PopAtention";
 
 import { Analytics } from '@vercel/analytics/react';
 
@@ -57,7 +56,6 @@ export function HomeScreen() {
   return (
     <YStack>
         <HeaderComp />
-       {/*  <PopAtention isOpen /> */}
         <Welcome imageSource={imageSource} userpageLinkProps={userpageLinkProps} />
         <AboutAutor imageSource1={imageSource1}/>
         <AboutCourse courseLinkProps={courseLinkProps}/>
