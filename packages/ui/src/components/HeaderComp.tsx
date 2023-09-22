@@ -1,13 +1,18 @@
 import React from 'react';
 import { Paragraph, XStack, Button, YStack, isClient } from 'tamagui';
 import { TextLink } from 'solito/link';
+import { useRouter } from 'next/router';
 import { useClerk } from '@clerk/clerk-react';
+import { PopAtention } from "./PopAtention";
 
 
 export function HeaderComp() {
 
   const { session } = useClerk();
   const isSignedIn = !!session;
+
+  const router = useRouter();
+  const isHomePage = router.pathname === '/';
 
   return (
     <XStack
@@ -26,6 +31,10 @@ export function HeaderComp() {
       paddingHorizontal="$6"
       elevation={2}
       >
+        { !isSignedIn && isHomePage && (
+           <PopAtention isOpen />
+          )
+        }
         <XStack space="$4" $sm={{display: "none"}} >
           <TextLink prefetch={false} href="/phrasebook">
             <Paragraph

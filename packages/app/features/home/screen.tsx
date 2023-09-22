@@ -57,7 +57,7 @@ export function HomeScreen() {
   return (
     <YStack>
         <HeaderComp />
-        <PopAtention isOpen />
+       {/*  <PopAtention isOpen /> */}
         <Welcome imageSource={imageSource} userpageLinkProps={userpageLinkProps} />
         <AboutAutor imageSource1={imageSource1}/>
         <AboutCourse courseLinkProps={courseLinkProps}/>
