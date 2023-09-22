@@ -42,6 +42,7 @@ export function PopAtention({ isOpen: initialIsOpen }) {
           opacity={1}
           y={0}
           maw='80%'
+          $gtMd={{ maw: '50%' }}
         >
           <YStack space="$3">
             <AlertDialog.Title>Начни обучение бесплатно прямо сейчас!</AlertDialog.Title>
@@ -51,19 +52,20 @@ export function PopAtention({ isOpen: initialIsOpen }) {
 
             <ParagraphCustom text="Мы рады предложить вам уникальную возможность: ^первый урок аргентинского испанского абсолютно бесплатно с VOSQUE!^" />
             <ParagraphCustom text="^Не упустите свой шанс!^ Начните свое обучение с нами уже сегодня и поймите наконец, КАК же «работает» аргентинский испанский язык!" />
-
-            <XStack space="$3" justifyContent="flex-end">
-              <AlertDialog.Cancel asChild>
-                <Button onPress={() => setIsOpen(false)}>Закрыть</Button>
-              </AlertDialog.Cancel>
-              <AlertDialog.Action asChild>
-                <Button
-                  onPress={handleOnClick}
-                >
-                  Начать бесплатно
-                </Button>
-              </AlertDialog.Action>
-            </XStack>
+            
+              <XStack space="$2" jc="space-around" $gtXs={{ justifyContent : "flex-end" }} >
+                <AlertDialog.Cancel asChild>
+                  <Button onPress={() => setIsOpen(false)}>Закрыть</Button>
+                </AlertDialog.Cancel>
+                <AlertDialog.Action asChild>
+                  <Button
+                    onPress={handleOnClick}
+                  >
+                    Начать бесплатно
+                  </Button>
+                </AlertDialog.Action>
+              </XStack>
+            
           </YStack>
         </AlertDialog.Content>
       </AlertDialog.Portal>
