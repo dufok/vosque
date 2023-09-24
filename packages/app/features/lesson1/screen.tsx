@@ -73,7 +73,7 @@ function Lesson1SignIn({ userLessons }) {
   const lessonLinkPageUP = useLink({ href: "/lesson2"});
   const lessonLinkPageDown = useLink({ href: "/lesson1"});
   
-  const lessonName = "урок 1";
+  const lessonName = "урок 1.";
   const firstLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
 
   //part with types from file json full

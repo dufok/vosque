@@ -55,37 +55,39 @@ export const userRouter = router({
     
       return skus;
     }),
-  userLessons: protectedProcedure.query(async ({ ctx }) => {
+    userLessons: protectedProcedure.query(async ({ ctx }) => {
       const userId = ctx.user.id;
-    
+  
       const user = await ctx.prisma.user.findUnique({
         where: { id: userId },
         include: { lessonPacks: true },
       });
-    
+  
       if (!user || !user.lessonPacks) {
         return [];
       }
-    
-      const allLessons: Lesson[] = [];
-    
-      for (const lessonPack of user.lessonPacks) {
+  
+      const allPromises = user.lessonPacks.map(async (lessonPack) => {
         const lessonPackLessons = await ctx.prisma.lessonPackLessons.findMany({
           where: { lessonPackId: lessonPack.id },
         });
-    
-        for (const lessonPackLesson of lessonPackLessons) {
-          const lesson = await ctx.prisma.lesson.findUnique({
+        
+        const lessonPromises = lessonPackLessons.map(async (lessonPackLesson) => {
+          return ctx.prisma.lesson.findUnique({
             where: { id: lessonPackLesson.lessonId },
           });
+        });
+  
+        return Promise.all(lessonPromises);
+      });
+  
+      const allLessonPacks = await Promise.all(allPromises);
+  
+      // Flatten the array of arrays to a single array
+      const allLessons = allLessonPacks.flat();
     
-          if (lesson) {
-            allLessons.push(lesson);
-          }
-        }
-      }
-      return allLessons;
-    }),
+      return allLessons.filter(Boolean);  // This will remove any null or undefined lessons
+    }),  
   lessonPackBySku: publicProcedure
     .input(z.object({ sku_number: z.string() }))
     .query(async ({ ctx, input }) => {
