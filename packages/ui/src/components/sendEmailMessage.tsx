@@ -1,9 +1,9 @@
 import { IncomingMessage } from 'http';
 
-export const sendEmailMessage = async (userEmail, req: IncomingMessage | null = null) => {
+export const sendEmailMessage = async (userEmail: string, req: IncomingMessage | null = null ) => {
   console.log('Sending email to', userEmail);
 
-  let apiUrl = '/api/sendEmail';
+  let apiUrl = '/api/sendEmail' ;
 
   if (typeof window === 'undefined' && req) {
     apiUrl = `${req.headers.origin}/api/sendEmail`;
@@ -21,7 +21,7 @@ export const sendEmailMessage = async (userEmail, req: IncomingMessage | null = 
       <a href="https://t.me/vosque_help">Telegram: https://t.me/vosque_help</a>
     `;
 
-    const response = await fetch( apiUrl , {
+    const response = await fetch( apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
