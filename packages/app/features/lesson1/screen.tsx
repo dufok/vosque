@@ -70,8 +70,17 @@ function Lesson1SignIn({ userLessons }) {
 
 //lesson content
 
-  const lessonLinkPageUP = useLink({ href: "/lesson2"});
   const lessonLinkPageDown = useLink({ href: "/lesson1"});
+
+  // Step 1: Search for "урок 2" in userLessons
+  const lessonNameToCheck = "урок 2.";
+  const secondLessonExists = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonNameToCheck.toLowerCase()));
+
+  // Step 2 and 3: Determine the link based on whether "урок 2" exists
+  const lessonLinkPageUP = useLink({ 
+    href: secondLessonExists ? "/lesson2" : "/course"
+  });
+
   
   const lessonName = "урок 1.";
   const firstLesson = userLessons?.find(lesson => lesson.name.toLowerCase().includes(lessonName.toLowerCase()));
