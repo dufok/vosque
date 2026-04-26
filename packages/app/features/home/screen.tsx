@@ -36,8 +36,8 @@ export function HomeScreen() {
   const phasebookLinkProps = useLink({href: "/phrasebook"});
   const courseLinkProps = useLink({href: "/course"});
 
-  const imageSource = { uri: 'https://cdn.vosque.education/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw'};
-  const imageSource1 = { uri: 'https://cdn.vosque.education/images/avatar.png?raw'};
+  const imageSource = { uri: 'https://cdn.vosque.app/images/ylona-maria-rybka-W9h9Tq-JLTk-unsplash%201.png?raw'};
+  const imageSource1 = { uri: 'https://cdn.vosque.app/images/avatar.png?raw'};
   
   const { data, isLoading, error } = trpc.entry.all.useQuery();
 
@@ -200,7 +200,7 @@ function AboutCourse ({courseLinkProps}) {
           autoDeleteTime={3000}
           />
         <Image
-          source={{uri: 'https://cdn.vosque.education/images/img-home-course.png', width: 50, height: 50}}
+          source={{uri: 'https://cdn.vosque.app/images/img-home-course.png', width: 50, height: 50}}
           height={50}
           width={50}
         />

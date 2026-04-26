@@ -51,7 +51,7 @@ export function HeaderComp() {
         </XStack>
         <YStack mr="$5">
           <TextLink href="/">
-            <img src="https://cdn.vosque.education/images/Logo.PNG?raw" alt="Vosque Logo" width="50" height="50" />
+            <img src="https://cdn.vosque.app/images/Logo.PNG?raw" alt="Vosque Logo" width="50" height="50" />
           </TextLink>
         </YStack>
         <TextLink prefetch={false} href="/userpage">

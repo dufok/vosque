@@ -1,0 +1,9 @@
+{
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/turborepo-npm:1": {
+      "version": "1.0.12",
+      "resolved": "ghcr.io/devcontainers-extra/features/turborepo-npm@sha256:c6ed8b60b3554beadb85499deac36cd8c1dbafcb19452f6f8349fc6f791ba1d6",
+      "integrity": "sha256:c6ed8b60b3554beadb85499deac36cd8c1dbafcb19452f6f8349fc6f791ba1d6"
+    }
+  }
+}
